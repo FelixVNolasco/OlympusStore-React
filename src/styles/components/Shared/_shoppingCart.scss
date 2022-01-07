@@ -1,0 +1,32 @@
+.shoppingContainer {
+    display: flex;
+    cursor: pointer;
+
+    .items {
+
+        display: flex;
+        position: relative;
+        align-items: center;
+        background-color: $dark-blue;
+        padding: 8px;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        top: -10px;
+        right: -45px;
+        justify-content: center;
+
+        .count {
+            font-size: 12px;
+            color: $white;
+            font-weight: 800;
+        }
+
+    }
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        color: $primary;
+    }
+}
