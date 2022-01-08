@@ -1,7 +1,21 @@
-.products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+.productsTitle {
+    font-size: $title;
+    font-weight: 700;
+    text-align: center;
 }
+.productsSection {
+    
+    width: 80%;
+    margin: auto;
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
 
 .product {
     flex: 1;
@@ -13,10 +27,11 @@
     justify-content: center;
     background-color: #f5fbfd;
     position: relative;
+
     &:hover {
         .info {
             opacity: 1;
-        }      
+        }
     }
 
     .circle {

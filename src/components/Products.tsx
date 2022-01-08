@@ -6,6 +6,7 @@ export const Products = () => {
     return (
         <>
             <div className="container">
+                <h1 className='productsTitle'>Productos más populares</h1>
                 <div className="productsSection">
                     <div className='products'>
                         {

@@ -1,13 +1,18 @@
-@import './base/base';
+
 @import './base/settings';
 
+@import './base/base';
+@import './base/fontsizes';
+@import './base/variables';
 
 //Components
 @import './components/navbar';
 @import './components/categories';
 @import './components/products';
+@import './components/newsletter';
+@import './components/footer';
 
 
-//Shared
+//SharedComponent
 @import './components/Shared/shoppingCart';
 @import './components/Shared/slider';

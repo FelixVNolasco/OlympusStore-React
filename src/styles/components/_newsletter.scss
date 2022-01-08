@@ -1,0 +1,50 @@
+.newsLetterContainer {
+    height: 60vh;
+    background-color: lighten($color: $dark-gray, $amount: 25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .title {
+        font-family: "Poppins", sans-serif;
+        font-size: $large-title;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: $subtitle;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .inputContainer {
+        width: 50%;
+        height: 40px;
+        background-color: $white;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $light-gray;
+    }
+
+    .input {
+        border: none;
+        flex: 8;
+        padding-left: 20px;
+    }
+
+    .sendButton {
+        flex: 1;
+        border: none;
+        background-color: darken($color: $secondary, $amount: 2);
+        color: $dark-gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .sendIcon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
