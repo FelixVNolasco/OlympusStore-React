@@ -7,22 +7,21 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="navbarContainer">
                 <div className="wrapper">
                     <div className="left">
+                    <div className='iconContainer'>
+                            <FaGripfire className='icon' />
+                            <span>Olympus</span>
+                        </div>
+                    </div>
+                    <div className="right">
                         <div className="searchContainer">
                             <input className="input" type="text" />
                             <FaSearch className='icon' />
                         </div>
-                    </div>
-                    <div className="center">
-                        <div className='iconContainer'>
-                            <FaGripfire className='icon' />
-                            <span>Olympus</span>
-                        </div>
-
-                    </div>
-                    <div className="rigth">
+                        <p className='btn'>Login</p>
+                        <p className='btn'>Sign Up</p>
                         <ShoppingCart items={8} />
                     </div>
                 </div>

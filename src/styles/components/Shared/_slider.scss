@@ -1,0 +1,84 @@
+.container {
+    height: 100vh;
+}
+
+
+.slide {
+    height: 80%;
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+
+    .infoContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-left: 124px;
+        margin-bottom: 128px;        
+
+        .title {
+            font-size: $large-title;
+            line-height: 102px;
+            color: $dark-gray;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .description {
+            color: $dark-gray;
+            margin-top: 32px;
+            font-size: $subtitle;
+            text-align: justify;
+        }
+
+        .buttonContainer {
+            display: flex;
+            justify-content: center;
+            color: $dark-gray;
+
+            .slideButton {
+                padding: 12px;
+                border: 2px solid $dark-gray;
+                font-size: $normal;
+                font-weight: 700;
+                width: 150px;
+            }
+        }
+
+
+    }
+
+    .imageContainer {
+        height: 80%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        .image {
+            height: 100%;
+            filter: grayscale(75%);
+        }
+    }
+}
+
+
+
+.slidePosition {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .dot {
+        cursor: pointer;
+        width: 24px;
+        width: 24px;
+        color: $light-gray;
+    }
+
+    .selected {
+        color: $primary;
+    }
+}
