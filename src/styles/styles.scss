@@ -6,6 +6,7 @@
 @import './base/variables';
 
 //Components
+@import './components/auth';
 @import './components/navbar';
 @import './components/categories';
 @import './components/products';
@@ -16,7 +17,6 @@
 //Pages
 @import './components/singleproduct';
 @import './components/productlist';
-
 
 
 //SharedComponent
