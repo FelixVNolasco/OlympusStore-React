@@ -14,8 +14,7 @@
             background-color: $dark-gray;
             box-shadow: 4px 4px 4px 0px $dark-gray;
             border-radius: 12px;
-            padding: 20px;
-            width: 62%;
+            padding: 30px;
             min-width: 300px;
 
             .auth__title {
@@ -23,6 +22,7 @@
                 text-align: center;
                 font-size: 1.8rem;
                 margin: 32px 0 24px 0;
+                font-family: "Poppins", sans-serif;
             }
 
             form {
@@ -78,17 +78,30 @@
                     width: 100%;
 
                     .btn {
+                        font-family: "Poppins", sans-serif;
                         cursor: pointer;
                         padding: 8px;
                         border: none;
                         border-radius: 8px;
-                        font-size: 0.9rem;
-                        font-weight: 600;
+                        font-size: 14px;
+                        font-weight: 500;
                     }
 
                     .btn-primary {
                         background-color: $primary;
                     }
+                }
+            }
+
+            .google-btn {
+                cursor: pointer;
+                background-color: rgba($color: #000000, $alpha: 0.4);
+                padding: 4px;
+                padding-left: 6px;
+                padding-right: 6px;
+                border-radius: 4px;
+                &:hover{
+                    background-color: rgba($color: #000000, $alpha: 0.6);
                 }
             }
 
@@ -105,13 +118,13 @@
 
                 .create_account {
                     text-decoration: none;
-                    color: $white;
+                    color: $primary;
                     text-decoration: none;
                     transition: 300ms ease-out;
 
                     &:hover {
                         transition: 300ms ease-in;
-                        color: lighten($color: $primary, $amount: 2);
+                        color: lighten($color: $primary, $amount: 5);
                         text-decoration: underline;
                     }
                 }
@@ -121,7 +134,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                color: $white;                
+                color: $white;
             }
 
             .auth_social-networks {

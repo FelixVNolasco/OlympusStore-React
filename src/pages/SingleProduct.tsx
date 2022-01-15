@@ -1,34 +1,72 @@
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { publicRequest } from '../requestMethods';
+
 
 const SingleProduct = () => {
+
+    const location = useLocation();
+    const productId = location.pathname.split("/")[2];
+
+    const [product, setProduct] = useState<any>({})
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const product = await publicRequest.get(`products/find/${productId}`)
+                setProduct(product.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getProduct();
+    }, [productId])
+
+    console.log(product);
+
+    const [quantity, setQuantity] = useState(1);
+
+    const handleQuantity = (type: string) => {
+        if (type === "inc") {            
+                setQuantity(quantity + 1)
+        } else {
+            quantity > 1 &&
+                setQuantity(quantity - 1)
+        }
+    }
+
+    const [color, setColor] = useState("");
+    console.log(color);
     return (
         <>
             <div className="singleProductContainer">
                 <Navbar />
                 <div className="wrapperSingleProduct">
                     <div className="imgProductContainer">
-                        <img className='imgSingleProduct' src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1641703125/Olympus/calzado-blazer-low-77-jumbo-gRBtmC_od0tbj.jpg" alt="" />
+                        <img className='imgSingleProduct' src={product.img} alt="" />
                     </div>
                     <div className="infoSingleProduct">
-                        <h4 className='titleSingleProduct'>EXAMPLE PRODUCT</h4>
-                        <p className='descriptionSingleProduct'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem suscipit iure quae maiores magnam necessitatibus ea porro, est assumenda sit at error deserunt modi?</p>
-                        <p className='priceSingleProduct'>$30</p>
+                        <h4 className='titleSingleProduct'>{product.title}</h4>
+                        <p className='descriptionSingleProduct'>{product.desc}</p>
+                        <p className='priceSingleProduct'>${product.price}</p>
                         <div className="optionsSingleProduct">
                             <p className='optionText'>Número:</p>
-                            <select className='options' name="" id="">
-                                <option value="24.5">24.5</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27.5">27.5</option>
-                                <option value="28">28</option>
+                            <select className='options' name="" onChange={(e) => setColor(e.target.value)}>
+                                {
+                                    product.size?.map((size) => {
+                                        return <option value={size} key={size}>{size}</option>
+                                    })
+                                }
                             </select>
                         </div>
                         <div className="productAmountContainer">
-                            <FaPlus className='icons' />
-                            <span className='productAmount'>2</span>
-                            <FaMinus className='icons' />
+                            <FaMinus className='icons' onClick={() => handleQuantity("dec")} />
+                            <span className='productAmount'>{quantity}</span>
+                            <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                         </div>
                         <div className="checkoutContainer">
                             <button className='checkoutButton'>Comprar</button>

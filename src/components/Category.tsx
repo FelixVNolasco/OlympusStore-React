@@ -1,13 +1,17 @@
 import React from 'react'
 import { category } from '../data';
+import { Link } from 'react-router-dom';
 
-const Category = ({item} : {item: category}) => {
+const Category = ({ item }: { item: category }) => {
     return (
         <>
-            <div className='category'>                
-                <img className='categoryBackground' src={item.img} alt="" />
-                <p className='title'>{item.title}</p>
-            </div>
+            <Link to={`/products/${item.category}`}>
+                <div className='category'>
+                    <img className='categoryBackground' src={item.img} alt="" />
+                    <p className='title'>{item.title}</p>
+                </div>
+            </Link>
+
         </>
     )
 }

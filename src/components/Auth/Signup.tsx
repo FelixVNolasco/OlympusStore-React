@@ -55,10 +55,10 @@ export const Signup = () => {
 
     return (
 
-        <div className='form-wrapper animate__animated animate__fadeIn'>
+        <div className='form-wrapper'>
 
             <div className='form-container'>
-                <div className="auth__box-container">
+                <div className="auth__box-container animate__animated animate__fadeIn">
                     <p className="auth__title">Sign Up</p>
                     {/* {
                         (msgError)  && (

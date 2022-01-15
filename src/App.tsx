@@ -1,4 +1,4 @@
-import { BrowserRouter,Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from './pages/Home';
 import { Cart } from './pages/Cart';
 import SingleProduct from './pages/SingleProduct';
@@ -12,15 +12,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/products/:category" element={<ProductList />}/>
-        <Route path="/product/:id" element={<SingleProduct />}/>
-        <Route path="/cart" element={<Cart />}/>        
-        <Route path="/login" element={<Login />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/auth/login" element={<Login />} />
         {/* {
           isAuthenticated ?  <Navigate to={"/"}/> : <Navigate to={"/login"}/>
         } */}
-        <Route path="/signup" element={<Signup />}/>
+        <Route path="/auth/signup" element={<Signup />} />
         {/* {
           isAuthenticated ?  <Navigate to={"/"}/> : <Navigate to={"/signup"}/>
         } */}
