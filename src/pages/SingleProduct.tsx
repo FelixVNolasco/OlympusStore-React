@@ -5,6 +5,9 @@ import { Footer } from '../components/Shared/Footer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { publicRequest } from '../requestMethods';
+import { addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+
 
 
 const SingleProduct = () => {
@@ -13,6 +16,8 @@ const SingleProduct = () => {
     const productId = location.pathname.split("/")[2];
 
     const [product, setProduct] = useState<any>({})
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getProduct = async () => {
@@ -26,7 +31,7 @@ const SingleProduct = () => {
         getProduct();
     }, [productId])
 
-    console.log(product);
+    // console.log(product);
 
     const [quantity, setQuantity] = useState(1);
 
@@ -39,8 +44,25 @@ const SingleProduct = () => {
         }
     }
 
-    const [color, setColor] = useState("");
-    console.log(color);
+    const [size, setSize] = useState("");
+    // console.log(color);
+    
+    const handleClick = () => {
+        dispatch(
+            addProduct(
+                {
+                    // product: product,
+                    // quantity,
+                    // price: product.price * quantity
+                    ...product,
+                    quantity,
+                    size
+                }
+            )
+        )
+    }
+    
+
     return (
         <>
             <div className="singleProductContainer">
@@ -55,7 +77,7 @@ const SingleProduct = () => {
                         <p className='priceSingleProduct'>${product.price}</p>
                         <div className="optionsSingleProduct">
                             <p className='optionText'>Número:</p>
-                            <select className='options' name="" onChange={(e) => setColor(e.target.value)}>
+                            <select className='options' name="" onChange={(e) => setSize(e.target.value)}>
                                 {
                                     product.size?.map((size) => {
                                         return <option value={size} key={size}>{size}</option>
@@ -68,7 +90,7 @@ const SingleProduct = () => {
                             <span className='productAmount'>{quantity}</span>
                             <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                         </div>
-                        <div className="checkoutContainer">
+                        <div className="checkoutContainer" onClick={handleClick}>
                             <button className='checkoutButton'>Comprar</button>
                         </div>
                     </div>
@@ -80,3 +102,4 @@ const SingleProduct = () => {
 }
 
 export default SingleProduct
+

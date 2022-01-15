@@ -18,11 +18,11 @@ export const Slider = () => {
                 </div>
             </div>
 
-            <div className='slidePosition'>
+            {/* <div className='slidePosition'>
                 <FaCircle className='dot selected' />
                 <FaCircle className='dot' />
                 <FaCircle className='dot' />
-            </div>
+            </div> */}
 
         </div>
     )

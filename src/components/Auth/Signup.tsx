@@ -9,6 +9,7 @@ import { FaEye } from "react-icons/fa";
 import { useForm } from '../../hooks/useForm';
 // import { setError, removeError } from '../../actions/ui'
 // import { registerWithEmailPasswordName } from '../../actions/auth';
+import { Navbar } from '../Navbar';
 
 export const Signup = () => {
 
@@ -54,50 +55,49 @@ export const Signup = () => {
     // }
 
     return (
-
-        <div className='form-wrapper'>
-
-            <div className='form-container'>
-                <div className="auth__box-container animate__animated animate__fadeIn">
-                    <p className="auth__title">Sign Up</p>
-                    {/* {
+        <>
+            <Navbar />
+            <div className='form-wrapper'>
+                <div className='form-container'>
+                    <div className="auth__box-container animate__animated animate__fadeIn">
+                        <p className="auth__title">Sign Up</p>
+                        {/* {
                         (msgError)  && (
                             <div className='auth__alert-error'>
                                 {msgError}
                             </div>
                         )
                     } */}
-                    <form >
-                        <p className='label'>Name</p>
-                        <div className='input-container'>
-                            <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value="" />
+                        <form >
+                            <p className='label'>Name</p>
+                            <div className='input-container'>
+                                <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value="" />
+                            </div>
+                            <p className='label'>Email</p>
+                            <div className='input-container'>
+                                <input className="auth__input" type="text" placeholder="example@correo.com" name="email" value="" autoComplete="off" />
+                            </div>
+                            <p className='label'>Password</p>
+                            <div className='input-container'>
+                                <input className="auth__input" name="password" value="" />
+                                <FaEye className='showHide-icon' />
+                            </div>
+                            <p className='label'>Confirm your password</p>
+                            <div className='input-container'>
+                                <input className="auth__input" type="password" name="password2" />
+                            </div>
+                            <div className='btn-container'>
+                                <button className="btn btn-primary" type="submit" >Sign Up</button>
+                            </div>
+                        </form>
+                        <div className='newAccount-container'>
+                            <div className="account_title">You already have an account?</div>
+                            <Link className="create_account" to="/auth/login">Log in here.</Link>
                         </div>
-                        <p className='label'>Email</p>
-                        <div className='input-container'>
-                            <input className="auth__input" type="text" placeholder="example@correo.com" name="email" value="" autoComplete="off" />
-                        </div>
-                        <p className='label'>Password</p>
-                        <div className='input-container'>
-                            <input className="auth__input" name="password" value="" />
-                            <FaEye className='showHide-icon' />
-                        </div>
-                        <p className='label'>Confirm your password</p>
-                        <div className='input-container'>
-                            <input className="auth__input" type="password" name="password2" />
-                        </div>
-                        <div className='btn-container'>
-                            <button className="btn btn-primary" type="submit" >Sign Up</button>
-                        </div>
-                    </form>
-                    <div className='newAccount-container'>
-                        <div className="account_title">You already have an account?</div>
-                        <Link className="create_account" to="/auth/login">Log in here.</Link>
                     </div>
                 </div>
-
             </div>
+        </>
 
-
-        </div>
     )
 }

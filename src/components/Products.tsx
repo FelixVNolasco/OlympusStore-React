@@ -58,7 +58,7 @@ export const Products = ({ category, filters, sort }: any) => {
     return (
         <>
             <div className="container">
-                <h1 className='productsTitle'>Productos más populares</h1>
+                <h1 className='productsTitle'>Productos Recientes</h1>
                 <div className="productsSection">
                     <div className='products'>
                         {
