@@ -59,19 +59,17 @@ export const Products = ({ category, filters, sort }: any) => {
         <>
             <div className="container">
                 <h1 className='productsTitle'>Productos Recientes</h1>
-                <div className="productsSection">
-                    <div className='products'>
-                        {
-                            category ?
-                                filteredProducts.map((product) => {
-                                    return <Product key={product._id} item={product} />
-                                })
-                                :
-                                products.slice(0,8).map((product) => {
-                                    return <Product key={product._id} item={product} />
-                                })
-                        }
-                    </div>
+                <div className='products'>
+                    {
+                        category ?
+                            filteredProducts.map((product) => {
+                                return <Product key={product._id} item={product} />
+                            })
+                            :
+                            products.slice(0, 8).map((product) => {
+                                return <Product key={product._id} item={product} />
+                            })
+                    }
                 </div>
             </div>
         </>

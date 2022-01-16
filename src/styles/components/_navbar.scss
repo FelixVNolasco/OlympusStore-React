@@ -1,15 +1,18 @@
-.navbarContainer {
-    height: 80px;
-    margin-bottom: 30px;
+
+.containerNavbar {
+    width: 98vw;
 }
 
-.wrapper {
-    margin: 20px 30px;
+
+.navbar {
+    // margin: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
+
+
 
 .left {
     flex: 1;

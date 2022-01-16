@@ -12,8 +12,8 @@ export const Navbar = () => {
     console.log(quantity);
     return (
         <>
-            <div className="navbarContainer">
-                <div className="wrapper">
+            <div className="containerNavbar">
+                <div className="navbar">
                     <div className="left">
                         <Link to={"/"}>
                             <div className='iconContainer'>

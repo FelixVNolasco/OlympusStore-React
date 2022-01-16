@@ -1,19 +1,17 @@
-
 .productsTitle {
     font-size: $title;
     font-weight: 700;
     text-align: center;
+    margin-top: 64px;
 }
-.productsSection {
-    
-    width: 80%;
-    margin: auto;
 
-    .products {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 295px);
+    justify-content: center;
+    margin-bottom: 64px;
 }
+
 
 
 

@@ -1,13 +1,12 @@
-.container {
-    height: 100vh;
+.container {        
+    width: 100vw;
 }
 
 
 .slide {
-    height: 80%;
-    width: 100%;
-    
-    display: flex;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
 
     .infoContainer {
@@ -50,14 +49,17 @@
     }
 
     .imageContainer {
-        height: 80%;
+        
+        max-height: 500px;
+        width: 150px;
         flex: 1;
         display: flex;
         justify-content: center;
 
         .image {
-            height: 100%;
+            display: none;
             filter: grayscale(75%);
+            width: 100%;
         }
     }
 }
