@@ -12,7 +12,7 @@ export const Navbar = () => {
     console.log(quantity);
     return (
         <>
-            <div className="containerNavbar">
+            <div className="container">
                 <div className="navbar">
                     <div className="left">
                         <Link to={"/"}>
@@ -21,7 +21,6 @@ export const Navbar = () => {
                                 <span>Olympus</span>
                             </div>
                         </Link>
-
                     </div>
                     <div className="right">
                         <div className="searchContainer">
@@ -34,9 +33,9 @@ export const Navbar = () => {
                         <Link to={"/auth/signup"}>
                             <p className='btn'>Sign Up</p>
                         </Link>
-                        <Link to={"/cart"}>
+                        {/* <Link to={"/cart"}>
                             <ShoppingCart items={quantity} />
-                        </Link>                        
+                        </Link>                         */}
                     </div>
                 </div>
             </div>
