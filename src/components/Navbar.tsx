@@ -33,9 +33,9 @@ export const Navbar = () => {
                         <Link to={"/auth/signup"}>
                             <p className='btn'>Sign Up</p>
                         </Link>
-                        {/* <Link to={"/cart"}>
+                        <Link to={"/cart"}>
                             <ShoppingCart items={quantity} />
-                        </Link>                         */}
+                        </Link>                        
                     </div>
                 </div>
             </div>

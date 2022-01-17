@@ -4,12 +4,13 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { userRequest } from '../requestMethods';
 
 export const Cart = () => {
-    
+
 
 
     const cart = useSelector((state: RootStateOrAny) => state.cart)
@@ -17,13 +18,36 @@ export const Cart = () => {
     // console.log(products);
 
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
-    console.log(stripeKey);
+    // console.log(stripeKey);
 
     const [stripeToken, setStripeToken] = useState(null);
 
     const onToken = (token) => {
         setStripeToken(token)
     }
+    // console.log(stripeToken);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                const {stripeData} = await (userRequest.post("/checkout/payment",
+                    {
+                        tokenId: stripeToken.id,
+                        amount: cart.total * 100
+                    }
+                ) as any)
+                navigate("/success", {state: {stripeData}})
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        stripeToken && cart.total >=1 && makeRequest();
+    }, [stripeToken, cart.total, navigate])
+
     console.log(stripeToken);
     return (
         <>
@@ -99,9 +123,9 @@ export const Cart = () => {
                             token={onToken}
                             stripeKey={stripeKey}
                         >
-                        <button className='checkoutButton'>Comprar</button>
+                            <button className='checkoutButton'>Comprar</button>
                         </StripeCheckout>
-                        
+
                     </div>
                 </div>
             </div>

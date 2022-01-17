@@ -5,10 +5,11 @@ import SingleProduct from './pages/SingleProduct';
 import { ProductList } from './pages/ProductList';
 import { Login } from './components/Auth/Login';
 import { Signup } from './components/Auth/Signup';
+import { Success } from "./pages/Success";
 
 const App = () => {
 
-  const isAuthenticated: boolean = true;
+  // const isAuthenticated: boolean = true;
   return (
     <BrowserRouter>
       <Routes>
@@ -21,9 +22,7 @@ const App = () => {
           isAuthenticated ?  <Navigate to={"/"}/> : <Navigate to={"/login"}/>
         } */}
         <Route path="/auth/signup" element={<Signup />} />
-        {/* {
-          isAuthenticated ?  <Navigate to={"/"}/> : <Navigate to={"/signup"}/>
-        } */}
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   )

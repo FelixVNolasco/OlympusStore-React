@@ -9,7 +9,7 @@ export const Products = ({ category, filters, sort }: any) => {
     console.log(category, filters, sort);
 
     const [products, setProducts] = useState([]);
-
+    console.log(products);
     const [filteredProducts, setfilteredProducts] = useState([]);
 
 

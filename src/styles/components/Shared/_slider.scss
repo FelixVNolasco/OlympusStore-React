@@ -1,4 +1,4 @@
-.container {        
+.container {
     width: 100%;
 }
 
@@ -6,22 +6,22 @@
 .slide {
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
     align-items: center;
+    height: 100vh;
 
     .infoContainer {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin-left: 124px;
-        margin-bottom: 128px;        
+        width: 80%;
+        margin: auto;
 
         .title {
+            margin: 0;
             font-size: $large-title;
             line-height: 102px;
             color: $dark-gray;
             text-align: center;
             font-family: "Poppins", sans-serif;
+
         }
 
         .description {
@@ -31,12 +31,13 @@
             text-align: justify;
         }
 
-        .buttonContainer {
+        .buttonContainer {            
             display: flex;
             justify-content: center;
             color: $dark-gray;
 
             .slideButton {
+                cursor: pointer;
                 padding: 12px;
                 border: 2px solid $dark-gray;
                 font-size: $normal;
@@ -49,38 +50,33 @@
     }
 
     .imageContainer {
-        
-        max-height: 500px;
-        width: 150px;
-        flex: 1;
-        display: flex;
+
+        max-width: 500px;
         justify-content: center;
+        margin: auto;
 
         .image {
-            display: none;
             filter: grayscale(75%);
             width: 100%;
         }
     }
 }
 
+// .slidePosition {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: center;
+//     margin-bottom: 20px;
 
+//     .dot {
+//         cursor: pointer;
+//         width: 24px;
+//         width: 24px;
+//         color: $light-gray;
+//     }
 
-.slidePosition {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-
-    .dot {
-        cursor: pointer;
-        width: 24px;
-        width: 24px;
-        color: $light-gray;
-    }
-
-    .selected {
-        color: $primary;
-    }
-}
+//     .selected {
+//         color: $primary;
+//     }
+// }

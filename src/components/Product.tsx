@@ -1,6 +1,5 @@
 
 import { FaHeart, FaSearch, FaCartPlus } from 'react-icons/fa';
-import { simpleProduct } from '../data';
 import { Link } from 'react-router-dom';
 
 export const Product = ({ item }: any) => {
@@ -13,15 +12,13 @@ export const Product = ({ item }: any) => {
                         <div className="icon">
                             <FaHeart />
                         </div>
-                        <Link to={`/product/${item._id}`}>
-                            <div className="icon">
-                                <FaSearch />
-                            </div>
+                        <Link className='icon' to={`/product/${item._id}`}>
+                            <FaSearch />
                         </Link>
 
-                        <div className="icon">
+                        {/* <div className="icon">
                             <FaCartPlus />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
