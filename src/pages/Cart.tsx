@@ -32,13 +32,13 @@ export const Cart = () => {
     useEffect(() => {
         const makeRequest = async () => {
             try {
-                const {stripeData} = await (userRequest.post("/checkout/payment",
+                const {data} = await (userRequest.post("/checkout/payment",
                     {
                         tokenId: stripeToken.id,
                         amount: cart.total * 100
                     }
                 ) as any)
-                navigate("/success", {state: {stripeData}})
+                navigate("/success", {state: {data}})
                 
             } catch (error) {
                 console.log(error);
