@@ -9,7 +9,6 @@ import { FaEye } from "react-icons/fa";
 import { useForm } from '../../hooks/useForm';
 // import { setError, removeError } from '../../actions/ui'
 // import { registerWithEmailPasswordName } from '../../actions/auth';
-import { Navbar } from '../Navbar';
 
 export const Signup = () => {
 
@@ -56,11 +55,11 @@ export const Signup = () => {
 
     return (
         <>
-            <Navbar />
+            
             <div className='form-wrapper'>
                 <div className='form-container'>
                     <div className="auth__box-container animate__animated animate__fadeIn">
-                        <p className="auth__title">Sign Up</p>
+                        <p className="auth__title">Registrarse</p>
                         {/* {
                         (msgError)  && (
                             <div className='auth__alert-error'>
