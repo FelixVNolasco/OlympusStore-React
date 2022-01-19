@@ -34,19 +34,24 @@
 
             .descriptionSingleProduct {
                 text-align: justify;
+                margin-top: 12px;
+                margin-bottom: 12px;
+                font-weight: 500;
+                font-size: $larger;
             }
 
             .priceSingleProduct {
                 font-size: $larger;
                 font-weight: 700;
                 text-align: end;
+                margin-bottom: 12px;
             }            
 
             .optionsSingleProduct {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
+                margin-bottom: 24px;
                 .optionText {
                     margin-right: 16px;
                 }

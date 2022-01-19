@@ -30,9 +30,12 @@ export const ProductList = () => {
 
     return (
         <>
-            <div className="categoryContainer">
+            <div className="container">
                 <Navbar />
-                <h4 className='title'>{category}</h4>
+                <div className='titleContainer'>
+                    <h4 className='title'>{category}</h4>
+                </div>
+                
                 <div className="filterContainer">
                     <div className="filter">
                         <p className="filterText">Buscar por: </p>

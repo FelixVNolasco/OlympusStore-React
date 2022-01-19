@@ -2,12 +2,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 450px);
     justify-content: center;
-
+    margin-bottom: 200px;
 
     .category {
 
-        max-width: 420px;
-        height: 500px;
+        width: 420px;
+        height: 600px;
         border: 4px solid $dark-gray;
         position: relative;
         display: flex;
