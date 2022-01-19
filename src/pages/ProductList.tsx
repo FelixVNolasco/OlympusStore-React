@@ -4,7 +4,6 @@ import { Newsletter } from '../components/Newsletter';
 import { Products } from '../components/Products';
 import { Footer } from '../components/Shared/Footer';
 import { useState } from 'react';
-import { category } from '../data';
 
 export const ProductList = () => {
 
