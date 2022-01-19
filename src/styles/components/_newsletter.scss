@@ -1,35 +1,35 @@
 .newsLetterContainer {
     height: 500px;
-    background-color: lighten($color: $dark-gray, $amount: 25);
+    background-color: lighten($color: $dark-gray, $amount: 15);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: lighten($color: $primary, $amount: 4);
 
     .title {
         font-family: "Poppins", sans-serif;
         font-size: $large-title;
         margin-top: 20px;
         margin-bottom: 0;
-        color: darken($color: $dark-gray, $amount: 10);
     }
 
     .description {
         font-size: $subtitle;
         font-weight: 600;
-        color: darken($color: $dark-gray, $amount: 10);
         margin: 0;
         margin-bottom: 20px;
     }
 
     .inputContainer {
-        width: 50%;
+        width: 350px;
         height: 40px;
         background-color: $white;
         display: flex;
         justify-content: space-between;
-        border: 1px solid $light-gray;
         margin-bottom: 20px;
+        border: 2px solid $primary;
+        border-radius: 4px;
     }
 
     .input {
@@ -44,7 +44,7 @@
         cursor: pointer;
         flex: 1;
         border: none;
-        background-color: darken($color: $secondary, $amount: 2);
+        background-color: darken($color: $primary, $amount: 5);
         color: $dark-gray;
         display: flex;
         align-items: center;
@@ -54,11 +54,18 @@
         .sendIcon {
             width: 24px;
             height: 24px;
+            color: darken($color: $primary, $amount: 20);
         }
 
         &:hover {
             transition: ease-out 200ms;
-            background-color: lighten($color: $secondary, $amount: 2);
+            background-color: lighten($color: $primary, $amount: 2);
         }
     }
+}
+
+
+@media (max-width: 640px) {
+
+    
 }

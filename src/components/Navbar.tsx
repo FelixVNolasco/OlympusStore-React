@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaSearch, FaGripfire } from 'react-icons/fa';
+import { FaSearch, FaGripfire, FaUser } from 'react-icons/fa';
 import { ShoppingCart } from './Shared/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
@@ -7,9 +7,9 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 
 export const Navbar = () => {
 
-    const { quantity } = useSelector((state: RootStateOrAny) => state.cart)
+    const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
+    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
 
-    console.log(quantity);
     return (
         <>
             <div className="container">
@@ -23,19 +23,31 @@ export const Navbar = () => {
                         </Link>
                     </div>
                     <div className="right">
-                        <div className="searchContainer">
+                        {
+                            currentUser
+                                ?
+                                (
+                                    <FaUser className='profileIcon'></FaUser>
+                                )
+                                :
+                                (
+                                    <>
+                                        <Link to={"/auth/login"}>
+                                            <p className='btn'>Login</p>
+                                        </Link>
+                                        <Link to={"/auth/signup"}>
+                                            <p className='btn'>Sign Up</p>
+                                        </Link>
+                                    </>
+                                )
+                        }
+                        {/* <div className="searchContainer">
                             <input className="input" type="text" />
                             <FaSearch className='icon' />
-                        </div>
-                        <Link to={"/auth/login"}>
-                            <p className='btn'>Login</p>
-                        </Link>
-                        <Link to={"/auth/signup"}>
-                            <p className='btn'>Sign Up</p>
-                        </Link>
+                        </div> */}
                         <Link to={"/cart"}>
                             <ShoppingCart items={quantity} />
-                        </Link>                        
+                        </Link>
                     </div>
                 </div>
             </div>

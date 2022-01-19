@@ -8,7 +8,8 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
+    margin-bottom: 200px;
 
     .infoContainer {
         width: 80%;
@@ -35,6 +36,7 @@
             display: flex;
             justify-content: center;
             color: $dark-gray;
+            margin-top: 24px;
 
             .slideButton {
                 cursor: pointer;
@@ -43,7 +45,31 @@
                 font-size: $normal;
                 font-weight: 700;
                 width: 150px;
+
+                &:hover {
+                    color: $primary;
+                    border: 2px solid $primary;
+                }
             }
+
+            // .slideButton {
+            //     cursor: pointer;
+            //     height: 100%;
+            //     left: -35%;
+            //     top: 0;
+            //     transform: skew(50deg);
+            //     transition-duration: 0.6s;
+            //     transform-origin: top left;
+            //     width: 0;
+            //     background-color: transparent;
+
+            //     &:hover {
+            //         height: 100%;
+            //         width: 135%;
+            //         background-color: $primary;
+            //     }
+            // }
+
         }
 
 

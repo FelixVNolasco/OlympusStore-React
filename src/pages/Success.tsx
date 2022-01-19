@@ -15,7 +15,7 @@ export const Success = () => {
 
     const data = location.state.stripeData;
     const cart = location.state.cart;
-    // const currentUser = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const currentUser = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const [orderId, setOrderId] = useState(null);
 
 
@@ -23,7 +23,7 @@ export const Success = () => {
         const createOrder = async () => {
             try {
                 const res = await userRequest.post("/orders", {
-                    // userId: currentUser._id,
+                    userId: currentUser._id,
                     products: cart.products.map((item) => ({
                         productId: item._id,
                         quantity: item._quantity,
@@ -35,7 +35,7 @@ export const Success = () => {
             } catch { }
         };
         data && createOrder();
-    }, [cart, data]);
+    }, [cart, data, currentUser._id]);
 
     return (
         <>
