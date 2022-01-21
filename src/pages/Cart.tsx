@@ -3,18 +3,20 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
+import { sustractProduct } from '../redux/cartRedux';
 
 export const Cart = () => {
 
-
+    const dispatch = useDispatch()
 
     const cart = useSelector((state: RootStateOrAny) => state.cart)
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
+    const favorites = useSelector((state: RootStateOrAny) => state.favorites);
     // console.log(products);
 
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
@@ -26,6 +28,8 @@ export const Cart = () => {
         setStripeToken(token)
     }
     // console.log(stripeToken);
+
+    const [quantity, setQuantity] = useState<number>()
 
     const navigate = useNavigate();
 
@@ -52,7 +56,23 @@ export const Cart = () => {
         stripeToken && makeRequest();
     }, [stripeToken, cart.total, navigate, cart])
 
-    console.log(stripeToken);
+    // console.log(stripeToken);
+
+    const handleAddProduct = () => {
+        console.log('add');
+    }
+
+    const handleRemoveProduct = () => {
+        // dispatch(
+        //     sustractProduct(
+        //         {
+
+        //         }
+        //     )
+        // )
+        console.log('rest');
+    }
+
     return (
         <>
             <Navbar />
@@ -65,7 +85,7 @@ export const Cart = () => {
 
                     <div className="topTexts">
                         <span className="topText">Bolsa de compras ({products.length})</span>
-                        <span className="topText">Lista de deseados (0)</span>
+                        <span className="topText">Lista de deseados ({favorites.quantity})</span>
                     </div>
                     <button className="topButton">Realizar Checkout</button>
                 </div>
@@ -86,9 +106,9 @@ export const Cart = () => {
                                     </div>
                                     <div className="priceDetail">
                                         <div className="productAmountContainer">
-                                            <FaPlus className='icons' />
+                                            <FaMinus className='icons' onClick={handleRemoveProduct} />
                                             <span className='productAmount'>{product.quantity}</span>
-                                            <FaMinus className='icons' />
+                                            <FaPlus className='icons' onClick={handleAddProduct} />
                                         </div>
                                         <div className="productAmountContainer">
                                             <div className="productPrice">${product.price * product.quantity}</div>

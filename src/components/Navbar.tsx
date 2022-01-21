@@ -1,14 +1,17 @@
 import React from 'react'
-import { FaSearch, FaGripfire, FaUser } from 'react-icons/fa';
+import { FaGripfire, FaUser } from 'react-icons/fa';
 import { ShoppingCart } from './Shared/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { Favorites } from '../pages/Favorites';
 
 
 export const Navbar = () => {
 
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
+    const { favoriteCount } = useSelector((state: RootStateOrAny) => state.favorites);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
+
 
     return (
         <>
@@ -47,6 +50,9 @@ export const Navbar = () => {
                             <input className="input" type="text" />
                             <FaSearch className='icon' />
                         </div> */}
+                        <Link to={"/favorites"}>
+                            < Favorites items={favoriteCount} />
+                        </Link>
                         <Link to={"/cart"}>
                             <ShoppingCart items={quantity} />
                         </Link>

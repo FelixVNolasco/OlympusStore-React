@@ -29,7 +29,7 @@
                 font-family: "Poppins", sans-serifa;
                 font-size: $title;
                 font-weight: 700;
-                text-align: center;
+                text-align: justify;
             }
 
             .descriptionSingleProduct {
@@ -40,18 +40,46 @@
                 font-size: $larger;
             }
 
-            .priceSingleProduct {
-                font-size: $larger;
-                font-weight: 700;
-                text-align: end;
-                margin-bottom: 12px;
-            }            
+            .priceContainer {
+                display: flex;
+                justify-content: flex-end;
+
+                .favoriteIcon {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 12px;
+                    cursor: pointer;
+                    transition: ease-in 150ms;
+                    color: darken($color: $danger, $amount: 5);
+
+                    &:hover {
+                        transition: ease-out 150ms;
+                        color: darken($color: $danger, $amount: 5);
+                    }
+                }
+
+                .notFavoriteIcon {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 12px;
+                    cursor: pointer;
+                    transition: ease-in 150ms;                    
+                }
+
+                .priceSingleProduct {
+                    font-size: $larger;
+                    font-weight: 700;
+                    text-align: end;
+                    margin-bottom: 12px;
+                }
+            }
 
             .optionsSingleProduct {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 margin-bottom: 24px;
+
                 .optionText {
                     margin-right: 16px;
                 }
@@ -71,10 +99,10 @@
                 .productAmount {
                     font-size: 24px;
                     margin: 5px;
-                    // ${mobile({ margin: "5px 15px" })}
                 }
 
                 .icons {
+                    cursor: pointer;
                     margin-left: 16px;
                     margin-right: 16px;
                 }
@@ -85,12 +113,20 @@
                 justify-content: flex-end;
 
                 .checkoutButton {
+                    border: none;
+                    border-radius: 4px;
                     width: 100%;
-                    padding: 10px;
-                    background-color: black;
+                    padding: 16px;
+                    background-color: $primary;
                     color: white;
                     font-weight: 600;
                     cursor: pointer;
+                    transition: ease-in 150ms;
+
+                    &:hover {
+                        transition: ease-out 150ms;
+                        background-color: darken($color: $primary, $amount: 5);
+                    }
                 }
 
             }

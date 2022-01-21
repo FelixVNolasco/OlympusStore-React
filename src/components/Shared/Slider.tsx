@@ -1,4 +1,3 @@
-import { FaCircle } from 'react-icons/fa';
 
 export const Slider = () => {
     return (
@@ -17,12 +16,6 @@ export const Slider = () => {
                     <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
                 </div>
             </div>
-
-            {/* <div className='slidePosition'>
-                <FaCircle className='dot selected' />
-                <FaCircle className='dot' />
-                <FaCircle className='dot' />
-            </div> */}
 
         </div>
     )
