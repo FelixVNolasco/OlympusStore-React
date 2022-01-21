@@ -27,7 +27,9 @@ export const Navbar = () => {
                             currentUser
                                 ?
                                 (
-                                    <FaUser className='profileIcon'></FaUser>
+                                    <Link to={"/profile"}>
+                                        <FaUser className='profileIcon'></FaUser>
+                                    </Link>
                                 )
                                 :
                                 (

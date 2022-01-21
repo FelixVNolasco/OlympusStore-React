@@ -2,7 +2,7 @@ import React from 'react'
 import { category } from '../data';
 import { Link } from 'react-router-dom';
 
-const Category = ({ item }: { item: category }) => {
+const Category = ({ item }: any) => {
     return (
         <>
             <Link to={`/products/${item.category}`}>

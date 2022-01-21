@@ -7,6 +7,7 @@ import { Login } from './components/Auth/Login';
 import { Signup } from './components/Auth/Signup';
 import { Success } from "./pages/Success";
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { Profile } from "./pages/Profile";
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )

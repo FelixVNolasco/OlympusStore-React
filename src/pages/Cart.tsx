@@ -60,7 +60,7 @@ export const Cart = () => {
                 <h1 className='titleCart'>TUS ARTICULOS</h1>
                 <div className="top">
                     <Link to={"/"}>
-                        <div className="topButton">CONTINUAR COMPRANDO</div>
+                        <div className="topButton">Continuar Comprando</div>
                     </Link>
 
                     <div className="topTexts">
@@ -80,7 +80,7 @@ export const Cart = () => {
                                         <div className="details">
                                             <span className='productName'><b>Articulo:</b> {product.title}</span>
                                             <span className='productId'><b>Código:</b> {product._id}</span>
-                                            <span className='productColor'>{product.color}</span>
+                                            {/* <span className='productColor'>{product.color}</span> */}
                                             <span className='productSize'><b>Tamaño:</b> {product.size}</span>
                                         </div>
                                     </div>

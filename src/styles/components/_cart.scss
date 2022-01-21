@@ -17,13 +17,10 @@
             padding: 10px;
             font-weight: 800;
             cursor: pointer;
-            border: 1px solid $dark-gray;
-            background-color: darken($color: $secondary, $amount: 10);
-            color: $white;
-            // border: ${(props) => props.type === "filled" && "none"};
-            // background-color: ${(props) =>
-            //   props.type === "filled" ? "black" : "transparent"};
-            // color: ${(props) => props.type === "filled" && "white"};
+            border: none;
+            border-radius: 4px;
+            background-color: darken($color: $primary, $amount: 10);
+            color: $white;            
         }
 
         .topTexts {
@@ -151,27 +148,27 @@
             height: 50vh;
 
             .summaryTitle {
-                font-weight: 200;
+                font-weight: 500;
             }
 
             .summaryItem {
                 margin: 30px 0px;
                 display: flex;
                 justify-content: space-between;
-                // font-weight: ${(props) => props.type === "total" && "500"};
-                // font-size: ${(props) => props.type === "total" && "24px"};
 
-                .summaryItemText {}
-
-                .summaryItemPrice {}
+                .summaryItemText, .summaryItemPrice {
+                    font-weight: 600;
+                }
 
             }
 
             .checkoutButton {
                 width: 100%;
-                padding: 10px;
-                background-color: black;
-                color: white;
+                padding: 12px;
+                background-color: $primary;
+                border: none;
+                border-radius: 4px;
+                color: $white;
                 font-weight: 600;
                 cursor: pointer;
             }
