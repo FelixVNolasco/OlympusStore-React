@@ -85,7 +85,7 @@ export const Cart = () => {
 
                     <div className="topTexts">
                         <span className="topText">Bolsa de compras ({products.length})</span>
-                        <span className="topText">Lista de deseados ({favorites.quantity})</span>
+                        {/* <span className="topText">Lista de deseados ({favorites.quantity})</span> */}
                     </div>
                     <button className="topButton">Realizar Checkout</button>
                 </div>

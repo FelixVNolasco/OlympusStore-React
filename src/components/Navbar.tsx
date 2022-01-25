@@ -26,6 +26,17 @@ export const Navbar = () => {
                         </Link>
                     </div>
                     <div className="right">
+
+                        {/* <div className="searchContainer">
+                            <input className="input" type="text" />
+                            <FaSearch className='icon' />
+                        </div> */}
+                        {/* <Link to={"/favorites"}>
+                            < Favorites items={favoriteCount} />
+                        </Link> */}
+                        <Link to={"/cart"}>
+                            <ShoppingCart items={quantity} />
+                        </Link>
                         {
                             currentUser
                                 ?
@@ -46,16 +57,6 @@ export const Navbar = () => {
                                     </>
                                 )
                         }
-                        {/* <div className="searchContainer">
-                            <input className="input" type="text" />
-                            <FaSearch className='icon' />
-                        </div> */}
-                        <Link to={"/favorites"}>
-                            < Favorites items={favoriteCount} />
-                        </Link>
-                        <Link to={"/cart"}>
-                            <ShoppingCart items={quantity} />
-                        </Link>
                     </div>
                 </div>
             </div>

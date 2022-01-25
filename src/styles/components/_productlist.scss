@@ -1,36 +1,51 @@
-    .titleContainer {
+.titleContainer {
+    width: 100%;
+    height: 250px;
+    // background: rgb(2, 0, 36);
+    // background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(53, 186, 213, 1) 100%);
+
+    .image {
         width: 100%;
-        background: rgb(2, 0, 36);
-        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(53, 186, 213, 1) 100%);
-
-        .title {
-            padding: 64px;
-
-            text-align: center;
-            font-size: $title;
-            text-transform: capitalize;
-            color: $white;
-        }
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
     }
 
+    .title {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 64px;
+        text-align: center;
+        font-size: $title;
+        text-transform: capitalize;
+        color: $white;
+        position: relative;
+        top: -220px;
+        z-index: 100;
+    }
+}
 
-    .filterContainer {
-        display: flex;
-        justify-content: space-between;
 
-        .filter {
-            margin: 20px;
+.filterContainer {
+    display: flex;
+    justify-content: space-between;
 
-            .filterText {
-                font-size: 20px;
-                font-weight: 600;
-                margin-right: 20px;
-            }
+    .filter {
+        margin: 20px;
 
-            .filterSelect {
-                padding: 10px;
-                margin-right: 20px;
+        .filterText {
+            font-size: 20px;
+            font-weight: 600;
+            margin-right: 20px;
+        }
 
-            }
+        .filterSelect {
+            padding: 10px;
+            margin-right: 20px;
+
         }
     }
+}
+
+.productListContainer {
+    height: 80vh;
+}

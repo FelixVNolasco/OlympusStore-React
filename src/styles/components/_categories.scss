@@ -3,6 +3,8 @@
     grid-template-columns: repeat(auto-fit, 450px);
     justify-content: center;
     margin-bottom: 200px;
+    width: 90%;
+    margin: auto;
 
     .category {
 
@@ -18,6 +20,7 @@
         margin-bottom: 24px;
         transition: ease-out 150ms;
         cursor: pointer;
+        transition: ease-in 150ms;
 
         .title {
             color: $white;
@@ -41,6 +44,11 @@
             .categoryBackground {
                 filter: grayscale(10%);
             }
+        }
+        
+        &:hover {
+            transition: ease-out 150ms;
+            transform: scale(1.025);
         }
     }
 }

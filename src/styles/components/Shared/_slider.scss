@@ -9,7 +9,8 @@
     grid-template-columns: 2fr 1fr;
     align-items: center;
     height: 85vh;
-    margin-bottom: 200px;
+    width: 90%;
+    margin: auto;
 
     .infoContainer {
         width: 80%;
@@ -32,7 +33,7 @@
             text-align: justify;
         }
 
-        .buttonContainer {            
+        .buttonContainer {
             display: flex;
             justify-content: center;
             color: $dark-gray;
@@ -52,24 +53,6 @@
                 }
             }
 
-            // .slideButton {
-            //     cursor: pointer;
-            //     height: 100%;
-            //     left: -35%;
-            //     top: 0;
-            //     transform: skew(50deg);
-            //     transition-duration: 0.6s;
-            //     transform-origin: top left;
-            //     width: 0;
-            //     background-color: transparent;
-
-            //     &:hover {
-            //         height: 100%;
-            //         width: 135%;
-            //         background-color: $primary;
-            //     }
-            // }
-
         }
 
 
@@ -86,23 +69,5 @@
             width: 100%;
         }
     }
+
 }
-
-// .slidePosition {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: center;
-//     margin-bottom: 20px;
-
-//     .dot {
-//         cursor: pointer;
-//         width: 24px;
-//         width: 24px;
-//         color: $light-gray;
-//     }
-
-//     .selected {
-//         color: $primary;
-//     }
-// }

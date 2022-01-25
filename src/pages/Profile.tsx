@@ -5,7 +5,6 @@ import { Navbar } from '../components/Navbar';
 export const Profile = () => {
 
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    // console.log(user);
 
     return <>
         <div className="container">
@@ -18,27 +17,37 @@ export const Profile = () => {
 
                     <div className="infoContainer">
                         <p className="info">Nombre de usuario:</p>
-                        <p className="profileUsername">{user.username}</p>
+                        <input className="userDataInput" type="text" value={user.username} />
                     </div>
 
                     <div className="infoContainer">
                         <p className="info">Correo Electrónico:</p>
-                        <p className="profileEmail">{user.email}</p>
+                        <input className="userDataInput" type="text" value={user.email} />
                     </div>
 
-                    <div className="infoContainer">
-                        <p className="info">Cuenta creada en:</p>
-                        <p className="profileDate">{user.createdAt}</p>
+                    <div className="updateContainer">
+                        <div className="updateAccountBtn">
+                            Actualizar Información
+                        </div>
                     </div>
 
-                    <div className="infoContainer">
-                        <p className="info">Ultima Actualizacion:</p>
-                        <p className="profileDate">{user.updatedAt}</p>
+                    <div className="deleteContainer">
+                        <div className="deleteAccountBtn">
+                            Eliminar Cuenta
+                        </div>
                     </div>
 
-                    <div className="deleteAccountBtn">
-                        Eliminar Cuenta
+                    <div className="lastInfoContainer">
+                        <div className="createdAt">
+                            <p className="info">Cuenta creada en:</p>
+                            <p className="profileDate">{user.createdAt}</p>
+                        </div>
+                        <div className="updatedAt">
+                            <p className="info">Ultima Actualizacion:</p>
+                            <p className="profileDate">{user.updatedAt}</p>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
