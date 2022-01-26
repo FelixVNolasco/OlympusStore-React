@@ -1,4 +1,5 @@
 import { FaGripfire } from 'react-icons/fa';
+import { FaPaperPlane } from 'react-icons/fa';
 
 export const Footer = () => {
     return (
@@ -24,6 +25,17 @@ export const Footer = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="newsLetterContainer">
+                    <h1 className='title'>Newsletter</h1>
+                    <p className='description'>Obten actualizaciones de tus productos favoritos.</p>
+                    <div className="inputContainer">
+                        <input className='input' type="text" />
+                        <div className="sendButton">
+                            <FaPaperPlane className='sendIcon' />
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </>

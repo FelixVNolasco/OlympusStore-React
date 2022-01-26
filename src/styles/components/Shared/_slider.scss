@@ -11,6 +11,9 @@
     height: 85vh;
     width: 90%;
     margin: auto;
+    // background: url('../../../assets/backgroundWave.svg');
+    // background-repeat: no-repeat;
+    
 
     .infoContainer {
         width: 80%;
@@ -66,7 +69,8 @@
 
         .image {
             filter: grayscale(75%);
-            width: 100%;
+            width: 80%;
+            
         }
     }
 

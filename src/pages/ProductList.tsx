@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
-import { Newsletter } from '../components/Newsletter';
 import { Products } from '../components/Products';
 import { Footer } from '../components/Shared/Footer';
 import { useState, useEffect } from 'react';
@@ -97,7 +96,6 @@ export const ProductList = () => {
                 <div className="productListContainer">
                     <Products category={category} filters={filters} sort={sort} />
                 </div>                
-                <Newsletter />
                 <Footer />
             </div>
         </>

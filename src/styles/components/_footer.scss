@@ -2,16 +2,16 @@
     background-color: lighten($color: $dark-gray, $amount: 10);
     color: $white;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    height: 300px;
+    height: 400px;
     align-items: center;
 
     .socialSection {
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: lighten($color: $primary, $amount: 10);
+        color: lighten($color: $blue, $amount: 10);
         font-weight: 600;
         .titleApp {
             display: flex;
@@ -30,11 +30,13 @@
             margin-top: 4px;
             text-align: center;
             margin-bottom: 24px;
+            font-size: 20px;
+            color: lighten($color: $blue, $amount: 15);
         }
 
         .team {
             font-weight: 600;
-            color: lighten($color: $primary, $amount: 20);
+            color: lighten($color: $blue, $amount: 20);
             display: flex;
             flex-direction: row;
             
