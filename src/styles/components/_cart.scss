@@ -175,3 +175,13 @@
         }
     }
 }
+
+@media (max-width: 640px) { 
+    .bottom {
+        flex-direction: column;
+    }
+
+    .summary {
+        margin-top: 24px;
+    }
+}

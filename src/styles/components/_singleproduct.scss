@@ -22,7 +22,6 @@
 
         .infoSingleProduct {
             flex: 1;
-            margin-left: 64px;
 
             .titleSingleProduct {
 
@@ -132,5 +131,19 @@
             }
 
         }
+    }
+}
+
+@media (max-width: 640px) { 
+    .wrapperSingleProduct {
+        flex-direction: column;
+    }
+
+    .footerSection {
+        margin-top: 164px;
+    }
+
+    .infoSingleProduct {
+        margin-left: 0px;
     }
 }
