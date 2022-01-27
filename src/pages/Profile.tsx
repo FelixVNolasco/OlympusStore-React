@@ -7,7 +7,7 @@ export const Profile = () => {
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
 
     return <>
-        <div className="container">
+        <div className="container"> 
             <Navbar />
             <div className="profileContainer">
                 <div className="profileSection">
