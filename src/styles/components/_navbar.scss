@@ -17,7 +17,7 @@
             cursor: pointer;
 
             .icon {
-                color: $dark-blue;
+                color: $navy;
                 width: 32px;
                 height: 32px;
                 margin-bottom: 8px;
@@ -26,7 +26,8 @@
             span {
                 font-family: 'Poppins', sans-serif;
                 font-weight: 700;
-                color: $dark-blue;
+                color: $navy;
+                text-decoration: none;
             }
         }
     }
@@ -38,7 +39,7 @@
 
         .profileIcon {
             cursor: pointer;
-            color: $dark-blue;
+            color: $navy;
             height: 32px;
             width: 32px;
             margin-right: 16px;

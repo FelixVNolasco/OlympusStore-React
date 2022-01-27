@@ -7,7 +7,7 @@
         display: flex;
         position: relative;
         align-items: center;
-        background-color: $dark-blue;
+        background-color: $navy;
         padding: 8px;
         border-radius: 50%;
         height: 24px;
@@ -25,8 +25,8 @@
     }
 
     .icon {
+        color: $navy;
         width: 32px;
         height: 32px;
-        color: $primary;
     }
 }

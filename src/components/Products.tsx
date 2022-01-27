@@ -17,6 +17,7 @@ export const Products = ({ category, filters, sort }: any) => {
         const getAllProducts = async () => {
             try {
                 const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
+                // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
                 setProducts(products.data)
             } catch (error) {
                 console.log(error);
