@@ -1,43 +1,51 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaEye } from "react-icons/fa";
+import { Link } from 'react-router-dom'
+import { FaEye, FaHome } from "react-icons/fa";
 import { useForm } from '../../hooks/useForm';
-// import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-// import { loginWithEmailPassword, startGoogleLogin } from '../../actions/auth'
 import { login } from "../../redux/apiCall";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { removeError, setError } from '../../redux/uiRedux';
+// import { startGoogleLogin } from '../../actions/auth'
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const Login = () => {
 
-    // const dispatch = useDispatch();
-    // const { loading } = useSelector(state => state.ui);
+    const dispatch = useDispatch();
 
     const [showPassword, setshowPassword] = useState(false);
-
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     }
 
     const [formValues, handleInputChange] = useForm({
-        email: 'felixvnolasco@hotmail.com',
-        password: 123456
+        username: 'felixvnolasco',
+        password: 'memento89'
     });
+    const { username, password } = formValues;
 
-    // const {email, password} = formValues;
+    const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
-    const { isFetching, error } = useSelector((state: RootStateOrAny) => state.user);
-
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        login(dispatch, { username, password });
-    };    
-    
+        if (isFormValid) {
+            login(dispatch, { username, password });
+        };
+    };
+
+    const isFormValid = () => {
+        if (username.trim().length === 0) {
+            dispatch(setError('Username is Required!'));
+            return false;
+        } else if ( password.length < 5) {
+            dispatch(setError('Wrong Password'));
+            return false;
+        }
+        dispatch(removeError());
+        return true;
+    }
+
     return (
         <>
-            
             <div className='form-wrapper'>
                 <div className='form-container'>
                     <div className="auth__box-container animate__animated animate__fadeIn">
@@ -45,19 +53,23 @@ export const Login = () => {
                         <form onSubmit={handleSubmit}>
                             <p className='label'>Usuario</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="ejemploUsuario" name="email" autoComplete="off"  onChange={(e) => setUsername(e.target.value)}/>
+                                <input className="auth__input" type="text" placeholder="ejemploUsuario" name="email" autoComplete="off" value={username} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Contraseña</p>
                             <div className='input-container'>
-                                <input className="auth__input" type={showPassword ? "text" : "password"} placeholder="" name="password" onChange={(e) => setPassword(e.target.value)} />
+                                <input className="auth__input" type={showPassword ? "text" : "password"} name="password" value={password} onChange={handleInputChange} />
                                 <FaEye className='showHide-icon' onClick={handleShowPassword} />
                             </div>
 
                             <div className='btn-container'>
                                 <button className="btn btn-primary" type="submit" disabled={isFetching}>Iniciar Sesion</button>
                             </div>
-                            {error && <p>Something went wrong...</p>}
+                            {/* {error && (
+                                <p>{}</p>
+                            )
+                            } */}
                         </form>
+
                         {/* <div className='optionContainer'>
                             <p>Or you can login with:</p>
                         </div> */}
@@ -72,10 +84,14 @@ export const Login = () => {
                                 <Link className="create_account" to="/auth/signup">Create a new one here.</Link>
                             </div>
                         </div>
+                        <Link to={"/"}>
+                            <div className="goHome">
+                                <FaHome className='iconHome' />
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
         </>
-
     )
 }

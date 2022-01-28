@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
-import { sustractProduct } from '../redux/cartRedux';
+import { cleanCart, sustractProduct } from '../redux/cartRedux';
 
 export const Cart = () => {
 
@@ -17,7 +17,6 @@ export const Cart = () => {
     const cart = useSelector((state: RootStateOrAny) => state.cart)
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
     const favorites = useSelector((state: RootStateOrAny) => state.favorites);
-    // console.log(products);
 
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     // console.log(stripeKey);
@@ -73,6 +72,15 @@ export const Cart = () => {
         console.log('rest');
     }
 
+
+    const handleCleanCart = () => {
+        dispatch(cleanCart({
+            products: [],
+            quantity: 0,
+            total: 0
+        }))
+    }
+
     return (
         <>
             <Navbar />
@@ -87,7 +95,7 @@ export const Cart = () => {
                         <span className="topText">Bolsa de compras ({products.length})</span>
                         {/* <span className="topText">Lista de deseados ({favorites.quantity})</span> */}
                     </div>
-                    <button className="topButton">Realizar Checkout</button>
+                    <button className="topButton" onClick={handleCleanCart}>Limpiar Carrito</button>
                 </div>
 
                 <div className="bottom">
@@ -118,39 +126,44 @@ export const Cart = () => {
                             ))
                         }
                     </div>
-                    <div className="summary">
-                        <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
-                        <div className="summaryItem">
-                            <span className='summaryItemText'>Subtotal</span>
-                            <span className='summaryItemPrice'>${cart.total}</span>
-                        </div>
-                        <div className="summaryItem">
-                            <span className='summaryItemText'>Costo de envío estimado</span>
-                            <span className='summaryItemPrice'>$5.90</span>
-                        </div>
-                        <div className="summaryItem">
-                            <span className='summaryItemText'>Descuento de envío</span>
-                            <span className='summaryItemPrice'>-$5.90</span>
-                        </div>
-                        <div className="summaryItem">
-                            <span className='summaryItemText'>Total</span>
-                            <span className='summaryItemPrice'>${cart.total}</span>
-                        </div>
+                    {
+                        products !== [] &&
+                        (
+                            <div className="summary">
+                                <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
+                                <div className="summaryItem">
+                                    <span className='summaryItemText'>Subtotal</span>
+                                    <span className='summaryItemPrice'>${cart.total}</span>
+                                </div>
+                                <div className="summaryItem">
+                                    <span className='summaryItemText'>Costo de envío estimado</span>
+                                    <span className='summaryItemPrice'>$5.90</span>
+                                </div>
+                                <div className="summaryItem">
+                                    <span className='summaryItemText'>Descuento de envío</span>
+                                    <span className='summaryItemPrice'>-$5.90</span>
+                                </div>
+                                <div className="summaryItem">
+                                    <span className='summaryItemText'>Total</span>
+                                    <span className='summaryItemPrice'>${cart.total}</span>
+                                </div>
 
-                        <StripeCheckout
-                            name='olympus'
-                            image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
-                            billingAddress
-                            shippingAddress
-                            description={`Your total is ${cart.total}`}
-                            amount={cart.total * 100}
-                            token={onToken}
-                            stripeKey={stripeKey}
-                        >
-                            <button className='checkoutButton'>Comprar</button>
-                        </StripeCheckout>
+                                <StripeCheckout
+                                    name='olympus'
+                                    image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
+                                    billingAddress
+                                    shippingAddress
+                                    description={`Your total is ${cart.total}`}
+                                    amount={cart.total * 100}
+                                    token={onToken}
+                                    stripeKey={stripeKey}
+                                >
+                                    <button className='checkoutButton'>Comprar</button>
+                                </StripeCheckout>
 
-                    </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
             <Footer />

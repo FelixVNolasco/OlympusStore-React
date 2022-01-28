@@ -20,7 +20,7 @@
             border: none;
             border-radius: 4px;
             background-color: darken($color: $primary, $amount: 10);
-            color: $white;            
+            color: $white;
         }
 
         .topTexts {
@@ -30,11 +30,6 @@
                 margin: 0px 10px;
                 font-size: $normal;
             }
-        }
-
-        .topButton {
-            display: flex;
-            justify-content: space-between;
         }
 
     }
@@ -156,7 +151,8 @@
                 display: flex;
                 justify-content: space-between;
 
-                .summaryItemText, .summaryItemPrice {
+                .summaryItemText,
+                .summaryItemPrice {
                     font-weight: 600;
                 }
 
@@ -165,7 +161,7 @@
             .checkoutButton {
                 width: 100%;
                 padding: 12px;
-                background-color: $primary;
+                background-color: darken($color: $primary, $amount: 10);
                 border: none;
                 border-radius: 4px;
                 color: $white;
@@ -176,7 +172,7 @@
     }
 }
 
-@media (max-width: 640px) { 
+@media (max-width: 640px) {
     .bottom {
         flex-direction: column;
     }

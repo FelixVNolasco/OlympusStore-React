@@ -1,17 +1,20 @@
-import React from 'react'
 import { FaGripfire, FaUser } from 'react-icons/fa';
 import { ShoppingCart } from './Shared/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { RootStateOrAny, useSelector } from 'react-redux';
-import { Favorites } from '../pages/Favorites';
-
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+// import { Favorites } from '../pages/Favorites';
+import { logout } from '../redux/apiCall';
 
 export const Navbar = () => {
 
+    const dispatch = useDispatch();
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
-    const { favoriteCount } = useSelector((state: RootStateOrAny) => state.favorites);
+    // const { favoriteCount } = useSelector((state: RootStateOrAny) => state.favorites);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
 
+    const handleLogout = () => {
+        logout(dispatch)
+    }
 
     return (
         <>
@@ -41,11 +44,15 @@ export const Navbar = () => {
                             currentUser
                                 ?
                                 (
-                                    <Link to={"/profile"}>
-                                        <FaUser className='profileIcon'></FaUser>
-                                    </Link>
+
+                                    <>
+                                        <Link to={"/profile"}>
+                                            <FaUser className='profileIcon'></FaUser>
+                                        </Link>
+                                        <button className='logoutBtn' onClick={handleLogout}>Cerrar Sesión</button>
+                                    </>
                                 )
-                                :
+                                :                            
                                 (
                                     <>
                                         <Link to={"/auth/login"}>

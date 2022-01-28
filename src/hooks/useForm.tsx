@@ -1,7 +1,18 @@
 import { useState } from 'react';
 
+// interface signupForm  {
+//     name: string,
+//     email: string,
+//     password: string,
+//     password2: string
+// }
 
-export const useForm = (initialState = {}) => {
+// interface loginForm {
+//     username: string,
+//     password: string
+// }
+
+export const useForm = (initialState: any = {}) => {
 
     const [values, setValues] = useState(initialState);
 

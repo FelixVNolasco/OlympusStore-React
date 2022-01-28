@@ -46,11 +46,30 @@
             margin-left: 32px;
         }
 
+        .logoutBtn {
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: ease-out 150ms;
+            background-color: darken($color: $danger, $amount: 5);
+            color: $white;
+            margin-right: 8px;
+            padding: 8px;
+            width: 80px;
+            font-weight: 600;
+            text-align: center;
+
+            &:hover {
+                transition: ease-in 150ms;
+                background-color: darken($color: $danger, $amount: 8);
+            }
+        }
+
         .btn {
             cursor: pointer;
             transition: ease-out 150ms;
             border-bottom: 2px solid transparent;
-            color: black;
+            color: $dark-gray;
             margin-right: 8px;
             padding: 8px;
             width: 80px;

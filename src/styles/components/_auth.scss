@@ -1,9 +1,11 @@
 .form-wrapper {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(150deg, rgba(2,0,36,1) 0%, rgba(95,158,160,1) 0%, rgba(53,186,213,1) 100%);
 
     .form-container {
         display: flex;
@@ -45,6 +47,7 @@
                         margin-bottom: 24px;
                         height: 24px;
                         width: 100%;
+                        padding-top: 8px;
                         padding-bottom: 8px;
                         transition: border-bottom .3s ease;
 
@@ -121,6 +124,7 @@
                     color: $primary;
                     text-decoration: none;
                     transition: 300ms ease-out;
+                    margin-bottom: 10px;
 
                     &:hover {
                         transition: 300ms ease-in;
@@ -146,6 +150,24 @@
                 width: 100%;
             }
 
+            .goHome {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                .iconHome {
+                    width: 32px;
+                    height: 32px;
+                    color: $white;
+                    transition: ease-out 150ms;
+                    cursor: pointer;
+
+                    &:hover {
+                        transition: ease-in 150ms;
+                        color: lighten($color: $white, $amount: 5);
+                    }
+                }
+            }
         }
 
     }

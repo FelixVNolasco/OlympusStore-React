@@ -35,7 +35,7 @@
                 }
             }
 
-            
+
 
         }
 
@@ -54,7 +54,7 @@
                 color: $white;
                 padding: 8px;
                 background-color: $primary;
-                border: none;            
+                border: none;
             }
         }
 
@@ -122,6 +122,25 @@
 
         &:last-child {
             margin-bottom: 24px;
+        }
+    }
+}
+
+
+@media (max-width: 640px) {
+    .infoContainer {
+        flex-direction: column;
+    }
+
+    .updateContainer {
+        justify-content: flex-end;
+    }
+
+    .lastInfoContainer {
+        flex-direction: column;
+
+        .createdAt {
+            margin-bottom: 12px;
         }
     }
 }
