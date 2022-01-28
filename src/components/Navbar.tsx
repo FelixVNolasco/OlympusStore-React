@@ -11,7 +11,7 @@ export const Navbar = () => {
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
     // const { favoriteCount } = useSelector((state: RootStateOrAny) => state.favorites);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-
+    console.log(currentUser);
     const handleLogout = () => {
         logout(dispatch)
     }
@@ -41,10 +41,9 @@ export const Navbar = () => {
                             <ShoppingCart items={quantity} />
                         </Link>
                         {
-                            currentUser
+                            currentUser === null
                                 ?
                                 (
-
                                     <>
                                         <Link to={"/profile"}>
                                             <FaUser className='profileIcon'></FaUser>
@@ -52,7 +51,7 @@ export const Navbar = () => {
                                         <button className='logoutBtn' onClick={handleLogout}>Cerrar Sesión</button>
                                     </>
                                 )
-                                :                            
+                                :
                                 (
                                     <>
                                         <Link to={"/auth/login"}>

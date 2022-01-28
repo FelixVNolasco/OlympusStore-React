@@ -1,0 +1,10 @@
+.emptyCartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+    .icon {
+        width: 128px;
+    }
+}

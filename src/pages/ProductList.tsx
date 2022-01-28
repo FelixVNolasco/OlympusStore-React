@@ -93,7 +93,7 @@ export const ProductList = () => {
                         </div>
                     </div>
 
-                <div className="productListContainer">
+                <div className="productListContainer animate__animated animate__backInDown">
                     <Products category={category} filters={filters} sort={sort} />
                 </div>                
                 <Footer />

@@ -6,6 +6,7 @@
         align-items: center;
         width: 80%;
         margin: auto;
+        height: 800px;
 
         .imgProductContainer {
             flex: 1;
@@ -137,6 +138,7 @@
 @media (max-width: 640px) { 
     .wrapperSingleProduct {
         flex-direction: column;
+        height: auto !important;
     }
 
     .footerSection {
@@ -152,5 +154,6 @@
 @media (max-width: 900px) {  
     .wrapperSingleProduct {
         flex-direction: column;
+        height: auto !important;
     }
 }
