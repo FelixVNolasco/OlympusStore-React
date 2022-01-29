@@ -10,6 +10,7 @@ import { Success } from "./pages/Success";
 // import { RootStateOrAny, useSelector } from 'react-redux';
 import { Profile } from "./pages/Profile";
 import { Favorites } from "./pages/Favorites";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const App = () => {
 

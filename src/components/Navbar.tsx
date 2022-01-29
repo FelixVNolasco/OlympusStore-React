@@ -9,9 +9,8 @@ export const Navbar = () => {
 
     const dispatch = useDispatch();
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
-    // const { favoriteCount } = useSelector((state: RootStateOrAny) => state.favorites);
-    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-    console.log(currentUser);
+    const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+
     const handleLogout = () => {
         logout(dispatch)
     }
@@ -29,7 +28,6 @@ export const Navbar = () => {
                         </Link>
                     </div>
                     <div className="right">
-
                         {/* <div className="searchContainer">
                             <input className="input" type="text" />
                             <FaSearch className='icon' />
@@ -37,14 +35,14 @@ export const Navbar = () => {
                         {/* <Link to={"/favorites"}>
                             < Favorites items={favoriteCount} />
                         </Link> */}
-                        <Link to={"/cart"}>
-                            <ShoppingCart items={quantity} />
-                        </Link>
                         {
-                            currentUser === null
+                            isAuthenticated
                                 ?
                                 (
                                     <>
+                                        <Link to={"/cart"}>
+                                            <ShoppingCart items={quantity} />
+                                        </Link>
                                         <Link to={"/profile"}>
                                             <FaUser className='profileIcon'></FaUser>
                                         </Link>

@@ -1,30 +1,33 @@
-
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { Product } from './Product';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import { removeLoading, setLoading } from '../redux/uiRedux';
+import 'react-loading-skeleton/dist/skeleton.css'
+import { BallTriangle } from 'react-loader-spinner'
 
 export const Products = ({ category, filters, sort }: any) => {
-    console.log(category, filters, sort);
 
     const [products, setProducts] = useState([]);
-    console.log(products);
     const [filteredProducts, setfilteredProducts] = useState([]);
 
+    const dispatch = useDispatch();
+    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     useEffect(() => {
         const getAllProducts = async () => {
             try {
+                dispatch(setLoading());
                 const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
-                // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
                 setProducts(products.data)
             } catch (error) {
                 console.log(error);
+                dispatch(removeLoading());
             }
+            dispatch(removeLoading());
         }
         getAllProducts();
-    }, [category])
+    }, [category, dispatch])
 
 
     useEffect(() => {
@@ -71,6 +74,18 @@ export const Products = ({ category, filters, sort }: any) => {
                                 return <Product key={product._id} item={product} />
                             })
                     }
+
+                    <div className='loadingProducts'>
+                        {loading && (
+                            <BallTriangle
+                                height="162"
+                                width="162"
+                                color='#406882'
+                                ariaLabel='loading'
+                            />
+                        )}
+                    </div>
+
                 </div>
             </div>
         </>

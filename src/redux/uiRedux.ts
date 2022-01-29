@@ -12,9 +12,15 @@ const cartSlice = createSlice({
         },
         removeError: (state) => {
             state.errors = ""
-        }
+        },
+        setLoading: (state) => {
+            state.loading = true
+        },
+        removeLoading: (state) => {
+            state.loading = false
+        }        
     }
 })
 
-export const { setError, removeError } = cartSlice.actions;
+export const { setError, removeError, setLoading, removeLoading } = cartSlice.actions;
 export default cartSlice.reducer;

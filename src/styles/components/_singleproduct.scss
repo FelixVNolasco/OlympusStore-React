@@ -133,6 +133,13 @@
 
         }
     }
+    .loadingProduct {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 800px;
+    }
 }
 
 @media (max-width: 640px) { 
