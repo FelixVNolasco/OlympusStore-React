@@ -29,7 +29,7 @@ export const Navbar = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className="right">
+                    <div className="right animate__animated animate__fadeIn">
                         {/* <div className="searchContainer">
                             <input className="input" type="text" />
                             <FaSearch className='icon' />
