@@ -1,6 +1,6 @@
 import { FaGripfire, FaUser } from 'react-icons/fa';
 import { ShoppingCart } from './Shared/ShoppingCart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 // import { Favorites } from '../pages/Favorites';
 import { logout } from '../redux/apiCall';
@@ -8,11 +8,13 @@ import { logout } from '../redux/apiCall';
 export const Navbar = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
 
     const handleLogout = () => {
-        logout(dispatch)
+        logout(dispatch);
+        navigate("/");
     }
 
     return (

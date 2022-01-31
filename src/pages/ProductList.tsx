@@ -4,7 +4,7 @@ import { Products } from '../components/Products';
 import { Footer } from '../components/Shared/Footer';
 import { useState, useEffect } from 'react';
 
-export const ProductList = () => {
+const ProductList = () => {
 
     const location = useLocation();
     const category = location.pathname.split("/")[2];
@@ -102,3 +102,5 @@ export const ProductList = () => {
     )
 }
 
+
+export default ProductList;

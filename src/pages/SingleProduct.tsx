@@ -1,4 +1,4 @@
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus} from 'react-icons/fa';
 // import {  FaHeart } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';

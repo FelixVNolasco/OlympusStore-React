@@ -3,7 +3,7 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
 
-export const Success = () => {
+const Success = () => {
 
     interface stateType {
         stripeData: any,
@@ -60,3 +60,4 @@ export const Success = () => {
     )
 }
 
+export default Success;

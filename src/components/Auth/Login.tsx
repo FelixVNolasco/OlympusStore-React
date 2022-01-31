@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaEye, FaHome } from "react-icons/fa";
 import { useForm } from '../../hooks/useForm';
 import { login } from "../../redux/apiCall";
@@ -8,7 +8,7 @@ import { removeError, setError } from '../../redux/uiRedux';
 // import { startGoogleLogin } from '../../actions/auth'
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-export const Login = () => {
+const Login = () => {
 
     const dispatch = useDispatch();
 
@@ -16,6 +16,8 @@ export const Login = () => {
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     }
+
+    const navigate = useNavigate();
 
     const [formValues, handleInputChange] = useForm({
         username: 'felixvnolasco',
@@ -29,6 +31,7 @@ export const Login = () => {
         e.preventDefault();
         if (isFormValid) {
             login(dispatch, { username, password });
+            navigate("/");
         };
     };
 
@@ -95,3 +98,4 @@ export const Login = () => {
         </>
     )
 }
+export default Login;

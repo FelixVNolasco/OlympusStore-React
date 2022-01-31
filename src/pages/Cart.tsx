@@ -8,16 +8,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
-import { cleanCart, sustractProduct } from '../redux/cartRedux';
+import { cleanCart } from '../redux/cartRedux';
+// import {  sustractProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
 
-export const Cart = () => {
+const Cart = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const cart = useSelector((state: RootStateOrAny) => state.cart)
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
-    const favorites = useSelector((state: RootStateOrAny) => state.favorites);
+    // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
 
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     // console.log(stripeKey);
@@ -29,9 +31,7 @@ export const Cart = () => {
     }
     // console.log(stripeToken);
 
-    const [quantity, setQuantity] = useState<number>()
-
-    const navigate = useNavigate();
+    // const [quantity, setQuantity] = useState<number>()
 
     useEffect(() => {
         const makeRequest = async () => {
@@ -182,3 +182,4 @@ export const Cart = () => {
         </>
     )
 }
+export default Cart;

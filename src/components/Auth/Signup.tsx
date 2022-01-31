@@ -11,7 +11,7 @@ import { removeError, setError } from '../../redux/uiRedux';
 // import { registerWithEmailPasswordName } from '../../actions/auth';
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-export const Signup = () => {
+const Signup = () => {
 
     const dispatch = useDispatch();
 
@@ -137,3 +137,5 @@ export const Signup = () => {
         </>
     )
 }
+
+export default Signup;

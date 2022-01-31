@@ -1,11 +1,17 @@
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Navbar } from '../components/Navbar';
+import { useForm } from '../hooks/useForm';
 
-
-export const Profile = () => {
+ const Profile = () => {
 
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    
+    const [formValues, handleInputChange] = useForm({
+        username: user.username,
+        email: user.email
+    });
 
+    const {username, email} = formValues;
     return <>
         <div className="container"> 
             <Navbar />
@@ -17,12 +23,12 @@ export const Profile = () => {
 
                     <div className="infoContainer">
                         <p className="info">Nombre de usuario:</p>
-                        <input className="userDataInput" type="text" value={user.username} />
+                        <input className="userDataInput" type="text"  value={username} onChange={handleInputChange}/>
                     </div>
 
                     <div className="infoContainer">
                         <p className="info">Correo Electrónico:</p>
-                        <input className="userDataInput" type="text" value={user.email} />
+                        <input className="userDataInput" type="text"  value={email} onChange={handleInputChange}/>
                     </div>
 
                     <div className="updateContainer">
@@ -56,3 +62,4 @@ export const Profile = () => {
 };
 
 
+export default Profile;

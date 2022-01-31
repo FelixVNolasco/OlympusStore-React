@@ -1,20 +1,27 @@
+import * as React from "react";
 import {
     Routes,
     Route,
-    // Redirect
 } from "react-router-dom";
-import { Login } from '../components/Auth/Login';
-import { Signup } from '../components/Auth/Signup';
+const Login = React.lazy(() => import('../components/Auth/Login'));
+const Signup = React.lazy(() => import('../components/Auth/Signup'));
 
 export const AuthRouter = () => {
     return (
         <div className="auth__main">
             <div className="auth__box-container">
-            <Routes>
-                <Route path="/auth/login" element={<Login />} />
-                <Route path="/auth/signup" element={<Signup />} />
-                {/* <Redirect to="/auth/login" /> */}
-            </Routes>
+                <Routes>
+                    <Route path="/auth/login" element={
+                        <React.Suspense fallback={<>Loading...</>}>
+                            <Login />
+                        </React.Suspense>
+                    } />
+                    <Route path="/auth/signup" element={
+                        <React.Suspense fallback={<>Loading...</>}>
+                            <Signup />
+                        </React.Suspense>
+                    } />
+                </Routes>
             </div>
         </div>
     )
