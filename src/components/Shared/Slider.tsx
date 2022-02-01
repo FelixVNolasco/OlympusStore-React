@@ -1,7 +1,7 @@
 
 export const Slider = () => {
     return (
-        <div className='container animate__animated animate__fadeIn'>
+        <div className='container full-height animate__animated animate__fadeIn'>
             <div className="slide">
                 <div className='infoContainer'>
                     <h2 className='title'>Olympus Center</h2>
