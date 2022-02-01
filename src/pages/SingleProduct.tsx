@@ -85,7 +85,7 @@ const SingleProduct = () => {
                 <Navbar />
                 {
                     !loading ? (
-                        <div className="wrapperSingleProduct">
+                        <div className="wrapperSingleProduct full-height">
                             <div className="imgProductContainer">
                                 <img className='imgSingleProduct' src={product.img} alt="" />
                             </div>
