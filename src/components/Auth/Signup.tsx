@@ -73,7 +73,7 @@ const Signup = () => {
                         <form >
                             <p className='label'>Name</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value={username} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" placeholder="Felix Vega" name="username" autoComplete="off" value={username} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Email</p>
                             <div className='input-container'>

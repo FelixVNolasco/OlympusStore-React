@@ -56,7 +56,7 @@ const Login = () => {
                         <form onSubmit={handleSubmit}>
                             <p className='label'>Usuario</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="ejemploUsuario" name="email" autoComplete="off" value={username} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" placeholder="ejemploUsuario" name="username" autoComplete="off" value={username} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Contraseña</p>
                             <div className='input-container'>
