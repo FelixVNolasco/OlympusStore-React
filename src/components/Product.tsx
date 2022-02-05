@@ -16,7 +16,7 @@ export const Product = ({ item }: any) => {
                 <div className="productInfo">
                     <p className='title'>{item.title}</p>
                     <div className='priceStock'>
-                        <p className='price'>${item.price}</p>
+                        <p className='price'>${item.price.$numberInt}</p>
                         <p className={item.inStock ? 'inStock' : 'notAvailable'}>{item.inStock ? 'Disponible' : 'Agotado'}</p>
                     </div>
                 </div>
