@@ -100,76 +100,81 @@ const Cart = () => {
                                 {/* <span className="topText">Lista de deseados ({favorites.quantity})</span> */}
                             </div>
                             <button className="topButton" onClick={handleCleanCart}>Limpiar Carrito</button>
-                        </div>                
+                        </div>
                     </>
 
                 }
 
 
                 <div className="bottom">
-                    <div className="info animate__animated animate__backInDown">
-                        {
-                            products.map((product) => (
-                                <div className="product" key={product._id}>
-                                    <div className="productDetail">
-                                        <img className='imageProduct' src={product?.img} alt="" />
-                                        <div className="details">
-                                            <span className='productName'><b>Articulo:</b> {product.title}</span>
-                                            <span className='productId'><b>Código:</b> {product._id}</span>
-                                            {/* <span className='productColor'>{product.color}</span> */}
-                                            <span className='productSize'><b>Tamaño:</b> {product.size}</span>
-                                        </div>
-                                    </div>
-                                    <div className="priceDetail">
-                                        <div className="productAmountContainer">
-                                            <FaMinus className='icons' onClick={handleRemoveProduct} />
-                                            <span className='productAmount'>{product.quantity}</span>
-                                            <FaPlus className='icons' onClick={handleAddProduct} />
-                                        </div>
-                                        <div className="productAmountContainer">
-                                            <div className="productPrice">${product.price * product.quantity}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+
                     {
                         products.length !== 0 ?
                             (
-                                <div className="summary animate__animated animate__backInRight">
-                                    <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Subtotal</span>
-                                        <span className='summaryItemPrice'>${cart.total}</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Costo de envío estimado</span>
-                                        <span className='summaryItemPrice'>$5.90</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Descuento de envío</span>
-                                        <span className='summaryItemPrice'>-$5.90</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Total</span>
-                                        <span className='summaryItemPrice'>${cart.total}</span>
-                                    </div>
 
-                                    <StripeCheckout
-                                        name='olympus'
-                                        image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
-                                        billingAddress
-                                        shippingAddress
-                                        description={`Your total is ${cart.total}`}
-                                        amount={cart.total * 100}
-                                        token={onToken}
-                                        stripeKey={stripeKey}
-                                    >
-                                        <button className='checkoutButton'>Comprar</button>
-                                    </StripeCheckout>
+                                <>
+                                    <div className="info animate__animated animate__backInDown">
+                                        {
+                                            products.map((product) => (
+                                                <div className="product" key={product._id.$oid}>
+                                                    <div className="productDetail">
+                                                        <img className='imageProduct' src={product?.img} alt="" />
+                                                        <div className="details">
+                                                            <span className='productName'><b>Articulo:</b> {product.title}</span>
+                                                            <span className='productId'><b>Código:</b> {product._id.$oid}</span>
+                                                            {/* <span className='productColor'>{product.color}</span> */}
+                                                            <span className='productSize'><b>Tamaño:</b> {product.size}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="priceDetail">
+                                                        <div className="productAmountContainer">
+                                                            <FaMinus className='icons' onClick={handleRemoveProduct} />
+                                                            <span className='productAmount'>{product.quantity}</span>
+                                                            <FaPlus className='icons' onClick={handleAddProduct} />
+                                                        </div>
+                                                        <div className="productAmountContainer">
+                                                            <div className="productPrice">${product.price?.$numberInt * product.quantity}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="summary animate__animated animate__backInRight">
+                                        <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
+                                        <div className="summaryItem">
+                                            <span className='summaryItemText'>Subtotal</span>
+                                            <span className='summaryItemPrice'>${cart.total}</span>
+                                        </div>
+                                        <div className="summaryItem">
+                                            <span className='summaryItemText'>Costo de envío estimado</span>
+                                            <span className='summaryItemPrice'>$5.90</span>
+                                        </div>
+                                        <div className="summaryItem">
+                                            <span className='summaryItemText'>Descuento de envío</span>
+                                            <span className='summaryItemPrice'>-$5.90</span>
+                                        </div>
+                                        <div className="summaryItem">
+                                            <span className='summaryItemText'>Total</span>
+                                            <span className='summaryItemPrice'>${cart.total}</span>
+                                        </div>
 
-                                </div>
+                                        <StripeCheckout
+                                            name='olympus'
+                                            image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
+                                            billingAddress
+                                            shippingAddress
+                                            description={`Your total is ${cart.total}`}
+                                            amount={cart.total * 100}
+                                            token={onToken}
+                                            stripeKey={stripeKey}
+                                        >
+                                            <button className='checkoutButton'>Comprar</button>
+                                        </StripeCheckout>
+
+                                    </div>
+                                </>
+
                             )
                             :
                             (
