@@ -1,5 +1,6 @@
 import { FaPlus, FaMinus} from 'react-icons/fa';
 // import {  FaHeart } from 'react-icons/fa';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
@@ -16,6 +17,7 @@ const SingleProduct = () => {
 
     const location = useLocation();
     const productId = location.pathname.split("/")[2];
+    // console.log(productId);
     const [product, setProduct] = useState<any>({})
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
     const dispatch = useDispatch()
@@ -24,7 +26,8 @@ const SingleProduct = () => {
         const getProduct = async () => {
             try {
                 dispatch(setLoading());
-                const product = await publicRequest.get(`products/find/${productId}`)
+                const product = await axios.get(`https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/find?id=${productId}`);
+                // console.log(product);
                 setProduct(product.data);
             } catch (error) {
                 dispatch(removeLoading());
@@ -94,7 +97,7 @@ const SingleProduct = () => {
                                 <p className='descriptionSingleProduct'>{product.desc}</p>
                                 <div className="priceContainer">
                                     {/* <FaHeart className={favorite ? 'favoriteIcon' : 'notFavoriteIcon'} onClick={(handleFavorite)} /> */}
-                                    <p className='priceSingleProduct'>${product.price}</p>
+                                    <p className='priceSingleProduct'>${product.price?.$numberInt}</p>
                                 </div>
                                 <div className="optionsSingleProduct">
                                     <p className='optionText'>Número:</p>
@@ -112,7 +115,7 @@ const SingleProduct = () => {
                                     <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                                 </div>
                                 <div className="checkoutContainer" onClick={handleClick}>
-                                    <button className='checkoutButton'>Comprar</button>
+                                    <button className='checkoutButton'>Añadir al Carrito</button>
                                 </div>
                             </div>
                         </div>
