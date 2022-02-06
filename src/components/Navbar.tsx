@@ -37,7 +37,7 @@ export const Navbar = () => {
                         {/* <Link to={"/favorites"}>
                             < Favorites items={favoriteCount} />
                         </Link> */}
-                        {
+                        {/* {
                             isAuthenticated
                                 ?
                                 (
@@ -62,7 +62,11 @@ export const Navbar = () => {
                                         </Link>
                                     </>
                                 )
-                        }
+                        } */}
+
+                        <Link to={"/cart"}>
+                            <ShoppingCart items={quantity} />
+                        </Link>
                     </div>
                 </div>
             </div>
