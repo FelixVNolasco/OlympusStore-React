@@ -100,11 +100,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 295px);
     justify-content: center;
-    margin-bottom: 64px;
     grid-gap: 18px;
     width: 80%;
     margin: auto;
-    margin-bottom: 64px;
+    padding-top: 18px;
 }
 
 .loadingProducts {

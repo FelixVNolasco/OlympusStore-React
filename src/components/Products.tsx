@@ -20,9 +20,9 @@ export const Products = ({ category, filters, sort }: any) => {
             try {
                 dispatch(setLoading());
                 // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
-                const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
-                // https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products
+                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
                 console.log(products.data);
+                // https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products
                 setProducts(products.data);
             } catch (error) {
                 console.log(error);
@@ -32,6 +32,8 @@ export const Products = ({ category, filters, sort }: any) => {
         }
         getAllProducts();
     }, [category, dispatch])
+
+
 
 
     useEffect(() => {
@@ -65,13 +67,17 @@ export const Products = ({ category, filters, sort }: any) => {
 
     return (
         <>
-            <div className="container">
-                <h1 className='productsTitle'>Productos Recientes</h1>
-                <div className='products'>
+            <div className="container">                
+                {
+                    !category && (
+                        <h1 className='productsTitle'>Productos Recientes</h1>
+                    )
+                }
+                <div className='products' key={'HOLAS'}>
                     {
                         category ?
                             filteredProducts.map((product) => {
-                                return <CategoryProduct key={product._id} item={product} />
+                                return <CategoryProduct key={product._id?.$oid} item={product} />
                             })
                             :
                             products.slice(0, 8).map((product) => {
