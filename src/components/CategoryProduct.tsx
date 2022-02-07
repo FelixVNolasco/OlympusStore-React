@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const Product = ({ item }: any) => {
+export const CategoryProduct = ({ item }: any) => {
     return (
         <>
             <div className='productContainer'>
@@ -14,7 +14,7 @@ export const Product = ({ item }: any) => {
                 <div className="productInfo">
                     <p className='title'>{item.title}</p>
                     <div className='priceStock'>
-                        <p className='price'>${item.price?.$numberInt}</p>
+                        <p className='price'>${item.price}</p>
                         <p className={item.inStock ? 'inStock' : 'notAvailable'}>{item.inStock ? 'Disponible' : 'Agotado'}</p>
                     </div>
                 </div>

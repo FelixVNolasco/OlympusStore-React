@@ -1,5 +1,5 @@
 .container {
-    // width: 100%;Z
+    width: 100%;
 }
 
 .full-height {
@@ -95,14 +95,8 @@
 @media (max-width: 640px) {
     .slide {
         grid-template-columns: 1fr;
+        width: 100%;
     }
-
-    // .imageContainer {
-    //     margin-bottom: 32px;
-    //     .image {
-    //         width: 20%;
-    //     }
-    // }
 
     .imageContainer { 
         display: none;

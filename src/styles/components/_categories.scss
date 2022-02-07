@@ -57,3 +57,24 @@
         }
     }
 }
+
+@media (max-width: 640px) {
+
+    .categories {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .category {
+        max-width: 350px;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    
+}
+
+
+@media (max-width: 900px) {  
+    
+}

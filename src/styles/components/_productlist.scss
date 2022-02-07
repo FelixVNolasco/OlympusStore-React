@@ -21,6 +21,7 @@
         position: relative;
         top: -220px;
         z-index: 100;
+        margin: 0;
     }
 }
 
@@ -41,7 +42,7 @@
         .filterSelect {
             padding: 10px;
             margin-right: 20px;
-
+            margin-top: 8px;
         }
     }
 }

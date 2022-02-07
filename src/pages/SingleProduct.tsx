@@ -102,6 +102,7 @@ const SingleProduct = () => {
                                 <div className="optionsSingleProduct">
                                     <p className='optionText'>Número:</p>
                                     <select className='options' name="" onChange={(e) => setSize(e.target.value)}>
+                                        <option value="Numero" disabled>Numero</option>
                                         {
                                             product.size?.map((size) => {
                                                 return <option value={size} key={size}>{size}</option>

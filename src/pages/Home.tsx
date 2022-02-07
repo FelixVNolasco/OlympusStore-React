@@ -7,13 +7,13 @@ import { Footer } from '../components/Shared/Footer';
 
 export const Home = () => {
     return (
-        <>
+        <div className="home">
             <Navbar />
             <Slider />
             <Categories />
-            <Products />            
+            <Products />
             <Footer />
-        </>
+        </div>
     )
 }
 
