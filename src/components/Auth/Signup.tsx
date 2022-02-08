@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaEye } from 'react-icons/fa';
 import { useForm } from '../../hooks/useForm';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
@@ -8,12 +8,13 @@ import { signup } from "../../redux/apiCall";
 import validator from 'validator';
 import { removeError, setError } from '../../redux/uiRedux';
 
-// import { registerWithEmailPasswordName } from '../../actions/auth';
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { registerWithEmailPasswordName } from '../../redux/actions/auth';
+
 
 const Signup = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { errors } = useSelector((state: RootStateOrAny) => state.ui);
 
@@ -25,25 +26,34 @@ const Signup = () => {
         setshowPassword(!showPassword);
     }
 
+    // const [formValues, handleInputChange] = useForm({
+    //     username: 'Felix Enrique Vega Nolasco',
+    //     email: 'example@correo.com',
+    //     password: 'helloWorld123',
+    //     password2: 'helloWorld123'
+    // });
+
     const [formValues, handleInputChange] = useForm({
-        username: 'Felix Enrique Vega Nolasco',
-        email: 'example@correo.com',
-        password: 'helloWorld123',
-        password2: 'helloWorld123'
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
     });
 
-    const { username, email, password, password2 } = formValues;
+    const { name, email, password, password2 } = formValues;
 
     const handleRegisterWithEmailPassword = (e) => {
         e.preventDefault();
         if(isFormValid()) {
-            signup(dispatch, { username, email, password })
-            .catch(error => console.log(error));
+            // signup(dispatch, { username, email, password })
+            // .catch(error => console.log(error));
+            dispatch(registerWithEmailPasswordName(email, password, name));
+            navigate("/");
         }
     }
 
     const isFormValid = () => {
-        if (username.trim().length === 0) {
+        if (name.trim().length === 0) {
             dispatch(setError('Name is required!'));
             return false;
         } else if (!validator.isEmail(email)) {
@@ -73,7 +83,7 @@ const Signup = () => {
                         <form >
                             <p className='label'>Name</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="Felix Vega" name="username" autoComplete="off" value={username} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value={name} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Email</p>
                             <div className='input-container'>
@@ -92,39 +102,9 @@ const Signup = () => {
                                 <button className="btn btn-primary" type="submit" onClick={handleRegisterWithEmailPassword}>Sign Up</button>
                             </div>
                         </form>
-
-
-                        {/*                         
-                        <Formik
-                            initialValues={{ email: '', password: '' }}
-                            validate={values => {
-                                   const errors = { email: "" };
-                                if (!values.email) {
-                                    errors.email = 'Campo Requerido';
-                                } else if (
-                                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                                ) {
-                                    errors.email = 'Dirección de correo invalida';
-                                }
-                                return errors;
-                            }}
-                            onSubmit={(values, { setSubmitting }) => {
-                                setTimeout(() => {
-                                    alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
-                                }, 400);
-                            }}
-                        />                         
-                        <Form >
-                            <Field type="text" name="name" />
-                            <Field type="text" name="email" />
-                            <Field type="password" name="password" />
-                            <Field type="password" name="password2" />
-                        </Form>               */}
-
                         <div className='newAccount-container'>
-                            <div className="account_title">You already have an account?</div>
-                            <Link className="create_account" to="/auth/login">Log in here.</Link>
+                            <div className="account_title">Ya tienes una cuenta?</div>
+                            <Link className="create_account" to="/auth/login">Inicia Sesión.</Link>
                         </div>
                         <Link to={"/"}>
                             <div className="goHome">

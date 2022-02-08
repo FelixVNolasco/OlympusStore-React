@@ -5,8 +5,9 @@ import { useForm } from '../../hooks/useForm';
 import { login } from "../../redux/apiCall";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { removeError, setError } from '../../redux/uiRedux';
-// import { startGoogleLogin } from '../../actions/auth'
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { loginWithEmailPassword, startGoogleLogin } from '../../redux/actions/auth';
+
+
 
 const Login = () => {
 
@@ -19,32 +20,44 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const [formValues, handleInputChange] = useForm({
-        username: 'felixvnolasco',
-        password: 'memento89'
-    });
-    const { username, password } = formValues;
+    // const [formValues, handleInputChange] = useForm({
+    //     username: 'felixvnolasco',
+    //     password: 'memento89'
+    // });
 
+    const [formValues, handleInputChange] = useForm({
+        email: '',
+        password: ''
+    });
+
+    const { email, password } = formValues;
     const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (isFormValid) {
-            login(dispatch, { username, password });
+            // login(dispatch, { username, password });
+            dispatch(loginWithEmailPassword(email, password));
             navigate("/");
         };
     };
 
     const isFormValid = () => {
-        if (username.trim().length === 0) {
+        if (email.trim().length === 0) {
             dispatch(setError('Username is Required!'));
             return false;
-        } else if ( password.length < 5) {
+        } else if (password.length < 5) {
             dispatch(setError('Wrong Password'));
             return false;
         }
         dispatch(removeError());
         return true;
+    }
+
+    const handleGoogleLoginSubmit = (e: any) => {
+        e.preventDefault();
+        dispatch(startGoogleLogin());
+        navigate("/");
     }
 
     return (
@@ -56,7 +69,7 @@ const Login = () => {
                         <form onSubmit={handleSubmit}>
                             <p className='label'>Usuario</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="ejemploUsuario" name="username" autoComplete="off" value={username} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" placeholder="correo@corre.com" name="email" autoComplete="off" value={email} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Contraseña</p>
                             <div className='input-container'>
@@ -73,18 +86,18 @@ const Login = () => {
                             } */}
                         </form>
 
-                        {/* <div className='optionContainer'>
+                        <div className='optionContainer'>
                             <p>Or you can login with:</p>
-                        </div> */}
+                        </div>
                         <div className="auth_social-networks">
-                            {/* <div className="google-btn" onClick={handleGoogleLoginSubmit}>
+                            <div className="google-btn" onClick={handleGoogleLoginSubmit}>
                                 <div className="google-icon-wrapper">
                                     <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                                 </div>
-                            </div> */}
+                            </div>
                             <div className='newAccount-container'>
-                                <div className="account_title">You don't have an account?</div>
-                                <Link className="create_account" to="/auth/signup">Create a new one here.</Link>
+                                <div className="account_title">Aún no tienes una cuenta?</div>
+                                <Link className="create_account" to="/auth/signup">Crea una cuenta.</Link>
                             </div>
                         </div>
                         <Link to={"/"}>

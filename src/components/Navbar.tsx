@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 // import { Favorites } from '../pages/Favorites';
 import { logout } from '../redux/apiCall';
+import { LogoutAction } from '../redux/actions/auth';
 
 export const Navbar = () => {
 
@@ -13,7 +14,7 @@ export const Navbar = () => {
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
 
     const handleLogout = () => {
-        logout(dispatch);
+        dispatch(LogoutAction());
         navigate("/");
     }
 
@@ -37,7 +38,7 @@ export const Navbar = () => {
                         {/* <Link to={"/favorites"}>
                             < Favorites items={favoriteCount} />
                         </Link> */}
-                        {/* {
+                        {
                             isAuthenticated
                                 ?
                                 (
@@ -62,11 +63,11 @@ export const Navbar = () => {
                                         </Link>
                                     </>
                                 )
-                        } */}
+                        }
 
-                        <Link to={"/cart"}>
+                        {/* <Link to={"/cart"}>
                             <ShoppingCart items={quantity} />
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </div>

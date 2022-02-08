@@ -18,7 +18,7 @@ const cartSlice = createSlice({
         },
         removeLoading: (state) => {
             state.loading = false
-        }        
+        },        
     }
 })
 
