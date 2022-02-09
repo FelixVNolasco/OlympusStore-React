@@ -2,12 +2,10 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaEye, FaHome } from "react-icons/fa";
 import { useForm } from '../../hooks/useForm';
-import { login } from "../../redux/apiCall";
+// import { login } from "../../redux/apiCall";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { removeError, setError } from '../../redux/uiRedux';
 import { loginWithEmailPassword, startGoogleLogin } from '../../redux/actions/auth';
-
-
 
 const Login = () => {
 
@@ -20,18 +18,14 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    // const [formValues, handleInputChange] = useForm({
-    //     username: 'felixvnolasco',
-    //     password: 'memento89'
-    // });
-
     const [formValues, handleInputChange] = useForm({
         email: '',
         password: ''
     });
 
     const { email, password } = formValues;
-    const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
+
+    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -64,7 +58,7 @@ const Login = () => {
         <>
             <div className='form-wrapper'>
                 <div className='form-container'>
-                    <div className="auth__box-container animate__animated animate__fadeIn">
+                    <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                         <p className="auth__title">Iniciar Sesión</p>
                         <form onSubmit={handleSubmit}>
                             <p className='label'>Correo Electrónico</p>
@@ -78,7 +72,7 @@ const Login = () => {
                             </div>
 
                             <div className='btn-container'>
-                                <button className="btn btn-primary" type="submit" disabled={isFetching}>Iniciar Sesion</button>
+                                <button className="btn btn-primary" type="submit" disabled={loading}>Iniciar Sesion</button>
                             </div>
                             {/* {error && (
                                 <p>{}</p>

@@ -149,7 +149,7 @@
     }
 
     .footerSection {
-        margin-top: 164px;
+        margin-top: 24px;
     }
 
     .infoSingleProduct {
@@ -162,7 +162,7 @@
 }
 
 
-@media (max-width: 900px) {  
+@media (max-width: 1120px) {  
     .wrapperSingleProduct {
         flex-direction: column;
         height: auto !important;

@@ -71,7 +71,7 @@ const Signup = () => {
         <>
             <div className='form-wrapper'>
                 <div className='form-container'>
-                    <div className="auth__box-container animate__animated animate__fadeIn">
+                    <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                         <p className="auth__title">Registrarse</p>
                         {/* {
                             (!isFormValid) && (

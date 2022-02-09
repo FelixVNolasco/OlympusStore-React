@@ -52,7 +52,7 @@
                         transition: border-bottom .3s ease;
 
                         &:focus {
-                            border-bottom: 1px solid lighten($color: $dark-gray, $amount: 10);
+                            border-bottom: 1px solid lighten($color: $dark-gray, $amount: 35);
                             outline: none;
                         }
 
@@ -111,7 +111,7 @@
             .newAccount-container {
                 display: flex;
                 flex-direction: column;
-                margin-top: 24px;
+                margin-top: 18px;
                 align-items: center;
 
                 .account_title {
@@ -139,6 +139,7 @@
                 flex-direction: row;
                 justify-content: center;
                 color: $white;
+                margin-top: 18px;
             }
 
             .auth_social-networks {

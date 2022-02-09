@@ -33,9 +33,13 @@ export const startGoogleLogin = () =>{
             const {uid, displayName, email, photoURL, metadata} = user;
             const { creationTime, lastSignInTime} = metadata;
             dispatch(loginSuccess( {uid, displayName, email, photoURL, creationTime, lastSignInTime} ))
-            console.log(user,user.uid, user.displayName);
+            // console.log(user,user.uid, user.displayName);
+            dispatch(removeLoading());
           })
-          .catch ( e => console.log(e));
+          .catch ( e => { 
+            Swal.fire('Error', e.message, "error");
+            dispatch(removeLoading());
+          });
   }
 }
 

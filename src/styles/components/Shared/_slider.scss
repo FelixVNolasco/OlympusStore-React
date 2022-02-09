@@ -22,7 +22,6 @@
 
     .infoContainer {
         width: 80%;
-        margin: auto;
 
         .title {
             margin: 0;
@@ -64,6 +63,14 @@
         }
 
 
+    }
+
+    
+    @media (max-width: 640px) {
+        .infoContainer {
+            margin: auto;
+            width: 90%;
+        }
     }
 
     .imageContainer {

@@ -172,12 +172,39 @@
     }
 }
 
-@media (max-width: 640px) {
+
+
+@media (max-width: 960px) {
+
+    .top {
+        flex-direction: row;
+
+        .topButton {
+            margin: 12px;
+        }
+    }
     .bottom {
+        flex-direction: column-reverse;
+    }
+
+    .imageProduct {
+        margin: auto;
+    }
+    .product {
+        .productDetail {
+            flex-direction: column;
+        }
         flex-direction: column;
     }
 
     .summary {
         margin-top: 24px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .top {
+        flex-direction: column;
     }
 }
