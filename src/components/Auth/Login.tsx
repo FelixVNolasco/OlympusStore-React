@@ -87,7 +87,7 @@ const Login = () => {
                         </form>
 
                         <div className='optionContainer'>
-                            <p>Or you can login with:</p>
+                            <p>O también puedes iniciar sesión con:</p>
                         </div>
                         <div className="auth_social-networks">
                             <div className="google-btn" onClick={handleGoogleLoginSubmit}>
