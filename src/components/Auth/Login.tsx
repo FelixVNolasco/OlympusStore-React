@@ -67,7 +67,7 @@ const Login = () => {
                     <div className="auth__box-container animate__animated animate__fadeIn">
                         <p className="auth__title">Iniciar Sesión</p>
                         <form onSubmit={handleSubmit}>
-                            <p className='label'>Usuario</p>
+                            <p className='label'>Correo Electrónico</p>
                             <div className='input-container'>
                                 <input className="auth__input" type="text" placeholder="correo@corre.com" name="email" autoComplete="off" value={email} onChange={handleInputChange} />
                             </div>

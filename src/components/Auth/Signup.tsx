@@ -81,20 +81,20 @@ const Signup = () => {
                             )
                         } */}
                         <form >
-                            <p className='label'>Name</p>
+                            <p className='label'>Nombre</p>
                             <div className='input-container'>
                                 <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value={name} onChange={handleInputChange} />
                             </div>
-                            <p className='label'>Email</p>
+                            <p className='label'>Correo Electronico</p>
                             <div className='input-container'>
                                 <input className="auth__input" type="text" placeholder="example@correo.com" name="email" value={email} autoComplete="off" onChange={handleInputChange} />
                             </div>
-                            <p className='label'>Password</p>
+                            <p className='label'>Contraseña</p>
                             <div className='input-container'>
                                 <input className="auth__input" type={showPassword ? "text" : "password"} name="password" value={password} onChange={handleInputChange} />
                                 <FaEye className='showHide-icon' onClick={handleShowPassword} />
                             </div>
-                            <p className='label'>Confirm your password</p>
+                            <p className='label'>Confirma tu contraseña</p>
                             <div className='input-container'>
                                 <input className="auth__input" type="password" name="password2" value={password2} onChange={handleInputChange} />
                             </div>
