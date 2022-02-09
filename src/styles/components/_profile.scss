@@ -1,5 +1,5 @@
 .profileContainer {
-    max-width: 50vw;
+    max-width: 680px;
     height: auto;
     background-color: $primary;
     color: $white;
@@ -110,7 +110,7 @@
                 font-weight: 700;
                 padding: 8px;
                 transition: ease-in 150ms;
-                margin-top: 32px;
+                margin-top: 12px;
 
                 &:hover {
                     transition: ease-out 150ms;
@@ -127,7 +127,18 @@
 }
 
 
+@media (max-width: 960px) {
+
+    .profileContainer {
+        max-width: 520px;
+    }
+}
+
 @media (max-width: 640px) {
+
+    .profileContainer {
+        max-width: 320px;
+    }
     .infoContainer {
         flex-direction: column;
     }

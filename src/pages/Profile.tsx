@@ -26,7 +26,7 @@ import { useForm } from '../hooks/useForm';
                     </div>
 
                     <div className="infoContainer">
-                        <p className="info">Nombre de usuario:</p>
+                        <p className="info">Nombre:</p>
                         <input className="userDataInput" type="text"  value={name} onChange={handleInputChange}/>
                     </div>
 
