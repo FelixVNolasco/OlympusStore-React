@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 
 export const CategoryProduct = ({ item }: any) => {
+    
     return (
         <>
             <div className='productContainer'>
-                <Link to={`/product/${item._id}`}>
+                <Link to={`/product/${item._id.$oid}`}>
                     <div className="product">
                         <div className='imageContainer'>
                             <img className='image' src={item.img} alt="" />
