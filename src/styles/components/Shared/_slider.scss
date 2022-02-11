@@ -26,7 +26,6 @@
         .title {
             margin: 0;
             font-size: $large-title;
-            line-height: 102px;
             color: $dark-gray;
             text-align: center;
             font-family: "Poppins", sans-serif;
@@ -65,13 +64,6 @@
 
     }
 
-    
-    @media (max-width: 640px) {
-        .infoContainer {
-            margin: auto;
-            width: 90%;
-        }
-    }
 
     .imageContainerSlider {
 
@@ -100,13 +92,33 @@
 
 
 @media (max-width: 640px) {
+
+    .title {
+        font-size: 2.5rem !important;
+    }
+
+    .description {
+        font-size: 1.2rem !important;
+        text-align: left !important;
+        margin-top: 16px !important;
+    }
+
+    .infoContainer {
+        margin: auto;
+        width: 90%;
+    }
+
     .slide {
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;
         width: 100%;
+
     }
 
     .imageContainerSlider { 
-        display: none;
+        // display: none;
+        width: 210px;
     }
 
 

@@ -76,6 +76,12 @@
         }
     }
 
+    @media (max-width: 640px) {
+        .title {
+            font-size: $normal !important;
+        }
+    }
+
 
     &:hover {
         transition: ease-out 150ms;
