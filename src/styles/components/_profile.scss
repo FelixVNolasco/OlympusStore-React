@@ -48,6 +48,7 @@
 
             .info {
                 font-size: 16px;
+                font-weight: 700;
             }
 
             .userDataInput {
@@ -79,6 +80,7 @@
             width: 100%;
 
             .updateAccountBtn {
+                display: none;
                 cursor: pointer;
                 background-color: darken($color: $primary, $amount: 12);
                 border: none;
@@ -102,6 +104,7 @@
             width: 100%;
 
             .deleteAccountBtn {
+                display: none;
                 cursor: pointer;
                 background-color: darken($color: $danger, $amount: 5);
                 border: none;
@@ -126,6 +129,19 @@
     }
 }
 
+.createdAt {
+    margin-bottom: 12px;
+    .info {
+        font-weight: 700;
+    }
+}
+
+.updatedAt{
+    margin-bottom: 12px;
+    .info {
+        font-weight: 700;
+    }
+}
 
 @media (max-width: 960px) {
 

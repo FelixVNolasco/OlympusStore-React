@@ -12,7 +12,7 @@ export const Product = ({ item }: any) => {
                     </div>
                 </Link>
                 <div className="productInfo">
-                    <p className='title'>{item.title}</p>
+                    <p className='titleProduct'>{item.title}</p>
                     <div className='priceStock'>
                         <p className='price'>${item.price?.$numberInt}</p>
                         <p className={item.inStock ? 'inStock' : 'notAvailable'}>{item.inStock ? 'Disponible' : 'Agotado'}</p>

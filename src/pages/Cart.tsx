@@ -22,14 +22,12 @@ const Cart = () => {
     // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
 
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
-    // console.log(stripeKey);
 
     const [stripeToken, setStripeToken] = useState(null);
 
     const onToken = (token) => {
         setStripeToken(token)
     }
-    // console.log(stripeToken);
 
     // const [quantity, setQuantity] = useState<number>()
 
@@ -49,17 +47,14 @@ const Cart = () => {
                     },
                 })
             } catch (error) {
-                console.log(error);
             }
         }
 
         stripeToken && makeRequest();
     }, [stripeToken, cart.total, navigate, cart])
 
-    // console.log(stripeToken);
 
     const handleAddProduct = () => {
-        console.log('add');
     }
 
     const handleRemoveProduct = () => {
@@ -70,7 +65,6 @@ const Cart = () => {
         //         }
         //     )
         // )
-        console.log('rest');
     }
 
 
@@ -113,7 +107,7 @@ const Cart = () => {
                             (
 
                                 <>
-                                    <div className="info animate__animated animate__backInDown">
+                                    <div className="info animate__animated animate__fadeIn animate__faster">
                                         {
                                             products.map((product) => (
                                                 <div className="product" key={product._id.$oid}>
@@ -140,7 +134,7 @@ const Cart = () => {
                                             ))
                                         }
                                     </div>
-                                    <div className="summary animate__animated animate__backInRight">
+                                    <div className="summary animate__animated animate__fadeIn animate__faster">
                                         <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
                                         <div className="summaryItem">
                                             <span className='summaryItemText'>Subtotal</span>

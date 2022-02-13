@@ -196,30 +196,4 @@
     .optionContainer {
         margin-top: 20px;
     }
-
-    main {
-        .nothing__main-content {
-            display: none;
-        }
-
-        .notes__main-content {
-            width: 100vw;
-        }
-    }
-
-    .journal__sidebar {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        height: 100% !important;
-        width: 100% !important;
-    }
-
-    .journal__main-content {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .notes__content {
-        height: 400px !important;
-    }
 }

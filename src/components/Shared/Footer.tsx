@@ -26,8 +26,8 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="newsLetterContainer">
-                    <h1 className='title'>Newsletter</h1>
-                    <p className='description'>Obten actualizaciones de tus productos favoritos.</p>
+                    <h1 className='newsletterTitle'>Newsletter</h1>
+                    <p className='footerDescription'>Obten actualizaciones de tus productos favoritos.</p>
                     <div className="inputContainer">
                         <input className='input' type="text" />
                         <div className="sendButton">

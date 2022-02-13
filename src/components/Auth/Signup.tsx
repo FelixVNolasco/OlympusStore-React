@@ -46,7 +46,6 @@ const Signup = () => {
         e.preventDefault();
         if(isFormValid()) {
             // signup(dispatch, { username, email, password })
-            // .catch(error => console.log(error));
             dispatch(registerWithEmailPasswordName(email, password, name));
             navigate("/");
         }

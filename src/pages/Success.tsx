@@ -12,7 +12,6 @@ const Success = () => {
     // }
 
     const location: any = useLocation();
-    // console.log(location);
 
     const data = location.state.stripeData;
     const cart = location.state.cart;
@@ -33,9 +32,8 @@ const Success = () => {
                     amount: cart.total,
                     address: data.billing_details.address,
                 });
-                console.log(res);
                 setOrderId(res.data._id);
-            } catch (error) { console.log(error); }
+            } catch (error) {  }
         };
         data && createOrder();
     }, [cart, data, currentUser]);

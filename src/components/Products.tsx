@@ -20,12 +20,9 @@ export const Products = ({ category, filters, sort }: any) => {
             try {
                 dispatch(setLoading());
                 // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
-                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
-                console.log(products.data);
-                // https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products
+                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');                
                 setProducts(products.data);
             } catch (error) {
-                console.log(error);
                 dispatch(removeLoading());
             }
             dispatch(removeLoading());

@@ -6,12 +6,9 @@
         align-items: center;
         width: 80%;
         margin: auto;
-        height: 800px;
 
         .imgProductContainer {
             flex: 1;
-            width: 500px;
-            height: 500px;
 
             .imgSingleProduct {
                 object-fit: cover;
@@ -25,11 +22,9 @@
             margin-bottom: 64px;
 
             .titleSingleProduct {
-
                 font-family: "Poppins", sans-serifa;
                 font-size: $title;
                 font-weight: 700;
-                text-align: justify;
             }
 
             .descriptionSingleProduct {
@@ -63,7 +58,7 @@
                     height: 24px;
                     margin-right: 12px;
                     cursor: pointer;
-                    transition: ease-in 150ms;                    
+                    transition: ease-in 150ms;
                 }
 
                 .priceSingleProduct {
@@ -133,6 +128,7 @@
 
         }
     }
+
     .loadingProduct {
         display: flex;
         align-items: center;
@@ -142,10 +138,10 @@
     }
 }
 
-@media (max-width: 640px) { 
+@media (max-width: 640px) {
     .wrapperSingleProduct {
         flex-direction: column;
-        height: auto !important;
+        height: auto;
     }
 
     .footerSection {
@@ -157,14 +153,45 @@
     }
 
     .imgProductContainer {
-        width: 100% !important;
+        width: 100% ;
+    }
+
+    .titleSingleProduct {
+        text-align: center;
+    }
+
+}
+
+
+
+
+@media (min-width: 640px) {
+
+    .titleSingleProduct {
+        text-align: justify;
+    }
+    .imgProductContainer {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 1350px) {
+    .wrapperSingleProduct {
+        flex-direction: column;
+        height: auto;
     }
 }
 
 
-@media (max-width: 1120px) {  
-    .wrapperSingleProduct {
-        flex-direction: column;
-        height: auto !important;
+@media (min-width: 1120px) {
+    .imgProductContainer {
+        width: 600px;
+        height: 600px;
     }
+
+    .wrapperSingleProduct {
+        height: 800px;
+    }
+
 }

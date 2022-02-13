@@ -43,7 +43,7 @@
         display: flex;
         flex-direction: column;
 
-        .title {
+        .titleProduct {
             font-weight: bold;
             font-size: $normal;
             text-align: left;
@@ -77,8 +77,8 @@
     }
 
     @media (max-width: 640px) {
-        .title {
-            font-size: $normal !important;
+        .titleProduct {
+            font-size: $normal ;
         }
     }
 

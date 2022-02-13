@@ -17,7 +17,6 @@ const SingleProduct = () => {
 
     const location = useLocation();
     const productId = location.pathname.split("/")[2];
-    // console.log(productId);
     const [product, setProduct] = useState<any>({})
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
     const dispatch = useDispatch()
@@ -27,11 +26,9 @@ const SingleProduct = () => {
             try {
                 dispatch(setLoading());
                 const product = await axios.get(`https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/find?id=${productId}`);
-                // console.log(product);
                 setProduct(product.data);
             } catch (error) {
                 dispatch(removeLoading());
-                console.log(error);
             }
             dispatch(removeLoading());
         }
@@ -51,7 +48,6 @@ const SingleProduct = () => {
     }
 
     const [size, setSize] = useState("");
-    // console.log(color);
 
     // const [favorite, setFavorite] = useState(false);
 

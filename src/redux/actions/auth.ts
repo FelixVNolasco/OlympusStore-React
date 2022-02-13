@@ -32,8 +32,7 @@ export const startGoogleLogin = () =>{
             dispatch(login(user.uid, user.displayName))
             const {uid, displayName, email, photoURL, metadata} = user;
             const { creationTime, lastSignInTime} = metadata;
-            dispatch(loginSuccess( {uid, displayName, email, photoURL, creationTime, lastSignInTime} ))
-            // console.log(user,user.uid, user.displayName);
+            dispatch(loginSuccess( {uid, displayName, email, photoURL, creationTime, lastSignInTime} ))            
             dispatch(removeLoading());
           })
           .catch ( e => { 

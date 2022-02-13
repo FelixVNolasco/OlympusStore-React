@@ -5,7 +5,6 @@ import { useForm } from '../hooks/useForm';
  const Profile = () => {
 
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    console.log(user);
 
     const { displayName, photoURL, email  } = user;
 
@@ -19,7 +18,7 @@ import { useForm } from '../hooks/useForm';
     return <>
         <div className="container"> 
             <Navbar />
-            <div className="profileContainer">
+            <div className="profileContainer animate__animated animate__fadeIn animate__faster">
                 <div className="profileSection">
                     <div className="profileImage">
                         <img className="img" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />

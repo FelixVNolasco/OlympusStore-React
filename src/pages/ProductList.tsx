@@ -12,7 +12,6 @@ const ProductList = () => {
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
 
-    console.log(filters);
 
     const handleFilters = (e: any) => {
         const value = e.target.value;

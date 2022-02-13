@@ -18,8 +18,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 24px;
-        margin-right: 24px;
         margin-bottom: 24px;
         transition: ease-out 150ms;
         cursor: pointer;
@@ -66,15 +64,21 @@
         width: 100%;
         align-items: center;
     }
+    
     .category {
         max-width: 350px;
-        margin-left: 0px !important;
-        margin-right: 0px !important;
+        margin-left: 0px;
+        margin-right: 0px;
     }
     
 }
 
 
-@media (max-width: 900px) {  
-    
+@media (min-width: 900px) {  
+
+    .category {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
 }
