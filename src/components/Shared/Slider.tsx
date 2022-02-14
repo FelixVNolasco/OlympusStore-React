@@ -4,7 +4,6 @@ import Skeleton from 'react-loading-skeleton'
 export const Slider = () => {
 
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
-    console.log(loading);
 
     return (
         <div className='container full-height animate__animated animate__fadeIn animate__faster'>
@@ -19,12 +18,14 @@ export const Slider = () => {
                 {
                     loading ?
                         (
-                            <Skeleton
-                                circle
-                                height="400px"
-                                width="400px"
-                                containerClassName="avatar-skeleton"
-                            />
+                            <div className="skeletonLoader">
+                                <Skeleton
+                                    circle
+                                    height="100%"
+                                    width="100%"
+                                    containerClassName="avatar-skeleton"
+                                />
+                            </div>                            
                         )
                         :
                         (
@@ -34,7 +35,6 @@ export const Slider = () => {
                         )
                 }
             </div>
-
         </div>
     )
 }

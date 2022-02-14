@@ -1,7 +1,8 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from './pages/Home';
-// import { Favorites } from "./pages/Favorites";
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -9,10 +10,6 @@ const SingleProduct = React.lazy(() => import('./pages/SingleProduct'));
 const Cart = React.lazy(() => import('./pages/Cart'));
 const Success = React.lazy(() => import('./pages/Success'));
 const Profile = React.lazy(() => import('./pages/Profile'));
-
-//Auth
-const Login = React.lazy(() => import('../src/components/Auth/Login'));
-const Signup = React.lazy(() => import('../src/components/Auth/Signup'));
 
 const App = () => {
   return (
@@ -35,14 +32,10 @@ const App = () => {
           </React.Suspense>
         } />
         <Route path="/auth/login" element={
-          <React.Suspense fallback={<>Loading...</>}>
             <Login />
-          </React.Suspense>
         } />
         <Route path="/auth/signup" element={
-          <React.Suspense fallback={<>Loading...</>}>
             <Signup />
-          </React.Suspense>
         } />
         <Route path="/success" element={
           <React.Suspense fallback={<>Loading...</>}>
@@ -54,7 +47,6 @@ const App = () => {
           <Profile />
         </React.Suspense>
         } />
-        {/* <Route path="/favorites" element={<Favorites />} /> */}
       </Routes>
     </BrowserRouter>
   )

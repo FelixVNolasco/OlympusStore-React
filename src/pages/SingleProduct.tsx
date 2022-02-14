@@ -125,8 +125,7 @@ const SingleProduct = () => {
                                     width="162"
                                     color='#406882'
                                     ariaLabel='loading' />
-                        </div>
-                        
+                        </div>                        
                     )
                 }
                 <Footer />
