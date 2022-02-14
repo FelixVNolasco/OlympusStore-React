@@ -2,7 +2,6 @@
     background-color: lighten($color: $dark-gray, $amount: 10);
     color: $white;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     height: 400px;
     align-items: center;
@@ -27,7 +26,7 @@
             }
         }
 
-        h4 {
+        .sloganApp {
             margin-bottom: 16px;
             text-align: center;
             font-size: $larger;

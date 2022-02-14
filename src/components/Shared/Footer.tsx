@@ -11,7 +11,7 @@ export const Footer = () => {
                             <h2>Olympus</h2>
                             <FaGripfire className='icon' />
                         </div>
-                        <h4>Los mejores productos para los mejores atletas.</h4>
+                        <p className='sloganApp'>Los mejores productos para los mejores atletas.</p>
 
                         <div className='team'>
                             <div className='teamMember'>
@@ -26,15 +26,15 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="newsLetterContainer">
-                    <h1 className='newsletterTitle'>Newsletter</h1>
-                    <p className='footerDescription'>Obten actualizaciones de tus productos favoritos.</p>
-                    <div className="inputContainer">
-                        <input className='input' type="text" />
-                        <div className="sendButton">
-                            <FaPaperPlane className='sendIcon' />
+                        <h1 className='newsletterTitle'>Newsletter</h1>
+                        <p className='footerDescription'>Obten actualizaciones de tus productos favoritos.</p>
+                        <div className="inputContainer">
+                            <input className='input' type="text" />                            
+                            <div className="sendButton">
+                                <FaPaperPlane className='sendIcon' />
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 </div>
             </div>
