@@ -36,7 +36,8 @@
         }
 
         .buttonContainer {
-            display: flex;
+            // display: flex;
+            display: none;
             justify-content: center;
             color: $dark-gray;
             margin-top: 24px;

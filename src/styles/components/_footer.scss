@@ -88,3 +88,9 @@
         }
     }
 }
+
+@media (max-width: 640px) {
+    .footerSection {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
