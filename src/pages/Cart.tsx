@@ -21,6 +21,8 @@ const Cart = () => {
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
     // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
 
+    console.log(products)
+
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
 
     const [stripeToken, setStripeToken] = useState(null);
@@ -115,7 +117,7 @@ const Cart = () => {
                                                         <img className='imageProduct' src={product?.img} alt="" />
                                                         <div className="details">
                                                             <span className='productName'><b>Articulo:</b> {product.title}</span>
-                                                            <span className='productId'><b>Código:</b> {product._id.$oid}</span>
+                                                            <span className='productId'><b>Código:</b> {product._id}</span>
                                                             {/* <span className='productColor'>{product.color}</span> */}
                                                             <span className='productSize'><b>Tamaño:</b> {product.size}</span>
                                                         </div>
@@ -127,7 +129,7 @@ const Cart = () => {
                                                             <FaPlus className='icons' onClick={handleAddProduct} />
                                                         </div>
                                                         <div className="productAmountContainer">
-                                                            <div className="productPrice">${product.price?.$numberInt * product.quantity}</div>
+                                                            <div className="productPrice">${product.price * product.quantity}</div>
                                                         </div>
                                                     </div>
                                                 </div>
