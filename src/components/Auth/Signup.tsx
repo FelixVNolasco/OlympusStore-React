@@ -26,12 +26,6 @@ const Signup = () => {
         setshowPassword(!showPassword);
     }
 
-    // const [formValues, handleInputChange] = useForm({
-    //     username: 'Felix Enrique Vega Nolasco',
-    //     email: 'example@correo.com',
-    //     password: 'helloWorld123',
-    //     password2: 'helloWorld123'
-    // });
 
     const [formValues, handleInputChange] = useForm({
         name: '',
@@ -82,11 +76,11 @@ const Signup = () => {
                         <form >
                             <p className='label'>Nombre</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="Felix Vega" name="name" autoComplete="off" value={name} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" name="name" autoComplete="off" value={name} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Correo Electronico</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="example@correo.com" name="email" value={email} autoComplete="off" onChange={handleInputChange} />
+                                <input className="auth__input" type="text" name="email" value={email} autoComplete="off" onChange={handleInputChange} />
                             </div>
                             <p className='label'>Contraseña</p>
                             <div className='input-container'>

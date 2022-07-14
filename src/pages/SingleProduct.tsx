@@ -1,4 +1,4 @@
-import { FaPlus, FaMinus} from 'react-icons/fa';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 // import {  FaHeart } from 'react-icons/fa';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { addProduct } from '../redux/cartRedux';
 // import { addProductFavorite } from '../redux/favoriteRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { removeLoading, setLoading } from '../redux/uiRedux';
-import { BallTriangle } from  'react-loader-spinner'
+import { BallTriangle } from 'react-loader-spinner'
 
 const SingleProduct = () => {
 
@@ -66,17 +66,7 @@ const SingleProduct = () => {
         )
     }
 
-    // const handleFavorite = () => {
-    //     !favorite ? setFavorite(true) : setFavorite(false);
-    //     dispatch(
-    //         addProductFavorite(
-    //             {
-    //                 ...product,
-    //                 favorite: true
-    //             }
-    //         )
-    //     )
-    // }
+
 
     return (
         <>
@@ -93,7 +83,7 @@ const SingleProduct = () => {
                                 <p className='descriptionSingleProduct'>{product.desc}</p>
                                 <div className="priceContainer">
                                     {/* <FaHeart className={favorite ? 'favoriteIcon' : 'notFavoriteIcon'} onClick={(handleFavorite)} /> */}
-                                    <p className='priceSingleProduct'>${product.price?.$numberInt}</p>
+                                    <p className='priceSingleProduct'>${product.price}</p>
                                 </div>
                                 <div className="optionsSingleProduct">
                                     <p className='optionText'>Número:</p>
@@ -117,16 +107,16 @@ const SingleProduct = () => {
                             </div>
                         </div>
                     )
-                    : 
-                    (
-                        <div className='loadingProduct'>
+                        :
+                        (
+                            <div className='loadingProduct'>
                                 <BallTriangle
                                     height="162"
                                     width="162"
                                     color='#406882'
                                     ariaLabel='loading' />
-                        </div>                        
-                    )
+                            </div>
+                        )
                 }
                 <Footer />
             </div>

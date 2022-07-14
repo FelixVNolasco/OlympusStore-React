@@ -30,7 +30,6 @@ const Login = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (isFormValid) {
-            // login(dispatch, { username, password });
             dispatch(loginWithEmailPassword(email, password));
             navigate("/");
         };
@@ -63,7 +62,7 @@ const Login = () => {
                         <form onSubmit={handleSubmit}>
                             <p className='label'>Correo Electrónico</p>
                             <div className='input-container'>
-                                <input className="auth__input" type="text" placeholder="correo@corre.com" name="email" autoComplete="off" value={email} onChange={handleInputChange} />
+                                <input className="auth__input" type="text" name="email" autoComplete="off" value={email} onChange={handleInputChange} />
                             </div>
                             <p className='label'>Contraseña</p>
                             <div className='input-container'>

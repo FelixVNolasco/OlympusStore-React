@@ -12,6 +12,8 @@ export const Products = ({ category, filters, sort }: any) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
 
+    console.log(filteredProducts);
+
     const dispatch = useDispatch();
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
@@ -20,7 +22,7 @@ export const Products = ({ category, filters, sort }: any) => {
             try {
                 dispatch(setLoading());
                 // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
-                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');                
+                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
                 setProducts(products.data);
             } catch (error) {
                 dispatch(removeLoading());
@@ -63,38 +65,38 @@ export const Products = ({ category, filters, sort }: any) => {
 
 
     return (
-        <>
-            <div className="container">                
+
+        <div className="container">
+            {
+                !category && (
+                    <h1 className='productsTitle'>Productos Recientes</h1>
+                )
+            }
+            <div className='products' key={'HOLAS'}>
                 {
-                    !category && (
-                        <h1 className='productsTitle'>Productos Recientes</h1>
-                    )
+                    category ?
+                        filteredProducts.map((product) => {
+                            return <CategoryProduct key={product._id} item={product} />
+                        })
+                        :
+                        products.slice(0, 8).map((product) => {
+                            return <Product key={product._id} item={product} />
+                        })
                 }
-                <div className='products' key={'HOLAS'}>
-                    {
-                        category ?
-                            filteredProducts.map((product) => {
-                                return <CategoryProduct key={product._id?.$oid} item={product} />
-                            })
-                            :
-                            products.slice(0, 8).map((product) => {
-                                return <Product key={product._id} item={product} />
-                            })
-                    }
 
-                    <div className='loadingProducts'>
-                        {loading && (
-                            <BallTriangle
-                                height="162"
-                                width="162"
-                                color='#406882'
-                                ariaLabel='loading'
-                            />
-                        )}
-                    </div>
-
+                <div className='loadingProducts'>
+                    {loading && (
+                        <BallTriangle
+                            height="162"
+                            width="162"
+                            color='#406882'
+                            ariaLabel='loading'
+                        />
+                    )}
                 </div>
+
             </div>
-        </>
+        </div>
+
     )
 }
