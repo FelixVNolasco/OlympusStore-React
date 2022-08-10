@@ -124,9 +124,9 @@ const Cart = () => {
                                                     </div>
                                                     <div className="priceDetail">
                                                         <div className="productAmountContainer">
-                                                            <FaMinus className='icons' onClick={handleRemoveProduct} />
-                                                            <span className='productAmount'>{product.quantity}</span>
-                                                            <FaPlus className='icons' onClick={handleAddProduct} />
+                                                            {/* <FaMinus className='icons' onClick={handleRemoveProduct} /> */}
+                                                            <span className='productAmount'>{`Catidad: ${product.quantity}`}</span>
+                                                            {/* <FaPlus className='icons' onClick={handleAddProduct} /> */}
                                                         </div>
                                                         <div className="productAmountContainer">
                                                             <div className="productPrice">${product.price * product.quantity}</div>
