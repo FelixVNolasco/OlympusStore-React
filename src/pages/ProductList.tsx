@@ -3,6 +3,7 @@ import { Navbar } from '../components/Navbar';
 import { Products } from '../components/Products';
 
 import { useState, useEffect } from 'react';
+import { Footer } from '../components/Shared/Footer';
 
 const ProductList = () => {
 
@@ -62,15 +63,15 @@ const ProductList = () => {
                 </div>
                 <div className="filterContainer">
                     <div className="filter">
-                        <p className="filterText">Buscar por: </p>
-                        <select className='filterSelect' name="color" onChange={handleFilters}>
+                        <p className="filterText">Buscar por número: </p>
+                        {/* <select className='filterSelect' name="color" onChange={handleFilters}>
                             <option value={null}>Color</option>
                             <option value="white">white</option>
                             <option value="black">black</option>
                             <option value="red">red</option>
                             <option value="blue">blue</option>
                             <option value="green">green</option>
-                        </select>
+                        </select> */}
                         <select className='filterSelect' name="size" onChange={handleFilters}>
                             <option value="" disabled>Tamaño</option>
                             <option value="24">24</option>
@@ -97,6 +98,7 @@ const ProductList = () => {
                 <div className="productListContainer animate__animated animate__backInDown">
                     <Products category={category} filters={filters} sort={sort} />
                 </div>
+                <Footer />
             </div>
         </>
     )
