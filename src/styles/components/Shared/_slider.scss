@@ -112,29 +112,11 @@
         row-gap: 10px;
     }
 
-    .imageContainerSlider { 
+    .imageContainerSlider {
         // display: none;
         width: 250px;
     }
-
-
-    .footerSection {
-        grid-template-columns: 1fr;
-        height: 500px;
-    }
-    
-    .socialSection {
-        margin-top: 24px;
-        margin-bottom: 32px;
-    }
-    .newsLetterContainer {
-        margin-bottom: 32px;
-    }
-    
 }
-
-
-
 
 @media (min-width: 640px) {
 

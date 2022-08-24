@@ -9,7 +9,7 @@ export const Slider = () => {
         <div className='container full-height animate__animated animate__fadeIn animate__faster'>
             <div className="slide">
                 <div className='infoContainer'>
-                    <h2 className='title'>Olympus Center</h2>
+                    <h2 className='title'>Olympus Store</h2>
                     <p className='description'>Creemos que cuando nos unimos y nos damos ánimos unos a otros, nada puede detenernos. Cuando eres parte de nuestros miembros, tienes acceso a los mejores productos.</p>
                     <div className='buttonContainer'>
                         <p className='slideButton'>LEARN MORE ...</p>
