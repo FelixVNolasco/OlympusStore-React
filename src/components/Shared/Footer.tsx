@@ -1,5 +1,4 @@
 import { FaGripfire, FaGithub, FaTwitter, FaFacebook, FaMedium, FaLinkedin } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     return (
@@ -12,17 +11,7 @@ export const Footer = () => {
                             <FaGripfire className='icon' />
                         </div>
                         <p className='sloganApp'>Los mejores productos para los mejores atletas.</p>
-                        <div className='team'>
-                            <div className='teamMember'>
-                                {/* <div className='imgTeamMember'>
-                                    <img className='img' src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1641680245/Olympus/WhatsApp_Image_2022-01-02_at_12.02.51_PM_tpdeqt.jpg" alt="" />
-                                </div> */}
-                                <div className='infoMember'>
-                                    <p className='name'>Felix Enrique Vega Nolasco</p>
-                                    <span className='role'>Software Developer</span>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div className="social-links">
                         <span className="title">Encuentra nuestras redes sociales</span>
