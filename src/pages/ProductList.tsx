@@ -98,7 +98,6 @@ const ProductList = () => {
                 <div className="productListContainer animate__animated animate__backInDown">
                     <Products category={category} filters={filters} sort={sort} />
                 </div>
-                {/* <Footer /> */}
             </div>
         </>
     )
