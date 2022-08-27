@@ -1,13 +1,11 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHome, FaEye } from 'react-icons/fa';
-import { useForm } from '../../hooks/useForm';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { signup } from "../../redux/apiCall";
-import validator from 'validator';
-import { removeError, setError } from '../../redux/uiRedux';
-
+import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { signupSuccess } from '../../redux/userRedux';
 import { registerWithEmailPasswordName } from '../../redux/actions/auth';
 
 
@@ -16,98 +14,185 @@ const Signup = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { errors } = useSelector((state: RootStateOrAny) => state.ui);
-
-    // const { loading } = useSelector(state => state.ui);
-
     const [showPassword, setshowPassword] = useState(false);
+    const [showConfirmPassword, setshowConfirmPassword] = useState(false);
 
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     }
 
-
-    const [formValues, handleInputChange] = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password2: ''
-    });
-
-    const { name, email, password, password2 } = formValues;
-
-    const handleRegisterWithEmailPassword = (e) => {
-        e.preventDefault();
-        if(isFormValid()) {
-            // signup(dispatch, { username, email, password })
-            dispatch(registerWithEmailPasswordName(email, password, name));
-            navigate("/");
-        }
-    }
-
-    const isFormValid = () => {
-        if (name.trim().length === 0) {
-            dispatch(setError('Name is required!'));
-            return false;
-        } else if (!validator.isEmail(email)) {
-            dispatch(setError('This is not an email!'))
-            return false;
-        } else if (password !== password2 || password.length < 5) {
-            dispatch(setError('Passwords should be at least 6 characters and both passwords should match'))
-            return false;
-        }
-        dispatch(removeError())
-        return true;
+    const handleShowConfirmPassword = () => {
+        setshowConfirmPassword(!showConfirmPassword);
     }
 
     return (
-        <>
-            <div className='form-wrapper'>
-                <div className='form-container'>
-                    <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
-                        <p className="auth__title">Registrarse</p>
-                        {/* {
-                            (!isFormValid) && (
-                                <div className='auth__alert-error'>
-                                    {errors}
+
+        <div className='form-wrapper'>
+            <div className='form-container'>
+                <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
+                    <p className="auth__title">Registrarse</p>
+                    <Formik
+                        initialValues={{ name: "", email: "", password: "", passwordConfirm: "" }}
+                        validate={(values: any) => {
+                            const errors: any = {};
+                            if (!values.name) {
+                                errors.name = "Full Name is required";
+                            }
+                            if (!values.email) {
+                                errors.email = "Email is required";
+                            }
+                            if (!values.password) {
+                                errors.password = "Password is required";
+                            }
+                            if (values.password !== values.passwordConfirm) {
+                                errors.passwordConfirm = "Both Password must be the same";
+                            } else if (
+                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                              ) {
+                                errors.email = "Invalid email address";
+                              }
+                            return errors;
+                        }}
+                        onSubmit={async (values, { setSubmitting }) => {
+                            try {
+                                setSubmitting(true);
+                                const { name, email, password } = values;
+                                dispatch(registerWithEmailPasswordName(email,password,name));                                
+                                navigate("/auth/login");
+                                setSubmitting(false);
+                            } catch (error) {
+                                setSubmitting(false);
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: "Something went wrong",
+                                    didOpen: () => {
+                                        navigate("/auth/login");
+                                    },
+                                });
+                            }
+                        }}
+                    >
+
+                        {({ isSubmitting }) => (
+                            <Form>
+                                <div className="login__input">
+                                    <label className="label" htmlFor="name">
+                                        Full Name
+                                    </label>
+                                    <div className="input-container">
+                                        <Field
+                                            className="auth__input"
+                                            type="name"
+                                            name="name"
+                                        />
+                                    </div>
+                                    <ErrorMessage
+                                        className="error-text"
+                                        name="name"
+                                        component="div"
+                                    />
                                 </div>
-                            )
-                        } */}
-                        <form >
-                            <p className='label'>Nombre</p>
-                            <div className='input-container'>
-                                <input className="auth__input" type="text" name="name" autoComplete="off" value={name} onChange={handleInputChange} />
-                            </div>
-                            <p className='label'>Correo Electronico</p>
-                            <div className='input-container'>
-                                <input className="auth__input" type="text" name="email" value={email} autoComplete="off" onChange={handleInputChange} />
-                            </div>
-                            <p className='label'>Contraseña</p>
-                            <div className='input-container'>
-                                <input className="auth__input" type={showPassword ? "text" : "password"} name="password" value={password} onChange={handleInputChange} />
-                                <FaEye className='showHide-icon' onClick={handleShowPassword} />
-                            </div>
-                            <p className='label'>Confirma tu contraseña</p>
-                            <div className='input-container'>
-                                <input className="auth__input" type="password" name="password2" value={password2} onChange={handleInputChange} />
-                            </div>
-                            <div className='btn-container'>
-                                <button className="btn btn-primary" type="submit" onClick={handleRegisterWithEmailPassword}>Sign Up</button>
-                            </div>
-                        </form>
-                        <div className='newAccount-container'>
-                            <div className="account_title">Ya tienes una cuenta?</div>
-                            <Link className="create_account" to="/auth/login">Inicia Sesión.</Link>
-                        </div>
-                        <Link to={"/"}>
-                            <div className="goHome">
-                                <FaHome className='iconHome' />
-                            </div>
-                        </Link>
+                                <div className="login__input">
+                                    <label className="label" htmlFor="email">
+                                        Email
+                                    </label>
+                                    <div className="input-container">
+                                        <Field
+                                            className="auth__input"
+                                            type="email"
+                                            name="email"
+                                        />
+                                    </div>
+                                    <ErrorMessage
+                                        className="error-text"
+                                        name="email"
+                                        component="div"
+                                    />
+                                </div>
+
+                                <div className="password-section">
+                                    <label className="label" htmlFor="password">
+                                        Password
+                                    </label>
+                                    <div className="password-container">
+                                        <Field
+                                            className="auth__input"
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                        />
+                                        {showPassword ? (
+                                            <FaEye
+                                                className="showHide-icon"
+                                                onClick={handleShowPassword}
+                                            />
+                                        ) : (
+                                            <FaEyeSlash
+                                                className="showHide-icon"
+                                                onClick={handleShowPassword}
+                                            />
+                                        )}
+                                    </div>
+                                    <ErrorMessage
+                                        className="error-text"
+                                        name="password"
+                                        component="div"
+                                    />
+                                </div>
+
+                                <div className="password-section">
+                                    <label className="label" htmlFor="passwordConfirm">
+                                        Confirm Password
+                                    </label>
+                                    <div className="password-container">
+                                        <Field
+                                            className="auth__input"
+                                            type={showConfirmPassword ? "text" : "password"}
+                                            name="passwordConfirm"
+                                        />
+                                        {showConfirmPassword ? (
+                                            <FaEye
+                                                className="showHide-icon"
+                                                onClick={handleShowConfirmPassword}
+                                            />
+                                        ) : (
+                                            <FaEyeSlash
+                                                className="showHide-icon"
+                                                onClick={handleShowConfirmPassword}
+                                            />
+                                        )}
+                                    </div>
+                                    <ErrorMessage
+                                        className="error-text"
+                                        name="passwordConfirm"
+                                        component="div"
+                                    />
+                                </div>
+
+                                <div className="btn-container">
+                                    <button
+                                        className="btn btn-primary"
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                    >
+                                        Signup
+                                    </button>
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
+                    <div className='newAccount-container'>
+                        <div className="account_title">Ya tienes una cuenta?</div>
+                        <Link className="create_account" to="/auth/login">Inicia Sesión.</Link>
                     </div>
+                    <Link to={"/"}>
+                        <div className="goHome">
+                            <FaHome className='iconHome' />
+                        </div>
+                    </Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
