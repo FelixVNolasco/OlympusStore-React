@@ -118,8 +118,7 @@ const Cart = () => {
                                                             <img className='imageProduct' src={product?.img} alt="" />
                                                             <div className="details">
                                                                 <span className='productName'><b>Articulo:</b> {product.title}</span>
-                                                                <span className='productId'><b>Código:</b> {product._id}</span>
-                                                                {/* <span className='productColor'>{product.color}</span> */}
+                                                                <span className='productId'><b>Código:</b> {product._id}</span>                                                                
                                                                 <span className='productSize'><b>Tamaño:</b> {product.size}</span>
                                                             </div>
                                                         </div>

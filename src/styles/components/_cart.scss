@@ -66,19 +66,29 @@
                             justify-content: space-around;
 
 
-                            .productName {}
-
-                            .productId {}
-
-                            .productColor {
-                                // width: 20px;
-                                // height: 20px;
-                                // border-radius: 50%;
-                                // background-color: $danger;
-                                // background-color: ${(props) => props.color};
+                            .productName {
+                                background-color: #4E8098;
+                                padding: 8px;
+                                border-radius: 4px;
+                                color: #FFFFFF;                                
+                                width: max-content;                                                                                        
                             }
 
-                            .productSize {}
+                            .productId {
+                                background-color: #008f8c;
+                                padding: 8px;
+                                border-radius: 4px;
+                                color: #FFFFFF;                                                                
+                                width: max-content;                                                                                        
+                            }
+
+                            .productSize {
+                                background-color: #3f94d5;
+                                padding: 8px;
+                                border-radius: 4px;
+                                color: #FFFFFF;        
+                                width: max-content;                                                                                        
+                            }
                         }
                     }
 
@@ -92,13 +102,11 @@
                             .productAmount {
                                 font-size: 24px;
                                 margin: 5px;
-                                // ${mobile({ margin: "5px 15px" })}
                             }
 
                             .productPrice {
                                 font-size: 30px;
-                                font-weight: 200;
-                                // ${mobile({ marginBottom: "20px" })}
+                                font-weight: 200;                                
                             }
                         }
                     }
@@ -123,14 +131,21 @@
 
                             .productAmount {
                                 font-size: 24px;
-                                margin: 5px;
-                                // ${mobile({ margin: "5px 15px" })}
+                                background-color: hsl(160, 10%, 64%);
+                                padding: 8px;
+                                border-radius: 4px;
+                                color: #010101;        
+                                font-weight: 600;                                
                             }
 
                             .productPrice {
                                 font-size: 30px;
                                 font-weight: 200;
-                                // ${mobile({ marginBottom: "20px" })}
+                                background-color: hsl(133, 31%, 49%);
+                                padding: 8px;
+                                border-radius: 4px;
+                                color: #ffffff;        
+                                font-weight: 600;                                                            
                             }
                         }
                     }
