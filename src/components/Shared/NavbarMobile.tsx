@@ -18,12 +18,12 @@ export const NavbarMobile = () => {
 
                 <Link to={"#"} className="mobileNavbarItem">
                     <FaShoePrints />
-                    <span>Futbol</span>
+                    <span>Soccer</span>
                 </Link>
 
                 <Link to={"#"} className="mobileNavbarItem">
                     <FaRunning />
-                    <span>Correr</span>
+                    <span>Running</span>
                 </Link>
 
                 <Link to={"#"} className="mobileNavbarItem">
