@@ -27,7 +27,7 @@ export const categories: category[] = [
   {
     id: 3,
     img: "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642201369/Olympus/pexels-run-ffwpu-2982100_onvf1u.jpg",
-    title: "RUNNING",
+    title: "CORRER",
     category: "running"
   },
 ];
