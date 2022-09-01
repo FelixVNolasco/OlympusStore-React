@@ -130,18 +130,18 @@
                             }
 
                             .productAmount {
-                                font-size: 24px;
-                                background-color: hsl(160, 10%, 64%);
+                                font-size: $subtitle;
+                                background-color: #4F8098;
                                 padding: 8px;
                                 border-radius: 4px;
-                                color: #010101;        
+                                color: #ffffff;        
                                 font-weight: 600;                                
                             }
 
                             .productPrice {
-                                font-size: 30px;
+                                font-size: $subtitle;
                                 font-weight: 200;
-                                background-color: hsl(133, 31%, 49%);
+                                background-color: #018F8C;
                                 padding: 8px;
                                 border-radius: 4px;
                                 color: #ffffff;        
