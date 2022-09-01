@@ -71,7 +71,7 @@ const Login = () => {
                             <Form>
                                 <div className="login__input">
                                     <label className="label" htmlFor="email">
-                                        Email
+                                        Correo Electrónico
                                     </label>
                                     <div className="input-container">
                                         <Field
@@ -88,7 +88,7 @@ const Login = () => {
                                 </div>
                                 <div className="password-section">
                                     <label className="label" htmlFor="password">
-                                        Password
+                                        Contraseña
                                     </label>
 
                                     <div className="password-container">
@@ -122,7 +122,7 @@ const Login = () => {
                                         type="submit"
                                         disabled={isSubmitting}
                                     >
-                                        Login
+                                        Iniciar Sesión
                                     </button>
                                 </div>
                             </Form>

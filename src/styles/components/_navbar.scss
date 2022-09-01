@@ -18,8 +18,6 @@
 
             .icon {
                 color: $navy;
-                width: 32px;
-                height: 32px;
                 margin-bottom: 8px;
             }
 
@@ -59,6 +57,7 @@
             height: 40px;
             font-weight: 600;
             text-align: center;
+            font-size: $small;
 
             &:hover {
                 transition: ease-in 150ms;
@@ -73,7 +72,7 @@
             color: $dark-gray;
             margin-right: 8px;
             padding: 8px;
-            width: 80px;
+            width: auto;
             font-weight: 600;
             text-align: center;
 
@@ -99,7 +98,7 @@
                 border: none;
                 color: $dark-gray;
                 font-weight: 600;
-                font-size: $normal;
+                font-size: $small;
                 width: 164px;
 
                 &:focus {
@@ -112,6 +111,50 @@
             }
         }
 
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .iconContainer {
+
+        .icon {
+            display: none;
+        }
+
+        span {
+            display: block;
+        }
+    }
+
+
+
+}
+
+@media (min-width: 600px) {
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .icon {
+        width: 32px;
+        height: 32px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    .icon {
+        width: 38px;
+        height: 38px;
     }
 
 }

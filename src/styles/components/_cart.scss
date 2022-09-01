@@ -100,12 +100,12 @@
                             margin-bottom: 20px;
 
                             .productAmount {
-                                font-size: 24px;
+                                font-size: $normal;
                                 margin: 5px;
                             }
 
                             .productPrice {
-                                font-size: 30px;
+                                font-size: $small;
                                 font-weight: 200;                                
                             }
                         }

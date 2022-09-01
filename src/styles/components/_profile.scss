@@ -47,7 +47,7 @@
             font-family: "Poppins", sans-serif;
 
             .info {
-                font-size: 16px;
+                font-size: $normal;
                 font-weight: 700;
             }
 
@@ -68,7 +68,7 @@
 
             .info,
             .profileDate {
-                font-size: 12px;
+                font-size: $small;
             }
         }
 

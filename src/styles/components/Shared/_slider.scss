@@ -90,11 +90,11 @@
 @media (max-width: 640px) {
 
     .title {
-        font-size: 2.5rem;
+        font-size: $title;
     }
 
     .description {
-        font-size: 1.2rem;
+        font-size: $larger;
         text-align: left;
         margin-top: 16px;
     }

@@ -78,7 +78,7 @@ const Signup = () => {
                             <Form>
                                 <div className="login__input">
                                     <label className="label" htmlFor="name">
-                                        Full Name
+                                        Nombre Completo
                                     </label>
                                     <div className="input-container">
                                         <Field
@@ -95,7 +95,7 @@ const Signup = () => {
                                 </div>
                                 <div className="login__input">
                                     <label className="label" htmlFor="email">
-                                        Email
+                                        Correo Electrónico
                                     </label>
                                     <div className="input-container">
                                         <Field
@@ -113,7 +113,7 @@ const Signup = () => {
 
                                 <div className="password-section">
                                     <label className="label" htmlFor="password">
-                                        Password
+                                        Contraseña
                                     </label>
                                     <div className="password-container">
                                         <Field
@@ -142,7 +142,7 @@ const Signup = () => {
 
                                 <div className="password-section">
                                     <label className="label" htmlFor="passwordConfirm">
-                                        Confirm Password
+                                        Confirmar Contraseña
                                     </label>
                                     <div className="password-container">
                                         <Field
@@ -175,7 +175,7 @@ const Signup = () => {
                                         type="submit"
                                         disabled={isSubmitting}
                                     >
-                                        Signup
+                                        Registrarse
                                     </button>
                                 </div>
                             </Form>
