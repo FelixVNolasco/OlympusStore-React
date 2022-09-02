@@ -19,6 +19,8 @@ const SingleProduct = () => {
     const productId = location.pathname.split("/")[2];
     const [product, setProduct] = useState<any>({})
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
+    const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+    console.log(isAuthenticated);
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -37,6 +39,7 @@ const SingleProduct = () => {
 
 
     const [quantity, setQuantity] = useState(1);
+    
 
     const handleQuantity = (type: string) => {
         if (type === "inc") {
@@ -102,7 +105,7 @@ const SingleProduct = () => {
                                     <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                                 </div>
                                 <div className="checkoutContainer" onClick={handleClick}>
-                                    <button className='checkoutButton'>Añadir al Carrito</button>
+                                    <button disabled={isAuthenticated ? false : true} className='checkoutButton'>Añadir al Carrito</button>
                                 </div>
                             </div>
                         </div>

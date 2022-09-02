@@ -122,6 +122,12 @@
                         transition: ease-out 150ms;
                         background-color: darken($color: $primary, $amount: 5);
                     }
+                    &:disabled {
+                        border: 1px solid #999999;
+                        background-color: #cccccc;
+                        color: #666666;
+                        cursor: not-allowed;
+                    }
                 }
 
             }
