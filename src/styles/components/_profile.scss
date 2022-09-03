@@ -1,9 +1,9 @@
 .profileContainer {
     max-width: 680px;
     height: auto;
-    background-color: $primary;
-    color: $white;
-    border-radius: 24px;
+    background-color: hsl(184, 46%, 35%);
+    color: #ffffff;
+    border-radius: 12px;
     display: flex;
     margin: auto;
     justify-content: center;
@@ -13,7 +13,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        width: 70%;
+        width: 85%;
 
         .profileImage {
             margin: auto;
@@ -35,91 +35,108 @@
                 }
             }
 
-
-
         }
 
-        .infoContainer {
-            margin-top: 16px;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-family: "Poppins", sans-serif;
 
-            .info {
-                font-size: $normal;
-                font-weight: 700;
+        .profileGrid {
+            display: grid;
+            margin-top: 12px;
+            grid-gap: 18px;
+            align-items: center;
+            width: 100%;
+
+            .infoContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                font-family: "Poppins", sans-serif;
+
+                .info {
+                    font-size: $small;
+                    font-weight: 700;
+                }
+
+                .userDataInput {
+                    color: #ffffff;
+                    font-size: $small;
+                    padding: 8px;
+                    background-color: transparent;
+                    border: none;
+                }
             }
 
-            .userDataInput {
-                color: $white;
-                padding: 8px;
-                background-color: $primary;
-                border: none;
-            }
-        }
-
-        .lastInfoContainer {
-            margin-top: 16px;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-family: "Poppins", sans-serif;
-
-            .info,
-            .profileDate {
+            .createdAt,
+            .updatedAt {
                 font-size: $small;
-            }
-        }
 
-
-
-        .updateContainer {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-
-            .updateAccountBtn {
-                display: none;
-                cursor: pointer;
-                background-color: darken($color: $primary, $amount: 12);
-                border: none;
-                border-radius: 4px;
-                color: $white;
-                font-weight: 700;
-                padding: 8px;
-                transition: ease-in 150ms;
-                margin-top: 32px;
-
-                &:hover {
-                    transition: ease-out 150ms;
-                    background-color: lighten($color: $primary, $amount: 2);
+                .info {
+                    font-weight: 700;
+                    font-size: $small;
                 }
             }
-        }
 
-        .deleteContainer {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
 
-            .deleteAccountBtn {
-                display: none;
-                cursor: pointer;
-                background-color: darken($color: $danger, $amount: 5);
-                border: none;
-                border-radius: 4px;
-                color: $white;
-                font-weight: 700;
-                padding: 8px;
-                transition: ease-in 150ms;
-                margin-top: 12px;
+            .updateContainer {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                font-size: $small;
 
-                &:hover {
-                    transition: ease-out 150ms;
-                    background-color: lighten($color: $danger, $amount: 2);
+                .updateAccountBtn {
+                    cursor: pointer;
+                    background-color: darken($color: $primary, $amount: 12);
+                    border: none;
+                    border-radius: 4px;
+                    color: #ffffff;
+                    font-weight: 700;
+                    padding: 8px;
+                    transition: ease-in 150ms;
+
+                    &:hover {
+                        transition: ease-out 150ms;
+                        background-color: lighten($color: $primary, $amount: 2);
+                    }
+
+                    &:disabled {
+                        border: 1px solid #999999;
+                        background-color: #cccccc;
+                        color: #666666;
+                        cursor: not-allowed;
+                    }
                 }
             }
+
+            .deleteContainer {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                font-size: $small;
+
+                .deleteAccountBtn {
+                    cursor: pointer;
+                    background-color: darken($color: $danger, $amount: 5);
+                    border: none;
+                    border-radius: 4px;
+                    color: #ffffff;
+                    font-weight: 700;
+                    padding: 8px;
+                    transition: ease-in 150ms;
+
+                    &:hover {
+                        transition: ease-out 150ms;
+                        background-color: lighten($color: $danger, $amount: 2);
+                    }
+
+                    &:disabled {
+                        border: 1px solid #999999;
+                        background-color: #cccccc;
+                        color: #666666;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
         }
 
 
@@ -129,45 +146,23 @@
     }
 }
 
-.createdAt {
-    margin-bottom: 12px;
-    .info {
-        font-weight: 700;
-    }
-}
 
-.updatedAt{
-    margin-bottom: 12px;
-    .info {
-        font-weight: 700;
-    }
-}
-
-@media (max-width: 960px) {
-
+@media (max-width: 768px) {
     .profileContainer {
         max-width: 520px;
     }
+
 }
 
-@media (max-width: 640px) {
-
-    .profileContainer {
-        max-width: 320px;
+@media (max-width: 960px) {
+    .profileGrid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
-    .infoContainer {
-        flex-direction: column;
-    }
+}
 
-    .updateContainer {
-        justify-content: flex-end;
+@media (min-width: 960px) {
+    .profileGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .lastInfoContainer {
-        flex-direction: column;
-
-        .createdAt {
-            margin-bottom: 12px;
-        }
-    }
 }
