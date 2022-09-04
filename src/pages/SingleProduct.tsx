@@ -12,15 +12,16 @@ import { addProduct } from '../redux/cartRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { removeLoading, setLoading } from '../redux/uiRedux';
 import { BallTriangle } from 'react-loader-spinner'
+import { category } from '../data';
 
 const SingleProduct = () => {
 
     const location = useLocation();
     const productId = location.pathname.split("/")[2];
-    const [product, setProduct] = useState<any>({})
+    const [product, setProduct] = useState<any>({});
+
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
-    console.log(isAuthenticated);
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const SingleProduct = () => {
 
 
     const [quantity, setQuantity] = useState(1);
-    
+
 
     const handleQuantity = (type: string) => {
         if (type === "inc") {
@@ -84,6 +85,11 @@ const SingleProduct = () => {
                             <div className="infoSingleProduct">
                                 <h4 className='titleSingleProduct'>{product.title}</h4>
                                 <p className='descriptionSingleProduct'>{product.desc}</p>
+                                <div className='categoriesSection'>
+                                    {(product.categories)?.map((category: string) => {
+                                        return <span key={category} style={{ color: 'white', backgroundColor: 'gray' }} className="categoryLabel">{category}</span>
+                                    })}
+                                </div>
                                 <div className="priceContainer">
                                     {/* <FaHeart className={favorite ? 'favoriteIcon' : 'notFavoriteIcon'} onClick={(handleFavorite)} /> */}
                                     <p className='priceSingleProduct'>${product.price}</p>

@@ -35,6 +35,17 @@
                 font-size: $larger;
             }
 
+            .categoriesSection {
+                display: flex;
+                justify-content: space-around;                
+
+                .categoryLabel {
+                    padding: 4px;
+                    border-radius: 4px;
+                    background-color: hsl(0, 0%, 90%);
+                }
+            }
+
             .priceContainer {
                 display: flex;
                 justify-content: flex-end;
