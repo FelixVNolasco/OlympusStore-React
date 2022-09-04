@@ -3,9 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import axios from 'axios';
 import Swal from 'sweetalert2';
-import { signupSuccess } from '../../redux/userRedux';
 import { registerWithEmailPasswordName } from '../../redux/actions/auth';
 
 

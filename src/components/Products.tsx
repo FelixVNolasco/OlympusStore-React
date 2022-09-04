@@ -11,7 +11,6 @@ export const Products = ({ category, filters, sort }: any) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
-
     const dispatch = useDispatch();
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
@@ -19,8 +18,7 @@ export const Products = ({ category, filters, sort }: any) => {
         const getAllProducts = async () => {
             try {
                 dispatch(setLoading());
-                // const products = await axios.get(category ? `http://localhost:5000/api/products?category=${category}` : 'http://localhost:5000/api/products/');
-                const products = await axios.get(category ? `https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/category?category=${category}` : 'https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products');
+                const products = await axios.get(category ? `https://olympus-backend.vercel.app/api/products?category=${category}` : 'https://olympus-backend.vercel.app/api/products');
                 setProducts(products.data);
             } catch (error) {
                 dispatch(removeLoading());
@@ -29,9 +27,6 @@ export const Products = ({ category, filters, sort }: any) => {
         }
         getAllProducts();
     }, [category, dispatch])
-
-
-
 
     useEffect(() => {
         category &&

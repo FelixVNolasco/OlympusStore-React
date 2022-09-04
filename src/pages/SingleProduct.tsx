@@ -1,18 +1,20 @@
 import { FaPlus, FaMinus } from 'react-icons/fa';
-// import {  FaHeart } from 'react-icons/fa';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { publicRequest } from '../requestMethods';
 import { addProduct } from '../redux/cartRedux';
-// import { addProductFavorite } from '../redux/favoriteRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { removeLoading, setLoading } from '../redux/uiRedux';
-import { BallTriangle } from 'react-loader-spinner'
-import { category } from '../data';
+import { BallTriangle } from 'react-loader-spinner';
+
+// import { addProductFavorite } from '../redux/favoriteRedux';
+// import { publicRequest } from '../requestMethods';
+// import {  FaHeart } from 'react-icons/fa';
+// import { category } from '../data';
+// import { Gallery } from '../components/Shared/Gallery';
 
 const SingleProduct = () => {
 
@@ -28,7 +30,8 @@ const SingleProduct = () => {
         const getProduct = async () => {
             try {
                 dispatch(setLoading());
-                const product = await axios.get(`https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/products/find?id=${productId}`);
+                const product = await axios.get(`https://olympus-backend.vercel.app/api/products/find/${productId}`);
+                console.log(product);
                 setProduct(product.data);
             } catch (error) {
                 dispatch(removeLoading());
@@ -80,6 +83,7 @@ const SingleProduct = () => {
                     !loading ? (
                         <div className="wrapperSingleProduct full-height">
                             <div className="imgProductContainer">
+                                {/* <Gallery /> */}
                                 <img className='imgSingleProduct' src={product.img} alt="" />
                             </div>
                             <div className="infoSingleProduct">
