@@ -2,29 +2,23 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
-// import axios from 'axios';
+import { SuccessOrderCard } from '../components/Shared/SuccessOrderCard';
+import { BallTriangle } from 'react-loader-spinner';
 
 const Success = () => {
 
-    // interface stateType {
-    //     stripeData: any,
-    //     cart: any
-    // }
-
     const location: any = useLocation();
-
     const data = location.state.stripeData;
     const cart = location.state.cart;
-    const currentUser = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { uid } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const [order, setOrder] = useState(undefined);
     const [orderId, setOrderId] = useState(null);
 
     useEffect(() => {
         const createOrder = async () => {
             try {
                 const res = await userRequest.post("/orders", {
-                    userId: currentUser._id,
-                    // const res = await axios.post("https://us-east-1.aws.data.mongodb-api.com/app/olympus-oocpc/endpoint/api/orders", {
-                    // userId: "1234567890",
+                    userId: uid,
                     products: cart.products.map((item) => ({
                         productId: item._id,
                         quantity: item._quantity,
@@ -32,11 +26,14 @@ const Success = () => {
                     amount: cart.total,
                     address: data.billing_details.address,
                 });
+                setOrder(res.data);
                 setOrderId(res.data._id);
-            } catch (error) {  }
+            } catch (error) {
+                console.log(error);
+            }
         };
         data && createOrder();
-    }, [cart, data, currentUser]);
+    }, [cart, data, uid]);
 
     return (
         <>
@@ -49,13 +46,18 @@ const Success = () => {
                     justifyContent: "center",
                 }}
             >
-                {orderId
-                    ? `Order has been created successfully. Your order number is ${orderId}`
-                    : `Successfull. Your order is being prepared...`}
+                {
+                    orderId
+                        ? <SuccessOrderCard order={order} />
+                        : <BallTriangle
+                            height="162"
+                            width="162"
+                            color='#406882'
+                            ariaLabel='loading'
+                        />}
                 <Link to={"/"}>
-                    <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+                    <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }}>Ir al Inicio</button>
                 </Link>
-
             </div>
         </>
     )

@@ -1,0 +1,15 @@
+
+
+    .btn {
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+        font-size: $small;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: hsl(195, 67%, 68%);
+    }

@@ -22,7 +22,6 @@ export const Navbar = () => {
 
     const showMobileMenu = () => {
         const menu = document.getElementById("mobile-menu");
-        console.log(menu);
     }
 
     return (

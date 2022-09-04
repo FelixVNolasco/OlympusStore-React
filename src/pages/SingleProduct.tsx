@@ -31,7 +31,6 @@ const SingleProduct = () => {
             try {
                 dispatch(setLoading());
                 const product = await axios.get(`https://olympus-backend.vercel.app/api/products/find/${productId}`);
-                console.log(product);
                 setProduct(product.data);
             } catch (error) {
                 dispatch(removeLoading());

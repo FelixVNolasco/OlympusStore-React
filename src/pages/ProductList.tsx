@@ -33,7 +33,6 @@ const ProductList = () => {
 
     useEffect(() => {
         const handleBackgroundCategory = (category: string) => {
-            console.log(category)
             switch (category) {
                 case "basketball":
                     setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826422/Olympus/basketball/pexels-maik-kleinert-3534924_pwnbe9.jpg")

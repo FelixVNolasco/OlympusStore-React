@@ -21,9 +21,6 @@ const Profile = () => {
 
     const { name, userEmail } = formValues;
 
-
-    console.log(user);
-
     return <>
         <div className="container">
             <Navbar />

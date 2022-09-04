@@ -1,0 +1,32 @@
+.successOrderCard {
+
+    display: flex;
+    flex-direction: column;
+    font-size: $larger;
+
+
+    .subtitle {
+        font-size: $title;
+    }
+
+    .thanks {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .id {
+        margin-left: 4px;
+        font-weight: 700;
+    }
+
+
+    .address, .amount {
+        font-weight: 700;
+    }
+
+
+    background-color: hsl(195, 67%, 88%);
+    padding: 12px;
+    border-radius: 4px;
+
+}

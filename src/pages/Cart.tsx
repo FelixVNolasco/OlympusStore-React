@@ -1,6 +1,4 @@
 
-import { FaPlus, FaMinus } from 'react-icons/fa';
-
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
@@ -9,6 +7,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
 import { cleanCart } from '../redux/cartRedux';
+// import { FaPlus, FaMinus } from 'react-icons/fa';
 // import {  sustractProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
 
@@ -16,22 +15,16 @@ const Cart = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const cart = useSelector((state: RootStateOrAny) => state.cart)
-    const { products } = useSelector((state: RootStateOrAny) => state.cart);
-    // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
-
-    console.log(products)
-
+    const { products } = useSelector((state: RootStateOrAny) => state.cart);    
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
-
-    const [stripeToken, setStripeToken] = useState(null);
-
+    const [stripeToken, setStripeToken] = useState(null);    
+    // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
+    // const [quantity, setQuantity] = useState<number>()
+    
     const onToken = (token) => {
         setStripeToken(token)
     }
-
-    // const [quantity, setQuantity] = useState<number>()
 
     useEffect(() => {
         const makeRequest = async () => {
@@ -49,6 +42,7 @@ const Cart = () => {
                     },
                 })
             } catch (error) {
+                console.log(error);
             }
         }
 
@@ -56,18 +50,18 @@ const Cart = () => {
     }, [stripeToken, cart.total, navigate, cart])
 
 
-    const handleAddProduct = () => {
-    }
+    // const handleAddProduct = () => {
+    // }
 
-    const handleRemoveProduct = () => {
-        // dispatch(
-        //     sustractProduct(
-        //         {
+    // const handleRemoveProduct = () => {
+    //     dispatch(
+    //         sustractProduct(
+    //             {
 
-        //         }
-        //     )
-        // )
-    }
+    //             }
+    //         )
+    //     )
+    // }
 
 
     const handleCleanCart = () => {
@@ -101,10 +95,7 @@ const Cart = () => {
                         </>
 
                     }
-
-
                     <div className="bottom">
-
                         {
                             products.length !== 0 ?
                                 (
@@ -118,7 +109,7 @@ const Cart = () => {
                                                             <img className='imageProduct' src={product?.img} alt="" />
                                                             <div className="details">
                                                                 <span className='productName'><b>Articulo:</b> {product.title}</span>
-                                                                <span className='productId'><b>Código:</b> {product._id}</span>                                                                
+                                                                <span className='productId'><b>Código:</b> {product._id}</span>
                                                                 <span className='productSize'><b>Tamaño:</b> {product.size}</span>
                                                             </div>
                                                         </div>
@@ -156,11 +147,11 @@ const Cart = () => {
                                             </div>
 
                                             <StripeCheckout
-                                                name='olympus'
+                                                name='Olympus Store'
                                                 image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
                                                 billingAddress
                                                 shippingAddress
-                                                description={`Your total is ${cart.total}`}
+                                                description={`El total es: $${cart.total}`}
                                                 amount={cart.total * 100}
                                                 token={onToken}
                                                 stripeKey={stripeKey}
