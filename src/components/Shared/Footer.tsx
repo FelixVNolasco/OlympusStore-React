@@ -3,7 +3,7 @@ import { FaGripfire, FaGithub, FaTwitter, FaFacebook, FaMedium, FaLinkedin } fro
 export const Footer = () => {
     return (
         <>
-            <div className="container">
+            <div className="w-full">
                 <div className='footerSection'>
                     <div className='socialSection'>
                         <div className='titleApp'>

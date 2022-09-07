@@ -7,7 +7,7 @@
         display: flex;
         position: relative;
         align-items: center;
-        background-color: $navy;
+        background-color: hsl(205, 18%, 34%);
         padding: 8px;
         border-radius: 50%;
         height: 24px;
@@ -25,7 +25,7 @@
     }
 
     .icon {
-        color: $navy;
+        color: hsl(205, 18%, 34%);
         width: 32px;
         height: 32px;
     }
