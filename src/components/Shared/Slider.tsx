@@ -30,7 +30,7 @@ export const Slider = () => {
                         :
                         (
                             <div className="imageContainerSlider">
-                                <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
+                                <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/c_scale,w_460/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
                             </div>
                         )
                 }

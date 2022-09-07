@@ -15,7 +15,6 @@ export const NavbarComponent = () => {
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
     const { displayName, photoURL } = currentUser;
 
-    console.log(photoURL);
 
     const handleLogout = () => {
         dispatch(LogoutAction());
