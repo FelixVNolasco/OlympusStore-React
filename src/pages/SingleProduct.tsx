@@ -1,7 +1,7 @@
+import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Shared/Footer';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -77,7 +77,7 @@ const SingleProduct = () => {
     return (
         <>
             <div className="singleProductContainer">
-                <Navbar />
+                <NavbarComponent />
                 {
                     !loading ? (
                         <div className="wrapperSingleProduct full-height">

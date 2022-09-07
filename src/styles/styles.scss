@@ -1,4 +1,8 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './base/settings';
 
 @import './base/base';
@@ -24,5 +28,4 @@
 @import './components/Shared/shoppingCart';
 @import './components/Shared/slider';
 @import './components/Shared/emptyCart';
-@import './components/Shared/navbarMobile';
 @import './components/Shared/SuccessOrderCard';

@@ -1,7 +1,6 @@
+import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
 import { useLocation } from 'react-router-dom';
-import { Navbar } from '../components/Navbar';
 import { Products } from '../components/Products';
-
 import { useState, useEffect } from 'react';
 import { Footer } from '../components/Shared/Footer';
 
@@ -55,8 +54,8 @@ const ProductList = () => {
 
     return (
         <>
-            <div className="container">
-                <Navbar />
+            <div className="w-full">
+                <NavbarComponent />
                 <div className='titleContainer'>
                     <img className='image' src={backgroundImage} alt="" />
                     <h4 className='title'>{category}</h4>
@@ -88,9 +87,9 @@ const ProductList = () => {
                     <div className="filter">
                         <p className="filterText">Ordenar por: </p>
                         <select className='filterSelect' onChange={handleSort} >
-                            <option value="newest">Más nuevo</option>
-                            <option value="asc">Precio (ASC)</option>
-                            <option value="desc">Precio (DSC)</option>
+                            {/* <option value="newest">Más nuevo</option> */}
+                            <option value="asc">Más Barato</option>
+                            <option value="desc">Más Caro</option>
                         </select>
                     </div>
                 </div>
