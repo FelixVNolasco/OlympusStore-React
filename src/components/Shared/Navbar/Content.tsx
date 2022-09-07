@@ -1,11 +1,9 @@
 import { Container, Grid, Card, Text, Image, Spacer } from '@nextui-org/react';
-import { useMediaQuery } from './useMediaQuery'
-import { Box } from "./Box"
 
 export const Content = () => {
 
   return (
-    <Box>
+    <>
       <Container lg>
         <Grid.Container gap={2} justify="center" alignItems="center" alignContent="center">
           <Grid xs={12} md={6}>
@@ -36,6 +34,9 @@ export const Content = () => {
       <Container lg>
 
       </Container>
-    </Box>
+    </>
+
+
+
   )
 }
