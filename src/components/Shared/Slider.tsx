@@ -6,7 +6,7 @@ export const Slider = () => {
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     return (
-        <div className='container full-height animate__animated animate__fadeIn animate__faster'>
+        <div className='container mx-auto full-height animate__animated animate__fadeIn animate__faster'>
             <div className="slide">
                 <div className='infoContainer'>
                     <h2 className='title'>Olympus Store</h2>
@@ -30,7 +30,7 @@ export const Slider = () => {
                         :
                         (
                             <div className="imageContainerSlider">
-                                <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
+                                <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/c_scale,w_460/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
                             </div>
                         )
                 }

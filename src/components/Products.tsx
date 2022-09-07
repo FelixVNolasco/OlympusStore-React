@@ -58,14 +58,13 @@ export const Products = ({ category, filters, sort }: any) => {
 
 
     return (
-
-        <div className="container">
+        <div className="w-full">
             {
                 !category && (
                     <h1 className='productsTitle'>Productos Recientes</h1>
                 )
             }
-            <div className='products' key={'HOLAS'}>
+            <div className='products' key="products">
                 {
                     category ?
                         filteredProducts.map((product) => {

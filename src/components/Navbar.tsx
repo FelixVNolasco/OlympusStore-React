@@ -1,12 +1,10 @@
-import { FaGripfire, FaUser, FaBars } from 'react-icons/fa';
+import { FaGripfire, FaUser } from 'react-icons/fa';
 import { ShoppingCart } from './Shared/ShoppingCart';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 // import { Favorites } from '../pages/Favorites';
 import { logout } from '../redux/apiCall';
 import { LogoutAction } from '../redux/actions/auth';
-import { NavbarMobile } from './Shared/NavbarMobile';
-
 
 export const Navbar = () => {
 
