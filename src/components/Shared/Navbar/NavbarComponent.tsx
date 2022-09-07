@@ -13,8 +13,6 @@ export const NavbarComponent = () => {
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-    const { displayName, photoURL } = currentUser;
-
 
     const handleLogout = () => {
         dispatch(LogoutAction());
@@ -172,7 +170,7 @@ export const NavbarComponent = () => {
                                             as="button"
                                             color="primary"
                                             size="md"
-                                            src={photoURL !== undefined ? (photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
+                                            src={currentUser?.photoURL !== undefined ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
                                         />
                                     </Dropdown.Trigger>
                                 </Navbar.Item>
@@ -186,7 +184,7 @@ export const NavbarComponent = () => {
                                             Has iniciado como
                                         </Text>
                                         <Text b color="inherit" css={{ d: "flex" }}>
-                                            {displayName}
+                                            {currentUser?.displayName}
                                         </Text>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="settings" withDivider>
