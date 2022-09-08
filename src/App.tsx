@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from './pages/Home';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
+import { Purchases } from "./pages/Purchases";
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -46,6 +47,11 @@ const App = () => {
         <Route path="/profile" element={
           <React.Suspense fallback={<></>}>
             <Profile />
+          </React.Suspense>
+        } />
+        <Route path="/purchases" element={
+          <React.Suspense fallback={<></>}>
+            <Purchases />
           </React.Suspense>
         } />
       </Routes>

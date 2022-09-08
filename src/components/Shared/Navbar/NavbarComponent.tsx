@@ -1,4 +1,5 @@
 import { Navbar, Dropdown, Button, Link, Text, Avatar, useTheme } from "@nextui-org/react";
+import { Link as LinkRouter } from 'react-router-dom';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { icons } from "./icons";
 import { FcLibrary } from "react-icons/fc";
@@ -52,7 +53,6 @@ export const NavbarComponent = () => {
             </Navbar.Brand>
             <Navbar.Content enableCursorHighlight hideIn="sm" variant="underline">
                 <Navbar.Link href="/">Inicio</Navbar.Link>
-                {/* <Navbar.Link href="#">Productos</Navbar.Link> */}
                 <Dropdown isBordered>
                     <Navbar.Item>
                         <Dropdown.Button
@@ -91,8 +91,7 @@ export const NavbarComponent = () => {
                     >
                         <Dropdown.Item
                             key="autoscaling"
-                            showFullDescription
-                            // description="Encuentra los mejores productos de "
+                            showFullDescription                            
                             icon={icons.scale}
                         >
                             <Link
@@ -143,7 +142,6 @@ export const NavbarComponent = () => {
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                {/* <Navbar.Link href="#">Contacto</Navbar.Link> */}
             </Navbar.Content>
             {
                 isAuthenticated === true ?
@@ -177,7 +175,6 @@ export const NavbarComponent = () => {
                                 <Dropdown.Menu
                                     aria-label="User menu actions"
                                     color="secondary"
-                                    onAction={(actionKey) => console.log({ actionKey })}
                                 >
                                     <Dropdown.Item key="profile" css={{ height: "$18" }}>
                                         <Text b color="inherit" css={{ d: "flex" }}>
@@ -188,21 +185,26 @@ export const NavbarComponent = () => {
                                         </Text>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="settings" withDivider>
-                                    <Link
-                                href="/profile"
-                                key="soccer"
-                                css={{
-                                    minWidth: "100%",
-                                }}
-                            >
-                                        Mi Perfil
-                            </Link>
+                                        <Link
+                                            href="/profile"
+                                            key="soccer"
+                                            css={{
+                                                minWidth: "100%",
+                                            }}
+                                        >
+                                            Mi Perfil
+                                        </Link>
                                     </Dropdown.Item>
-                                    {/* <Dropdown.Item key="team_settings">Preferencias</Dropdown.Item>
-                                    <Dropdown.Item key="analytics" withDivider>
-                                        Compras
+                                    <Dropdown.Item key="purchases" withDivider>
+                                        <LinkRouter
+                                            to="/purchases"
+                                            key="purchasesLinkRouter"
+                                            className="pt-2 pb-2 w-full"
+                                        >
+                                            <button disabled={true} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed">Mis Compras</button>
+                                        </LinkRouter>                                        
                                     </Dropdown.Item>
-                                    <Dropdown.Item key="system">Ayuda</Dropdown.Item> */}
+                                    {/* <Dropdown.Item key="team_settings">Preferencias</Dropdown.Item>*/}
                                     <Dropdown.Item key="logout" withDivider color="error">
                                         <button onClick={handleLogout}>Cerrar Sesión</button>
                                     </Dropdown.Item>
