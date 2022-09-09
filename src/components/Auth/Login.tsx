@@ -4,7 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaHome, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -52,14 +51,8 @@ const Login = () => {
                                 navigate("/");
                                 setSubmitting(false);
                             } catch (error) {
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Oops...",
-                                    text: "Something went wrong",
-                                    didOpen: () => {
-                                        navigate("/auth/login");
-                                    },
-                                });
+                                console.log(error);
+                                setSubmitting(false);
                             }
                         }}
 

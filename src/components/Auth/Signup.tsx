@@ -3,9 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import Swal from 'sweetalert2';
 import { registerWithEmailPasswordName } from '../../redux/actions/auth';
-
 
 const Signup = () => {
 
@@ -55,19 +53,13 @@ const Signup = () => {
                             try {
                                 setSubmitting(true);
                                 const { name, email, password } = values;
-                                dispatch(registerWithEmailPasswordName(email,password,name));                                
+                                const response = dispatch(registerWithEmailPasswordName(email,password,name));                                
+                                console.log(response);
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
+                                console.log(error);
                                 setSubmitting(false);
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Oops...",
-                                    text: "Something went wrong",
-                                    didOpen: () => {
-                                        navigate("/auth/login");
-                                    },
-                                });
                             }
                         }}
                     >

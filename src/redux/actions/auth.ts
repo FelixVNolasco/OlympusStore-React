@@ -43,7 +43,6 @@ export const startGoogleLogin = () =>{
 }
 
 export const login = (uid, displayName) => {
-
   return {
     type: types.login,
     payload: {
@@ -66,7 +65,12 @@ export const registerWithEmailPasswordName = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
         await updateProfile(user, { displayName: name });
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName));        
+        Swal.fire({
+          icon: "success",
+          title: "Exito",
+          text: "Tu cuenta ha sido creada correctamente",
+        });
         dispatch(removeLoading());
       })
       .catch((e) => {
