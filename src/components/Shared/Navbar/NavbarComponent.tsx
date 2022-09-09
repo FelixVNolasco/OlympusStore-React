@@ -168,7 +168,7 @@ export const NavbarComponent = () => {
                                             as="button"
                                             color="primary"
                                             size="md"
-                                            src={currentUser?.photoURL !== undefined ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
+                                            src={currentUser?.photoURL !== null ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
                                         />
                                     </Dropdown.Trigger>
                                 </Navbar.Item>
@@ -203,8 +203,7 @@ export const NavbarComponent = () => {
                                         >
                                             <button disabled={true} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed">Mis Compras</button>
                                         </LinkRouter>                                        
-                                    </Dropdown.Item>
-                                    {/* <Dropdown.Item key="team_settings">Preferencias</Dropdown.Item>*/}
+                                    </Dropdown.Item>                                    
                                     <Dropdown.Item key="logout" withDivider color="error">
                                         <button onClick={handleLogout}>Cerrar Sesión</button>
                                     </Dropdown.Item>

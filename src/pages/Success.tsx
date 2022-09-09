@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
 import { SuccessOrderCard } from '../components/Shared/SuccessOrderCard';
 import { BallTriangle } from 'react-loader-spinner';
+import { cleanCart } from '../redux/cartRedux';
 
 const Success = () => {
 
@@ -13,6 +14,7 @@ const Success = () => {
     const { uid } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const [order, setOrder] = useState(undefined);
     const [orderId, setOrderId] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const createOrder = async () => {
@@ -56,7 +58,11 @@ const Success = () => {
                             ariaLabel='loading'
                         />}
                 <Link to={"/"}>
-                    <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }}>Ir al Inicio</button>
+                    <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
+                        products: [],
+                        quantity: 0,
+                        total: 0
+                    }))}>Ir al Inicio</button>
                 </Link>
             </div>
         </>
