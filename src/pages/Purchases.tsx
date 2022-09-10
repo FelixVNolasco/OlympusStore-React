@@ -7,8 +7,7 @@ import axios from "axios";
 export const Purchases = () => {
 
     const [purchases, setPurchases] = useState([]);
-    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-    console.log(currentUser);
+    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);    
     const dispatch = useDispatch();
 
     // const {_id} = currentUser;

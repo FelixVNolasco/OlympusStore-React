@@ -8,19 +8,19 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [showPassword, setshowPassword] = useState(false);
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
-    }
 
-    const navigate = useNavigate();
+    };
 
     const handleGoogleLoginSubmit = (e: any) => {
         e.preventDefault();
         dispatch(startGoogleLogin());
         navigate("/");
-    }
+    };
 
     return (
         <div className="form-wrapper">
@@ -38,15 +38,15 @@ const Login = () => {
                                 errors.password = "Password is required";
                             } else if (
                                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                              ) {
+                            ) {
                                 errors.email = "Invalid email address";
-                              }
+                            }
                             return errors;
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                const {email,password} = values;
+                                const { email, password } = values;
                                 dispatch(loginWithEmailPassword(email, password));
                                 navigate("/");
                                 setSubmitting(false);
@@ -130,8 +130,12 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='newAccount-container'>
-                            <div className="account_title">Aún no tienes una cuenta?</div>
+                            <div className="account_title">¿Aún no tienes una cuenta?</div>
                             <Link className="create_account" to="/auth/signup">Crea una cuenta.</Link>
+                        </div>
+                        <div className="flex flex-col text-center text-white/90">
+                            <span className="">¿Has olvidado tu contraseña?</span>
+                            <Link to={"/restore-password"} className="font-bold cursor-pointer">Recuperala aquí 😁</Link>
                         </div>
                     </div>
                     <Link to={"/"}>

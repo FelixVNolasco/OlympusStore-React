@@ -1,44 +1,70 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup, updateProfile, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup, updateProfile, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { googleAuthProvider } from "../..//firebase/firebase-config";
 import Swal from 'sweetalert2'
 import { loginSuccess, logOutStart } from "../userRedux";
 import { types } from "../types/types";
 import { setLoading, removeLoading } from "../uiRedux";
 
+export const restorePasswordWithEmail = (email) => {
+  return (dispatch) => {
+    dispatch(setLoading());
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Exito",
+          text: "Se ha enviado el correo de recuperación 😁",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No ha sido posible enviar el correo de recuperación",
+        });
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(`${errorCode} : ${errorMessage}`);
+      });
+  }
+}
+
+
 export const loginWithEmailPassword = (email, password) => {
   return (dispatch) => {
     dispatch(setLoading());
-    const auth = getAuth();   
+    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then(({user}) => {
+      .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        const {uid, displayName, email, photoURL, metadata} = user;
-        const { creationTime, lastSignInTime} = metadata;
-        dispatch(loginSuccess( {uid, displayName, email, photoURL, creationTime, lastSignInTime} ))
+        const { uid, displayName, email, photoURL, metadata } = user;
+        const { creationTime, lastSignInTime } = metadata;
+        dispatch(loginSuccess({ uid, displayName, email, photoURL, creationTime, lastSignInTime }))
         dispatch(removeLoading());
       })
-      .catch( (e) => { 
+      .catch((e) => {
         Swal.fire('Error', e.message, "error");
         dispatch(removeLoading());
       })
   }
 };
 
-export const startGoogleLogin = () =>{
+export const startGoogleLogin = () => {
   return (dispatch) => {
-      const auth = getAuth();
-      signInWithPopup(auth, googleAuthProvider)
-          .then(({user}) =>{
-            dispatch(login(user.uid, user.displayName))
-            const {uid, displayName, email, photoURL, metadata} = user;
-            const { creationTime, lastSignInTime} = metadata;
-            dispatch(loginSuccess( {uid, displayName, email, photoURL, creationTime, lastSignInTime} ))            
-            dispatch(removeLoading());
-          })
-          .catch ( e => { 
-            Swal.fire('Error', e.message, "error");
-            dispatch(removeLoading());
-          });
+    const auth = getAuth();
+    signInWithPopup(auth, googleAuthProvider)
+      .then(({ user }) => {
+        dispatch(login(user.uid, user.displayName))
+        const { uid, displayName, email, photoURL, metadata } = user;
+        const { creationTime, lastSignInTime } = metadata;
+        dispatch(loginSuccess({ uid, displayName, email, photoURL, creationTime, lastSignInTime }))
+        dispatch(removeLoading());
+      })
+      .catch(e => {
+        Swal.fire('Error', e.message, "error");
+        dispatch(removeLoading());
+      });
   }
 }
 
@@ -54,8 +80,8 @@ export const login = (uid, displayName) => {
 
 export const logout = () => {
   return {
-    type: types.logout     
-  }    
+    type: types.logout
+  }
 }
 
 export const registerWithEmailPasswordName = (email, password, name) => {
@@ -65,7 +91,7 @@ export const registerWithEmailPasswordName = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
         await updateProfile(user, { displayName: name });
-        dispatch(login(user.uid, user.displayName));        
+        dispatch(login(user.uid, user.displayName));
         Swal.fire({
           icon: "success",
           title: "Exito",
@@ -81,9 +107,9 @@ export const registerWithEmailPasswordName = (email, password, name) => {
 };
 
 export const LogoutAction = () => {
-  return async(dispatch) => {
-      const auth = getAuth();
-      await signOut(auth);
-      dispatch(logOutStart());
+  return async (dispatch) => {
+    const auth = getAuth();
+    await signOut(auth);
+    dispatch(logOutStart());
   }
 }

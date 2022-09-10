@@ -53,8 +53,7 @@ const Signup = () => {
                             try {
                                 setSubmitting(true);
                                 const { name, email, password } = values;
-                                const response = dispatch(registerWithEmailPasswordName(email,password,name));                                
-                                console.log(response);
+                                dispatch(registerWithEmailPasswordName(email,password,name));                                
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
@@ -172,7 +171,7 @@ const Signup = () => {
                         )}
                     </Formik>
                     <div className='newAccount-container'>
-                        <div className="account_title">Ya tienes una cuenta?</div>
+                        <div className="account_title">¿Ya tienes una cuenta?</div>
                         <Link className="create_account" to="/auth/login">Inicia Sesión.</Link>
                     </div>
                     <Link to={"/"}>
