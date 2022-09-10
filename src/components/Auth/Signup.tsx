@@ -172,7 +172,7 @@ const Signup = () => {
                     </Formik>
                     <div className='newAccount-container'>
                         <div className="account_title">¿Ya tienes una cuenta?</div>
-                        <Link className="create_account" to="/auth/login">Inicia Sesión.</Link>
+                        <Link className="text-white font-bold" to="/auth/login">Inicia Sesión.</Link>
                     </div>
                     <Link to={"/"}>
                         <div className="goHome">

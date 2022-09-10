@@ -119,7 +119,10 @@ const Login = () => {
                             </Form>
                         )}
                     </Formik>
-
+                    <div className="flex flex-col text-center text-white/90 mt-2">
+                        <span className="">¿Has olvidado tu contraseña?</span>
+                        <Link to={"/restore-password"} className="font-bold cursor-pointer">Recuperala aquí 😁</Link>
+                    </div>
                     <div className='optionContainer'>
                         <p>O también puedes iniciar sesión con:</p>
                     </div>
@@ -131,11 +134,7 @@ const Login = () => {
                         </div>
                         <div className='newAccount-container'>
                             <div className="account_title">¿Aún no tienes una cuenta?</div>
-                            <Link className="create_account" to="/auth/signup">Crea una cuenta.</Link>
-                        </div>
-                        <div className="flex flex-col text-center text-white/90">
-                            <span className="">¿Has olvidado tu contraseña?</span>
-                            <Link to={"/restore-password"} className="font-bold cursor-pointer">Recuperala aquí 😁</Link>
+                            <Link className="text-white/90 font-bold" to="/auth/signup">Crea una cuenta.</Link>
                         </div>
                     </div>
                     <Link to={"/"}>

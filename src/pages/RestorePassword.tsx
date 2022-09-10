@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FaHome } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { restorePasswordWithEmail } from "../redux/actions/auth";
 
 export const RestorePassword = () => {
@@ -71,6 +72,11 @@ export const RestorePassword = () => {
                                         Recuperar
                                     </button>
                                 </div>
+                                <Link to={"/"}>
+                                    <div className="goHome">
+                                        <FaHome className='iconHome' />
+                                    </div>
+                                </Link>
                             </Form>
                         )}
                     </Formik>
