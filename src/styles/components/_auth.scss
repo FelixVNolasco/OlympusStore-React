@@ -39,9 +39,9 @@
                 .password-container {
                     display: flex;
                     flex-direction: row;
+                    margin-top: 12px;
 
                     .auth__input {
-                        margin-top: 12px;
                         background-color: $dark-gray;
                         color: $white;
                         border: 0;

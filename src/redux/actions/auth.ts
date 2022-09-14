@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { loginSuccess, logOutStart } from "../userRedux";
 import { types } from "../types/types";
 import { setLoading, removeLoading } from "../uiRedux";
+import axios from 'axios';
 
 export const restorePasswordWithEmail = (email) => {
   return (dispatch) => {
@@ -111,5 +112,26 @@ export const LogoutAction = () => {
     const auth = getAuth();
     await signOut(auth);
     dispatch(logOutStart());
+  }
+}
+
+export const signup = (values: any) => {
+  return (dispatch) => {
+    const trySignup = async () => {
+      try {
+        dispatch(setLoading());
+        await axios.post("https://olympus-backend.vercel.app/api/auth/signup", values);
+        Swal.fire({
+          icon: "success",
+          title: "Exito",
+          text: "Tu cuenta ha sido creada correctamente",
+        });
+        dispatch(removeLoading());
+      } catch (error) {
+        Swal.fire('Error', error, "error");
+        dispatch(removeLoading());
+      }
+    }
+    trySignup();
   }
 }

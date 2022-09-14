@@ -5,6 +5,8 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import { Purchases } from "./pages/Purchases";
 import { RestorePassword } from "./pages/RestorePassword";
+import { LoginAuth } from "./components/Auth/LoginAuth";
+import SignupAuth from "./components/Auth/SignupAuth";
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -35,10 +37,10 @@ const App = () => {
           </React.Suspense>
         } />
         <Route path="/auth/login" element={
-          <Login />
+          <LoginAuth />
         } />
         <Route path="/auth/signup" element={
-          <Signup />
+          <SignupAuth />
         } />
         <Route path="/success" element={
           <React.Suspense fallback={<></>}>

@@ -6,16 +6,16 @@ const Profile = () => {
 
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
 
-    const { displayName, photoURL, email, creationTime, lastSignInTime } = user;
-    const CreationDate = new Date(creationTime);
-    const lastSignInTimeDate = new Date(lastSignInTime);
+    const { username, photoURL, email, createdAt, updatedAt } = user;
+    const CreationDate = new Date(createdAt);
+    const lastSignInTimeDate = new Date(updatedAt);
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
 
     const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
     const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
 
     const [formValues, handleInputChange] = useForm({
-        name: displayName,
+        name: username,
         userEmail: email
     });
 
@@ -49,7 +49,7 @@ const Profile = () => {
                             </div>
 
                             <div className="updatedAt">
-                                <p className="info">Último inicio de sesión:</p>
+                                <p className="info">Última actualización:</p>
                                 <p className="profileDate">{lastSignInTimeDateParsed}</p>
                             </div>
 
