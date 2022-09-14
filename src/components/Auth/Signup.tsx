@@ -44,16 +44,16 @@ const Signup = () => {
                                 errors.passwordConfirm = "Both Password must be the same";
                             } else if (
                                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                              ) {
+                            ) {
                                 errors.email = "Invalid email address";
-                              }
+                            }
                             return errors;
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
                                 const { name, email, password } = values;
-                                dispatch(registerWithEmailPasswordName(email,password,name));                                
+                                dispatch(registerWithEmailPasswordName(email, password, name));
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
