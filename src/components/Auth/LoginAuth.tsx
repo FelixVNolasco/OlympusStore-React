@@ -140,7 +140,7 @@ export const LoginAuth = () => {
                             <FaHome className='iconHome' />
                         </div>
                     </Link>
-                </div>
+                </div> 
             </div>
         </div>
     )
