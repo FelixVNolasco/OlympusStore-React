@@ -6,8 +6,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
 import { cleanCart } from '../redux/cartRedux';
-// import { FaPlus, FaMinus } from 'react-icons/fa';
-// import {  sustractProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
 
 const Cart = () => {
@@ -18,8 +16,6 @@ const Cart = () => {
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     const [stripeToken, setStripeToken] = useState(null);
-    // const favorites = useSelector((state: RootStateOrAny) => state.favorites);
-    // const [quantity, setQuantity] = useState<number>()
 
     const onToken = (token) => {
         setStripeToken(token)
@@ -48,21 +44,6 @@ const Cart = () => {
         stripeToken && makeRequest();
     }, [stripeToken, cart.total, navigate, cart])
 
-
-    // const handleAddProduct = () => {
-    // }
-
-    // const handleRemoveProduct = () => {
-    //     dispatch(
-    //         sustractProduct(
-    //             {
-
-    //             }
-    //         )
-    //     )
-    // }
-
-
     const handleCleanCart = () => {
         dispatch(cleanCart({
             products: [],
@@ -88,7 +69,6 @@ const Cart = () => {
 
                                     <div className="topTexts">
                                         <span className="topText">Bolsa de compras ({products.length})</span>
-                                        {/* <span className="topText">Lista de deseados ({favorites.quantity})</span> */}
                                     </div>
                                     <button className="topButton" onClick={handleCleanCart}>Limpiar Carrito</button>
                                 </div>
@@ -173,8 +153,6 @@ const Cart = () => {
                     <Footer />
                 </div>
             </div>
-
-
         </>
     )
 }

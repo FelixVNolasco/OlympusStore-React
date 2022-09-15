@@ -1,25 +1,19 @@
 import { NavbarComponent } from "../components/Shared/Navbar/NavbarComponent";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { useForm } from '../hooks/useForm';
 
 const Profile = () => {
 
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
 
-    const { displayName, photoURL, email, creationTime, lastSignInTime } = user;
-    const CreationDate = new Date(creationTime);
-    const lastSignInTimeDate = new Date(lastSignInTime);
+    const { username, photoURL, email, createdAt, updatedAt } = user;
+    const CreationDate = new Date(createdAt);
+    const lastSignInTimeDate = new Date(updatedAt);
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
 
     const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
     const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
 
-    const [formValues, handleInputChange] = useForm({
-        name: displayName,
-        userEmail: email
-    });
 
-    const { name, userEmail } = formValues;
 
     return (
         <>
@@ -35,12 +29,12 @@ const Profile = () => {
 
                             <div className="infoContainer">
                                 <p className="info">Nombre:</p>
-                                <input className="userDataInput" type="text" value={name} onChange={handleInputChange} />
+                                <span className="userDataInput">{username}</span>
                             </div>
 
                             <div className="infoContainer">
                                 <p className="info">Correo Electrónico:</p>
-                                <input className="userDataInput" type="text" value={userEmail} onChange={handleInputChange} />
+                                <span className="userDataInput">{email}</span>
                             </div>
 
                             <div className="createdAt">
@@ -49,7 +43,7 @@ const Profile = () => {
                             </div>
 
                             <div className="updatedAt">
-                                <p className="info">Último inicio de sesión:</p>
+                                <p className="info">Última actualización:</p>
                                 <p className="profileDate">{lastSignInTimeDateParsed}</p>
                             </div>
 

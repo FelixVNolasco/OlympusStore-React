@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { registerWithEmailPasswordName } from '../../redux/actions/auth';
+import { signup } from '../../redux/actions/auth';
 
 const Signup = () => {
 
@@ -22,17 +22,16 @@ const Signup = () => {
     }
 
     return (
-
         <div className='form-wrapper'>
             <div className='form-container'>
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                     <p className="auth__title">Registrarse</p>
                     <Formik
-                        initialValues={{ name: "", email: "", password: "", passwordConfirm: "" }}
+                        initialValues={{ username: "", email: "", password: "", passwordConfirm: "" }}
                         validate={(values: any) => {
                             const errors: any = {};
-                            if (!values.name) {
-                                errors.name = "Full Name is required";
+                            if (!values.username) {
+                                errors.username = "Username is required";
                             }
                             if (!values.email) {
                                 errors.email = "Email is required";
@@ -51,9 +50,8 @@ const Signup = () => {
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
-                                setSubmitting(true);
-                                const { name, email, password } = values;
-                                dispatch(registerWithEmailPasswordName(email, password, name));
+                                setSubmitting(true);                                
+                                dispatch(signup(values));                                                                                                
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
@@ -66,19 +64,19 @@ const Signup = () => {
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="login__input">
-                                    <label className="label" htmlFor="name">
-                                        Nombre Completo
+                                    <label className="label" htmlFor="username">
+                                        Nombre de Usuario
                                     </label>
                                     <div className="input-container">
                                         <Field
                                             className="auth__input"
-                                            type="name"
-                                            name="name"
+                                            type="text"
+                                            name="username"
                                         />
                                     </div>
                                     <ErrorMessage
                                         className="error-text"
-                                        name="name"
+                                        name="username"
                                         component="div"
                                     />
                                 </div>

@@ -1,28 +1,42 @@
-import { loginFailure, loginStart, loginSuccess, logOutStart, signupStart } from "./userRedux";
-import { publicRequest } from "../requestMethods";
+import { publicRequest, userRequest } from '../requestMethods';
+import { removeLoading, setLoading } from "./uiRedux";
 
-export const login = async (dispatch, user) => {
-    dispatch(loginStart());
+export const getAllProducts = async (dispatch, category: any) => {
+    dispatch(setLoading());
     try {
-        const res = await publicRequest.post("/auth/login", user);
-        dispatch(loginSuccess(res.data));
-    } catch (err) {
-        dispatch(loginFailure());
+        const products: any = await publicRequest.get(category ? `/products?category=${category}` : '/products');
+        const { data } = products;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
     }
-};
-
-export const signup = async (dispatch, user) => {
-    dispatch(signupStart());
-    try {
-        const res = await publicRequest.post("/auth/signup", user);
-        dispatch(loginSuccess(res.data));
-    } catch (err) {
-        dispatch(loginFailure());
-    }
-};
-
-
-export const logout = async (dispatch) =>  {
-    dispatch(logOutStart());
 }
 
+
+export const getUserPurchases = async (dispatch, _id: string) => {
+    dispatch(setLoading());
+    try {
+        const purchasesData = await userRequest.get(`/orders/find/${_id}`);
+        const { data } = purchasesData;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+export const getSingleProduct = async (dispatch, productId: string) => {
+    try {
+        dispatch(setLoading());
+        const product = await publicRequest.get(`/products/find/${productId}`);
+        const { data } = product;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}

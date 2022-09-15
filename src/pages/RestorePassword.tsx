@@ -2,7 +2,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FaHome } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { restorePasswordWithEmail } from "../redux/actions/auth";
 
 export const RestorePassword = () => {
 
@@ -30,9 +29,8 @@ export const RestorePassword = () => {
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                const { email } = values;
-                                await dispatch(restorePasswordWithEmail(email));
-                                navigate("/auth/login");
+                                const { email } = values;                                
+                                // navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error);

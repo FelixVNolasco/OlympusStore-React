@@ -5,7 +5,7 @@ import { icons } from "./icons";
 import { FcLibrary } from "react-icons/fc";
 import { ShoppingCart } from "../ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import { LogoutAction } from '../../../redux/actions/auth';
+import { logout } from '../../../redux/actions/auth';
 
 export const NavbarComponent = () => {
 
@@ -16,7 +16,8 @@ export const NavbarComponent = () => {
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
 
     const handleLogout = () => {
-        dispatch(LogoutAction());
+        localStorage.removeItem("token");
+        dispatch(logout());
         navigate("/");
     }
 
@@ -91,7 +92,7 @@ export const NavbarComponent = () => {
                     >
                         <Dropdown.Item
                             key="autoscaling"
-                            showFullDescription                            
+                            showFullDescription
                             icon={icons.scale}
                         >
                             <Link
@@ -121,7 +122,7 @@ export const NavbarComponent = () => {
                                 }}
                             >
                                 Soccer
-                            </Link>                            
+                            </Link>
                         </Dropdown.Item>
                         <Dropdown.Item
                             key="production_ready"
@@ -162,13 +163,13 @@ export const NavbarComponent = () => {
                             </Link>
                             <Dropdown placement="bottom-right">
                                 <Navbar.Item>
-                                    <Dropdown.Trigger>                                    
+                                    <Dropdown.Trigger>
                                         <Avatar
                                             bordered
                                             as="button"
                                             color="primary"
                                             size="md"
-                                            src={currentUser?.photoURL !== null ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
+                                            src={currentUser?.urlImage !== "" ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
                                         />
                                     </Dropdown.Trigger>
                                 </Navbar.Item>
@@ -181,7 +182,7 @@ export const NavbarComponent = () => {
                                             Has iniciado como
                                         </Text>
                                         <Text b color="inherit" css={{ d: "flex" }}>
-                                            {currentUser?.displayName}
+                                            {currentUser?.username}
                                         </Text>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="settings" withDivider>
@@ -201,9 +202,9 @@ export const NavbarComponent = () => {
                                             key="purchasesLinkRouter"
                                             className="pt-2 pb-2 w-full"
                                         >
-                                            <button disabled={true} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed">Mis Compras</button>
-                                        </LinkRouter>                                        
-                                    </Dropdown.Item>                                    
+                                            <button disabled={false} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed">Mis Compras</button>
+                                        </LinkRouter>
+                                    </Dropdown.Item>
                                     <Dropdown.Item key="logout" withDivider color="error">
                                         <button onClick={handleLogout}>Cerrar Sesión</button>
                                     </Dropdown.Item>
