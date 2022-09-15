@@ -2,13 +2,13 @@ import { NavbarComponent } from "../components/Shared/Navbar/NavbarComponent";
 import { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserName, getUserPurchases } from "../redux/apiCall";
+import { getUserPurchases } from "../redux/apiCall";
 
 export const Purchases = () => {
 
     const [purchases, setPurchases] = useState<any[]>(null);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-    const [username, setUsername] = useState("");
+    const { username } = currentUser;
     const dispatch = useDispatch();
     const { accessToken } = currentUser;
     const { _id } = currentUser;
@@ -30,21 +30,12 @@ export const Purchases = () => {
                 <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
                     {
                         purchases?.map(purchase => {
-
-                            const { address, amount, createdAt, status, userId, _id } = purchase
+                            const { address, amount, createdAt, status, _id } = purchase
                             const { city, country, line1, postal_code, state } = address;
                             const { products } = purchase;
-
                             const CreationDate = new Date(createdAt);
                             const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
                             const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
-
-                            const getUser = async () => {
-                                const user = await getUserName(userId);
-                                const {username} = user
-                                setUsername(username);
-                            }
-                            getUser();
 
                             return (
                                 <div key={_id} className="flex flex-col m-2 bg-gray-300/70 p-2 rounded-md">

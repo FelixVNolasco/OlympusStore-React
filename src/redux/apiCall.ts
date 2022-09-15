@@ -40,13 +40,3 @@ export const getSingleProduct = async (dispatch, productId: string) => {
         console.log(error);
     }
 }
-
-export const getUserName = async (userId) => {
-    try {
-        const user = await userRequest.get(`/users/find/${userId}`);
-        const { data } = user;
-        return data;
-    } catch (error) {
-        console.log(error);
-    }
-}
