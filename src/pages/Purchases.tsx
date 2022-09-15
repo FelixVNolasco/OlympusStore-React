@@ -10,22 +10,6 @@ export const Purchases = () => {
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);    
     const dispatch = useDispatch();
 
-    // const {_id} = currentUser;
-
-    // useEffect(() => {
-    //     const getAllProducts = async () => {
-    //         try {
-    //             dispatch(setLoading());
-    //             const purchases = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${currentUser?._id}`);
-    //             console.log(purchases);
-    //             setPurchases(purchases.data);
-    //         } catch (error) {
-    //             dispatch(removeLoading());
-    //         }
-    //         dispatch(removeLoading());
-    //     }
-    //     getAllProducts();
-    // }, [dispatch, currentUser?._id])
 
     return (
         <>
