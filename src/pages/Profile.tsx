@@ -1,6 +1,5 @@
 import { NavbarComponent } from "../components/Shared/Navbar/NavbarComponent";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { useForm } from '../hooks/useForm';
 
 const Profile = () => {
 
@@ -14,12 +13,7 @@ const Profile = () => {
     const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
     const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
 
-    const [formValues, handleInputChange] = useForm({
-        name: username,
-        userEmail: email
-    });
 
-    const { name, userEmail } = formValues;
 
     return (
         <>
@@ -35,12 +29,12 @@ const Profile = () => {
 
                             <div className="infoContainer">
                                 <p className="info">Nombre:</p>
-                                <input className="userDataInput" type="text" value={name} onChange={handleInputChange} />
+                                <span className="userDataInput">{username}</span>
                             </div>
 
                             <div className="infoContainer">
                                 <p className="info">Correo Electrónico:</p>
-                                <input className="userDataInput" type="text" value={userEmail} onChange={handleInputChange} />
+                                <span className="userDataInput">{email}</span>
                             </div>
 
                             <div className="createdAt">

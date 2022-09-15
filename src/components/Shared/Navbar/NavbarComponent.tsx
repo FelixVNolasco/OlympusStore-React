@@ -5,7 +5,7 @@ import { icons } from "./icons";
 import { FcLibrary } from "react-icons/fc";
 import { ShoppingCart } from "../ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import { LogoutAction } from '../../../redux/actions/auth';
+import { logout } from '../../../redux/actions/auth';
 
 export const NavbarComponent = () => {
 
@@ -17,7 +17,7 @@ export const NavbarComponent = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        dispatch(LogoutAction());
+        dispatch(logout());
         navigate("/");
     }
 

@@ -25,7 +25,7 @@ export const Slider = () => {
                                     width="100%"
                                     containerClassName="avatar-skeleton"
                                 />
-                            </div>                            
+                            </div>
                         )
                         :
                         (

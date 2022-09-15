@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Product } from './Product';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
-import { removeLoading, setLoading } from '../redux/uiRedux';
-import 'react-loading-skeleton/dist/skeleton.css'
 import { BallTriangle } from 'react-loader-spinner'
 import { CategoryProduct } from './CategoryProduct';
+import { getAllProducts } from '../redux/apiCall';
 
 export const Products = ({ category, filters, sort }: any) => {
 
@@ -15,17 +14,15 @@ export const Products = ({ category, filters, sort }: any) => {
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     useEffect(() => {
-        const getAllProducts = async () => {
+        const getProducts = async () => {
             try {
-                dispatch(setLoading());
-                const products = await axios.get(category ? `https://olympus-backend.vercel.app/api/products?category=${category}` : 'https://olympus-backend.vercel.app/api/products');
-                setProducts(products.data);
+                const products = await getAllProducts(dispatch, category);
+                setProducts(products);                
             } catch (error) {
-                dispatch(removeLoading());
+                console.log(error);
             }
-            dispatch(removeLoading());
         }
-        getAllProducts();
+        getProducts();
     }, [category, dispatch])
 
     useEffect(() => {
@@ -67,15 +64,14 @@ export const Products = ({ category, filters, sort }: any) => {
             <div className='products' key="products">
                 {
                     category ?
-                        filteredProducts.map((product) => {
+                        filteredProducts?.map((product) => {
                             return <CategoryProduct key={product._id} item={product} />
                         })
                         :
-                        products.slice(0, 8).map((product) => {
+                        products?.slice(0, 8).map((product) => {
                             return <Product key={product._id} item={product} />
                         })
                 }
-
                 <div className='loadingProducts'>
                     {loading && (
                         <BallTriangle
@@ -86,7 +82,6 @@ export const Products = ({ category, filters, sort }: any) => {
                         />
                     )}
                 </div>
-
             </div>
         </div>
 

@@ -1,8 +1,8 @@
 import { NavbarComponent } from "../components/Shared/Navbar/NavbarComponent";
 import { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { removeLoading, setLoading } from "../redux/uiRedux";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { getUserPurchases } from "../redux/apiCall";
 
 export const Purchases = () => {
 
@@ -13,67 +13,95 @@ export const Purchases = () => {
     const { _id } = currentUser;
 
     useEffect(() => {
-
-        const config = {
-            headers: {
-                token: `Bearer ${accessToken}`,
-            },
-        };
-
-        const getAllProducts = async () => {
-            try {
-                dispatch(setLoading());
-                const purchasesData = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${_id}`, config);
-                const { data } = purchasesData;
-                setPurchases(data);
-            } catch (error) {
-                dispatch(removeLoading());
-            }
-            dispatch(removeLoading());
+        const getPurchases = async () => {
+            const data = await getUserPurchases(dispatch, _id);
+            setPurchases(data);
         }
-        getAllProducts();
+        getPurchases();
     }, [dispatch, accessToken, _id]);
-
-    console.log(purchases);
-
-
 
     return (
         <>
             <NavbarComponent />
             <h2 className="font-bold text-center text-xl mt-6 ">Historial de Compras</h2>
             <div className="container mx-auto">
-                <div className="flex flex-col p-12 bg-green-300/50 rounded-md">
+                <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
                     {
                         purchases?.map(purchase => {
 
-                            const { address, amount, createdAt, updatedAt, status, _id } = purchase
+                            const { address, amount, createdAt, status, _id } = purchase
                             const { city, country, line1, postal_code, state } = address;
                             const { products } = purchase;
 
                             return (
-                                <div key={_id} className="flex flex-col m-2 bg-green-300/70 p-2 rounded-md">
-                                    <span>ID de Compra: {_id}</span>
-                                    <span>Productos Comprados</span>
+                                <div key={_id} className="flex flex-col m-2 bg-gray-300/70 p-2 rounded-md">
+                                    <div className="flex flex-col sm:flex-col md:flex-row items-center justify-between">
+                                        <div className="flex flex-col sm:flex-row text-sm">
+                                            <div className="flex flex-col m-2 md:m-4">
+                                                <span className="text-xs">PEDIDO REALIZADO</span>
+                                                <span>{createdAt}</span>
+                                            </div>
+                                            <div className="flex flex-col m-2 md:m-4">
+                                                <span className="text-xs">TOTAL</span>
+                                                <span>${amount}</span>
+                                            </div>
+                                            <div className="flex flex-col m-2 md:m-4">
+                                                <span className="text-xs">ENVIAR A</span>
+                                                <span>{_id}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col text-sm md:mr-4">
+                                            <span>Orden Nº {_id}</span>
+                                            <Link className="text-blue-700" to={`/purchases/${_id}`}>Ver detalles del pedido</Link>
+                                        </div>
+                                    </div>
+                                    <span className="ml-4">Productos Comprados</span>
                                     {
                                         products.map((product) => {
-
-                                            const { productId, quantity } = product;
+                                            const { productId, quantity, img, title, size, price } = product;
                                             return (
-                                                <div className="flex flex-col bg-green-300/80 m-2 p-2 rounded-md">
-                                                    <span>ID del Producto: {productId}</span>
-                                                    <span>Cantidad: {quantity}</span>
+                                                <div className="flex flex-col bg-gray-300/80 m-2 p-2 rounded-md">
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-between">
+                                                        <img className="w-16 rounded-md" src={img} alt="" />
+                                                        <div className="flex flex-col text-sm">
+                                                            <span className="text-xs">Producto:</span>
+                                                            <Link to={`/product/${productId}`}>{title}</Link>
+                                                        </div>
+                                                        <div className="flex flex-col text-sm">
+                                                            <span className="text-xs">Cantidad:</span>
+                                                            <span>{quantity}</span>
+                                                        </div>
+                                                        <div className="flex flex-col text-sm">
+                                                            <span className="text-xs">Tamaño:</span>
+                                                            <span>{size}</span>
+                                                        </div>
+                                                        <div className="flex flex-col text-sm">
+                                                            <span className="text-xs">Precio:</span>
+                                                            <span>{price}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             )
                                         })
                                     }
-
-                                    <span>Monto de Compra: ${amount}</span>
-                                    <span>Dirección: {`Calle: ${line1}, Estado: ${state}, Código Postal: ${postal_code}, Ciudad: ${city}, País: ${country}`}</span>
-                                    <span>Estado de compra: {status === "pending" && "Pendiente"}</span>
-                                    <div className="flex flex-col w-full">
-                                        <span>Compra realizada el: {createdAt}</span>
-                                        <span>Compra actualizada el: {updatedAt}</span>
+                                    <div className="flex flex-col ml-4 text-sm">
+                                        <span>Dirección: {`Calle: ${line1}, Estado: ${state}, Código Postal: ${postal_code}, Ciudad: ${city}, País: ${country}`}</span>
+                                        {
+                                            (status === "pending") ?
+                                                (
+                                                    <div className="flex items-center">
+                                                        <div className="bg-yellow-400 w-4 h-4 rounded-full"></div>
+                                                        <div className="text-sm ml-2">Pendiente</div>
+                                                    </div>
+                                                )
+                                                :
+                                                (
+                                                    <div className="flex">
+                                                        <div className="bg-green-500 w-12 h-12 rounded-full"></div>
+                                                        <div className="text-sm ml-2">Entregado</div>
+                                                    </div>
+                                                )
+                                        }
                                     </div>
                                 </div>
                             )
@@ -81,7 +109,6 @@ export const Purchases = () => {
                     }
                 </div>
             </div>
-
         </>
     )
 }

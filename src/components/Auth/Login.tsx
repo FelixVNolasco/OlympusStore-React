@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { loginWithEmailPassword, startGoogleLogin } from '../../redux/actions/auth';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaHome, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../redux/actions/auth";
 
 const Login = () => {
 
@@ -16,11 +16,11 @@ const Login = () => {
 
     };
 
-    const handleGoogleLoginSubmit = (e: any) => {
-        e.preventDefault();
-        dispatch(startGoogleLogin());
-        navigate("/");
-    };
+    // const handleGoogleLoginSubmit = (e: any) => {
+    //     e.preventDefault();
+    //     dispatch(startGoogleLogin());
+    //     navigate("/");
+    // };
 
     return (
         <div className="form-wrapper">
@@ -28,52 +28,58 @@ const Login = () => {
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                     <p className="auth__title">Iniciar Sesión</p>
                     <Formik
-                        initialValues={{ email: "", password: "" }}
+                        initialValues={{ username: "", password: "" }}
                         validate={(values: any) => {
                             const errors: any = {};
-                            if (!values.email) {
-                                errors.email = "Email is required";
+                            if (!values.username) {
+                                errors.username = "Username is required";
                             }
                             if (!values.password) {
                                 errors.password = "Password is required";
-                            } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                            ) {
-                                errors.email = "Invalid email address";
                             }
                             return errors;
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                const { email, password } = values;
-                                dispatch(loginWithEmailPassword(email, password));
+                                dispatch(login(values))                                
                                 navigate("/");
                                 setSubmitting(false);
                             } catch (error) {
-                                console.log(error);
+                                console.log(error)
                                 setSubmitting(false);
                             }
+                                
+                            // try {
+                            //     setSubmitting(true);
+                            //     const response = await axios.post("https://olympus-backend.vercel.app/api/auth/login", values);
+                            //     dispatch(loginSuccess(response?.data));
+                            //     localStorage.setItem("token", response?.data?.accessToken);
+                            //     navigate("/");
+                            //     setSubmitting(false);
+                            // } catch (error) {
+                            //     console.log(error);
+                            //     setSubmitting(false);
+                            // }
                         }}
-
                     >
 
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="login__input">
-                                    <label className="label" htmlFor="email">
-                                        Correo Electrónico
+                                    <label className="label" htmlFor="username">
+                                        Nombre de usuario
                                     </label>
                                     <div className="input-container">
                                         <Field
                                             className="auth__input"
-                                            type="email"
-                                            name="email"
+                                            type="text"
+                                            name="username"
                                         />
                                     </div>
                                     <ErrorMessage
                                         className="error-text"
-                                        name="email"
+                                        name="username"
                                         component="div"
                                     />
                                 </div>
@@ -119,11 +125,11 @@ const Login = () => {
                             </Form>
                         )}
                     </Formik>
-                    <div className="flex flex-col text-center text-white/90 mt-2">
+                    {/* <div className="flex flex-col text-center text-white/90 mt-2">
                         <span className="">¿Has olvidado tu contraseña?</span>
                         <Link to={"/restore-password"} className="font-bold cursor-pointer">Recuperala aquí 😁</Link>
-                    </div>
-                    <div className='optionContainer'>
+                    </div> */}
+                    {/* <div className='optionContainer'>
                         <p>O también puedes iniciar sesión con:</p>
                     </div>
                     <div className="auth_social-networks">
@@ -132,10 +138,10 @@ const Login = () => {
                                 <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                             </div>
                         </div>
-                        <div className='newAccount-container'>
-                            <div className="account_title">¿Aún no tienes una cuenta?</div>
-                            <Link className="text-white/90 font-bold" to="/auth/signup">Crea una cuenta.</Link>
-                        </div>
+                    </div> */}
+                    <div className='newAccount-container'>
+                        <div className="account_title">¿Aún no tienes una cuenta?</div>
+                        <Link className="text-white/90 font-bold" to="/auth/signup">Crea una cuenta.</Link>
                     </div>
                     <Link to={"/"}>
                         <div className="goHome">
@@ -147,4 +153,5 @@ const Login = () => {
         </div>
     )
 }
+
 export default Login;
