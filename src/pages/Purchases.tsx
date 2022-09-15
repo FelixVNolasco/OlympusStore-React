@@ -12,6 +12,7 @@ export const Purchases = () => {
     const dispatch = useDispatch();
     const { accessToken } = currentUser;
     const { _id } = currentUser;
+    console.log(purchases);
 
     useEffect(() => {
         const getPurchases = async () => {

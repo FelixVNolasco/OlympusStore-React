@@ -23,7 +23,7 @@ const Success = () => {
                     userId: _id,
                     products: cart.products.map((item) => ({
                         productId: item._id,
-                        quantity: item._quantity,
+                        quantity: item.quantity,
                         title: item.title,
                         size: item.size,
                         img: item.img,
