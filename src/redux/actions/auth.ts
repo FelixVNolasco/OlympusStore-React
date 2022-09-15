@@ -1,14 +1,17 @@
 import Swal from 'sweetalert2'
 import { setLoading, removeLoading } from "../uiRedux";
 import { publicRequest } from '../../requestMethods';
-import { logOutStart } from '../userRedux';
+import { loginSuccess, logOutStart } from '../userRedux';
 
 export const login = (values: any) => {
   return (dispatch) => {
     const tryLogin = async () => {
       try {
         dispatch(setLoading());
-        await publicRequest.post("/auth/login", values);
+        const user = await publicRequest.post("/auth/login", values);
+        const { data } = user;
+        localStorage.setItem("token", data.accessToken);
+        dispatch(loginSuccess(data));
         dispatch(removeLoading());
       } catch (error) {
         Swal.fire('Error', "No ha sido posible iniciar sesión", "error");

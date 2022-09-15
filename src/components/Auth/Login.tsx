@@ -48,19 +48,7 @@ const Login = () => {
                             } catch (error) {
                                 console.log(error)
                                 setSubmitting(false);
-                            }
-                                
-                            // try {
-                            //     setSubmitting(true);
-                            //     const response = await axios.post("https://olympus-backend.vercel.app/api/auth/login", values);
-                            //     dispatch(loginSuccess(response?.data));
-                            //     localStorage.setItem("token", response?.data?.accessToken);
-                            //     navigate("/");
-                            //     setSubmitting(false);
-                            // } catch (error) {
-                            //     console.log(error);
-                            //     setSubmitting(false);
-                            // }
+                            }                                
                         }}
                     >
 
