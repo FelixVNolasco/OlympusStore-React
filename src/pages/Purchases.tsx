@@ -22,6 +22,7 @@ export const Purchases = () => {
         getPurchases();
     }, [dispatch, accessToken, _id]);
 
+
     return (
         <>
             <NavbarComponent />
