@@ -23,7 +23,7 @@ export const getUserPurchases = async (dispatch, _id: string) => {
         dispatch(removeLoading());
         return data;
     } catch (error) {
-        dispatch(removeLoading());
+        dispatch(removeLoading());        
         console.log(error);
     }
 }
