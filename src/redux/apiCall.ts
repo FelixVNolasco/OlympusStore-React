@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { publicRequest, userRequest } from '../requestMethods';
 import { removeLoading, setLoading } from "./uiRedux";
 
@@ -23,7 +24,7 @@ export const getUserPurchases = async (dispatch, _id: string) => {
         dispatch(removeLoading());
         return data;
     } catch (error) {
-        dispatch(removeLoading());        
+        dispatch(removeLoading());
         console.log(error);
     }
 }
@@ -35,6 +36,24 @@ export const getSingleProduct = async (dispatch, productId: string) => {
         const { data } = product;
         dispatch(removeLoading());
         return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+
+export const updateUser = async (dispatch, userId: string, newInfo) => {
+
+    try {
+        dispatch(setLoading());
+        await userRequest.put(`/users/${userId}`, newInfo);
+        Swal.fire({
+            icon: "success",
+            title: "Exito",
+            text: "Tu cuenta ha sido actualizada correctamente",
+        });
+        dispatch(removeLoading());
     } catch (error) {
         dispatch(removeLoading());
         console.log(error);
