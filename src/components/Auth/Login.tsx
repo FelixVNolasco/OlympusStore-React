@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaHome, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/auth";
+import { loginSchema } from "../Schema/FomSchema";
 
 const Login = () => {
 
@@ -22,16 +23,7 @@ const Login = () => {
                     <p className="auth__title">Iniciar Sesión</p>
                     <Formik
                         initialValues={{ username: "", password: "" }}
-                        validate={(values: any) => {
-                            const errors: any = {};
-                            if (!values.username) {
-                                errors.username = "Username is required";
-                            }
-                            if (!values.password) {
-                                errors.password = "Password is required";
-                            }
-                            return errors;
-                        }}
+                        validationSchema={loginSchema} 
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);

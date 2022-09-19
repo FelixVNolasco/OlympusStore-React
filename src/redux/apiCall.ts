@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { publicRequest, userRequest } from '../requestMethods';
+import { logout } from './actions/auth';
 import { removeLoading, setLoading } from "./uiRedux";
 
 export const getAllProducts = async (dispatch, category: any) => {
@@ -14,7 +15,6 @@ export const getAllProducts = async (dispatch, category: any) => {
         console.log(error);
     }
 }
-
 
 export const getUserPurchases = async (dispatch, _id: string) => {
     dispatch(setLoading());
@@ -42,12 +42,23 @@ export const getSingleProduct = async (dispatch, productId: string) => {
     }
 }
 
+// export const getInfoUpdateUser = async(dispatch, id) => {
+//     try {
+//         dispatch(setLoading());        
+//     } catch (error) {
+//         dispatch(removeLoading());
+//         Swal.fire({
+//             icon: "error",
+//             title: "Error",
+//             text: "No ha sido posible obtener la información",
+//         });
+//     }
+// }
 
-export const updateUser = async (dispatch, userId: string, newInfo) => {
-
+export const updateUser = async (dispatch, values) => {
     try {
         dispatch(setLoading());
-        await userRequest.put(`/users/${userId}`, newInfo);
+        await userRequest.put(`/users/${values.id}`, values);
         Swal.fire({
             icon: "success",
             title: "Exito",
@@ -56,6 +67,31 @@ export const updateUser = async (dispatch, userId: string, newInfo) => {
         dispatch(removeLoading());
     } catch (error) {
         dispatch(removeLoading());
-        console.log(error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No ha sido posible actualizar la cuenta",
+        });
+    }
+}
+
+export const deleteUser = async (dispatch, userId: string) => {
+    try {
+        dispatch(setLoading());
+        await userRequest.delete(`/users/${userId}`);
+        Swal.fire({
+            icon: "success",
+            title: "Exito",
+            text: "Tu cuenta ha sido eliminada correctamente",
+        });
+        dispatch(logout());
+        dispatch(removeLoading());
+    } catch (error) {
+        dispatch(removeLoading());
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No ha sido posible eliminar la cuenta",
+        });
     }
 }

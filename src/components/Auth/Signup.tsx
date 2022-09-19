@@ -4,6 +4,7 @@ import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { signup } from '../../redux/actions/auth';
+import { signupSchema } from '../Schema/FomSchema';
 
 const Signup = () => {
 
@@ -15,11 +16,11 @@ const Signup = () => {
 
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
-    }
+    };
 
     const handleShowConfirmPassword = () => {
         setshowConfirmPassword(!showConfirmPassword);
-    }
+    };
 
     return (
         <div className='form-wrapper'>
@@ -28,30 +29,11 @@ const Signup = () => {
                     <p className="auth__title">Registrarse</p>
                     <Formik
                         initialValues={{ username: "", email: "", password: "", passwordConfirm: "" }}
-                        validate={(values: any) => {
-                            const errors: any = {};
-                            if (!values.username) {
-                                errors.username = "Username is required";
-                            }
-                            if (!values.email) {
-                                errors.email = "Email is required";
-                            }
-                            if (!values.password) {
-                                errors.password = "Password is required";
-                            }
-                            if (values.password !== values.passwordConfirm) {
-                                errors.passwordConfirm = "Both Password must be the same";
-                            } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                            ) {
-                                errors.email = "Invalid email address";
-                            }
-                            return errors;
-                        }}
+                        validationSchema={ signupSchema }
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
-                                setSubmitting(true);                                
-                                dispatch(signup(values));                                                                                                
+                                setSubmitting(true);
+                                dispatch(signup(values));
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
@@ -159,8 +141,8 @@ const Signup = () => {
                                 <div className="btn-container">
                                     <button
                                         className="btn btn-primary"
-                                        type="submit"
-                                        disabled={isSubmitting}
+                                        type="submit"        
+                                        disabled={isSubmitting}                                
                                     >
                                         Registrarse
                                     </button>

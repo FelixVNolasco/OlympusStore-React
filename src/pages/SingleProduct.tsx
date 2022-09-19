@@ -21,7 +21,6 @@ const SingleProduct = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-
                 const product = await getSingleProduct(dispatch,productId);
                 setProduct(product);
             } catch (error) {                
