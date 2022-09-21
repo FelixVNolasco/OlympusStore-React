@@ -16,6 +16,10 @@ const Login = () => {
 
     };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04a1110c076d87913336b2261b67a2d710bd78c1
     return (
         <div className="form-wrapper">
             <div className="form-container">
@@ -107,9 +111,12 @@ const Login = () => {
                             </Form>
                         )}
                     </Formik>
+<<<<<<< HEAD
                     <div className="flex flex-col text-center text-white/90 mt-2">
                         <Link to={"/restore-password"} className="font-bold cursor-pointer">¿Has olvidado tu contraseña?</Link>
                     </div>
+=======
+>>>>>>> 04a1110c076d87913336b2261b67a2d710bd78c1
                     <div className='newAccount-container'>
                         <div className="account_title">¿Aún no tienes una cuenta?</div>
                         <Link className="text-white/90 font-bold" to="/auth/signup">Crea una cuenta.</Link>
