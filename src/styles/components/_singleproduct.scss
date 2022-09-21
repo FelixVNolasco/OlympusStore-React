@@ -118,6 +118,7 @@
             .checkoutContainer {
                 display: flex;
                 justify-content: flex-end;
+                align-items: center;
 
                 .checkoutButton {
                     border: none;
@@ -142,6 +143,11 @@
                     }
                 }
 
+                .tooltip {
+                    cursor: pointer;
+                    width: 24px;
+                    margin: 4px;
+                }
             }
 
         }
@@ -152,7 +158,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 800px;
+        height: 100vh;
     }
 }
 

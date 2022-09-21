@@ -1,31 +1,38 @@
 import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaExclamationCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import { Footer } from '../components/Shared/Footer';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addProduct } from '../redux/cartRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { BallTriangle } from 'react-loader-spinner';
 import { getSingleProduct } from '../redux/apiCall';
+import ReactTooltip from 'react-tooltip';
+import { Product } from '../interfaces/SingleProduct';
+import { doneFetching } from '../redux/userRedux';
 
 const SingleProduct = () => {
 
     const location = useLocation();
     const productId = location.pathname.split("/")[2];
     const dispatch = useDispatch()
-    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
+    const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
-    const [product, setProduct] = useState<any>({});
+    const [product, setProduct] = useState<Product>();
+    const [categories, setCategories] = useState<string[]>([]);
+    const [sizes, setSizes] = useState<string[]>([]);
 
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const product = await getSingleProduct(dispatch,productId);
+                const product = await getSingleProduct(dispatch, productId);
                 setProduct(product);
-            } catch (error) {                
+                setCategories(product.categories);
+                setSizes(product.size);
+                dispatch(doneFetching());
+            } catch (error) {
                 console.log(error);
-            }            
+            }
         }
         getProduct();
     }, [productId, dispatch])
@@ -59,30 +66,28 @@ const SingleProduct = () => {
         <div className="singleProductContainer">
             <NavbarComponent />
             {
-                !loading ? (
+                !isFetching ? (
                     <div className="wrapperSingleProduct full-height">
                         <div className="imgProductContainer">
-                            {/* <Gallery /> */}
-                            <img className='imgSingleProduct' src={product.img} alt="" />
+                            <img className='imgSingleProduct' src={product?.img} alt="" />
                         </div>
                         <div className="infoSingleProduct">
-                            <h4 className='titleSingleProduct'>{product.title}</h4>
-                            <p className='descriptionSingleProduct'>{product.desc}</p>
+                            <h4 className='titleSingleProduct'>{product?.title}</h4>
+                            <p className='descriptionSingleProduct'>{product?.desc}</p>
                             <div className='categoriesSection'>
-                                {(product.categories)?.map((category: string) => {
+                                {categories.map((category: string) => {
                                     return <span key={category} style={{ color: 'white', backgroundColor: 'gray' }} className="categoryLabel">{category}</span>
                                 })}
                             </div>
                             <div className="priceContainer">
-                                {/* <FaHeart className={favorite ? 'favoriteIcon' : 'notFavoriteIcon'} onClick={(handleFavorite)} /> */}
-                                <p className='priceSingleProduct'>${product.price}</p>
+                                <p className='priceSingleProduct'>${product?.price}</p>
                             </div>
                             <div className="optionsSingleProduct">
                                 <p className='optionText'>Número:</p>
                                 <select className='options' name="" onChange={(e) => setSize(e.target.value)}>
                                     <option value="Numero" disabled>Numero</option>
                                     {
-                                        product.size?.map((size) => {
+                                        sizes.map((size) => {
                                             return <option value={size} key={size}>{size}</option>
                                         })
                                     }
@@ -95,6 +100,15 @@ const SingleProduct = () => {
                             </div>
                             <div className="checkoutContainer" onClick={handleClick}>
                                 <button disabled={isAuthenticated ? false : true} className='checkoutButton'>Añadir al Carrito</button>
+                                {
+                                    !isAuthenticated &&
+                                    <>   
+                                        <FaExclamationCircle data-tip data-for='tooltip' className='tooltip' />
+                                        <ReactTooltip id='tooltip' type='warning' backgroundColor='black' textColor='white'>
+                                            <span>Para realizar compras, en necesario iniciar sesión.</span>
+                                        </ReactTooltip>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,9 @@
 import Swal from 'sweetalert2';
+import { SingleProductResponse } from '../interfaces/SingleProduct';
 import { publicRequest, userRequest } from '../requestMethods';
 import { logout } from './actions/auth';
 import { removeLoading, setLoading } from "./uiRedux";
+import { startFetching } from './userRedux';
 
 export const getAllProducts = async (dispatch, category: any) => {
     dispatch(setLoading());
@@ -31,10 +33,9 @@ export const getUserPurchases = async (dispatch, _id: string) => {
 
 export const getSingleProduct = async (dispatch, productId: string) => {
     try {
-        dispatch(setLoading());
-        const product = await publicRequest.get(`/products/find/${productId}`);
+        dispatch(startFetching());
+        const product = await publicRequest.get(`/products/find/${productId}`) as SingleProductResponse;
         const { data } = product;
-        dispatch(removeLoading());
         return data;
     } catch (error) {
         dispatch(removeLoading());
