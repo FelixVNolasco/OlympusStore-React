@@ -30,7 +30,6 @@ export const RestorePassword = () => {
                             try {
                                 setSubmitting(true);
                                 const { email } = values;                                
-                                // navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error);

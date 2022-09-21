@@ -3,7 +3,7 @@ import { categories, category } from '../data';
 import Category from './Category';
 
 const Categories = () => {
-    return (
+    return ( 
         <div className="container mx-auto full-height">
             <div className='categories'>
                 {
