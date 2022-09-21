@@ -16,8 +16,6 @@
     height: 85vh;
     width: 90%;
     margin: auto;
-    // background: url('../../../assets/backgroundWave.svg');
-    // background-repeat: no-repeat;
 
 
     .infoContainer {
@@ -36,7 +34,6 @@
         }
 
         .buttonContainer {
-            // display: flex;
             display: none;
             justify-content: center;
             color: $dark-gray;
@@ -113,7 +110,6 @@
     }
 
     .imageContainerSlider {
-        // display: none;
         width: 250px;
     }
 }

@@ -16,11 +16,6 @@ const Login = () => {
 
     };
 
-    // const handleGoogleLoginSubmit = (e: any) => {
-    //     e.preventDefault();
-    //     dispatch(startGoogleLogin());
-    //     navigate("/");
-    // };
 
     return (
         <div className="form-wrapper">
@@ -113,20 +108,6 @@ const Login = () => {
                             </Form>
                         )}
                     </Formik>
-                    {/* <div className="flex flex-col text-center text-white/90 mt-2">
-                        <span className="">¿Has olvidado tu contraseña?</span>
-                        <Link to={"/restore-password"} className="font-bold cursor-pointer">Recuperala aquí 😁</Link>
-                    </div> */}
-                    {/* <div className='optionContainer'>
-                        <p>O también puedes iniciar sesión con:</p>
-                    </div>
-                    <div className="auth_social-networks">
-                        <div className="google-btn" onClick={handleGoogleLoginSubmit}>
-                            <div className="google-icon-wrapper">
-                                <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
-                            </div>
-                        </div>
-                    </div> */}
                     <div className='newAccount-container'>
                         <div className="account_title">¿Aún no tienes una cuenta?</div>
                         <Link className="text-white/90 font-bold" to="/auth/signup">Crea una cuenta.</Link>
