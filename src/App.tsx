@@ -5,6 +5,7 @@ import { Purchases } from "./pages/Purchases";
 import { RestorePassword } from "./pages/RestorePassword";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import { NewPassword } from "./pages/NewPassword";
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -59,9 +60,14 @@ const App = () => {
             <RestorePassword />
           </React.Suspense>
         } />
+        <Route path="/passwordReset/token/:token/id/:id" element={
+          <React.Suspense fallback={<></>}>
+            <NewPassword />
+          </React.Suspense>
+        } />
       </Routes>
     </BrowserRouter>
-  ) 
+  )
 }
 
 export default App

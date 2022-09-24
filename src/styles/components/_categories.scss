@@ -17,8 +17,7 @@
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
-        margin-bottom: 24px;
+        align-items: center;        
         transition: ease-out 150ms;
         cursor: pointer;
         transition: ease-in 150ms;
@@ -67,18 +66,6 @@
     
     .category {
         max-width: 350px;
-        margin-left: 0px;
-        margin-right: 0px;
     }
     
-}
-
-
-@media (min-width: 900px) {  
-
-    .category {
-        margin-left: 24px;
-        margin-right: 24px;
-    }
-
 }

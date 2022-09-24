@@ -44,7 +44,7 @@ export const NavbarComponent = () => {
 
     return (
 
-        <Navbar shouldHideOnScroll isBordered={isDark} variant="sticky">
+        <Navbar maxWidth={"lg"} shouldHideOnScroll isBordered={isDark} variant="sticky">
             <Navbar.Brand>
                 <Navbar.Toggle showIn="sm" aria-label="toggle navigation" />
                 <FcLibrary width={24} height={24} />

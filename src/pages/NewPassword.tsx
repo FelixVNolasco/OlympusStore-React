@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { requestRestorePassword } from "../redux/apiCall";
 
-export const RestorePassword = () => {
+export const NewPassword = () => {
 
     const dispatch = useDispatch();
 
@@ -12,17 +12,13 @@ export const RestorePassword = () => {
         <div className="form-wrapper">
             <div className="form-container">
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
-                    <p className="auth__title">Recuperar Contraseña</p>
+                    <p className="auth__title">Nueva contraseña</p>
                     <Formik
-                        initialValues={{ email: "" }}
+                        initialValues={{ password: "" }}
                         validate={(values: any) => {
                             const errors: any = {};
-                            if (!values.email) {
-                                errors.email = "El correo electrónico es requerido";
-                            } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                            ) {
-                                errors.email = "Correo electrónico no válido";
+                            if (!values.password) {
+                                errors.password = "La contraseña es requerida";
                             }
                             return errors;
                         }}
@@ -40,25 +36,21 @@ export const RestorePassword = () => {
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="login__input">
-                                    <label className="label" htmlFor="email">
-                                        Correo Electrónico
+                                    <label className="label" htmlFor="password">
+                                        Nueva Contraseña
                                     </label>
                                     <div className="input-container">
                                         <Field
                                             className="auth__input"
-                                            type="email"
-                                            name="email"
+                                            type="password"
+                                            name="password"
                                         />
                                     </div>
                                     <ErrorMessage
                                         className="error-text"
-                                        name="email"
+                                        name="password"
                                         component="div"
                                     />
-                                </div>
-                                <div className="flex flex-col text-center">
-                                    <span className="text-white">Una vez enviado el correo de recuperación,</span>
-                                    <span className="text-white">Favor de revisar en los correos no deseados (SPAM).</span>
                                 </div>
                                 <div className="btn-container">
                                     <button
@@ -66,7 +58,7 @@ export const RestorePassword = () => {
                                         type="submit"
                                         disabled={isSubmitting}
                                     >
-                                        Recuperar
+                                        Enviar
                                     </button>
                                 </div>
                                 <Link to={"/"}>
