@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Swal from 'sweetalert2';
 
 const cartSlice = createSlice({
     name: "cart",
@@ -8,10 +9,15 @@ const cartSlice = createSlice({
         total: 0
     },
     reducers: {
-        addProduct: (state, action ) => {
+        addProduct: (state, action) => {
             state.quantity += 1;
             state.products.push(action.payload)
             state.total += action.payload.price * action.payload.quantity
+            Swal.fire({
+                icon: "success",
+                title: "Exito",
+                text: "Se ha agregado correctamente el producto",
+            });
         },
         sustractProduct: (state, action) => {
             state.quantity -= 1;
