@@ -17,6 +17,7 @@ export const NavbarComponent = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("id");
         dispatch(logout());
         navigate("/");
     }

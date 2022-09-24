@@ -18,10 +18,11 @@ export const getAllProducts = async (dispatch, category: any) => {
     }
 }
 
-export const getUserPurchases = async (dispatch, _id: string) => {
+export const getUserPurchases = async (dispatch, userId: string) => {
     dispatch(setLoading());
     try {
-        const purchasesData = await userRequest.get(`/orders/find/${_id}`);
+        console.log(userId);
+        const purchasesData = await userRequest.get(`/orders/find/${userId}`);
         const { data } = purchasesData;
         dispatch(removeLoading());
         return data;
