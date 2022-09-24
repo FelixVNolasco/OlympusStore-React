@@ -78,7 +78,7 @@
                     justify-content: flex-end;
                     margin-top: 24px;
                     width: 100%;
-
+            
                     .btn {
                         font-family: "Poppins", sans-serif;
                         cursor: pointer;
@@ -197,6 +197,15 @@
     font-size: $small;
     color: #ef4444;
     font-weight: 700;
+    max-width: 360px;
+}
+
+.error-text-update {
+    font-size: $small;    
+    color: white;
+    font-weight: 700;
+    max-width: 360px;
+    border-radius: 4px;    ;
 }
 
 .login__input {

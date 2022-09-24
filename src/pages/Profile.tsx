@@ -1,67 +1,56 @@
-import { NavbarComponent } from "../components/Shared/Navbar/NavbarComponent";
+import { useState } from 'react';
+import { UserProfile } from "../components/Profile/userProfile";
+import { UpdateUserProfile } from '../components/Profile/UpdateUserProfile';
+import { useDispatch } from "react-redux";
+import { deleteUser } from '../redux/apiCall';
 import { RootStateOrAny, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Profile = () => {
 
-    const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const [isEditing, setIsEditing] = useState(false);
+    const dispatch = useDispatch();
 
-    const { username, photoURL, email, createdAt, updatedAt } = user;
-    const CreationDate = new Date(createdAt);
-    const lastSignInTimeDate = new Date(updatedAt);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
+    const handleDelete = async () => {
 
-    const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
-    const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
-
-
+        Swal.fire({
+            title: 'Estas seguro que quieres eliminar tu cuenta?',
+            text: "Esta acción no es reversible",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteUser(dispatch, _id));
+            }
+        })
+    }
 
     return (
         <>
-            <NavbarComponent />
-            <div className="mt-12">
-                <div className="profileContainer animate__animated animate__fadeIn animate__faster">
-                    <div className="profileSection">
-                        <div className="profileImage">
-                            <img className="img" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
-                        </div>
-
-                        <div className="profileGrid">
-
-                            <div className="infoContainer">
-                                <p className="info">Nombre:</p>
-                                <span className="userDataInput">{username}</span>
+            {
+                !isEditing ?
+                    (
+                        <>
+                            <UserProfile />
+                            <div className="mt-6">
+                                <div className="profileContainer p-2">
+                                    <button disabled={true} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed" onClick={() => setIsEditing(!isEditing)}>Actualizar</button>
+                                    <Link to={"/"} className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</Link>
+                                </div>
                             </div>
+                        </>
+                    )
+                    :
+                    (
+                        <UpdateUserProfile />
+                    )
+            }
 
-                            <div className="infoContainer">
-                                <p className="info">Correo Electrónico:</p>
-                                <span className="userDataInput">{email}</span>
-                            </div>
-
-                            <div className="createdAt">
-                                <p className="info">Cuenta creada en:</p>
-                                <p className="profileDate">{CreationDateParsed}</p>
-                            </div>
-
-                            <div className="updatedAt">
-                                <p className="info">Última actualización:</p>
-                                <p className="profileDate">{lastSignInTimeDateParsed}</p>
-                            </div>
-
-                            <div className="updateContainer">
-                                <button disabled={true} className="updateAccountBtn">
-                                    Actualizar Información
-                                </button>
-                            </div>
-
-                            <div className="deleteContainer">
-                                <button disabled={true} className="deleteAccountBtn">
-                                    Eliminar Cuenta
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </>
     )
 };
