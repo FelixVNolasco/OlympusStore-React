@@ -16,7 +16,7 @@ const cartSlice = createSlice({
             Swal.fire({
                 icon: "success",
                 title: "Exito",
-                text: "Se ha agregado correctamente el producto",
+                text: "Se ha agregado correctamente el/los producto(s)",
             });
         },
         sustractProduct: (state, action) => {
