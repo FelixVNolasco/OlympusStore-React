@@ -11,6 +11,7 @@ export const login = (values: any) => {
         const user = await publicRequest.post("/auth/login", values);
         const { data } = user;
         localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("id", data._id);
         dispatch(loginSuccess(data));
         dispatch(removeLoading());
       } catch (error) {
