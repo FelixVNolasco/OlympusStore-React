@@ -12,7 +12,7 @@ export const Purchases = () => {
     const dispatch = useDispatch();
     const { accessToken } = currentUser;
     const { _id } = currentUser;
-    
+
     useEffect(() => {
         const getPurchases = async () => {
             const data = await getUserPurchases(dispatch, _id);
@@ -29,7 +29,7 @@ export const Purchases = () => {
             <div className="container mx-auto">
                 <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
                     {
-                        purchases === undefined  ?
+                        purchases === undefined ?
                             (
                                 <span className="text-xl text-center">No haz realizado ninguna compra 😅</span>
                             ) :
