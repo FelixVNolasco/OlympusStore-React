@@ -14,33 +14,29 @@ export const UserProfile = () => {
     return (
         <>
             <NavbarComponent />
-            <div className="mt-12">
-                <div className="profileContainer animate__animated animate__fadeIn animate__faster">
-                    <div className="profileSection">
-                        <div className="profileImage">
-                            <img className="img" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
+            <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md">
+                <div className="flex flex-col md:text-md  lg:text-lg w-2/3 m-12 items-center justify-around">
+                    <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
+                        <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-4 items-center">
+                        <div className="flex flex-col md:flex-row items-center">
+                            <p className="font-semibold">Nombre de Usuario:</p>
+                            <span className="md:ml-2">{username}</span>
                         </div>
-                        <div className="profileGrid">
+                        <div className="flex flex-col md:flex-row md:items-center">
+                            <p className="font-semibold">Correo Electrónico:</p>
+                            <span className="md:ml-2">{email}</span>
+                        </div>
 
-                            <div className="infoContainer">
-                                <p className="info">Nombre:</p>
-                                <span className="userDataInput">{username}</span>
-                            </div>
+                        <div className="flex flex-col">
+                            <p className="font-semibold">Cuenta creada en:</p>
+                            <p>{CreationDateParsed}</p>
+                        </div>
 
-                            <div className="infoContainer">
-                                <p className="info">Correo Electrónico:</p>
-                                <span className="userDataInput">{email}</span>
-                            </div>
-
-                            <div className="createdAt">
-                                <p className="info">Cuenta creada en:</p>
-                                <p className="profileDate">{CreationDateParsed}</p>
-                            </div>
-
-                            <div className="updatedAt">
-                                <p className="info">Última actualización:</p>
-                                <p className="profileDate">{lastSignInTimeDateParsed}</p>
-                            </div>
+                        <div className="flex flex-col">
+                            <p className="font-semibold">Última actualización:</p>
+                            <p>{lastSignInTimeDateParsed}</p>
                         </div>
                     </div>
                 </div>

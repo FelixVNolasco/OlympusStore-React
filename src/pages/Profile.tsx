@@ -37,11 +37,9 @@ const Profile = () => {
                     (
                         <>
                             <UserProfile />
-                            <div className="mt-6">
-                                <div className="profileContainer p-2">
-                                    <button disabled={true} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed" onClick={() => setIsEditing(!isEditing)}>Actualizar</button>
-                                    <Link to={"/"} className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</Link>
-                                </div>
+                            <div className="flex justify-end bg-indigo-400/90 w-5/6 md:w-2/3 xl:w-1/2 mx-auto rounded-md md:text-md  lg:text-lg">
+                                <button disabled={true} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed" onClick={() => setIsEditing(!isEditing)}>Actualizar</button>
+                                <Link to={"/"} className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</Link>
                             </div>
                         </>
                     )
