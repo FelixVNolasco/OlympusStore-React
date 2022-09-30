@@ -9,6 +9,7 @@ import { NavbarComponent } from "./components/Shared/Navbar/NavbarComponent";
 import { UpdateProfile } from "./pages/UpdateProfile";
 import {RootStateOrAny, useSelector} from "react-redux";
 import {ProtectedRoute, ProtectedRouteProps} from "./components/ProtectedRoute";
+import {NotFound} from "./pages/NotFound";
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -75,6 +76,11 @@ const App = () => {
         <Route path="/success" element={
           <React.Suspense fallback={<></>}>
             <ProtectedRoute {...defaultProtectedRouteProps} outlet={<Success />} />
+          </React.Suspense>
+        } />
+        <Route path="*" element={
+          <React.Suspense fallback={<></>}>
+              <NotFound />
           </React.Suspense>
         } />
       </Routes>
