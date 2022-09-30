@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Product } from './Product';
-import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
-import { BallTriangle } from 'react-loader-spinner'
-import { CategoryProduct } from './CategoryProduct';
-import { getAllProducts } from '../redux/apiCall';
+import {Product} from './Product';
+import {RootStateOrAny, useSelector, useDispatch} from 'react-redux';
+import {BallTriangle} from 'react-loader-spinner'
+import {CategoryProduct} from './CategoryProduct';
+import {getAllProducts} from '../redux/apiCall';
 
-export const Products = ({ category, filters, sort }: any) => {
+export const Products = ({category, filters, sort}: any) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
     const dispatch = useDispatch();
-    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
+    const {loading} = useSelector((state: RootStateOrAny) => state.ui);
 
     useEffect(() => {
         const getProducts = async () => {
             try {
                 const products = await getAllProducts(dispatch, category);
-                setProducts(products);                
+                setProducts(products);
             } catch (error) {
                 console.log(error);
             }
@@ -27,13 +27,13 @@ export const Products = ({ category, filters, sort }: any) => {
 
     useEffect(() => {
         category &&
-            setfilteredProducts(
-                products.filter((item) =>
-                    Object.entries(filters).every(([key, value]) =>
-                        item[key].includes(value)
-                    )
+        setfilteredProducts(
+            products.filter((item) =>
+                Object.entries(filters).every(([key, value]) =>
+                    item[key].includes(value)
                 )
-            );
+            )
+        );
     }, [products, category, filters])
 
     useEffect(() => {
@@ -45,8 +45,7 @@ export const Products = ({ category, filters, sort }: any) => {
             setfilteredProducts((prev) =>
                 [...prev].sort((a, b) => a.price - b.price)
             )
-        }
-        else {
+        } else {
             setfilteredProducts((prev) =>
                 [...prev].sort((a, b) => b.price - a.price)
             )
@@ -65,11 +64,11 @@ export const Products = ({ category, filters, sort }: any) => {
                 {
                     category ?
                         filteredProducts?.map((product) => {
-                            return <CategoryProduct key={product._id} item={product} />
+                            return <CategoryProduct key={product._id} item={product}/>
                         })
                         :
                         products?.slice(0, 8).map((product) => {
-                            return <Product key={product._id} item={product} />
+                            return <Product key={product._id} item={product}/>
                         })
                 }
                 <div className='loadingProducts'>

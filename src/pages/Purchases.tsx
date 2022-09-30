@@ -77,7 +77,7 @@ export const Purchases = () => {
                                                                                 <img className="w-16 rounded-md" src={img} alt="" />
                                                                                 <div className="flex flex-col text-sm">
                                                                                     <span className="text-xs">Producto:</span>
-                                                                                    <Link className="text-blue-700" to={`/product/${productId}`}>{title}</Link>
+                                                                                    <Link className="text-blue-700 font-semibold" to={`/product/${productId}`}>{title}</Link>
                                                                                 </div>
                                                                                 <div className="flex flex-col text-sm">
                                                                                     <span className="text-xs">Cantidad:</span>
