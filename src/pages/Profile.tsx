@@ -42,11 +42,11 @@ const Profile = () => {
                     (
                         <>
                             <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
-                                <div className="flex flex-col md:text-md  lg:text-lg w-2/3 m-12 items-center justify-around">
-                                    <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
+                                <div className="flex flex-col md:text-md  lg:text-lg w-3/4 m-20 items-center justify-around">
+                                    <div className="flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
                                         <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-4 items-center">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4 items-center">
                                         <div className="flex flex-col md:flex-row md:items-center">
                                             <p className="font-semibold">Nombre de Usuario:</p>
                                             <span className="md:ml-2">{username}</span>
