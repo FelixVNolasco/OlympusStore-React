@@ -1,16 +1,21 @@
-import { useState } from 'react';
-import { UserProfile } from "../components/Profile/userProfile";
-import { UpdateUserProfile } from '../components/Profile/UpdateUserProfile';
 import { useDispatch } from "react-redux";
 import { deleteUser } from '../redux/apiCall';
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { BallTriangle } from "react-loader-spinner";
 
 const Profile = () => {
 
+    const loading = useSelector((state: RootStateOrAny) => state.user.ui);
     const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const [isEditing, setIsEditing] = useState(false);
+    const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { username, photoURL, email, createdAt, updatedAt } = user;
+    const CreationDate = new Date(createdAt);
+    const lastSignInTimeDate = new Date(updatedAt);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
+    const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
+    const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
     const dispatch = useDispatch();
 
     const handleDelete = async () => {
@@ -33,22 +38,56 @@ const Profile = () => {
     return (
         <>
             {
-                !isEditing ?
+                !loading ?
                     (
                         <>
-                            <UserProfile />
-                            <div className="flex justify-end bg-indigo-400/90 w-5/6 md:w-2/3 xl:w-1/2 mx-auto rounded-md md:text-md  lg:text-lg">
-                                <button disabled={true} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed" onClick={() => setIsEditing(!isEditing)}>Actualizar</button>
+                            <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
+                                <div className="flex flex-col md:text-md  lg:text-lg w-2/3 m-12 items-center justify-around">
+                                    <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
+                                        <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-4 items-center">
+                                        <div className="flex flex-col md:flex-row md:items-center">
+                                            <p className="font-semibold">Nombre de Usuario:</p>
+                                            <span className="md:ml-2">{username}</span>
+                                        </div>
+                                        <div className="flex flex-col md:flex-row md:items-center">
+                                            <p className="font-semibold">Correo Electrónico:</p>
+                                            <span className="md:ml-2">{email}</span>
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <p className="font-semibold">Cuenta creada en:</p>
+                                            <p>{CreationDateParsed}</p>
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <p className="font-semibold">Última actualización:</p>
+                                            <p>{lastSignInTimeDateParsed}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex justify-end bg-indigo-400/90 w-5/6 md:w-2/3 xl:w-1/2 mx-auto rounded-md md:text-md lg:text-lg drop-shadow-md shadow-sm shadow-slate-500">
+                                <Link to={`/profile/updateProfile/${_id}`} className="">
+                                    <button disabled={true} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed">Actualizar</button>
+                                </Link>
                                 <Link to={"/"} className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</Link>
                             </div>
                         </>
+
                     )
                     :
                     (
-                        <UpdateUserProfile />
+                        <div className='flex justify-center items-center w-full h-screen'>
+                            <BallTriangle
+                                height="162"
+                                width="162"
+                                color='#406882'
+                                ariaLabel='loading' />
+                        </div>
                     )
             }
-
         </>
     )
 };

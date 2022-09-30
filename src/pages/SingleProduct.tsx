@@ -1,4 +1,3 @@
-import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
 import { FaPlus, FaMinus, FaExclamationCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import { Footer } from '../components/Shared/Footer';
@@ -63,8 +62,7 @@ const SingleProduct = () => {
     }
 
     return (
-        <div className="singleProductContainer">
-            <NavbarComponent />
+        <div className="singleProductContainer">            
             {
                 !isFetching ? (
                     <div className="wrapperSingleProduct full-height">

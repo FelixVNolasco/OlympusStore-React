@@ -5,6 +5,9 @@ import { Purchases } from "./pages/Purchases";
 import { RestorePassword } from "./pages/RestorePassword";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import { NavbarComponent } from "./components/Shared/Navbar/NavbarComponent";
+import { UpdateProfile } from "./pages/UpdateProfile";
+import { BallTriangle } from "react-loader-spinner";
 
 //Pages
 const ProductList = React.lazy(() => import('./pages/ProductList'));
@@ -16,6 +19,7 @@ const Profile = React.lazy(() => import('./pages/Profile'));
 const App = () => {
   return (
     <BrowserRouter>
+      <NavbarComponent />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:category" element={
@@ -59,9 +63,12 @@ const App = () => {
             <RestorePassword />
           </React.Suspense>
         } />
+        <Route path="/profile/updateProfile/:id" element={
+          <UpdateProfile />
+        } />
       </Routes>
     </BrowserRouter>
-  ) 
+  )
 }
 
 export default App

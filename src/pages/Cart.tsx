@@ -1,4 +1,3 @@
-import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
 import { Footer } from '../components/Shared/Footer';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -54,7 +53,6 @@ const Cart = () => {
 
     return (
         <>
-            <NavbarComponent />
             <div>
                 <div className="cart-container">
                     <div className="wrapperCart">

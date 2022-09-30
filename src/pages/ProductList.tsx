@@ -1,4 +1,3 @@
-import { NavbarComponent } from '../components/Shared/Navbar/NavbarComponent';
 import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
 import { useState, useEffect } from 'react';
@@ -29,7 +28,7 @@ const ProductList = () => {
         const handleBackgroundCategory = (category: string) => {
             switch (category) {
                 case "basketball":
-                    setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826422/Olympus/basketball/pexels-maik-kleinert-3534924_pwnbe9.jpg")
+                    setbackgroundImage("https://www.wallpaperuse.com/wallp/11-110016_m.jpg")
                     return
                 case "soccer":
                     setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826493/Olympus/Soccer/pexels-alexander-nadrilyanski-3684122_tgskfl.jpg")
@@ -48,7 +47,6 @@ const ProductList = () => {
 
     return (
         <div className="w-full">
-            <NavbarComponent />
             <div className='titleContainer'>
                 <img className='image' src={backgroundImage} alt="" />
                 <h4 className='title'>{category}</h4>

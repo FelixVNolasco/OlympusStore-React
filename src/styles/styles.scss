@@ -9,7 +9,6 @@
 @import "./base/variables";
 
 //Components
-// @import "./components/auth";
 @import "./components/navbar";
 @import "./components/categories";
 @import "./components/products";
@@ -31,18 +30,3 @@
 
 //AUTH
 @import "./components/auth/_auth";
-
-
-//PROFILE
-@import "./components/profile/profile";
-@import "./components/profile/updateProfile";
-
-
-@layer base {
-    :root {
-        // --color-ebonyClay: 40 47 73;
-        // --color-dodgerBlue: 31 179 245;
-        // --color-havelockBlue: 61 131 211;
-        // --color-mediumPurple: 167 87 226;        
-    }
-}

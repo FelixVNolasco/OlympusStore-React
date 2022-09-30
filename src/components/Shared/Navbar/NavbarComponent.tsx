@@ -192,6 +192,7 @@ export const NavbarComponent = () => {
                                             key="soccer"
                                             css={{
                                                 minWidth: "100%",
+                                                color: "Black",
                                             }}
                                         >
                                             Mi Perfil
@@ -203,7 +204,7 @@ export const NavbarComponent = () => {
                                             key="purchasesLinkRouter"
                                             className="pt-2 pb-2 w-full"
                                         >
-                                            <button disabled={false} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed">Mis Compras</button>
+                                            <button disabled={false} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed text-yellow-800">Mis Compras</button>
                                         </LinkRouter>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="logout" withDivider color="error">
