@@ -45,7 +45,7 @@ const Login = () => {
                                     </label>
                                     <div className="input-container">
                                         <Field
-                                            className="auth__input"
+                                            className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-gray-600/90"
                                             type="text"
                                             name="username"
                                         />
@@ -63,7 +63,7 @@ const Login = () => {
 
                                     <div className="password-container">
                                         <Field
-                                            className="auth__input"
+                                            className="w-full p-1 mr-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-gray-600/90"
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                         />
