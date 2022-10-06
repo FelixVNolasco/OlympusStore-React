@@ -2,8 +2,7 @@ import {useState, useEffect} from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Product} from './Product';
 import {RootStateOrAny, useSelector, useDispatch} from 'react-redux';
-import {BallTriangle} from 'react-loader-spinner'
-import {CategoryProduct} from './CategoryProduct';
+import {BallTriangle} from 'react-loader-spinner';
 import {getAllProducts} from '../redux/apiCall';
 
 export const Products = ({category, filters, sort}: any) => {
@@ -64,7 +63,7 @@ export const Products = ({category, filters, sort}: any) => {
                 {
                     category ?
                         filteredProducts?.map((product) => {
-                            return <CategoryProduct key={product._id} item={product}/>
+                            return <Product key={product._id} item={product}/>
                         })
                         :
                         products?.slice(0, 8).map((product) => {
