@@ -8,7 +8,6 @@
         padding: 20px;
 
         .titleCart {
-            font-weight: 300;
             text-align: center;
             font-weight: 700;
         }
@@ -33,7 +32,7 @@
                 .topText {
                     text-decoration: underline;
                     cursor: pointer;
-                    margin: 0px 10px;
+                    margin: 0 10px;
                     font-size: $normal;
                 }
             }
@@ -139,8 +138,7 @@
                             }
 
                             .productPrice {
-                                font-size: $larger;
-                                font-weight: 200;
+                                font-size: $normal;
                                 background-color: #018F8C;
                                 padding: 8px;
                                 border-radius: 4px;
@@ -168,7 +166,7 @@
                 }
 
                 .summaryItem {
-                    margin: 30px 0px;
+                    margin: 30px 0;
                     display: flex;
                     justify-content: space-between;
 

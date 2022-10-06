@@ -100,7 +100,7 @@ const Cart = () => {
                                                                      <FaPlus className='icons' onClick={() => dispatch(plusProduct(product))} />
                                                                 </div>
                                                                 <div className="productAmountContainer">
-                                                                    <div className="productPrice">${product.price * product.quantity}</div>
+                                                                    <div className="productPrice">{`Precio Unitario: ${product.price * product.quantity}`}</div>
                                                                 </div>
                                                                 <button className="p-1 bg-red-700 rounded-md text-white text-lg" onClick={() => dispatch(removeProduct(product))}>Eliminar</button>
                                                             </div>
