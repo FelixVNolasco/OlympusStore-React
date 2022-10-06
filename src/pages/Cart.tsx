@@ -4,8 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { userRequest } from '../requestMethods';
-import { cleanCart } from '../redux/cartRedux';
+import {cleanCart, plusProduct, removeProduct, restProduct} from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
+import {FaMinus, FaPlus} from "react-icons/fa";
 
 const Cart = () => {
 
@@ -19,6 +20,7 @@ const Cart = () => {
     const onToken = (token) => {
         setStripeToken(token)
     }
+    console.log(products);
 
     useEffect(() => {
         const makeRequest = async () => {
@@ -93,13 +95,14 @@ const Cart = () => {
                                                             </div>
                                                             <div className="priceDetail">
                                                                 <div className="productAmountContainer">
-                                                                    {/* <FaMinus className='icons' onClick={handleRemoveProduct} /> */}
+                                                                     <FaMinus className='icons' onClick={() => dispatch(restProduct(product))} />
                                                                     <span className='productAmount'>{`Catidad: ${product.quantity}`}</span>
-                                                                    {/* <FaPlus className='icons' onClick={handleAddProduct} /> */}
+                                                                     <FaPlus className='icons' onClick={() => dispatch(plusProduct(product))} />
                                                                 </div>
                                                                 <div className="productAmountContainer">
                                                                     <div className="productPrice">${product.price * product.quantity}</div>
                                                                 </div>
+                                                                <button className="p-1 bg-red-700 rounded-md text-white text-lg" onClick={() => dispatch(removeProduct(product))}>Eliminar</button>
                                                             </div>
                                                         </div>
                                                     ))
