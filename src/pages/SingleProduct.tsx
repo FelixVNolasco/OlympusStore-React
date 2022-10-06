@@ -82,11 +82,10 @@ const SingleProduct = () => {
                             </div>
                             <div className="optionsSingleProduct">
                                 <p className='optionText'>Número:</p>
-                                <select className='options' name="" onChange={(e) => setSize(e.target.value)}>
-                                    <option value="Numero" disabled>Numero</option>
+                                <select className='options border-slate-400 border-2 rounded-md' name="" onChange={(e) => setSize(e.target.value)}>
                                     {
                                         sizes.map((size) => {
-                                            return <option value={size} key={size}>{size}</option>
+                                            return <option  value={size} key={size}>{size}</option>
                                         })
                                     }
                                 </select>
@@ -97,7 +96,7 @@ const SingleProduct = () => {
                                 <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                             </div>
                             <div className="checkoutContainer" onClick={handleClick}>
-                                <button disabled={isAuthenticated ? false : true} className='checkoutButton'>Añadir al Carrito</button>
+                                <button disabled={!isAuthenticated} className='checkoutButton'>Añadir al Carrito</button>
                                 {
                                     !isAuthenticated &&
                                     <>   
@@ -108,6 +107,11 @@ const SingleProduct = () => {
                                     </>
                                 }
                             </div>
+                            {/*<button onClick={() => dispatch(cleanCart({
+                                products: [],
+                                quantity: 0,
+                                total: 0
+                            }))}>deded</button>*/}
                         </div>
                     </div>
                 )

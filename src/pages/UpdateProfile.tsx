@@ -30,8 +30,8 @@ export const UpdateProfile = () => {
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                const response = await dispatch(updateUser(dispatch, values))
-                                console.log(response);
+                                await dispatch(updateUser(dispatch, values))
+
                                 navigate("/");
                                 setSubmitting(false);
                             } catch (error) {

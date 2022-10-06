@@ -19,9 +19,8 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const handleDelete = async () => {
-
         Swal.fire({
-            title: 'Estas seguro que quieres eliminar tu cuenta?',
+            title: '¿Estas seguro que quieres eliminar tu cuenta?',
             text: "Esta acción no es reversible",
             icon: 'warning',
             showCancelButton: true,

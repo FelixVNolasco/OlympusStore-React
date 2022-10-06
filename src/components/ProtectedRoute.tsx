@@ -7,7 +7,6 @@ export type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({isAuthenticated, authenticationPath, outlet}: ProtectedRouteProps) => {
-    console.log(isAuthenticated);
     if(isAuthenticated._id) {
         return outlet;
     } else {
