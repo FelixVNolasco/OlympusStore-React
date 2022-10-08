@@ -32,13 +32,25 @@ export const getUserPurchases = async (dispatch, id: string) => {
 }
 
 
-export const cancelPurchase = async (dispatch, id: string, _id: string) => {
+export const cancelPurchase = async (dispatch, id: string, _id: string, refreshPage) => {
     dispatch(setLoading());
     try {
         const response = await userRequest.delete(`/orders/${id}`, { params: { id: _id } });
         const { data } = response;
         dispatch(removeLoading());
-        return data;
+        if (data === "Order has been deleted...") {
+            Swal.fire({
+                icon: "success",
+                title: "Exito",
+                text: "Tu compra ha sido cancelada correctamente",
+                confirmButtonColor: "3085d6",
+                confirmButtonText: "Ok"
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    refreshPage();
+                }
+            });
+        }
     } catch (error) {
         dispatch(removeLoading());
         console.log(error);

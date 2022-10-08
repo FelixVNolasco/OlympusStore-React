@@ -8,7 +8,6 @@ import { cleanCart, plusProduct, removeProduct, restProduct } from '../redux/car
 import { EmptyCart } from '../components/Shared/EmptyCart';
 import { FaMinus, FaPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { CheckoutButton } from '../components/Shared/CheckoutButton';
 
 const Cart = () => {
 

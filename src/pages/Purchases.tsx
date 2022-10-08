@@ -40,21 +40,7 @@ export const Purchases = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {                
-                const response = dispatch(cancelPurchase(dispatch, id, _id));
-                if (response.then((response)=> response === "Order has been deleted...")) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Exito",
-                        text: "Tu compra ha sido cancelada correctamente",
-                        confirmButtonColor: "3085d6",
-                        confirmButtonText: "Ok"
-
-                    }).then((result) => {
-                        if(result.isConfirmed) {
-                            refreshPage();
-                        }
-                    });                    
-                }                
+                cancelPurchase(dispatch, id, _id, refreshPage);                
             }
         })
     }
