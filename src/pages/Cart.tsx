@@ -172,7 +172,7 @@ const Cart = () => {
                                                     <span className='summaryItemPrice'>${cart.total}</span>
                                                 </div>
 
-                                                {/* <StripeCheckout
+                                                <StripeCheckout
                                                     name='Olympus Store'
                                                     image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
                                                     billingAddress
@@ -183,8 +183,8 @@ const Cart = () => {
                                                     stripeKey={stripeKey}
                                                 >
                                                     <button className='checkoutButton'>Comprar</button>
-                                                </StripeCheckout> */}
-                                                <CheckoutButton items={products}/>
+                                                </StripeCheckout>
+                                                {/* <CheckoutButton items={products}/> */}
                                             </div>
                                         </>
                                     )
