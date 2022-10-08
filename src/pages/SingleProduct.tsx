@@ -95,8 +95,8 @@ const SingleProduct = () => {
                                 <span className='productAmount'>{quantity}</span>
                                 <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
                             </div>
-                            <div className="checkoutContainer" onClick={handleClick}>
-                                <button disabled={!isAuthenticated} className='checkoutButton'>Añadir al Carrito</button>
+                            <div className="checkoutContainer">
+                                <button onClick={handleClick} disabled={!isAuthenticated} className='checkoutButton'>Añadir al Carrito</button>
                                 {
                                     !isAuthenticated &&
                                     <>   
