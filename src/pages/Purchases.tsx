@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getUserPurchases } from "../redux/apiCall";
+import { Link, useNavigate } from "react-router-dom";
+import { cancelPurchase, getUserPurchases } from "../redux/apiCall";
 import { BallTriangle } from "react-loader-spinner";
+import Swal from 'sweetalert2';
 
 export const Purchases = () => {
 
+    const navigate = useNavigate();
     const [purchases, setPurchases] = useState<any[]>(null);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
@@ -14,6 +16,10 @@ export const Purchases = () => {
     const { accessToken } = currentUser;
     const { _id } = currentUser;
 
+    const refreshPage = () => {
+        navigate(0);
+    }
+
     useEffect(() => {
         const getPurchases = async () => {
             const data = await getUserPurchases(dispatch, _id);
@@ -21,7 +27,37 @@ export const Purchases = () => {
         }
         getPurchases();
     }, [dispatch, accessToken, _id]);
+    
+    const handleCancelPurchase = (id: string) => {
+        Swal.fire({
+            title: '¿Estas seguro que quieres eliminar esta compra?',
+            text: "Esta acción no es reversible",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, cancelar compra',
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {                
+                const response = dispatch(cancelPurchase(dispatch, id, _id));
+                if (response.then((response)=> response === "Order has been deleted...")) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Exito",
+                        text: "Tu compra ha sido cancelada correctamente",
+                        confirmButtonColor: "3085d6",
+                        confirmButtonText: "Ok"
 
+                    }).then((result) => {
+                        if(result.isConfirmed) {
+                            refreshPage();
+                        }
+                    });                    
+                }                
+            }
+        })
+    }
 
     return (
         <>
@@ -65,6 +101,7 @@ export const Purchases = () => {
                                                                 </div>
                                                                 <div className="flex flex-col text-sm md:mr-4">
                                                                     <span>Orden Nº {_id}</span>
+                                                                    <span className='text-red-600 cursor-pointer' onClick={() => handleCancelPurchase(_id)}>Cancelar Compra</span>
                                                                 </div>
                                                             </div>
                                                             <span className="ml-4">Productos Comprados</span>

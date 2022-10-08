@@ -26,7 +26,8 @@ const Profile = () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: "No"             
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(deleteUser(dispatch, _id));

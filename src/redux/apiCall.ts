@@ -20,9 +20,23 @@ export const getAllProducts = async (dispatch, category: any) => {
 
 export const getUserPurchases = async (dispatch, id: string) => {
     dispatch(setLoading());
-    try {        
-        const purchasesData = await userRequest.get(`/orders/find/${id}`,{params: {id: id} });
-        const { data } = purchasesData; 
+    try {
+        const purchasesData = await userRequest.get(`/orders/find/${id}`, { params: { id: id } });
+        const { data } = purchasesData;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+
+export const cancelPurchase = async (dispatch, id: string, _id: string) => {
+    dispatch(setLoading());
+    try {
+        const response = await userRequest.delete(`/orders/${id}`, { params: { id: _id } });
+        const { data } = response;
         dispatch(removeLoading());
         return data;
     } catch (error) {

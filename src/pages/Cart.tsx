@@ -1,12 +1,12 @@
-import {Footer} from '../components/Shared/Footer';
-import {useSelector, RootStateOrAny, useDispatch} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
+import { Footer } from '../components/Shared/Footer';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
-import {useState, useEffect} from 'react';
-import {userRequest} from '../requestMethods';
-import {cleanCart, plusProduct, removeProduct, restProduct} from '../redux/cartRedux';
-import {EmptyCart} from '../components/Shared/EmptyCart';
-import {FaMinus, FaPlus} from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { userRequest } from '../requestMethods';
+import { cleanCart, plusProduct, removeProduct, restProduct } from '../redux/cartRedux';
+import { EmptyCart } from '../components/Shared/EmptyCart';
+import { FaMinus, FaPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { CheckoutButton } from '../components/Shared/CheckoutButton';
 
@@ -15,7 +15,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector((state: RootStateOrAny) => state.cart)
-    const {products} = useSelector((state: RootStateOrAny) => state.cart);
+    const { products } = useSelector((state: RootStateOrAny) => state.cart);
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     const [stripeToken, setStripeToken] = useState(null);
 
@@ -27,7 +27,7 @@ const Cart = () => {
     useEffect(() => {
         const makeRequest = async () => {
             try {
-                const {data} = await (userRequest.post("/checkout/payment",
+                const { data } = await (userRequest.post("/checkout/payment",
                     {
                         tokenId: stripeToken.id,
                         amount: cart.total * 100
@@ -121,7 +121,7 @@ const Cart = () => {
                                                         <div className="product" key={product._id.$oid}>
                                                             <div className="productDetail">
                                                                 <img className='imageProduct' src={product?.img}
-                                                                     alt=""/>
+                                                                    alt="" />
                                                                 <div className="details">
                                                                     <span
                                                                         className='productName'><b>Articulo:</b> {`${product.title.substring(0, 28)}...`}</span>
@@ -134,11 +134,11 @@ const Cart = () => {
                                                             <div className="priceDetail">
                                                                 <div className="productAmountContainer">
                                                                     <FaMinus className='icons'
-                                                                             onClick={() => dispatch(restProduct(product))}/>
+                                                                        onClick={() => dispatch(restProduct(product))} />
                                                                     <span
                                                                         className='productAmount'>{`Cantidad: ${product.quantity}`}</span>
                                                                     <FaPlus className='icons'
-                                                                            onClick={() => dispatch(plusProduct(product))}/>
+                                                                        onClick={() => dispatch(plusProduct(product))} />
                                                                 </div>
                                                                 <div className="productAmountContainer">
                                                                     <div
@@ -172,7 +172,7 @@ const Cart = () => {
                                                     <span className='summaryItemPrice'>${cart.total}</span>
                                                 </div>
 
-                                                <StripeCheckout
+                                                {/* <StripeCheckout
                                                     name='Olympus Store'
                                                     image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
                                                     billingAddress
@@ -183,21 +183,19 @@ const Cart = () => {
                                                     stripeKey={stripeKey}
                                                 >
                                                     <button className='checkoutButton'>Comprar</button>
-                                                </StripeCheckout>
-                                                {/* <CheckoutButton items={products}/>*/}
-
+                                                </StripeCheckout> */}
+                                                <CheckoutButton items={products}/>
                                             </div>
                                         </>
-
                                     )
                                     :
                                     (
-                                        <EmptyCart/>
+                                        <EmptyCart />
                                     )
                             }
                         </div>
                     </div>
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
         </>
