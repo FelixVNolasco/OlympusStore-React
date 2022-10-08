@@ -8,6 +8,7 @@ import {cleanCart, plusProduct, removeProduct, restProduct} from '../redux/cartR
 import {EmptyCart} from '../components/Shared/EmptyCart';
 import {FaMinus, FaPlus} from "react-icons/fa";
 import Swal from "sweetalert2";
+import { CheckoutButton } from '../components/Shared/CheckoutButton';
 
 const Cart = () => {
 
@@ -170,7 +171,7 @@ const Cart = () => {
                                                     <span className='summaryItemText'>Total</span>
                                                     <span className='summaryItemPrice'>${cart.total}</span>
                                                 </div>
-
+{/* 
                                                 <StripeCheckout
                                                     name='Olympus Store'
                                                     image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
@@ -182,7 +183,8 @@ const Cart = () => {
                                                     stripeKey={stripeKey}
                                                 >
                                                     <button className='checkoutButton'>Comprar</button>
-                                                </StripeCheckout>
+                                                </StripeCheckout> */}
+                                                <CheckoutButton items={products}/>                                                
 
                                             </div>
                                         </>
