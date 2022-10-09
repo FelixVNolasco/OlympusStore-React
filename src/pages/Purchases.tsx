@@ -45,6 +45,8 @@ export const Purchases = () => {
         })
     }
 
+    console.log(purchases);
+
     return (
         <>
             {
@@ -55,9 +57,9 @@ export const Purchases = () => {
                             <div className="container mx-auto">
                                 <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
                                     {
-                                        purchases === undefined ?
+                                        purchases?.length === 0 ?
                                             (
-                                                <span className="text-xl text-center">No haz realizado ninguna compra 😅</span>
+                                                <span className="text-xl text-center">Aún no haz realizado ninguna compra 😁</span>
                                             ) :
                                             (
                                                 purchases?.map(purchase => {
