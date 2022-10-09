@@ -79,14 +79,17 @@ export const getSingleProduct = async (dispatch, productId: string) => {
 //     }
 // }
 
-export const updateUser = async (dispatch, values) => {
+export const updateUser = async (dispatch, values, handleLogout) => {
     try {
         dispatch(setLoading());
-        await userRequest.put(`/users/${values.id}`, values);
+        await userRequest.put(`/users/${values.id}`, values, { params: { id: values.id } });        
         Swal.fire({
             icon: "success",
             title: "Exito",
             text: "Tu cuenta ha sido actualizada correctamente",
+            didClose: () => {
+                handleLogout();
+            }
         });
         dispatch(removeLoading());
     } catch (error) {
@@ -107,7 +110,7 @@ export const deleteUser = async (dispatch, userId: string, navigateToHome) => {
             icon: "success",
             title: "Exito",
             text: "Tu cuenta ha sido eliminada correctamente",
-            didClose:() => {
+            didClose: () => {
                 navigateToHome();
             }
         });

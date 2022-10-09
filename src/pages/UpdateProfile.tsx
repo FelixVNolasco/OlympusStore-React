@@ -1,38 +1,43 @@
 import { useDispatch } from "react-redux";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+// import { useState } from 'react';
 import { RootStateOrAny, useSelector } from "react-redux";
 import { updateSchema } from '../components/Schema/FomSchema';
 import { updateUser } from '../redux/apiCall';
+import { logout } from '../redux/actions/auth';
 
 export const UpdateProfile = () => {
 
     const { _id, username, email } = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    // const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
 
-    const { photoURL } = user;
+    // const { photoURL } = user;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [showPassword, setshowPassword] = useState(false);
-    const handleShowPassword = () => {
-        setshowPassword(!showPassword);
-    };
+    // const [showPassword, setshowPassword] = useState(false);
+    // const handleShowPassword = () => {
+    //     setshowPassword(!showPassword);
+    // };
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate("/auth/login");
+    }
 
     return (
         <>
             <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md">
                 <div className="flex flex-col-reverse xl:flex-row w-2/3 m-12 items-center justify-around">
                     <Formik
-                        initialValues={{ id: _id, username: username, email: email, password: "" }}
+                        initialValues={{ id: _id, username: username, email: email }}
                         validationSchema={updateSchema}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                await dispatch(updateUser(dispatch, values))
-
-                                navigate("/");
+                                await updateUser(dispatch, values, handleLogout);
+                                // navigate("/");
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error)
@@ -76,7 +81,7 @@ export const UpdateProfile = () => {
                                         component="div"
                                     />
                                 </div>
-                                <div className="flex flex-col mb-4">
+                                {/* <div className="flex flex-col mb-4">
                                     <label className="font-semibold" htmlFor="password">
                                         Contraseña
                                     </label>
@@ -103,12 +108,12 @@ export const UpdateProfile = () => {
                                         name="password"
                                         component="div"
                                     />
-                                </div>
+                                </div> */}
                                 <div className="flex justify-end">
                                     <button
                                         className="p-2 rounded-md bg-indigo-400 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-300 hover:bg-indigo-400/80 transition ease-in-out duration-150"
                                         type="submit"
-                                        disabled={true}
+                                        disabled={isSubmitting}
                                     >
                                         {
                                             !isSubmitting ? ("Actualizar") : ("Cargando")
@@ -118,9 +123,9 @@ export const UpdateProfile = () => {
                             </Form>
                         )}
                     </Formik>
-                    <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
+                    {/* <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
                         <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
