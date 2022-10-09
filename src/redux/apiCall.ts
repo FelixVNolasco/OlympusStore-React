@@ -99,7 +99,7 @@ export const updateUser = async (dispatch, values) => {
     }
 }
 
-export const deleteUser = async (dispatch, userId: string) => {
+export const deleteUser = async (dispatch, userId: string, navigateToHome) => {
     try {
         dispatch(setLoading());
         await userRequest.delete(`/users/${userId}`);
@@ -107,6 +107,9 @@ export const deleteUser = async (dispatch, userId: string) => {
             icon: "success",
             title: "Exito",
             text: "Tu cuenta ha sido eliminada correctamente",
+            didClose:() => {
+                navigateToHome();
+            }
         });
         dispatch(logout());
         dispatch(removeLoading());

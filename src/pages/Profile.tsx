@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteUser } from '../redux/apiCall';
 import { RootStateOrAny, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { BallTriangle } from "react-loader-spinner";
 
@@ -18,6 +18,13 @@ const Profile = () => {
     const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
+
+    const navigateToHome = () => {        
+        navigate("/");
+    }
+
     const handleDelete = async () => {
         Swal.fire({
             title: '¿Estas seguro que quieres eliminar tu cuenta?',
@@ -30,7 +37,7 @@ const Profile = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteUser(dispatch, _id));
+                dispatch(deleteUser(dispatch, _id, navigateToHome));
             }
         })
     }
