@@ -44,11 +44,8 @@ export const cancelPurchase = async (dispatch, id: string, _id: string, refreshP
                 title: "Exito",
                 text: "Tu compra ha sido cancelada correctamente",
                 confirmButtonColor: "3085d6",
-                confirmButtonText: "Ok"
-            }).then((result) => {
-                if(result.isConfirmed) {
-                    refreshPage();
-                }
+                confirmButtonText: "Ok",
+                didClose: () => refreshPage()
             });
         }
     } catch (error) {

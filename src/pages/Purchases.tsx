@@ -33,11 +33,11 @@ export const Purchases = () => {
             title: '¿Estas seguro que quieres eliminar esta compra?',
             text: "Esta acción no es reversible",
             icon: 'warning',
-            showCancelButton: true,
+            showCancelButton: true,            
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, cancelar compra',
-            cancelButtonText: "No"
+            cancelButtonText: "No"            
         }).then((result) => {
             if (result.isConfirmed) {                
                 cancelPurchase(dispatch, id, _id, refreshPage);                

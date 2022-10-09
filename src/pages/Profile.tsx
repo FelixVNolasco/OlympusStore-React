@@ -27,7 +27,7 @@ const Profile = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, eliminar',
-            cancelButtonText: "No"             
+            cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(deleteUser(dispatch, _id));
@@ -43,7 +43,7 @@ const Profile = () => {
                         <>
                             <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-gray-700 text-amber-50 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
                                 <div className="flex flex-col md:text-md  lg:text-lg w-3/4 m-20 items-center justify-around">
-                                    <div className="flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
+                                    <div className="flex mb-6 xl:mb-0 justify-center">
                                         <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4 items-center">
