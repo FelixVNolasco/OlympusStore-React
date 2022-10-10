@@ -36,6 +36,7 @@ export const updateSchema = Yup.object().shape({
     email: Yup.string()
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
+    // urlImage: Yup.string()
     // password: Yup.string()
     //     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     //         "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")

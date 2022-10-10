@@ -82,6 +82,7 @@ export const getSingleProduct = async (dispatch, productId: string) => {
 export const updateUser = async (dispatch, values, handleLogout) => {
     try {
         dispatch(setLoading());
+        console.log(values);
         await userRequest.put(`/users/${values.id}`, values, { params: { id: values.id } });        
         Swal.fire({
             icon: "success",

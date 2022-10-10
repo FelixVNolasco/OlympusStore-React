@@ -7,7 +7,7 @@ export const Product = ({ item }: any) => {
     }
 
     return (
-        <div className='productContainer'>
+        <div className='w-80 productContainer'>
             <Link to={`/product/${item._id}`}>
                 <div className="product">
                     <div className='imageContainer'>

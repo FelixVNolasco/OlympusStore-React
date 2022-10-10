@@ -46,6 +46,7 @@ const ProductList = () => {
 
 
     return (
+        <>
         <div className="w-full">
             <div className='titleContainer'>
                 <img className='image' src={backgroundImage} alt="" />
@@ -54,7 +55,7 @@ const ProductList = () => {
             <div className="filterContainer">
                 <div className="filter">
                     <p className="filterText">Buscar por número: </p>
-                    <select className='filterSelect' name="size" onChange={handleFilters}>
+                    <select className='border-2 border-gray-500 p-1 rounded-md' name="size" onChange={handleFilters}>
                         <option value="" disabled>Tamaño</option>
                         <option value="24">24</option>
                         <option value="24.5">24.5</option>
@@ -69,17 +70,18 @@ const ProductList = () => {
                 </div>
                 <div className="filter">
                     <p className="filterText">Ordenar por: </p>
-                    <select className='filterSelect' onChange={handleSort} >
+                    <select className='border-2 border-gray-500 p-1 rounded-md' onChange={handleSort} >
                         <option value="asc">Más Barato</option>
                         <option value="desc">Más Caro</option>
                     </select>
                 </div>
             </div>
 
-            <div className="productListContainer animate__animated animate__backInDown">
+            {/* <div className="productListContainer animate__animated animate__backInDown"> */}
                 <Products category={category} filters={filters} sort={sort} />
-            </div>
-        </div>
+            {/* </div> */}
+        </div>        
+        </>
     )
 }
 

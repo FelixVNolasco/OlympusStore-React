@@ -1,25 +1,41 @@
 import { useDispatch } from "react-redux";
-// import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-// import { useState } from 'react';
 import { RootStateOrAny, useSelector } from "react-redux";
 import { updateSchema } from '../components/Schema/FomSchema';
 import { updateUser } from '../redux/apiCall';
 import { logout } from '../redux/actions/auth';
+// import { useState } from "react";
+// import axios from "axios";
 
 export const UpdateProfile = () => {
 
+    // const [profileSelected, setProfileSelected] = useState<any>("");
+    // const [profileResponse, setProfileResponse] = useState<any>("");
+
     const { _id, username, email } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     // const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-
     // const { photoURL } = user;
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // const [showPassword, setshowPassword] = useState(false);
     // const handleShowPassword = () => {
     //     setshowPassword(!showPassword);
     // };
+
+    // const uploadProfileImage = () => {
+    //     const formData = new FormData();
+    //     formData.append("file", profileSelected);
+    //     formData.append("upload_preset", "olympus_store");
+    //     if (profileSelected !== "") {
+    //         try {
+    //             axios.post("https://api.cloudinary.com/v1_1/dhyxqmnua/image/upload", formData).then(({ data }) => setProfileResponse(data.url));
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    // }
 
     const handleLogout = () => {
         dispatch(logout());
@@ -34,10 +50,12 @@ export const UpdateProfile = () => {
                         initialValues={{ id: _id, username: username, email: email }}
                         validationSchema={updateSchema}
                         onSubmit={async (values, { setSubmitting }) => {
+                            // uploadProfileImage();
                             try {
                                 setSubmitting(true);
+                                // console.log(profileResponse);
+                                // values.urlImage = profileResponse;
                                 await updateUser(dispatch, values, handleLogout);
-                                // navigate("/");
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error)
@@ -81,6 +99,10 @@ export const UpdateProfile = () => {
                                         component="div"
                                     />
                                 </div>
+
+                                {/* <input type="file" onChange={(e) => {
+                                    setProfileSelected(e.target.files[0]);
+                                }} /> */}
                                 {/* <div className="flex flex-col mb-4">
                                     <label className="font-semibold" htmlFor="password">
                                         Contraseña

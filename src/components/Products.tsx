@@ -1,16 +1,18 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
-import {Product} from './Product';
-import {RootStateOrAny, useSelector, useDispatch} from 'react-redux';
-import {BallTriangle} from 'react-loader-spinner';
-import {getAllProducts} from '../redux/apiCall';
+import { Product } from './Product';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import { BallTriangle } from 'react-loader-spinner';
+import { getAllProducts } from '../redux/apiCall';
+import { ProductsMap } from './Shared/ProductsMap';
+import { PaginatedProducts } from './Shared/PaginatedProducts';
 
-export const Products = ({category, filters, sort}: any) => {
+export const Products = ({ category, filters, sort }: any) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
     const dispatch = useDispatch();
-    const {loading} = useSelector((state: RootStateOrAny) => state.ui);
+    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -26,13 +28,13 @@ export const Products = ({category, filters, sort}: any) => {
 
     useEffect(() => {
         category &&
-        setfilteredProducts(
-            products.filter((item) =>
-                Object.entries(filters).every(([key, value]) =>
-                    item[key].includes(value)
+            setfilteredProducts(
+                products.filter((item) =>
+                    Object.entries(filters).every(([key, value]) =>
+                        item[key].includes(value)
+                    )
                 )
-            )
-        );
+            );
     }, [products, category, filters])
 
     useEffect(() => {
@@ -53,35 +55,26 @@ export const Products = ({category, filters, sort}: any) => {
 
 
     return (
-        <div className="w-full">
+        <>
             {
-                !category && (
-                    <h1 className='productsTitle'>Productos Recientes</h1>
-                )
+                category ?
+                    <PaginatedProducts currentProducts={filteredProducts} itemsPerPage={3} />
+                    :
+                    <>
+                        <h1 className='productsTitle'>Productos Recientes</h1>
+                        <ProductsMap currentProducts={products?.slice(0, 6)} />
+                    </>
             }
-            <div className='products' key="products">
-                {
-                    category ?
-                        filteredProducts?.map((product) => {
-                            return <Product key={product._id} item={product}/>
-                        })
-                        :
-                        products?.slice(0, 8).map((product) => {
-                            return <Product key={product._id} item={product}/>
-                        })
-                }
-                <div className='loadingProducts'>
-                    {loading && (
-                        <BallTriangle
-                            height="162"
-                            width="162"
-                            color='#406882'
-                            ariaLabel='loading'
-                        />
-                    )}
-                </div>
+            <div className='loadingProducts'>
+                {loading && (
+                    <BallTriangle
+                        height="162"
+                        width="162"
+                        color='#406882'
+                        ariaLabel='loading'
+                    />
+                )}
             </div>
-        </div>
-
+        </>
     )
 }
