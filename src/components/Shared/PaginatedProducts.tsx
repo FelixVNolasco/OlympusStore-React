@@ -29,7 +29,7 @@ export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
         <div className='flex flex-col h-full justify-between'>
             <ProductsMap currentProducts={currentItems} />
             <ReactPaginate
-                className='pt-6 pb-6 flex gap-4 bg-slate-700 text-slate-50 justify-center'
+                className='w-1/3 mx-auto p-6 mt-4 flex gap-4 bg-slate-700 text-slate-50 justify-center rounded-md drop-shadow-xl shadow-sm shadow-slate-500'
                 breakLabel="..."
                 nextLabel=">"
                 onPageChange={handlePageClick}
