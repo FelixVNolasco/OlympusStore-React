@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
 import { useState, useEffect } from 'react';
+import { Search } from '../components/Shared/Search';
 
 const ProductList = () => {
 
@@ -74,6 +75,7 @@ const ProductList = () => {
                         <option value="asc">Más Barato</option>
                         <option value="desc">Más Caro</option>
                     </select>
+                    {/* <Search />  */}
                 </div>
             </div>
 
