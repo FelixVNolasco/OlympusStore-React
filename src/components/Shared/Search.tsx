@@ -28,7 +28,7 @@ export const Search = () => {
     return (
         <>
             <div className='flex mt-2 justify-between rounded-md items-center border-2 border-gray-500 p-2'>
-                <input value={queryText} onChange={handlequeryChange} placeholder='Buscar..' className='focus:outline-none' type="text" autoComplete='off' autoCorrect='off' spellCheck="false" maxLength={64} />
+                <input value={queryText} onChange={handlequeryChange} placeholder='Buscar..' className='focus:outline-none w-full' type="text" autoComplete='off' autoCorrect='off' spellCheck="false" maxLength={64} />
                 <FaSearch className='text-gray-600' />
             </div>
 
