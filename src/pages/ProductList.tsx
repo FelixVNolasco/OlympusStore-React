@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
 import { useState, useEffect } from 'react';
-import { Search } from '../components/Shared/Search';
 
 const ProductList = () => {
 
@@ -74,8 +73,7 @@ const ProductList = () => {
                     <select className='border-2 border-gray-500 p-1 rounded-md' onChange={handleSort} >
                         <option value="asc">Más Barato</option>
                         <option value="desc">Más Caro</option>
-                    </select>
-                    {/* <Search />  */}
+                    </select>                    
                 </div>
             </div>
 

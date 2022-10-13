@@ -6,6 +6,7 @@ import { BallTriangle } from 'react-loader-spinner';
 import { getAllProducts } from '../redux/apiCall';
 import { ProductsMap } from './Shared/ProductsMap';
 import { PaginatedProducts } from './Shared/PaginatedProducts';
+import { Search } from './Shared/Search';
 
 export const Products = ({ category, filters, sort }: any) => {
 
@@ -61,7 +62,11 @@ export const Products = ({ category, filters, sort }: any) => {
                     <PaginatedProducts currentProducts={filteredProducts} itemsPerPage={3} />
                     :
                     <>
-                        <h1 className='productsTitle'>Productos Recientes</h1>
+                        <div className="flex flex-col w-1/3 mx-auto">
+                            <h4 className='productsTitle text-center text-2xl'>Buscar Productos</h4>
+                            <Search />
+                        </div>
+                        <h1 className='productsTitle'>Productos Recientes</h1>                        
                         <ProductsMap currentProducts={products?.slice(0, 6)} />
                     </>
             }
