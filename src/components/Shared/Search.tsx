@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { publicRequest } from '../../requestMethods';
 import { SearchResults } from './SearchResults';
 
-export const Search = () => {
+export const Search = ({category = ""}) => {
 
     const [queryText, setqueryText] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -17,12 +17,20 @@ export const Search = () => {
             setSearchResults([])
             return;
         }
-        ; (async () => {
-            const response: any = await publicRequest.get("/products/search", { params: { title: queryText } });
-            const { data } = response;
-            setSearchResults(data);
-        })()
-    }, [queryText])
+        if(category !== "") {
+            ; (async () => {
+                const response: any = await publicRequest.get("/products/search/category", { params: { title: queryText, category: category } });
+                const { data } = response;
+                setSearchResults(data);
+            })()
+        } else {
+            ; (async () => {
+                const response: any = await publicRequest.get("/products/search", { params: { title: queryText } });
+                const { data } = response;
+                setSearchResults(data);
+            })()
+        }
+    }, [queryText, category]);
 
 
     return (
