@@ -62,7 +62,7 @@ export const Products = ({ category, filters, sort }: any) => {
                     <PaginatedProducts currentProducts={filteredProducts} itemsPerPage={3} />
                     :
                     <>
-                        <div className="flex flex-col w-1/3 mx-auto">
+                        <div className="flex flex-col w-5/6 md:1/2 lg:w-2/3 xl:w-1/3 mx-auto">
                             <h4 className='productsTitle text-center text-2xl'>Buscar Productos</h4>
                             <Search />
                         </div>

@@ -10,7 +10,7 @@ export const SearchResults = ({ searchResults }) => {
             {
                 searchResults.map(({ _id, title, desc, inStock, price, img }) => {
                     return (
-                        <Link to={`/product/${_id}`} className="flex w-2/3 mx-auto m-1 p-2 border-2 border-slate-500 drop-shadow-xl shadow-sm shadow-slate-500 rounded-md transition ease-in duration-100 hover:-translate-y-1">
+                        <Link to={`/product/${_id}`} className="flex items-center w-full sm:w-5/6 mx-auto m-1 p-2 border-2 border-slate-500 drop-shadow-xl shadow-sm shadow-slate-500 rounded-md transition ease-in duration-100 hover:-translate-y-1">
                             <div className="w-1/3">
                                 <img className="rounded-md" src={img} alt="" />
                             </div>
