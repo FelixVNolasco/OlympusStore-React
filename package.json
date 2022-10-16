@@ -23,6 +23,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.1",
+    "react-slideshow-image": "^4.0.5",
     "react-stripe-checkout": "^2.6.3",
     "react-tooltip": "^4.2.21",
     "redux-persist": "^6.0.0",

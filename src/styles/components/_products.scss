@@ -25,13 +25,14 @@
         }
 
         .imageContainer {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             background-color: white;
             position: absolute;
 
             .image {
+                border-radius: 4px;
                 height: 100%;
                 z-index: 2;
             }
@@ -44,11 +45,12 @@
         flex-direction: column;
 
         .titleProduct {
+            padding: 2px;
+            border-radius: 2px;
             font-weight: bold;
             font-size: $normal;
             text-align: left;
             margin: 0;
-
             background-color: rgb(204, 204, 204);
         }
 
@@ -63,6 +65,7 @@
                 font-weight: 600;
                 background-color: #1f7379;
                 padding: 4px;
+                border-radius: 4px;
             }
 
             .inStock {
@@ -70,6 +73,7 @@
                 font-weight: 700;
                 background-color: #297f01;
                 padding: 4px;
+                border-radius: 4px;
             }
 
             .notAvailable {

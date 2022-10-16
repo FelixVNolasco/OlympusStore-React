@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import { ImageSlider } from './Shared/ImageSlider';
 
 export const Product = ({ item }: any) => {
 
-    function truncate(str, n){
-        return (str.length > n) ? str.slice(0, n-1) + '...' : str;
+    function truncate(str, n) {
+        return (str.length > n) ? str.slice(0, n - 1) + '...' : str;
     }
 
     return (
@@ -11,6 +12,7 @@ export const Product = ({ item }: any) => {
             <Link to={`/product/${item._id}`}>
                 <div className="product">
                     <div className='imageContainer'>
+                        {/* <ImageSlider images={item?.img} /> */}
                         <img className='image' src={item.img} alt="" />
                     </div>
                 </div>

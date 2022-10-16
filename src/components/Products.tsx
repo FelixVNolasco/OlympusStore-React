@@ -66,11 +66,11 @@ export const Products = ({ category, filters, sort }: any) => {
                             <h4 className='productsTitle text-center text-2xl'>Buscar Productos</h4>
                             <Search />
                         </div>
-                        <h1 className='productsTitle'>Productos Recientes</h1>                        
+                        <h1 className='productsTitle'>Productos Recientes</h1>
                         <ProductsMap currentProducts={products?.slice(0, 6)} />
                     </>
             }
-            <div className='loadingProducts'>
+            <div className=' flex items-center justify-center m-20'>
                 {loading && (
                     <BallTriangle
                         height="162"

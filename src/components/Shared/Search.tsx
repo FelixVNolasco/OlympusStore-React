@@ -40,7 +40,7 @@ export const Search = ({category = ""}) => {
                 <FaSearch className='text-gray-600' />
             </div>
 
-            <div className="mt-1 flex flex-col">
+            <div className="mt-1 flex flex-col relative">
                 <SearchResults searchResults={searchResults} />
             </div>
         </>
