@@ -22,7 +22,7 @@ export const Purchases = () => {
 
     useEffect(() => {
         const getPurchases = async () => {
-            const data = await getUserPurchases(dispatch, _id);
+            const data = await getUserPurchases(dispatch, _id, accessToken);
             setPurchases(data);
         }
         getPurchases();

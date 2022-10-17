@@ -4,6 +4,7 @@ import { publicRequest, userRequest } from '../requestMethods';
 import { logout } from './actions/auth';
 import { removeLoading, setLoading } from "./uiRedux";
 import { startFetching } from './userRedux';
+import axios from 'axios';
 
 export const getAllProducts = async (dispatch, category: any) => {
     dispatch(setLoading());
@@ -18,10 +19,10 @@ export const getAllProducts = async (dispatch, category: any) => {
     }
 }
 
-export const getUserPurchases = async (dispatch, id: string) => {
+export const getUserPurchases = async (dispatch, id: string, accessToken: string) => {
     dispatch(setLoading());
     try {
-        const purchasesData = await userRequest.get(`/orders/find/${id}`, { params: { id: id } });
+        const purchasesData = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${id}`, { params: { id: id }, headers: { token: `Bearer ${accessToken}` } });
         const { data } = purchasesData;
         dispatch(removeLoading());
         return data;
@@ -66,24 +67,11 @@ export const getSingleProduct = async (dispatch, productId: string) => {
     }
 }
 
-// export const getInfoUpdateUser = async(dispatch, id) => {
-//     try {
-//         dispatch(setLoading());        
-//     } catch (error) {
-//         dispatch(removeLoading());
-//         Swal.fire({
-//             icon: "error",
-//             title: "Error",
-//             text: "No ha sido posible obtener la información",
-//         });
-//     }
-// }
-
 export const updateUser = async (dispatch, values, handleLogout) => {
     try {
         dispatch(setLoading());
         console.log(values);
-        await userRequest.put(`/users/${values.id}`, values, { params: { id: values.id } });        
+        await userRequest.put(`/users/${values.id}`, values, { params: { id: values.id } });
         Swal.fire({
             icon: "success",
             title: "Exito",
