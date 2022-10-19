@@ -186,29 +186,43 @@ export const NavbarComponent = () => {
                                             {currentUser?.username}
                                         </Text>
                                     </Dropdown.Item>
-                                    <Dropdown.Item key="settings" withDivider>
+                                    <Dropdown.Item key="settings" withDivider color="primary">
                                         <Link
                                             href="/profile"
                                             key="soccer"
                                             css={{
                                                 minWidth: "100%",
-                                                color: "Black",
+                                                color: "#1a29c9",
+                                                fontWeight: "$semibold"
                                             }}
                                         >
                                             Mi Perfil
                                         </Link>
                                     </Dropdown.Item>
-                                    <Dropdown.Item key="purchases" withDivider>
+                                    <Dropdown.Item key="favorites" withDivider color="secondary">
+                                        <Link
+                                            href="/favorites"
+                                            key="soccer"
+                                            css={{
+                                                minWidth: "100%",
+                                                color: "#e62c17",
+                                                fontWeight: "$semibold"
+                                            }}
+                                        >
+                                            Favoritos
+                                        </Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item key="purchases" withDivider color="warning">
                                         <LinkRouter
                                             to="/purchases"
                                             key="purchasesLinkRouter"
                                             className="pt-2 pb-2 w-full"
                                         >
-                                            <button disabled={false} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed text-yellow-800">Mis Compras</button>
+                                            <button disabled={false} className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed text-yellow-800 font-semibold">Mis Compras</button>
                                         </LinkRouter>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="logout" withDivider color="error">
-                                        <button onClick={handleLogout}>Cerrar Sesión</button>
+                                        <button className="font-semibold" onClick={handleLogout}>Cerrar Sesión</button>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
