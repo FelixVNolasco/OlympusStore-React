@@ -29,7 +29,7 @@ const cartSlice = createSlice({
                 });
             }
         },
-        removeProduct: (state, action) => {
+        removeProduct: (state, action) => { 
 
             //TODO: REMOVE ONLY SPECIFIC ELEMENT, NO FILTER THEM ALL
             (state.quantity === 0) ? state.quantity = 0 : state.quantity--;
