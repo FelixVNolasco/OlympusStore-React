@@ -199,7 +199,7 @@ export const NavbarComponent = () => {
                                             Mi Perfil
                                         </Link>
                                     </Dropdown.Item>
-                                    <Dropdown.Item key="favorites" withDivider color="secondary">
+                                    {/* <Dropdown.Item key="favorites" withDivider color="secondary">
                                         <Link
                                             href="/favorites"
                                             key="soccer"
@@ -211,7 +211,7 @@ export const NavbarComponent = () => {
                                         >
                                             Favoritos
                                         </Link>
-                                    </Dropdown.Item>
+                                    </Dropdown.Item> */}
                                     <Dropdown.Item key="purchases" withDivider color="warning">
                                         <LinkRouter
                                             to="/purchases"
