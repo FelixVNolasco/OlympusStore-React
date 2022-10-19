@@ -9,7 +9,7 @@ export const signupSchema = Yup.object().shape({
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
     password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-\.])(?=.{8,})/,
             "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
         .required("La contraseña es requerida"),
     passwordConfirm: Yup.string()
@@ -23,7 +23,7 @@ export const loginSchema = Yup.object().shape({
         .max(30, 'Nombre de Usuario demasiado largo')
         .required("El nombre de usuario es requerido"),
     password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-\.])(?=.{8,})/,
             "La contraseña es al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
         .required("La contraseña es requerida")
 });
