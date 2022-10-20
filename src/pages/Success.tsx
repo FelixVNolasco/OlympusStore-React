@@ -1,17 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { userRequest } from '../requestMethods';
 import { SuccessOrderCard } from '../components/Shared/SuccessOrderCard';
 import { BallTriangle } from 'react-loader-spinner';
 import { cleanCart } from '../redux/cartRedux';
+import { successPurchaseRequest } from '../redux/apiCall';
 
 const Success = () => {
 
     const location: any = useLocation();
     const data = location.state.stripeData;
     const cart = location.state.cart;
-    const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const [order, setOrder] = useState(undefined);
     const [orderId, setOrderId] = useState(null);
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Success = () => {
     useEffect(() => {
         const createOrder = async () => {
             try {
-                const res = await userRequest.post("/orders", {
+                const stripeData = {
                     userId: _id,
                     products: cart.products.map((item) => ({
                         productId: item._id,
@@ -31,15 +31,16 @@ const Success = () => {
                     })),
                     amount: cart.total,
                     address: data.billing_details.address,
-                });
-                setOrder(res.data);
-                setOrderId(res.data._id);
+                };
+                const purchaseData = await successPurchaseRequest(dispatch, stripeData, _id, accessToken);
+                setOrder(purchaseData);
+                setOrderId(purchaseData._id);
             } catch (error) {
                 console.log(error);
             }
         };
         data && createOrder();
-    }, [cart, data, _id]);
+    }, [cart, data, _id, accessToken, dispatch]);
 
     return (
         <>

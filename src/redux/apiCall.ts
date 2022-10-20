@@ -6,6 +6,8 @@ import { removeLoading, setLoading } from "./uiRedux";
 import { startFetching } from './userRedux';
 import axios from 'axios';
 
+const BASE_URL = "https://olympus-backend.vercel.app/api";
+
 export const getAllProducts = async (dispatch, category: any) => {
     dispatch(setLoading());
     try {
@@ -32,6 +34,33 @@ export const getUserPurchases = async (dispatch, id: string, accessToken: string
     }
 }
 
+
+export const makePurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string) => {
+    dispatch(setLoading());
+    try {
+        const purchaseRequest = await axios.post(`${BASE_URL}/checkout/payment`, stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } })
+        const { data } = purchaseRequest;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+
+export const successPurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string) => {
+    dispatch(setLoading());
+    try {
+        const purchaseRequest = await axios.post(`${BASE_URL}/orders`, stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } })
+        const { data } = purchaseRequest;
+        dispatch(removeLoading());
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
 
 export const cancelPurchase = async (dispatch, id: string, _id: string, refreshPage) => {
     dispatch(setLoading());
@@ -91,10 +120,10 @@ export const updateUser = async (dispatch, values, handleLogout) => {
     }
 }
 
-export const deleteUser = async (dispatch, userId: string, navigateToHome) => {
+export const deleteUser = async (dispatch, userId: string, accessToken, navigateToHome) => {
     try {
         dispatch(setLoading());
-        await userRequest.delete(`/users/${userId}`);
+        await axios.delete(`/users/${userId}`, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } });
         Swal.fire({
             icon: "success",
             title: "Exito",

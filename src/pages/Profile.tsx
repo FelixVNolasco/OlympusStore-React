@@ -8,7 +8,7 @@ import { BallTriangle } from "react-loader-spinner";
 const Profile = () => {
 
     const loading = useSelector((state: RootStateOrAny) => state.user.ui);
-    const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { username, photoURL, email, createdAt, updatedAt } = user;
     const CreationDate = new Date(createdAt);
@@ -37,7 +37,7 @@ const Profile = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteUser(dispatch, _id, navigateToHome));
+                dispatch(deleteUser(dispatch, _id,accessToken, navigateToHome));
             }
         })
     }

@@ -3,20 +3,19 @@ import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
-import { userRequest } from '../requestMethods';
 import { cleanCart, plusProduct, removeProduct, restProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
 import { FaMinus, FaPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { removeLoading, setLoading } from '../redux/uiRedux';
-import { BallTriangle } from 'react-loader-spinner';
+import { makePurchaseRequest } from '../redux/apiCall';
 
 const Cart = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector((state: RootStateOrAny) => state.cart);
-    const loading = useSelector((state: RootStateOrAny) => state.ui);
+    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     const [stripeToken, setStripeToken] = useState(null);
@@ -30,19 +29,19 @@ const Cart = () => {
         const makeRequest = async () => {
             try {
                 dispatch(setLoading());
-                const { data } = await (userRequest.post("/checkout/payment",
-                    {
-                        tokenId: stripeToken.id,
-                        amount: cart.total * 100
-                    }
-                ) as any)
+                const stripeData = {
+                    tokenId: stripeToken.id,
+                    amount: cart.total * 100
+                }
+
+                const data = await makePurchaseRequest(dispatch, stripeData, _id, accessToken);
                 dispatch(removeLoading());
                 navigate("/success", {
                     state: {
                         stripeData: data,
                         cart: cart
                     },
-                })
+                });
             } catch (error) {
                 dispatch(removeLoading());
                 console.log(error);
@@ -50,7 +49,7 @@ const Cart = () => {
         }
 
         stripeToken && makeRequest();
-    }, [stripeToken, cart.total, navigate, cart])
+    }, [stripeToken, cart.total, navigate, cart, _id, accessToken, dispatch])
 
     const handleCleanCart = async () => {
         Swal.fire({
