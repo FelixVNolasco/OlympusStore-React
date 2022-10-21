@@ -7,7 +7,7 @@ export const Slider = () => {
 
     return (
         <section className='container mx-auto full-height text-gray-800'>
-            <div className='grid lg:grid-cols-2 md:px-24 items-center gap-4 lg:gap-12'>
+            <div className='grid lg:grid-cols-2 px-4 md:px-24 items-center gap-4 lg:gap-12'>
                 <div className='mt-12 lg:mt-0'>
                     <h1 className='text-center lg:text-left text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight lg:mb-12'>Olympus Store
                         <br />
