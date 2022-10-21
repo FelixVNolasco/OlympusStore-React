@@ -6,19 +6,19 @@ export const Slider = () => {
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
 
     return (
-        <div className='container mx-auto full-height animate__animated animate__fadeIn animate__faster'>
-            <div className="slide">
-                <div className='infoContainer'>
-                    <h2 className='title'>Olympus Store</h2>
-                    <p className='description'>Creemos que cuando nos unimos y nos damos ánimos unos a otros, nada puede detenernos. Cuando eres parte de nuestros miembros, tienes acceso a los mejores productos.</p>
-                    <div className='buttonContainer'>
-                        <p className='slideButton'>LEARN MORE ...</p>
-                    </div>
+        <section className='container mx-auto full-height text-gray-800'>
+            <div className='grid lg:grid-cols-2 md:px-24 items-center gap-4 lg:gap-12'>
+                <div className='mt-12 lg:mt-0'>
+                    <h1 className='text-center lg:text-left text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight lg:mb-12'>Olympus Store
+                        <br />
+                        <span className='text-blue-600'>Lorem Ipsum</span>
+                    </h1>
                 </div>
+
                 {
                     loading ?
                         (
-                            <div className="skeletonLoader">
+                            <div className="flex justify-center lg:justify-end mt-12 lg:mt-0">
                                 <Skeleton
                                     circle
                                     height="100%"
@@ -29,13 +29,13 @@ export const Slider = () => {
                         )
                         :
                         (
-                            <div className="imageContainerSlider">
-                                <img className='image' src="https://res.cloudinary.com/dhyxqmnua/image/upload/c_scale,w_460/v1641613241/Olympus/pexels-pixabay-220383_utmdhd.jpg" alt="" />
+                            <div className="flex justify-center lg:justify-end mt-12 lg:mt-0">
+                                <img className='w-8/12  rounded-lg shadow-lg' src="https://res.cloudinary.com/dhyxqmnua/image/upload/c_scale,w_600/v1666391173/Olympus/logo512_fvobug.png" alt="" />
                             </div>
                         )
                 }
             </div>
-        </div>
+        </section >
     )
 }
 

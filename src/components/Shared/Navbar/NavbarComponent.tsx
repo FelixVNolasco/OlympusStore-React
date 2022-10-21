@@ -48,7 +48,7 @@ export const NavbarComponent = () => {
         <Navbar shouldHideOnScroll isBordered={isDark} variant="sticky">
             <Navbar.Brand>
                 <Navbar.Toggle showIn="sm" aria-label="toggle navigation" />
-                <FcLibrary width={24} height={24} />
+                <img src="https://res.cloudinary.com/dhyxqmnua/image/upload/c_scale,w_24/v1666391173/Olympus/logo512_fvobug.png" width={24} height={24} alt="" />                
                 <Text b color="inherit" hideIn="xs">
                     Olympus Store
                 </Text>
