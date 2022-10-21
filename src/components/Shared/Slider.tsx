@@ -11,7 +11,7 @@ export const Slider = () => {
                 <div className='mt-12 lg:mt-0'>
                     <h1 className='text-center lg:text-left text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight lg:mb-12'>Olympus Store
                         <br />
-                        <span className='text-blue-600'>Lorem Ipsum</span>
+                        <span className='text-blue-600'>Los mejores en el campo</span>
                     </h1>
                 </div>
 
