@@ -2,31 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./base/settings";
+// @import "./base/settings";
 
-@import "./base/base";
-@import "./base/fontsizes";
-@import "./base/variables";
+// @import "./base/base";
+// @import "./base/fontsizes";
+// @import "./base/variables";
 
-//Components
-@import "./components/navbar";
-@import "./components/categories";
-@import "./components/products";
-@import "./components/cart";
-@import "./components/footer";
+// //Components
+// @import "./components/navbar";
+// @import "./components/categories";
+// @import "./components/products";
+// @import "./components/cart";
+// @import "./components/footer";
 
-//Pages
-@import "./components/singleproduct";
-@import "./components/productlist";
-@import "./Pages/Success.scss";
-
-
-//SharedComponent
-@import "./components/Shared/shoppingCart";
-@import "./components/Shared/slider";
-@import "./components/Shared/emptyCart";
-@import "./components/Shared/SuccessOrderCard";
+// //Pages
+// @import "./components/singleproduct";
+// @import "./components/productlist";
+// @import "./Pages/Success.scss";
 
 
-//AUTH
-@import "./components/auth/_auth";
+// //SharedComponent
+// @import "./components/Shared/shoppingCart";
+// @import "./components/Shared/slider";
+// @import "./components/Shared/emptyCart";
+// @import "./components/Shared/SuccessOrderCard";
+
+
+// //AUTH
+// @import "./components/auth/_auth";
