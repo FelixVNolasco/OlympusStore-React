@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ImageSlider } from './Shared/ImageSlider';
 
 export const Product = ({ item }: any) => {
 
@@ -8,23 +7,16 @@ export const Product = ({ item }: any) => {
     }
 
     return (
-        <div className='w-80 productContainer'>
-            <Link to={`/product/${item._id}`}>
+        <Link className='w-72 rounded-md drop-shadow-lg hover:drop-shadow-2xl hover:-translate-y-2 transition ease-in-out duration-300' to={`/product/${item._id}`}>
+            <div className="p-2 grid grid-cols-1 gap-2 text-gray-800 font-semibold">
                 <div className="product">
-                    <div className='imageContainer'>
-                        {/* <ImageSlider images={item?.img} /> */}
-                        <img className='image' src={item.img} alt="" />
-                    </div>
+                    <img className='rounded-md' src={item.img} alt="" />
                 </div>
-            </Link>
-            <div className="productInfo">
-                <p className='titleProduct'>{truncate(item.title, 35)}</p>
-                <div className='priceStock'>
-                    <p className='price'>${item.price}</p>
-                    <p className={item.inStock ? 'inStock' : 'notAvailable'}>{item.inStock ? 'Disponible' : 'Agotado'}</p>
-                </div>
+                <span className='text-lg'>{truncate(item.title, 35)}</span>
+                <span className=''>${item.price}</span>
+                {/* <p className={item.inStock ? 'inStock' : 'notAvailable'}>{item.inStock ? 'Disponible' : 'Agotado'}</p> */}
             </div>
-        </div>
+        </Link>
     )
 }
 

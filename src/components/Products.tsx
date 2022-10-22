@@ -62,24 +62,30 @@ export const Products = ({ category, filters, sort }: any) => {
                     <PaginatedProducts currentProducts={filteredProducts} itemsPerPage={3} />
                     :
                     <>
-                        <div className="flex flex-col w-5/6 md:1/2 lg:w-2/3 xl:w-1/3 mx-auto">
-                            <h4 className='productsTitle text-center text-2xl'>Buscar Productos</h4>
-                            <Search />
-                        </div>
-                        <h1 className='productsTitle'>Productos Recientes</h1>
-                        <ProductsMap currentProducts={products?.slice(0, 6)} />
+                        <section className='grid justify-items-center mb-64'>
+                            <div className="grid grid-cols-1 gap-2 w-10/12 md:w-8/12 lg:w-6/12">
+                                <h4 className='productsTitle text-center text-3xl font-semibold'>Buscar Productos</h4>
+                                <Search />
+                            </div>
+                        </section>
+                        <section className='grid gap-4 justify-items-center mb-64'>
+                            <h1 className='text-4xl text-gray-800 font-bold'>Productos Recientes</h1>
+                            <ProductsMap currentProducts={products?.slice(0, 6)} />
+                        </section>
                     </>
             }
-            <div className=' flex items-center justify-center m-20'>
+            
                 {loading && (
+                <div className='grid justify-items-center mb-64'>
                     <BallTriangle
                         height="162"
                         width="162"
                         color='#406882'
                         ariaLabel='loading'
                     />
+                </div>
                 )}
-            </div>
+            
         </>
     )
 }
