@@ -12,3 +12,4 @@ const Category = ({ item }: any) => {
 }
 
 export default Category
+ 
