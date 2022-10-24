@@ -17,7 +17,7 @@ const ChevronDownIcon = ({fill, size, width = 24, height = 24, ...props}) => {
         strokeMiterlimit={10}
         strokeWidth={1.5}
       />
-    </svg>
+    </svg> 
   );
 };
 
