@@ -1,6 +1,5 @@
 import { FaPlus, FaMinus, FaExclamationCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
-import { Footer } from '../components/Shared/Footer';
 import { useEffect, useState } from 'react';
 import { addProduct } from '../redux/cartRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
@@ -62,62 +61,63 @@ const SingleProduct = () => {
     }
 
     return (
-        <div className="singleProductContainer">            
+
+        <>
             {
                 !isFetching ? (
-                    <div className="wrapperSingleProduct full-height">
-                        <div className="imgProductContainer">
-                            <img className='imgSingleProduct' src={product?.img} alt="" />
-                        </div>
-                        <div className="infoSingleProduct">
-                            <h4 className='titleSingleProduct'>{product?.title}</h4>
-                            <p className='descriptionSingleProduct'>{product?.desc}</p>
-                            <div className='categoriesSection'>
-                                {categories.map((category: string) => {
-                                    return <span key={category} style={{ color: 'white', backgroundColor: 'gray' }} className="categoryLabel">{category}</span>
-                                })}
+
+                    <section className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center">
+                            <div className='grid grid-cols-1 justify-items-center lg:justify-items-start shadow-lg'>
+                                <img className='rounded-lg' src={product?.img} alt="" />
                             </div>
-                            <div className="priceContainer">
-                                <p className='priceSingleProduct'>${product?.price}</p>
-                            </div>
-                            <div className="optionsSingleProduct">
-                                <p className='optionText'>Número:</p>
-                                <select className='options border-slate-400 border-2 rounded-md' name="" onChange={(e) => setSize(e.target.value)}>
+                            <div className="flex flex-col">
+                                <h2 className='text-4xl text-center lg:text-left text-gray-800 font-semibold'>{product?.title}</h2>
+                                <div className='flex gap-4 mt-1 mb-4'>
+                                    {categories.map((category: string) => {
+                                        return <span key={category} className="px-1 rounded-md bg-gray-300">{category}</span>
+                                    })}
+                                </div>
+                                <p className='text-lg'>{product?.desc}</p>
+                                <div className="flex justify-end mb-4">
+                                    <p className='text-lg font-semibold'>${product?.price}</p>
+                                </div>
+                                <div className="flex flex-col w-full items-center mb-4">
+                                    <p className='optionText'>Selecciona tu talla:</p>
+                                    <select className='border-slate-400 border-2 rounded-md w-3/4' name="" onChange={(e) => setSize(e.target.value)}>
+                                        {
+                                            sizes.map((size) => {
+                                                return <option value={size} key={size}>{size}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="flex justify-center items-center gap-4 mb-4">
+                                    <FaMinus className='cursor-pointer' onClick={() => handleQuantity("dec")} />
+                                    <span className='text-lg'>{quantity}</span>
+                                    <FaPlus className='cursor-pointer' onClick={() => handleQuantity("inc")} />
+                                </div>
+                                <div className="flex justify-center items-center gap-4 transition ease-in-out duration-150">
+                                    <button onClick={handleClick} disabled={!isAuthenticated} className='text-stone-50 bg-gray-800 w-full p-2 rounded-md font-semibold cursor-pointer'>Añadir al Carrito</button>
                                     {
-                                        sizes.map((size) => {
-                                            return <option  value={size} key={size}>{size}</option>
-                                        })
+                                        !isAuthenticated &&
+                                        <>
+                                            <FaExclamationCircle data-tip data-for='tooltip' className='tooltip' />
+                                            <ReactTooltip id='tooltip' type='warning' backgroundColor='black' textColor='white'>
+                                                <span>Para realizar compras, en necesario iniciar sesión.</span>
+                                            </ReactTooltip>
+                                        </>
                                     }
-                                </select>
+                                </div>
                             </div>
-                            <div className="productAmountContainer">
-                                <FaMinus className='icons' onClick={() => handleQuantity("dec")} />
-                                <span className='productAmount'>{quantity}</span>
-                                <FaPlus className='icons' onClick={() => handleQuantity("inc")} />
-                            </div>
-                            <div className="checkoutContainer">
-                                <button onClick={handleClick} disabled={!isAuthenticated} className='checkoutButton'>Añadir al Carrito</button>
-                                {
-                                    !isAuthenticated &&
-                                    <>   
-                                        <FaExclamationCircle data-tip data-for='tooltip' className='tooltip' />
-                                        <ReactTooltip id='tooltip' type='warning' backgroundColor='black' textColor='white'>
-                                            <span>Para realizar compras, en necesario iniciar sesión.</span>
-                                        </ReactTooltip>
-                                    </>
-                                }
-                            </div>
-                            {/*<button onClick={() => dispatch(cleanCart({
-                                products: [],
-                                quantity: 0,
-                                total: 0
-                            }))}>deded</button>*/}
                         </div>
-                    </div>
+                    </section>
+
+
                 )
                     :
                     (
-                        <div className='loadingProduct'>
+                        <div className='grid justify-items-center items-center h-screen'>
                             <BallTriangle
                                 height="162"
                                 width="162"
@@ -126,10 +126,8 @@ const SingleProduct = () => {
                         </div>
                     )
             }
-            <Footer />
-        </div>
+        </>
     )
 }
 
-export default SingleProduct
-
+export default SingleProduct;

@@ -47,13 +47,12 @@ const ProductList = () => {
 
 
     return (
-        <>
-            <div className="w-full">
-                <div className='titleContainer'>
-                    <img className='image' src={backgroundImage} alt="" />
-                    <h4 className='title'>{category}</h4>
+        <section className="grid justify-items-center mt-4 mb-4">
+            <div className='grid grid-cols-1 gap-2 lg:gap-12 w-10/12 items-center justify-items-center'>
+                <div className='flex justify-center items-center bg-gray-800 w-full h-16 rounded-md'>
+                    <h4 className='text-xl text-slate-50 uppercase'>{category}</h4>
                 </div>
-                <div className="filterContainer">
+                <div className="flex justify-between w-full">
                     <div className="filter">
                         <p className="filterText">Buscar por número: </p>
                         <select className='border-2 border-gray-500 p-1 rounded-md' name="size" onChange={handleFilters}>
@@ -82,17 +81,13 @@ const ProductList = () => {
                     </div>
                 </div>
                 <div className='flex flex-col w-5/6 md:1/2 lg:w-2/3 xl:w-1/3 mx-auto'>
-                    <div className="mb-12">
-                        <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
-                        <Search category={category} />
-                    </div>
-                </div>
-
-                {/* <div className="productListContainer animate__animated animate__backInDown"> */}
-                <Products category={category} filters={filters} sort={sort} />
-                {/* </div> */}
+                    <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
+                    <Search category={category} />
+                </div>                
+                
+                <Products category={category} filters={filters} sort={sort} />                
             </div>
-        </>
+        </section>
     )
 }
 

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Product } from './Product';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { BallTriangle } from 'react-loader-spinner';
 import { getAllProducts } from '../redux/apiCall';

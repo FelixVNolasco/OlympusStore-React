@@ -5,7 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { cleanCart, plusProduct, removeProduct, restProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { removeLoading, setLoading } from '../redux/uiRedux';
 import { makePurchaseRequest } from '../redux/apiCall';
@@ -90,92 +90,87 @@ const Cart = () => {
     }
 
     return (
-        <div className="cart-container">
+        <div className="grid justify-items-center mt-4">
             {
                 products.length !== 0 ?
                     <>
-                        <div className="wrapperCart">
-                            <h1 className='titleCart'>TUS ARTICULOS</h1>
-                            <div className="top">
-                                <Link to={"/"}>
-                                    <div className="topButton">Continuar Comprando</div>
-                                </Link>
-                                <div className="topTexts">
-                                    <span className="topText">Bolsa de compras ({products.length})</span>
-                                </div>
-                                <button className="topButton" onClick={handleCleanCart}>Limpiar Carrito</button>
+                        <div className="flex items-center justify-between w-10/12 2xl:w-9/12 justify-items-center">
+                            <Link to={"/"}>
+                                <div className="px-2 py-1 bg-orange-300 rounded-md">Continuar Comprando</div>
+                            </Link>
+                            <div className="topTexts">
+                                <span className="topText">Bolsa de compras ({products.length})</span>
                             </div>
-                            <div className="bottom">
-                                <div className="info animate__animated animate__fadeIn animate__faster">
-                                    {
-                                        products.map((product) => (
-                                            <div className="product" key={product._id.$oid}>
-                                                <div className="productDetail">
-                                                    <img className='imageProduct' src={product?.img}
+                            <button className="px-2 py-1 bg-red-400 rounded-md" onClick={handleCleanCart}>Limpiar Carrito</button>
+                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 w-10/12 2xl:w-9/12 items-center justify-items-center">
+                            <div className="w-full animate__animated animate__fadeIn animate__faster">
+                                {
+                                    products.map((product) => (
+                                        <div className="product" key={product._id.$oid}>
+                                            <div className="flex items-center justify-between gap-4">
+                                                <div className='flex items-center'>
+                                                    <img className='w-32' src={product?.img}
                                                         alt="" />
-                                                    <div className="details">
+                                                    <div className="ml-4 flex flex-col">
                                                         <span
-                                                            className='productName'><b>Articulo:</b> {`${product.title.substring(0, 28)}...`}</span>
-                                                        <span
-                                                            className='productId'><b>Código:</b> {product._id}</span>
-                                                        <span
-                                                            className='productSize'><b>Tamaño:</b> {product.size}</span>
+                                                            className='font-semibold'
+                                                        >{`${product.title.substring(0, 40)}...`}</span>
+                                                        <div className="flex justify-between">
+                                                            <span
+                                                            >{`Talla ${product.size}`}</span>
+                                                            <div className="flex ml-4 items-center gap-1">
+                                                                <FaMinus className='cursor-pointer'
+                                                                    onClick={() => dispatch(restProduct(product))} />
+                                                                <span
+                                                                    className='flex flex-col text-center'>{`Cantidad: ${product.quantity}`}</span>
+                                                                <FaPlus className='cursor-pointer'
+                                                                    onClick={() => dispatch(plusProduct(product))} />
+                                                            </div>
+                                                        </div>
+                                                        <FaTrash className='mt-2 hover:text-red-400 cursor-pointer' onClick={() => handleRemoveProduct(product)} />
                                                     </div>
-                                                </div>
-                                                <div className="priceDetail">
-                                                    <div className="productAmountContainer">
-                                                        <FaMinus className='icons'
-                                                            onClick={() => dispatch(restProduct(product))} />
-                                                        <span
-                                                            className='productAmount'>{`Cantidad: ${product.quantity}`}</span>
-                                                        <FaPlus className='icons'
-                                                            onClick={() => dispatch(plusProduct(product))} />
-                                                    </div>
-                                                    <div className="productAmountContainer">
-                                                        <div
-                                                            className="productPrice">{`$ ${product.price * product.quantity}`}</div>
-                                                    </div>
-                                                    <button
-                                                        className="p-1 bg-red-700 rounded-md text-white text-lg"
-                                                        onClick={() => handleRemoveProduct(product)}>Eliminar
-                                                    </button>
-                                                </div>
+                                                </div>                                                
+                                                    <div
+                                                        className=" w-1/6text-xl font-semibold">{`$ ${product.price * product.quantity}`}</div>
+                                                
                                             </div>
-                                        ))
-                                    }
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            <div className="w-2/3 p-2 rounded-md  animate__animated animate__fadeIn animate__faster">
+                                <h1 className='mb-4 text-2xl'>Resumen</h1>
+                                <div className="flex  justify-between mb-2">
+                                    <span>Subtotal</span>
+                                    <span>${cart.total}</span>
                                 </div>
-                                <div className="summary animate__animated animate__fadeIn animate__faster">
-                                    <h1 className='summaryTitle'>RESUMEN DE ORDEN</h1>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Subtotal</span>
-                                        <span className='summaryItemPrice'>${cart.total}</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Costo de envío estimado</span>
-                                        <span className='summaryItemPrice'>$5.90</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Descuento de envío</span>
-                                        <span className='summaryItemPrice'>-$5.90</span>
-                                    </div>
-                                    <div className="summaryItem">
-                                        <span className='summaryItemText'>Total</span>
-                                        <span className='summaryItemPrice'>${cart.total}</span>
-                                    </div>
-                                    <StripeCheckout
-                                        name='Olympus Store'
-                                        image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
-                                        billingAddress
-                                        shippingAddress
-                                        description={`El total es: $${cart.total}`}
-                                        amount={cart.total * 100}
-                                        token={onToken}
-                                        stripeKey={stripeKey}
-                                    >
-                                        <button className='checkoutButton'>Comprar</button>
-                                    </StripeCheckout>
-                                    {/* <CheckoutButton items={products}/> */}
+                                <div className="flex  justify-between mb-2">
+                                    <span>Costo de envío estimado</span>
+                                    <span>$5.90</span>
                                 </div>
+                                <div className="flex  justify-between mb-2">
+                                    <span>Descuento de envío</span>
+                                    <span>-$5.90</span>
+                                </div>
+                                <hr />
+                                <div className="flex  justify-between mt-4 mb-6">
+                                    <span>Total</span>
+                                    <span>${cart.total}</span>
+                                </div>
+                                <StripeCheckout
+                                    name='Olympus Store'
+                                    image='https://avatars.githubusercontent.com/u/49852681?s=400&u=990567cf7effed2395dc1f01ff6ac7f657b2da8f&v=4'
+                                    billingAddress
+                                    shippingAddress
+                                    description={`El total es: $${cart.total}`}
+                                    amount={cart.total * 100}
+                                    token={onToken}
+                                    stripeKey={stripeKey}
+                                >
+                                    <button className='w-full px-3 py-2 font-semibold bg-green-300 rounded-md'>Comprar</button>
+                                </StripeCheckout>
+                                {/* <CheckoutButton items={products}/> */}
                             </div>
                         </div>
                     </>

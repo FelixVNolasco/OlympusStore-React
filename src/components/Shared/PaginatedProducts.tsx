@@ -26,14 +26,14 @@ export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
         setItemOffset(newOffset);
     };
     return (
-        <div className='flex flex-col h-full justify-between'>
+        <div className='flex flex-col w-full items-center h-full justify-between'>
             <ProductsMap currentProducts={currentItems} />
             <ReactPaginate
                 className='w-1/2 md:w-1/3  mx-auto items-center p-6 mt-4 flex gap-4 bg-slate-700 text-slate-50 justify-center rounded-md drop-shadow-xl shadow-sm shadow-slate-500'
                 breakLabel="..."
                 nextLabel={<FaArrowAltCircleRight width={24} />}
                 pageClassName='rounded-md bg-green-500'
-                pageLinkClassName='p-4 h-16'
+                pageLinkClassName='px-4 h-16'
                 activeClassName='bg-blue-500'
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
