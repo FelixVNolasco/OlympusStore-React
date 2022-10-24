@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { signup } from '../../redux/actions/auth';
 import { signupSchema } from '../Schema/FomSchema';
+import { motion } from 'framer-motion';
 
 const Signup = () => {
 
@@ -23,7 +24,7 @@ const Signup = () => {
     };
 
     return (
-        <div className='form-wrapper'>
+        <motion.div className='form-wrapper' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className='form-container'>
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                     <p className="auth__title">Registrarse</p>
@@ -161,7 +162,7 @@ const Signup = () => {
                     </Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

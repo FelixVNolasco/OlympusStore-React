@@ -1,16 +1,15 @@
 import Categories from '../components/Categories'
 import { Hero } from '../components/Shared/Hero'
 import { Products } from '../components/Products';
-import { Footer } from '../components/Shared/Footer';
+import { motion } from 'framer-motion';
 
 export const Home = () => {
     return (
-        <div className="home">    
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Hero />
             <Categories />
             <Products />
-            <Footer />
-        </div>
+        </motion.div>
     )
 }
 

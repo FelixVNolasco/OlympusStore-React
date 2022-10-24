@@ -8,6 +8,7 @@ import { getSingleProduct } from '../redux/apiCall';
 import ReactTooltip from 'react-tooltip';
 import { Product } from '../interfaces/SingleProduct';
 import { doneFetching } from '../redux/userRedux';
+import { motion } from 'framer-motion';
 
 const SingleProduct = () => {
 
@@ -61,12 +62,10 @@ const SingleProduct = () => {
     }
 
     return (
-
         <>
             {
                 !isFetching ? (
-
-                    <section className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64">
+                    <motion.main className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center">
                             <div className='grid grid-cols-1 justify-items-center lg:justify-items-start shadow-lg'>
                                 <img className='rounded-lg' src={product?.img} alt="" />
@@ -111,13 +110,11 @@ const SingleProduct = () => {
                                 </div>
                             </div>
                         </div>
-                    </section>
-
-
+                    </motion.main>
                 )
                     :
                     (
-                        <div className='grid justify-items-center items-center h-screen'>
+                        <div className='grid justify-items-center lg:mt-32 xl-mt-64 mb-64'>
                             <BallTriangle
                                 height="162"
                                 width="162"
@@ -127,6 +124,7 @@ const SingleProduct = () => {
                     )
             }
         </>
+
     )
 }
 

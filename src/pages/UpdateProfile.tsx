@@ -7,6 +7,7 @@ import { updateUser } from '../redux/apiCall';
 import { logout } from '../redux/actions/auth';
 // import { useState } from "react";
 // import axios from "axios";
+import { motion } from 'framer-motion';
 
 export const UpdateProfile = () => {
 
@@ -44,7 +45,7 @@ export const UpdateProfile = () => {
 
     return (
         <>
-            <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md">
+            <motion.div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <div className="flex flex-col-reverse xl:flex-row w-2/3 m-12 items-center justify-around">
                     <Formik
                         initialValues={{ id: _id, username: username, email: email }}
@@ -150,7 +151,7 @@ export const UpdateProfile = () => {
                     </div> */}
                 </div>
 
-            </div>
+            </motion.div>
         </>
     )
 }

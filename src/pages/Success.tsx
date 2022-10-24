@@ -5,6 +5,7 @@ import { SuccessOrderCard } from '../components/Shared/SuccessOrderCard';
 import { BallTriangle } from 'react-loader-spinner';
 import { cleanCart } from '../redux/cartRedux';
 import { successPurchaseRequest } from '../redux/apiCall';
+import { motion } from 'framer-motion';
 
 const Success = () => {
 
@@ -43,34 +44,33 @@ const Success = () => {
     }, [cart, data, _id, accessToken, dispatch]);
 
     return (
-        <>
-            <div
-                style={{
-                    height: "100vh",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                {
-                    orderId
-                        ? <SuccessOrderCard order={order} />
-                        : <BallTriangle
-                            height="162"
-                            width="162"
-                            color='#406882'
-                            ariaLabel='loading'
-                        />}
-                <Link to={"/"}>
-                    <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
-                        products: [],
-                        quantity: 0,
-                        total: 0
-                    }))}>Ir al Inicio</button>
-                </Link>
-            </div>
-        </>
+        <motion.div
+            style={{
+                height: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        >
+            {
+                orderId
+                    ? <SuccessOrderCard order={order} />
+                    : <BallTriangle
+                        height="162"
+                        width="162"
+                        color='#406882'
+                        ariaLabel='loading'
+                    />}
+            <Link to={"/"}>
+                <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
+                    products: [],
+                    quantity: 0,
+                    total: 0
+                }))}>Ir al Inicio</button>
+            </Link>
+        </motion.div>
     )
 }
 

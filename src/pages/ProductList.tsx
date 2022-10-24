@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Search } from '../components/Shared/Search';
+import { motion } from 'framer-motion';
 
 const ProductList = () => {
 
@@ -9,8 +10,6 @@ const ProductList = () => {
     const category = location.pathname.split("/")[2];
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
-    const [backgroundImage, setbackgroundImage] = useState("");
-
     const handleFilters = (e: any) => {
         const value = e.target.value;
         setFilters(
@@ -25,29 +24,8 @@ const ProductList = () => {
         setSort(e.target.value)
     }
 
-    useEffect(() => {
-        const handleBackgroundCategory = (category: string) => {
-            switch (category) {
-                case "basketball":
-                    setbackgroundImage("https://www.wallpaperuse.com/wallp/11-110016_m.jpg")
-                    return
-                case "soccer":
-                    setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826493/Olympus/Soccer/pexels-alexander-nadrilyanski-3684122_tgskfl.jpg")
-                    return
-                case "running":
-                    setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826534/Olympus/running/pexels-pixabay-34514_1_lcsoo7.jpg")
-                    return
-                default:
-                    setbackgroundImage("https://res.cloudinary.com/dhyxqmnua/image/upload/v1642826600/Olympus/running/pexels-krivec-ales-551852_tnmx4d.jpg")
-                    return
-            }
-        }
-        handleBackgroundCategory(category);
-    }, [category]);
-
-
     return (
-        <section className="grid justify-items-center mt-4 mb-4">
+        <main className="grid justify-items-center mt-4 mb-4">
             <div className='grid grid-cols-1 gap-2 lg:gap-12 w-10/12 items-center justify-items-center'>
                 <div className='flex justify-center items-center bg-gray-800 w-full h-16 rounded-md'>
                     <h4 className='text-xl text-slate-50 uppercase'>{category}</h4>
@@ -83,11 +61,10 @@ const ProductList = () => {
                 <div className='flex flex-col w-5/6 md:1/2 lg:w-2/3 xl:w-1/3 mx-auto'>
                     <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
                     <Search category={category} />
-                </div>                
-                
-                <Products category={category} filters={filters} sort={sort} />                
+                </div>
+                <Products category={category} filters={filters} sort={sort} />
             </div>
-        </section>
+        </main>
     )
 }
 

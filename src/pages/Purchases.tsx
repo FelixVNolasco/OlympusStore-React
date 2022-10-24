@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cancelPurchase, getUserPurchases } from "../redux/apiCall";
 import { BallTriangle } from "react-loader-spinner";
 import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
 
 export const Purchases = () => {
 
@@ -27,20 +28,20 @@ export const Purchases = () => {
         }
         getPurchases();
     }, [dispatch, accessToken, _id]);
-    
+
     const handleCancelPurchase = (id: string) => {
         Swal.fire({
             title: '¿Estas seguro que quieres eliminar esta compra?',
             text: "Esta acción no es reversible",
             icon: 'warning',
-            showCancelButton: true,            
+            showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, cancelar compra',
-            cancelButtonText: "No"            
+            cancelButtonText: "No"
         }).then((result) => {
-            if (result.isConfirmed) {                
-                cancelPurchase(dispatch, id, _id, refreshPage);                
+            if (result.isConfirmed) {
+                cancelPurchase(dispatch, id, _id, refreshPage);
             }
         })
     }
@@ -48,12 +49,12 @@ export const Purchases = () => {
     console.log(purchases);
 
     return (
-        <>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {
                 !loading ?
                     (
-                        <>
-                            <h2 className="font-bold text-center text-xl mt-6 ">Historial de Compras</h2>
+                        <div className="flex flex-col my-6">
+                            <h2 className="font-bold text-center text-xl mb-2 ">Historial de Compras</h2>
                             <div className="container mx-auto">
                                 <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
                                     {
@@ -147,7 +148,7 @@ export const Purchases = () => {
                                     }
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                     :
                     (
@@ -160,6 +161,6 @@ export const Purchases = () => {
                         </div>
                     )
             }
-        </>
+        </motion.div>
     )
 }

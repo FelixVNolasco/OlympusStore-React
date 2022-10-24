@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
-import { FaHome, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/auth";
 import { loginSchema } from "../Schema/FomSchema";
+import { motion } from "framer-motion";
+
 
 const Login = () => {
 
@@ -17,7 +19,7 @@ const Login = () => {
     };
 
     return (
-        <div className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64">
+        <motion.div className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center">
                 <div className="grid grid-cols-1 gap-4 animate__animated animate__fadeIn animate__faster">
                     <p className="text-3xl font-semibold">Iniciar Sesión</p>
@@ -48,7 +50,7 @@ const Login = () => {
                                             className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-gray-600/90"
                                             type="text"
                                             name="username"
-                                                                              
+
                                         />
                                     </div>
                                     <ErrorMessage
@@ -111,7 +113,7 @@ const Login = () => {
                     <img src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1666483628/Olympus/draw2_y9yzf7.svg" alt="" />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

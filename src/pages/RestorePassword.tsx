@@ -2,6 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FaHome } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
+
 
 export const RestorePassword = () => {
 
@@ -9,7 +11,7 @@ export const RestorePassword = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="form-wrapper">
+        <motion.div className="form-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="form-container">
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                     <p className="auth__title">Recuperar Contraseña</p>
@@ -79,6 +81,6 @@ export const RestorePassword = () => {
                     </Formik>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

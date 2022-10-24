@@ -1,4 +1,3 @@
-import { Footer } from '../components/Shared/Footer';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
@@ -9,6 +8,7 @@ import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { removeLoading, setLoading } from '../redux/uiRedux';
 import { makePurchaseRequest } from '../redux/apiCall';
+import { motion } from 'framer-motion';
 
 const Cart = () => {
 
@@ -90,10 +90,10 @@ const Cart = () => {
     }
 
     return (
-        <div className="grid justify-items-center mt-4">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {
                 products.length !== 0 ?
-                    <>
+                    <main className='flex flex-col items-center mb-auto'>
                         <div className="flex items-center justify-between w-10/12 2xl:w-9/12 justify-items-center">
                             <Link to={"/"}>
                                 <div className="px-2 py-1 bg-orange-300 rounded-md">Continuar Comprando</div>
@@ -130,10 +130,10 @@ const Cart = () => {
                                                         </div>
                                                         <FaTrash className='mt-2 hover:text-red-400 cursor-pointer' onClick={() => handleRemoveProduct(product)} />
                                                     </div>
-                                                </div>                                                
-                                                    <div
-                                                        className=" w-1/6text-xl font-semibold">{`$ ${product.price * product.quantity}`}</div>
-                                                
+                                                </div>
+                                                <div
+                                                    className=" w-1/6text-xl font-semibold">{`$ ${product.price * product.quantity}`}</div>
+
                                             </div>
                                         </div>
                                     ))
@@ -173,14 +173,13 @@ const Cart = () => {
                                 {/* <CheckoutButton items={products}/> */}
                             </div>
                         </div>
-                    </>
+                    </main>
                     :
                     (
                         <EmptyCart />
                     )
             }
-            <Footer />
-        </div>
+        </motion.div>
     )
 }
 export default Cart;

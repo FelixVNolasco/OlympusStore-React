@@ -6,6 +6,7 @@ import { getAllProducts } from '../redux/apiCall';
 import { ProductsMap } from './Shared/ProductsMap';
 import { PaginatedProducts } from './Shared/PaginatedProducts';
 import { Search } from './Shared/Search';
+import { motion } from 'framer-motion';
 
 export const Products = ({ category, filters, sort }: any) => {
 
@@ -61,21 +62,20 @@ export const Products = ({ category, filters, sort }: any) => {
                     <PaginatedProducts currentProducts={filteredProducts} itemsPerPage={3} />
                     :
                     <>
-                        <section className='grid justify-items-center mb-64'>
+                        <motion.section className='grid justify-items-center mb-64' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                             <div className="grid grid-cols-1 gap-2 w-10/12 md:w-8/12 lg:w-6/12">
                                 <h4 className='productsTitle text-center text-3xl font-semibold'>Buscar Productos</h4>
                                 <Search />
                             </div>
-                        </section>
-                        <section className='grid gap-4 justify-items-center mb-64'>
+                        </motion.section>
+                        <motion.section className='grid gap-4 justify-items-center mb-64' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                             <h1 className='text-4xl text-gray-800 font-bold'>Productos Recientes</h1>
                             <ProductsMap currentProducts={products?.slice(0, 6)} />
-                        </section>
+                        </motion.section>
                     </>
-            }
-            
+            }            
                 {loading && (
-                <div className='grid justify-items-center mb-64'>
+                <div className='grid justify-items-center'>
                     <BallTriangle
                         height="162"
                         width="162"

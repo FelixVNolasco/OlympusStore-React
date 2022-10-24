@@ -20,9 +20,9 @@ export const Hero = () => {
                         (
                             <div className="flex justify-center lg:justify-end mt-12 lg:mt-0">
                                 <Skeleton
-                                    circle
-                                    height="442px"
-                                    width="442px"
+                                    circle                                    
+                                    height="444px"
+                                    width="444px"
                                     containerClassName="avatar-skeleton"
                                 />
                             </div>
