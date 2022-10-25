@@ -56,7 +56,7 @@ export const Purchases = () => {
                         <div className="flex flex-col my-6">
                             <h2 className="font-bold text-center text-xl mb-2 ">Historial de Compras</h2>
                             <div className="container mx-auto">
-                                <div className="flex flex-col p-12 bg-gray-300/50 rounded-md">
+                                <div className="flex flex-col p-4 md:p-12 bg-gray-300/50 rounded-md">
                                     {
                                         purchases?.length === 0 ?
                                             (

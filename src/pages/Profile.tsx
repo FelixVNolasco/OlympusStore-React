@@ -46,8 +46,8 @@ const Profile = () => {
             {
                 !loading ?
                     (
-                        <div className="flex flex-col">
-                            <div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-gray-700 text-amber-50 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
+                        <div className="flex flex-col mt-4 mb-4">
+                            <div className="flex justify-center w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-gray-700 text-amber-50 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
                                 <div className="flex flex-col md:text-md  lg:text-lg w-3/4 m-20 items-center justify-around">
                                     <div className="flex mb-6 xl:mb-0 justify-center">
                                         <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
@@ -74,7 +74,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex justify-end bg-gray-700/90 text-amber-50 w-5/6 md:w-2/3 xl:w-1/2 mx-auto rounded-md md:text-md lg:text-lg drop-shadow-md shadow-sm shadow-slate-500">
+                            <div className=" flex justify-end bg-gray-700/90 text-amber-50 w-5/6 md:w-2/3 xl:w-1/2 mx-auto rounded-md md:text-md lg:text-lg drop-shadow-md shadow-sm shadow-slate-500">
                                 <Link to={`/profile/updateProfile/${_id}`} className="">
                                     <button disabled={false} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed">Actualizar</button>
                                 </Link>

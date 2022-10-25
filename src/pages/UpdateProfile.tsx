@@ -45,7 +45,7 @@ export const UpdateProfile = () => {
 
     return (
         <>
-            <motion.div className="flex justify-center mt-12 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="flex justify-center mt-4 mb-4 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <div className="flex flex-col-reverse xl:flex-row w-2/3 m-12 items-center justify-around">
                     <Formik
                         initialValues={{ id: _id, username: username, email: email }}

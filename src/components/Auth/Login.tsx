@@ -19,9 +19,9 @@ const Login = () => {
     };
 
     return (
-        <motion.div className="grid justify-items-center lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="grid justify-items-center mt-4 lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center">
-                <div className="grid grid-cols-1 gap-4 animate__animated animate__fadeIn animate__faster">
+                <div className="grid grid-cols-1 gap-4">
                     <p className="text-3xl font-semibold">Iniciar Sesión</p>
                     <Formik
                         initialValues={{ username: "", password: "" }}
@@ -41,32 +41,32 @@ const Login = () => {
 
                         {({ isSubmitting }) => (
                             <Form>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col mb-4">
                                     <label className="mb-1" htmlFor="username">
                                         Nombre de usuario
                                     </label>
-                                    <div className="mb-4">
+                                    <div className="">
                                         <Field
-                                            className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-gray-600/90"
+                                            className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
                                             type="text"
                                             name="username"
 
                                         />
                                     </div>
                                     <ErrorMessage
-                                        className="error-text"
+                                        className="text-red-500"
                                         name="username"
                                         component="div"
                                     />
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col mb-4">
                                     <label className="mb-1" htmlFor="password">
                                         Contraseña
                                     </label>
 
-                                    <div className="flex items-center mb-4">
+                                    <div className="flex items-center">
                                         <Field
-                                            className="w-full p-1 mr-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-gray-600/90"
+                                            className="w-full p-1 mr-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                         />
@@ -83,7 +83,7 @@ const Login = () => {
                                         )}
                                     </div>
                                     <ErrorMessage
-                                        className="error-text"
+                                        className="text-red-500"
                                         name="password"
                                         component="div"
                                     />

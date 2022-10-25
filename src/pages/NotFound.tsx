@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export const NotFound = () => {
 
     return (
-        <motion.div className="container mx-auto emptyCartContainer animate__animated animate__fadeIn animate__faster">
+        <motion.div className="container mx-auto emptyCartContainer">
             <img className="icon"
                 src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1664580579/Olympus/reshot-icon-error-site-X8Z67JF3AL_pkpdj4.svg"
                 alt="" />

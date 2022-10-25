@@ -6,7 +6,7 @@ export const Footer = () => {
     return (        
         <footer
             className="animate_ grid justify-items-center bg-gray-800 text-slate-50">
-            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 my-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-4 lg:gap-12 w-10/12 2xl:w-9/12 items-center'>
                 <div className='flex flex-col w-full'>
                     <div className='flex justify-center items-center'>
                         <h2 className="text-lg">Olympus Store</h2>

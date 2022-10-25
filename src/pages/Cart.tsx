@@ -90,11 +90,11 @@ const Cart = () => {
     }
 
     return (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.main className='flex flex-col items-center mt-4 mb-auto' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {
                 products.length !== 0 ?
-                    <main className='flex flex-col items-center mb-auto'>
-                        <div className="flex items-center justify-between w-10/12 2xl:w-9/12 justify-items-center">
+                    <>
+                        <div className="flex flex-col gap-2 mb-4 md:mb-0 md:gap-0 sm:flex-row items-center justify-between w-10/12 2xl:w-9/12 justify-items-center">
                             <Link to={"/"}>
                                 <div className="px-2 py-1 bg-orange-300 rounded-md">Continuar Comprando</div>
                             </Link>
@@ -104,12 +104,12 @@ const Cart = () => {
                             <button className="px-2 py-1 bg-red-400 rounded-md" onClick={handleCleanCart}>Limpiar Carrito</button>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 w-10/12 2xl:w-9/12 items-center justify-items-center">
-                            <div className="w-full animate__animated animate__fadeIn animate__faster">
+                            <div className="w-full">
                                 {
                                     products.map((product) => (
                                         <div className="product" key={product._id.$oid}>
                                             <div className="flex items-center justify-between gap-4">
-                                                <div className='flex items-center'>
+                                                <div className='flex flex-col md:flex-row  items-center'>
                                                     <img className='w-32' src={product?.img}
                                                         alt="" />
                                                     <div className="ml-4 flex flex-col">
@@ -139,7 +139,7 @@ const Cart = () => {
                                     ))
                                 }
                             </div>
-                            <div className="w-2/3 p-2 rounded-md  animate__animated animate__fadeIn animate__faster">
+                            <div className="w-2/3 p-2 rounded-md">
                                 <h1 className='mb-4 text-2xl'>Resumen</h1>
                                 <div className="flex  justify-between mb-2">
                                     <span>Subtotal</span>
@@ -173,13 +173,13 @@ const Cart = () => {
                                 {/* <CheckoutButton items={products}/> */}
                             </div>
                         </div>
-                    </main>
+                    </>
                     :
                     (
                         <EmptyCart />
                     )
             }
-        </motion.div>
+        </motion.main>
     )
 }
 export default Cart;

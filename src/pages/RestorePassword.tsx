@@ -13,7 +13,7 @@ export const RestorePassword = () => {
     return (
         <motion.div className="form-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="form-container">
-                <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
+                <div className="auth__box-container">
                     <p className="auth__title">Recuperar Contraseña</p>
                     <Formik
                         initialValues={{ email: "" }}
