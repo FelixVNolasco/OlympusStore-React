@@ -52,6 +52,7 @@ const Success = () => {
                 alignItems: "center",
                 justifyContent: "center",
             }}
+            className="mb-6"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
         >
             {
@@ -63,12 +64,12 @@ const Success = () => {
                         color='#406882'
                         ariaLabel='loading'
                     />}
-            <Link to={"/"}>
-                <button className='btn btn-primary' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
+            <Link to={"/purchases"}>
+                <button className='inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ripple-surface-light400' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
                     products: [],
                     quantity: 0,
                     total: 0
-                }))}>Ir al Inicio</button>
+                }))}>Ir al mis compras</button>
             </Link>
         </motion.div>
     )

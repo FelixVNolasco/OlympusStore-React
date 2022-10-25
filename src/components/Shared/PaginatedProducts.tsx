@@ -29,7 +29,7 @@ export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
         <div className='flex flex-col w-full items-center h-full justify-between'>
             <ProductsMap currentProducts={currentItems} />
             <ReactPaginate
-                className='w-5/6 md:w-3/4 lg:w-1/3  mx-auto items-center p-6 mt-4 flex gap-4 bg-slate-700 text-slate-50 justify-center rounded-md drop-shadow-xl shadow-sm shadow-slate-500'
+                className='w-5/6 md:w-3/4 lg:w-1/3  mx-auto items-center p-6 mt-4 md:mb-4 flex gap-4 bg-slate-700 text-slate-50 justify-center rounded-md drop-shadow-xl shadow-sm shadow-slate-500'
                 breakLabel="..."
                 nextLabel={<FaArrowAltCircleRight width={24} />}
                 pageClassName='rounded-md bg-green-500'
