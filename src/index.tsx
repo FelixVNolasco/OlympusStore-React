@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import './styles/styles.scss';
+import './main.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'animate.css';
