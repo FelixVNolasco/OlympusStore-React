@@ -1,7 +1,6 @@
 import Swal from 'sweetalert2';
 import { SingleProductResponse } from '../interfaces/SingleProduct';
-import { publicRequest, userRequest } from '../requestMethods';
-import { logout } from './actions/auth';
+import { publicRequest } from '../requestMethods';
 import { removeLoading, setLoading } from "./uiRedux";
 import { startFetching } from './userRedux';
 import axios from 'axios';
@@ -62,28 +61,6 @@ export const successPurchaseRequest = async (dispatch, stripeData, userId: strin
     }
 }
 
-// export const cancelPurchase = async (dispatch, id: string, _id: string, refreshPage) => {
-//     dispatch(setLoading());
-//     try {
-//         const response = await userRequest.delete(`/orders/${id}`, { params: { id: _id } });
-//         const { data } = response;
-//         dispatch(removeLoading());
-//         if (data === "Order has been deleted...") {
-//             Swal.fire({
-//                 icon: "success",
-//                 title: "Exito",
-//                 text: "Tu compra ha sido cancelada correctamente",
-//                 confirmButtonColor: "3085d6",
-//                 confirmButtonText: "Ok",
-//                 didClose: () => refreshPage()
-//             });
-//         }
-//     } catch (error) {
-//         dispatch(removeLoading());
-//         console.log(error);
-//     }
-// }
-
 export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
     dispatch(setLoading());
     try {
@@ -115,53 +92,5 @@ export const getSingleProduct = async (dispatch, productId: string) => {
     } catch (error) {
         dispatch(removeLoading());
         console.log(error);
-    }
-}
-
-export const updateUser = async (dispatch, values, handleLogout) => {
-    try {
-        dispatch(setLoading());
-        console.log(values);
-        await userRequest.put(`/users/${values.id}`, values, { params: { id: values.id } });
-        Swal.fire({
-            icon: "success",
-            title: "Exito",
-            text: "Tu cuenta ha sido actualizada correctamente",
-            didClose: () => {
-                handleLogout();
-            }
-        });
-        dispatch(removeLoading());
-    } catch (error) {
-        dispatch(removeLoading());
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No ha sido posible actualizar la cuenta",
-        });
-    }
-}
-
-export const deleteUser = async (dispatch, userId: string, accessToken, navigateToHome) => {
-    try {
-        dispatch(setLoading());
-        await axios.delete(`/users/${userId}`, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } });
-        Swal.fire({
-            icon: "success",
-            title: "Exito",
-            text: "Tu cuenta ha sido eliminada correctamente",
-            didClose: () => {
-                navigateToHome();
-            }
-        });
-        dispatch(logout());
-        dispatch(removeLoading());
-    } catch (error) {
-        dispatch(removeLoading());
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No ha sido posible eliminar la cuenta",
-        });
     }
 }

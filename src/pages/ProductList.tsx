@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
 import { useState } from 'react';
 import { Search } from '../components/Shared/Search';
-import { motion } from 'framer-motion';
 
 const ProductList = () => {
 

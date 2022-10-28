@@ -116,25 +116,32 @@ export const signupWithEmailAndPassword = (email, password) => {
   }
 }
 
-export const loginWithGoogle = () => {
+export const loginWithGoogle = (navigateSuccess) => {
   return (dispatch) => {
     const auth = getAuth();
     signInWithPopup(auth, googleAuthProvider)
       .then(({ user }) => {
-        dispatch(loginSuccess(user))
+        dispatch(loginSuccess(user));
+        navigateSuccess();
       })
       .catch(e => console.log(e));
   }
 }
 
-export const loginWithFacebook = () => {
+export const loginWithFacebook = (navigateSuccess) => {
   return (dispatch) => {
     const auth = getAuth();
     signInWithPopup(auth, facebookAuthProvider)
-      .then(({user}) => {
+      .then(({ user }) => {
         dispatch(loginSuccess(user));
+        navigateSuccess();
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Ya existe una cuenta con este correo 📫",
+        });
         console.log(error);
       });
   }
@@ -177,22 +184,21 @@ export const logout = () => {
 }
 
 
-const deleteAccount = (navigateToHome) => {
+export const deleteAccount = (navigateLoginAndLogout) => {
   return (dispatch) => {
+    dispatch(setLoading());
     const auth = getAuth();
     const user = auth.currentUser;
-
     deleteUser(user).then(() => {
       Swal.fire({
         icon: "success",
         title: "Exito",
         text: "Tu cuenta ha sido actualizada correctamente",
         didClose: () => {
-          // handleLogout();
+          navigateLoginAndLogout();
         }
       });
       dispatch(removeLoading());
-      navigateToHome();
     }).catch((error) => {
       dispatch(removeLoading());
       Swal.fire({
@@ -200,6 +206,7 @@ const deleteAccount = (navigateToHome) => {
         title: "Error",
         text: "No ha sido posible eliminar la cuenta",
       });
+      console.log(error);
     });
   }
 }

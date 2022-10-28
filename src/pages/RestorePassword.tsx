@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { FaHome } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { RestorePasswordWithEmail } from '../redux/actions/auth';
 
@@ -9,7 +8,6 @@ import { RestorePasswordWithEmail } from '../redux/actions/auth';
 export const RestorePassword = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     return (
         <motion.div className="grid justify-items-center mt-4 lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-import { RootStateOrAny, useSelector } from "react-redux";
 import { updateSchema } from '../components/Schema/FomSchema';
 import { logout, updateUserFirebase} from '../redux/actions/auth';
 // import { useState } from "react";
@@ -13,7 +12,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export const UpdateProfile = () => {
 
-    const { displayName, email } = useSelector((state: RootStateOrAny) => state.user.currentUser);    
     // const [profileSelected, setProfileSelected] = useState<any>("");
     // const [profileResponse, setProfileResponse] = useState<any>("");
     // const { photoURL } = user;

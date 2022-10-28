@@ -9,6 +9,7 @@ import { UpdateProfile } from '../pages/UpdateProfile';
 import { Home } from '../pages/Home';
 import { Purchases } from '../pages/Purchases';
 import { RestorePassword } from '../pages/RestorePassword';
+import { NoAuthRoute } from './NoAuthRoute';
 
 //Pages
 const ProductList = React.lazy(() => import('../pages/ProductList'));
@@ -17,16 +18,16 @@ const Cart = React.lazy(() => import('../pages/Cart'));
 const Success = React.lazy(() => import('../pages/Success'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 
-export const AnimatedRoutes = ({ routeProtection }) => {
+export const AnimatedRoutes = ({ routeProtection, noAuthProtection }) => {
     const location = useLocation();
     return (
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/auth/login" element={
-                <Login />
+                <NoAuthRoute {...noAuthProtection} outlet={<Login />} />
             } />
             <Route path="/auth/signup" element={
-                <Signup />
+                <NoAuthRoute {...noAuthProtection} outlet={<Signup />} />
             } />
             <Route path="/restore-password" element={
                 <React.Suspense fallback={<></>}>

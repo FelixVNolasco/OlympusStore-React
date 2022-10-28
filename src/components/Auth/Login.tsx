@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginWithEmailAndPassword, loginWithGoogle, loginWithFacebook } from '../../redux/actions/auth';
 import { loginSchema } from "../Schema/FomSchema";
 import { motion } from "framer-motion";
-import { FaGoogle, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -17,6 +17,10 @@ const Login = () => {
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     };
+
+    const navigateSuccess = () => {
+        navigate("/");
+    }    
 
     return (
         <motion.div className="grid justify-items-center mt-4 lg:mt-32 xl-mt-64 mb-64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -106,9 +110,9 @@ const Login = () => {
                     <hr />
                     <div className="flex flex-col w-full">
                         <span className="text-center font-semibold">Iniciar Sesion con:</span>
-                        <div className="flex justify-center gap-4">
-                            <FaGoogle onClick={() => dispatch(loginWithGoogle())} className="text-gray-800 cursor-pointer hover:text-orange-700" />
-                            <FaFacebook onClick={() => dispatch(loginWithFacebook())} className="text-gray-800 cursor-pointer hover:text-blue-700" />
+                        <div className="flex justify-center mt-1 gap-4">
+                            <FaGoogle size={24} onClick={() => dispatch(loginWithGoogle(navigateSuccess))} className="text-gray-800 cursor-pointer hover:text-orange-700" />
+                            <FaFacebook size={24} onClick={() => dispatch(loginWithFacebook(navigateSuccess))} className="text-gray-800 cursor-pointer hover:text-blue-700" />
                             {/* <FaTwitter className="text-gray-800 cursor-pointer hover:text-blue-400" /> */}
                         </div>
                     </div>

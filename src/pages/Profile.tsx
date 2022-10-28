@@ -1,29 +1,25 @@
 import { useDispatch } from "react-redux";
-import { deleteUser } from '../redux/apiCall';
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
-import { VerifyUser, updateUsername, logout } from '../redux/actions/auth';
-import { Form, Field, ErrorMessage, Formik } from 'formik';
-import { useState } from "react";
-import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
-import { updateDisplayName } from "../components/Schema/FomSchema";
+import { VerifyUser, logout, deleteAccount } from '../redux/actions/auth';
+
+// import { Form, Field, ErrorMessage, Formik } from 'formik';
+// import { useState } from "react";
+// import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
+// import { updateDisplayName } from "../components/Schema/FomSchema";
 
 const Profile = () => {
 
-    const loading = useSelector((state: RootStateOrAny) => state.user.ui);
-    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { displayName, photoURL, email, createdAt, lastLoginAt, emailVerified } = user;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const navigateToHome = () => {
-        navigate("/");
-    }
 
-    const handleLogout = () => {
+    const navigateLoginAndLogout = () => {
         dispatch(logout());
         navigate("/auth/login");
     }
@@ -32,11 +28,7 @@ const Profile = () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
     const LastLoginFormatted = (new Date(lastLoginAt - dateNow)).toLocaleDateString("es-Mx", options);
     const createdAtFormatted = (new Date(dateNow - createdAt)).toLocaleDateString("es-Mx", options);
-
-
-    const [isEditing, setIsEditing] = useState(false);
-
-
+    
     const handleDelete = async () => {
         Swal.fire({
             title: '¿Estas seguro que quieres eliminar tu cuenta?',
@@ -49,7 +41,7 @@ const Profile = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteUser(dispatch, _id, accessToken, navigateToHome));
+                dispatch(deleteAccount(navigateLoginAndLogout));
             }
         })
     }
@@ -125,7 +117,7 @@ const Profile = () => {
 
                                 <div className="flex items-center justify-between">
                                     <p className="font-semibold">Nombre:</p>
-                                    <span className="md:ml-2 cursor-pointer">{displayName}</span>
+                                    <span className="md:ml-2">{displayName}</span>
                                 </div>
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center">
@@ -163,7 +155,7 @@ const Profile = () => {
                     <Link to={`/profile/updateProfile/${_id}`} className="">
                         <button disabled={false} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed">Actualizar</button>
                     </Link>
-                    <Link to={"/"} className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</Link>
+                    <button className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</button>
                 </div>
             </div>
         </motion.div>
