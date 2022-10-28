@@ -7,7 +7,7 @@ export type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({isAuthenticated, authenticationPath, outlet}: ProtectedRouteProps) => {
-    if(isAuthenticated._id) {
+    if(isAuthenticated) {
         return outlet;
     } else {
         return <Navigate to={{ pathname: authenticationPath }} replace />;

@@ -12,7 +12,7 @@ const Success = () => {
     const location: any = useLocation();
     const data = location.state.stripeData;
     const cart = location.state.cart;
-    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { uid, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const [order, setOrder] = useState(undefined);
     const [orderId, setOrderId] = useState(null);
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Success = () => {
         const createOrder = async () => {
             try {
                 const stripeData = {
-                    userId: _id,
+                    userId: uid,
                     products: cart.products.map((item) => ({
                         productId: item._id,
                         quantity: item.quantity,
@@ -33,7 +33,7 @@ const Success = () => {
                     amount: cart.total,
                     address: data.billing_details.address,
                 };
-                const purchaseData = await successPurchaseRequest(dispatch, stripeData, _id, accessToken);
+                const purchaseData = await successPurchaseRequest(dispatch, stripeData, uid, accessToken);
                 setOrder(purchaseData);
                 setOrderId(purchaseData._id);
             } catch (error) {
@@ -41,7 +41,7 @@ const Success = () => {
             }
         };
         data && createOrder();
-    }, [cart, data, _id, accessToken, dispatch]);
+    }, [cart, data, uid, accessToken, dispatch]);
 
     return (
         <motion.div

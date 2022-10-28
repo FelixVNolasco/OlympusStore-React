@@ -15,7 +15,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector((state: RootStateOrAny) => state.cart);
-    const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { uid, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { products } = useSelector((state: RootStateOrAny) => state.cart);
     const stripeKey = process.env.REACT_APP_STRIPE_KEY;
     const [stripeToken, setStripeToken] = useState(null);
@@ -34,7 +34,7 @@ const Cart = () => {
                     amount: cart.total * 100
                 }
 
-                const data = await makePurchaseRequest(dispatch, stripeData, _id, accessToken);
+                const data = await makePurchaseRequest(dispatch, stripeData, uid, accessToken);
                 dispatch(removeLoading());
                 navigate("/success", {
                     state: {
@@ -49,7 +49,7 @@ const Cart = () => {
         }
 
         stripeToken && makeRequest();
-    }, [stripeToken, cart.total, navigate, cart, _id, accessToken, dispatch])
+    }, [stripeToken, cart.total, navigate, cart, uid, accessToken, dispatch])
 
     const handleCleanCart = async () => {
         Swal.fire({

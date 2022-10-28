@@ -5,20 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { BallTriangle } from "react-loader-spinner";
 import { motion } from 'framer-motion';
+import { VerifyUser } from "../redux/actions/auth";
 
 const Profile = () => {
 
     const loading = useSelector((state: RootStateOrAny) => state.user.ui);
     const { _id, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const { username, photoURL, email, createdAt, updatedAt } = user;
-    const CreationDate = new Date(createdAt);
-    const lastSignInTimeDate = new Date(updatedAt);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
-    const CreationDateParsed = CreationDate.toLocaleDateString("es-Mx", options);
-    const lastSignInTimeDateParsed = lastSignInTimeDate.toLocaleDateString("es-Mx", options);
+    const { displayName, photoURL, email, createdAt, lastLoginAt, emailVerified } = user;
     const dispatch = useDispatch();
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
 
     const navigateToHome = () => {
         navigate("/");
@@ -41,6 +37,10 @@ const Profile = () => {
         })
     }
 
+    const handleVerification = () => {
+        dispatch(VerifyUser());
+    }
+
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {
@@ -54,22 +54,36 @@ const Profile = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4 items-center">
                                         <div className="flex flex-col md:flex-row md:items-center">
-                                            <p className="font-semibold">Nombre de Usuario:</p>
-                                            <span className="md:ml-2">{username}</span>
+                                            <p className="font-semibold">Nombre:</p>
+                                            <span className="md:ml-2">{displayName}</span>
                                         </div>
                                         <div className="flex flex-col md:flex-row md:items-center">
                                             <p className="font-semibold">Correo Electrónico:</p>
-                                            <span className="md:ml-2">{email}</span>
+                                            <div className="flex flex-col md:ml-2">
+                                            <span className="">{email}</span>
+                                            {
+                                                emailVerified ?
+                                                (
+                                                    <span className="text-sm font-semibold text-green-200">Correo Verificado</span>
+                                                )
+                                                :
+                                                (
+                                                    <div className="flex justify-between">
+                                                        <span className="text-sm font-semibold text-red-200">Correo No Verificado</span>
+                                                        <span className="text-sm font-semibold text-blue-200 cursor-pointer" onClick={handleVerification}>Verificar</span>
+                                                    </div>
+                                                )
+                                            }
+                                            </div>
                                         </div>
-
                                         <div className="flex flex-col">
                                             <p className="font-semibold">Cuenta creada en:</p>
-                                            <p>{CreationDateParsed}</p>
+                                            <p>{createdAt}</p>
                                         </div>
 
                                         <div className="flex flex-col">
                                             <p className="font-semibold">Última actualización:</p>
-                                            <p>{lastSignInTimeDateParsed}</p>
+                                            <p>{lastLoginAt}</p>
                                         </div>
                                     </div>
                                 </div>

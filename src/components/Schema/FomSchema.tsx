@@ -1,10 +1,6 @@
 import * as Yup from 'yup';
 
-export const signupSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(2, 'Nombre de Usuario demasiado corto')
-        .max(30, 'Nombre de Usuario demasiado largo')
-        .required("El Nombre de Usuario es requerido"),
+export const signupSchema = Yup.object().shape({    
     email: Yup.string()
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
@@ -18,10 +14,9 @@ export const signupSchema = Yup.object().shape({
 });
 
 export const loginSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(2, 'Nombre de Usuario demasiado corto')
-        .max(30, 'Nombre de Usuario demasiado largo')
-        .required("El nombre de usuario es requerido"),
+    email: Yup.string()
+        .email("Correo no válido")
+        .required("El correo electrónico es requerido"),
     password: Yup.string()
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-\.])(?=.{8,})/,
             "La contraseña es al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
@@ -29,7 +24,7 @@ export const loginSchema = Yup.object().shape({
 });
 
 export const updateSchema = Yup.object().shape({
-    username: Yup.string()
+    displayName: Yup.string()
         .min(2, 'Nombre de Usuario demasiado corto')
         .max(30, 'Nombre de Usuario demasiado largo')
         .required("El Nombre de Usuario es requerido"),
@@ -37,8 +32,8 @@ export const updateSchema = Yup.object().shape({
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
     // urlImage: Yup.string()
-    // password: Yup.string()
-    //     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-    //         "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
-    //     .required("La contraseña es requerida")
+    password: Yup.string()
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+            "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
+        .required("La contraseña es requerida")
 });

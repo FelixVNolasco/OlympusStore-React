@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { signup } from '../../redux/actions/auth';
+import { signupWithEmailAndPassword } from '../../redux/actions/auth';
 import { signupSchema } from '../Schema/FomSchema';
 import { motion } from 'framer-motion';
 
@@ -29,12 +29,12 @@ const Signup = () => {
                 <div className="grid grid-cols-1 gap-4">
                     <p className="text-3xl font-semibold">Registrarse</p>
                     <Formik
-                        initialValues={{ username: "", email: "", password: "", passwordConfirm: "" }}
+                        initialValues={{ email: "", password: "", passwordConfirm: "" }}
                         validationSchema={signupSchema}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
-                                setSubmitting(true);
-                                dispatch(signup(values));
+                                setSubmitting(true);                                
+                                dispatch(signupWithEmailAndPassword(values.email, values.password));
                                 navigate("/auth/login");
                                 setSubmitting(false);
                             } catch (error) {
@@ -46,23 +46,6 @@ const Signup = () => {
 
                         {({ isSubmitting }) => (
                             <Form>
-                                <div className="flex flex-col mb-4">
-                                    <label className="mb-1" htmlFor="username">
-                                        Nombre de Usuario
-                                    </label>
-                                    <div className="">
-                                        <Field
-                                            className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
-                                            type="text"
-                                            name="username"
-                                        />
-                                    </div>
-                                    <ErrorMessage
-                                        className="text-red-500"
-                                        name="username"
-                                        component="div"
-                                    />
-                                </div>
                                 <div className="flex flex-col mb-4">
                                     <label className="mb-1" htmlFor="email">
                                         Correo Electrónico
@@ -151,10 +134,12 @@ const Signup = () => {
                             </Form>
                         )}
                     </Formik>
+                    <hr />
                     <div className='newAccount-container'>
                         <div className="account_title">¿Ya tienes una cuenta?</div>
                         <Link className="text-gray-800 font-bold" to="/auth/login">Inicia Sesión.</Link>
                     </div>
+                    <hr />
                     <Link className="text-gray-800 font-semibold" to={"/"}>
                         Ir al inicio
                     </Link>

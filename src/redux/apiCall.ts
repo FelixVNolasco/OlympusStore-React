@@ -21,10 +21,10 @@ export const getAllProducts = async (dispatch, category: any) => {
     }
 }
 
-export const getUserPurchases = async (dispatch, id: string, accessToken: string) => {
+export const getUserPurchases = async (dispatch, id: string) => {
     dispatch(setLoading());
     try {
-        const purchasesData = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${id}`, { params: { id: id }, headers: { token: `Bearer ${accessToken}` } });
+        const purchasesData = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${id}`);
         const { data } = purchasesData;
         dispatch(removeLoading());
         return data;
@@ -62,10 +62,32 @@ export const successPurchaseRequest = async (dispatch, stripeData, userId: strin
     }
 }
 
-export const cancelPurchase = async (dispatch, id: string, _id: string, refreshPage) => {
+// export const cancelPurchase = async (dispatch, id: string, _id: string, refreshPage) => {
+//     dispatch(setLoading());
+//     try {
+//         const response = await userRequest.delete(`/orders/${id}`, { params: { id: _id } });
+//         const { data } = response;
+//         dispatch(removeLoading());
+//         if (data === "Order has been deleted...") {
+//             Swal.fire({
+//                 icon: "success",
+//                 title: "Exito",
+//                 text: "Tu compra ha sido cancelada correctamente",
+//                 confirmButtonColor: "3085d6",
+//                 confirmButtonText: "Ok",
+//                 didClose: () => refreshPage()
+//             });
+//         }
+//     } catch (error) {
+//         dispatch(removeLoading());
+//         console.log(error);
+//     }
+// }
+
+export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
     dispatch(setLoading());
     try {
-        const response = await userRequest.delete(`/orders/${id}`, { params: { id: _id } });
+        const response = await axios.delete(`https://localhost:5000/api/orders/${id}`);
         const { data } = response;
         dispatch(removeLoading());
         if (data === "Order has been deleted...") {

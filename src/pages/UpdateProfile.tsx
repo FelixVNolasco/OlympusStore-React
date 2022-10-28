@@ -3,27 +3,27 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { updateSchema } from '../components/Schema/FomSchema';
-import { updateUser } from '../redux/apiCall';
-import { logout } from '../redux/actions/auth';
+import { logout, updateUserFirebase} from '../redux/actions/auth';
 // import { useState } from "react";
 // import axios from "axios";
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 export const UpdateProfile = () => {
 
+    const { displayName, email } = useSelector((state: RootStateOrAny) => state.user.currentUser);    
     // const [profileSelected, setProfileSelected] = useState<any>("");
     // const [profileResponse, setProfileResponse] = useState<any>("");
-
-    const { _id, username, email } = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    // const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
     // const { photoURL } = user;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const [showPassword, setshowPassword] = useState(false);
-    // const handleShowPassword = () => {
-    //     setshowPassword(!showPassword);
-    // };
+    const [showPassword, setshowPassword] = useState(false);
+    const handleShowPassword = () => {
+        setshowPassword(!showPassword);
+    };
 
     // const uploadProfileImage = () => {
     //     const formData = new FormData();
@@ -48,15 +48,12 @@ export const UpdateProfile = () => {
             <motion.div className="flex justify-center mt-4 mb-4 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <div className="flex flex-col-reverse xl:flex-row w-2/3 m-12 items-center justify-around">
                     <Formik
-                        initialValues={{ id: _id, username: username, email: email }}
+                        initialValues={{ displayName: displayName, email: email, password: "",  }}
                         validationSchema={updateSchema}
                         onSubmit={async (values, { setSubmitting }) => {
-                            // uploadProfileImage();
                             try {
                                 setSubmitting(true);
-                                // console.log(profileResponse);
-                                // values.urlImage = profileResponse;
-                                await updateUser(dispatch, values, handleLogout);
+                                updateUserFirebase(values, handleLogout);
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error)
@@ -67,19 +64,19 @@ export const UpdateProfile = () => {
                         {({ isSubmitting }) => (
                             <Form className="w-full xl:w-3/5">
                                 <div className="flex flex-col mb-4">
-                                    <label className="font-semibold" htmlFor="username">
-                                        Nombre de usuario
+                                    <label className="font-semibold" htmlFor="displayName">
+                                        Nombre
                                     </label>
                                     <div className="input-container">
                                         <Field
                                             className="p-1 rounded-md w-full border-2 focus:outline-none focus:border-2 focus:border-green-400/90"
                                             type="text"
-                                            name="username"
+                                            name="displayName"
                                         />
                                     </div>
                                     <ErrorMessage
                                         className="text-red-900 text-sm font-bold mt-1"
-                                        name="username"
+                                        name="displayName"
                                         component="div"
                                     />
                                 </div>
@@ -104,7 +101,7 @@ export const UpdateProfile = () => {
                                 {/* <input type="file" onChange={(e) => {
                                     setProfileSelected(e.target.files[0]);
                                 }} /> */}
-                                {/* <div className="flex flex-col mb-4">
+                                <div className="flex flex-col mb-4">
                                     <label className="font-semibold" htmlFor="password">
                                         Contraseña
                                     </label>
@@ -131,10 +128,10 @@ export const UpdateProfile = () => {
                                         name="password"
                                         component="div"
                                     />
-                                </div> */}
+                                </div>
                                 <div className="flex justify-end">
                                     <button
-                                        className="p-2 rounded-md bg-indigo-400 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-300 hover:bg-indigo-400/80 transition ease-in-out duration-150"
+                                        className="inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ripple-surface-light 400"
                                         type="submit"
                                         disabled={isSubmitting}
                                     >

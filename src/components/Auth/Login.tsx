@@ -3,10 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../redux/actions/auth";
+import { loginWithEmailAndPassword, loginWithGoogle } from '../../redux/actions/auth';
 import { loginSchema } from "../Schema/FomSchema";
 import { motion } from "framer-motion";
-
+import { FaGoogle, FaTwitter, FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -24,12 +24,12 @@ const Login = () => {
                 <div className="grid grid-cols-1 gap-4">
                     <p className="text-3xl font-semibold">Iniciar Sesión</p>
                     <Formik
-                        initialValues={{ username: "", password: "" }}
+                        initialValues={{ email: "", password: "" }}
                         validationSchema={loginSchema}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                dispatch(login(values))
+                                dispatch(loginWithEmailAndPassword(values.email, values.password))
                                 navigate("/");
                                 setSubmitting(false);
                             } catch (error) {
@@ -38,24 +38,23 @@ const Login = () => {
                             }
                         }}
                     >
-
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="flex flex-col mb-4">
-                                    <label className="mb-1" htmlFor="username">
-                                        Nombre de usuario
+                                    <label className="mb-1" htmlFor="email">
+                                        Correo Electrónico
                                     </label>
                                     <div className="">
                                         <Field
                                             className="w-full p-1 border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
                                             type="text"
-                                            name="username"
+                                            name="email"
 
                                         />
                                     </div>
                                     <ErrorMessage
                                         className="text-red-500"
-                                        name="username"
+                                        name="email"
                                         component="div"
                                     />
                                 </div>
@@ -91,20 +90,34 @@ const Login = () => {
 
                                 <div className="flex justify-end">
                                     <button
-                                        className="inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ripple-surface-light400"
+                                        className="inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ripple-surface-light 400"
                                         type="submit"
                                         disabled={isSubmitting}
                                     >
                                         Iniciar Sesión
                                     </button>
                                 </div>
+                                <div className="flex justify-end mt-1">
+                                    <Link className="text-blue-800 font-semibold text-right" to="/restore-password">¿Olvidaste tu contraseña?</Link>
+                                </div>
                             </Form>
                         )}
                     </Formik>
-                    <div className='newAccount-container'>
+                    <hr />
+                    <div className="flex flex-col w-full">
+                        <span className="text-center font-semibold">Iniciar Sesion con:</span>
+                        <div className="flex justify-center gap-4">
+                            <FaGoogle onClick={() => dispatch(loginWithGoogle())} className="text-gray-800 cursor-pointer hover:text-orange-700" />
+                            {/* <FaFacebook className="text-gray-800 cursor-pointer hover:text-blue-700" />
+                            <FaTwitter className="text-gray-800 cursor-pointer hover:text-blue-400" /> */}
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="flex flex-col">
                         <div className="account_title">¿Aún no tienes una cuenta?</div>
                         <Link className="text-gray-800 font-bold" to="/auth/signup">Crea una cuenta aqui.</Link>
                     </div>
+                    <hr />
                     <Link className="text-gray-800 font-semibold" to={"/"}>
                         Ir al inicio
                     </Link>

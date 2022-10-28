@@ -8,9 +8,10 @@ import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
 
 const App = () => {
-  const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
+  const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+
   const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-    isAuthenticated: user,
+    isAuthenticated: isAuthenticated,
     authenticationPath: '/auth/login',
   };
 

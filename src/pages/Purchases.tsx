@@ -12,10 +12,8 @@ export const Purchases = () => {
     const [purchases, setPurchases] = useState<any[]>(null);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
-    const { username } = currentUser;
-    const dispatch = useDispatch();
-    const { accessToken } = currentUser;
-    const { _id } = currentUser;
+    const { username, uid } = currentUser;
+    const dispatch = useDispatch();    
 
     const refreshPage = () => {
         navigate(0);
@@ -23,11 +21,11 @@ export const Purchases = () => {
 
     useEffect(() => {
         const getPurchases = async () => {
-            const data = await getUserPurchases(dispatch, _id, accessToken);
+            const data = await getUserPurchases(dispatch, uid);
             setPurchases(data);
         }
         getPurchases();
-    }, [dispatch, accessToken, _id]);
+    }, [dispatch, uid]);
 
     const handleCancelPurchase = (id: string) => {
         Swal.fire({
@@ -41,7 +39,7 @@ export const Purchases = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                cancelPurchase(dispatch, id, _id, refreshPage);
+                cancelPurchase(dispatch, uid, refreshPage);
             }
         })
     }

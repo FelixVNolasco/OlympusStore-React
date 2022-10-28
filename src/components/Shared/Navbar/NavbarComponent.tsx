@@ -182,7 +182,7 @@ export const NavbarComponent = () => {
                                             Has iniciado como
                                         </Text>
                                         <Text b color="inherit" css={{ d: "flex" }}>
-                                            {currentUser?.username}
+                                            {currentUser?.displayName}
                                         </Text>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="settings" withDivider color="primary">
