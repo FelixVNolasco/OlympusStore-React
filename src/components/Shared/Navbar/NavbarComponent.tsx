@@ -2,7 +2,6 @@ import { Navbar, Dropdown, Button, Link, Text, Avatar, useTheme } from "@nextui-
 import { Link as LinkRouter } from 'react-router-dom';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { icons } from "./icons";
-import { FcLibrary } from "react-icons/fc";
 import { ShoppingCart } from "../ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../../redux/actions/auth';
@@ -14,6 +13,8 @@ export const NavbarComponent = () => {
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
+
+    const { photoURL } = currentUser;
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -169,7 +170,7 @@ export const NavbarComponent = () => {
                                             as="button"
                                             color="primary"
                                             size="md"
-                                            src={currentUser?.urlImage !== "" ? (currentUser?.photoURL) : ("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png")}
+                                            src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} 
                                         />
                                     </Dropdown.Trigger>
                                 </Navbar.Item>

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider } from "firebase/auth";
-// import { GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider } from "firebase/auth";
+// import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,12 +15,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const googleAuthProvider = new GoogleAuthProvider();
-// const facebookAuthProvider = new FacebookAuthProvider();
+const facebookAuthProvider = new FacebookAuthProvider();
 // const twitterAuthProvider = new TwitterAuthProvider();
 
 export {
     app,
     googleAuthProvider,
-    // facebookAuthProvider,
+    facebookAuthProvider,
     // twitterAuthProvider
 };

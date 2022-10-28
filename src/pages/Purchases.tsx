@@ -44,8 +44,6 @@ export const Purchases = () => {
         })
     }
 
-    console.log(purchases);
-
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {

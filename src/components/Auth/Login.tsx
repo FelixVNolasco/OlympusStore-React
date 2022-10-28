@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { loginWithEmailAndPassword, loginWithGoogle } from '../../redux/actions/auth';
+import { loginWithEmailAndPassword, loginWithGoogle, loginWithFacebook } from '../../redux/actions/auth';
 import { loginSchema } from "../Schema/FomSchema";
 import { motion } from "framer-motion";
 import { FaGoogle, FaTwitter, FaFacebook } from 'react-icons/fa';
@@ -108,8 +108,8 @@ const Login = () => {
                         <span className="text-center font-semibold">Iniciar Sesion con:</span>
                         <div className="flex justify-center gap-4">
                             <FaGoogle onClick={() => dispatch(loginWithGoogle())} className="text-gray-800 cursor-pointer hover:text-orange-700" />
-                            {/* <FaFacebook className="text-gray-800 cursor-pointer hover:text-blue-700" />
-                            <FaTwitter className="text-gray-800 cursor-pointer hover:text-blue-400" /> */}
+                            <FaFacebook onClick={() => dispatch(loginWithFacebook())} className="text-gray-800 cursor-pointer hover:text-blue-700" />
+                            {/* <FaTwitter className="text-gray-800 cursor-pointer hover:text-blue-400" /> */}
                         </div>
                     </div>
                     <hr />

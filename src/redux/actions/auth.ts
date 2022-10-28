@@ -3,7 +3,7 @@ import { setLoading, removeLoading } from "../uiRedux";
 import { loginSuccess, logOutStart } from '../userRedux';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithPopup, updateProfile, updateEmail, updatePassword, signOut, sendEmailVerification, deleteUser } from "firebase/auth";
 
-import { googleAuthProvider } from "../../firebase/firebase-config";
+import { googleAuthProvider, facebookAuthProvider } from "../../firebase/firebase-config";
 
 export const loginWithEmailAndPassword = (email, password) => {
   return (dispatch) => {
@@ -46,29 +46,46 @@ export const VerifyUser = () => {
   }
 }
 
+
+export const updateUsername = (displayName, handleLogout) => {
+  return (dispatch) => {
+    dispatch(setLoading());
+    const auth = getAuth();
+    updateProfile(auth.currentUser, displayName).then(() => {
+      handleLogout();
+      Swal.fire({
+        icon: "success",
+        title: "Exito",
+        text: "Se ha actualizado su nombre correctamente",
+      });
+      dispatch(removeLoading());
+    }
+    ).catch((error) => {
+      console.log(error)
+    })
+  }
+}
+
 export const updateUserFirebase = (newData, handleLogout) => {
   return (dispatch) => {
-    const tryUpdate = async () => {
-      dispatch(setLoading());
-      const auth = getAuth();
-      updateProfile(auth.currentUser, newData.displayName).then(() => {
-        updateEmail(auth.currentUser, newData.email).then(() => {
-          updatePassword(auth.currentUser, newData.password).then(() => {
-            handleLogout();
-            dispatch(removeLoading());
-          })
-            .catch((error) => {
-              console.log(error);
-            })
+    dispatch(setLoading());
+    const auth = getAuth();
+    updateProfile(auth.currentUser, newData.displayName).then(() => {
+      updateEmail(auth.currentUser, newData.email).then(() => {
+        updatePassword(auth.currentUser, newData.password).then(() => {
+          handleLogout();
+          dispatch(removeLoading());
         })
           .catch((error) => {
             console.log(error);
           })
-      }).catch((error) => {
-        console.log(error)
       })
-    }
-    tryUpdate();
+        .catch((error) => {
+          console.log(error);
+        })
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 
@@ -107,6 +124,19 @@ export const loginWithGoogle = () => {
         dispatch(loginSuccess(user))
       })
       .catch(e => console.log(e));
+  }
+}
+
+export const loginWithFacebook = () => {
+  return (dispatch) => {
+    const auth = getAuth();
+    signInWithPopup(auth, facebookAuthProvider)
+      .then(({user}) => {
+        dispatch(loginSuccess(user));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const signupSchema = Yup.object().shape({    
+export const signupSchema = Yup.object().shape({
     email: Yup.string()
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
@@ -25,9 +25,8 @@ export const loginSchema = Yup.object().shape({
 
 export const updateSchema = Yup.object().shape({
     displayName: Yup.string()
-        .min(2, 'Nombre de Usuario demasiado corto')
-        .max(30, 'Nombre de Usuario demasiado largo')
-        .required("El Nombre de Usuario es requerido"),
+        .min(2, 'Nombre demasiado corto')
+        .max(30, 'Nombre demasiado largo'),
     email: Yup.string()
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),
@@ -37,3 +36,10 @@ export const updateSchema = Yup.object().shape({
             "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
         .required("La contraseña es requerida")
 });
+
+export const updateDisplayName = Yup.object().shape({
+    displayName: Yup.string()
+        .required("El Nombre es requerido")
+        .min(2, 'Nombre demasiado corto')
+        .max(30, 'Nombre demasiado largo'),
+})
