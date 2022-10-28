@@ -24,11 +24,21 @@ const Profile = () => {
         navigate("/auth/login");
     }
 
-    const dateNow = Date.now();
+
+    // const LastLoginFormatted = (new Date(lastLoginAt - dateNow)).toLocaleDateString("es-Mx", options);
+    // const createdAtFormatted = (new Date(dateNow - createdAt)).toLocaleDateString("es-Mx", options);
+
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
-    const LastLoginFormatted = (new Date(lastLoginAt - dateNow)).toLocaleDateString("es-Mx", options);
-    const createdAtFormatted = (new Date(dateNow - createdAt)).toLocaleDateString("es-Mx", options);
-    
+    const createdAtParsed = parseInt(createdAt)
+    const createdAtDate = new Date(createdAtParsed);
+    const createdAtDateFormatted = createdAtDate.toLocaleDateString("es-Mx", options);
+
+    const lastLoginAtParsed = parseInt(lastLoginAt);
+    const lastLoginAtDate = new Date(lastLoginAtParsed);
+    const lastLoginAtDateFormatted = lastLoginAtDate.toLocaleDateString("es-Mx", options);
+
+
+
     const handleDelete = async () => {
         Swal.fire({
             title: '¿Estas seguro que quieres eliminar tu cuenta?',
@@ -141,12 +151,12 @@ const Profile = () => {
                             </div>
                             <div className="flex flex-col">
                                 <p className="font-semibold">Cuenta creada en:</p>
-                                <p>{LastLoginFormatted}</p>
+                                <p className="text-sm">{createdAtDateFormatted}</p>
                             </div>
 
                             <div className="flex flex-col">
                                 <p className="font-semibold">Última actualización:</p>
-                                <p>{createdAtFormatted}</p>
+                                <p className="text-sm">{lastLoginAtDateFormatted}</p>
                             </div>
                         </div>
                     </div>
