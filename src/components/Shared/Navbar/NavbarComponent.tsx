@@ -12,7 +12,7 @@ export const NavbarComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
-    const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+    const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user); 
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
 
     const handleLogout = () => {
