@@ -117,10 +117,7 @@ const Login = () => {
                         </div>
                     </div>
                     <hr />
-                    <div className="flex flex-col">
-                        <div className="account_title">¿Aún no tienes una cuenta?</div>
-                        <Link className="text-gray-800 font-bold" to="/auth/signup">Crea una cuenta aqui.</Link>
-                    </div>
+                    <Link className="text-gray-800 font-bold" to="/auth/signup">Crea una cuenta aqui.</Link>
                     <hr />
                     <Link className="text-gray-800 font-semibold" to={"/"}>
                         Ir al inicio

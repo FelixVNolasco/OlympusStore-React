@@ -1,9 +1,8 @@
 import Swal from 'sweetalert2'
 import { setLoading, removeLoading } from "../uiRedux";
 import { loginSuccess, logOutStart } from '../userRedux';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithPopup, updateProfile, updateEmail, updatePassword, signOut, sendEmailVerification, deleteUser } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { googleAuthProvider, facebookAuthProvider } from "../../firebase/firebase-config";
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
 export const loginWithEmailAndPassword = (email, password) => {
   return (dispatch) => {
@@ -22,104 +21,6 @@ export const loginWithEmailAndPassword = (email, password) => {
       }
     }
     tryLogin();
-  }
-}
-
-export const VerifyUser = () => {
-  return (dispatch) => {
-    const tryVerify = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        await sendEmailVerification(auth.currentUser)
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Se ha enviado un correo de verificación",
-        });
-        dispatch(removeLoading());
-      } catch (error) {
-        dispatch(removeLoading());
-        console.log(error)
-      }
-    }
-    tryVerify();
-  }
-}
-
-export const uploadProfilePicture = (file) => {
-  return (dispatch) => {
-    const tryUpdateProfilePicture = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        const storage = getStorage();
-        const { currentUser } = auth;
-        const user = currentUser;
-        if (user !== null) {
-          const uid = user.uid;
-          const fileRef = ref(storage, uid + ".png");
-          await uploadBytes(fileRef, file);
-          const photoURL = await getDownloadURL(fileRef);
-          updateProfile(currentUser, { photoURL });
-          dispatch(logOutStart());
-          Swal.fire({
-            icon: "success",
-            title: "Exito",
-            text: "Se ha actualizado la foto de perfil",
-          })
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    tryUpdateProfilePicture();
-  }
-}
-
-export const updateUsername = (displayName) => {
-  return (dispatch) => {
-    const tryUpdateName = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        const { currentUser } = auth;
-        await updateProfile(currentUser, displayName);
-        dispatch(removeLoading());
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Se ha actualizado su nombre correctamente",
-        });
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    tryUpdateName();
-  }
-}
-
-export const updateUserFirebase = (newData, handleLogout) => {
-  return (dispatch) => {
-    const tryUpdateUser = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        const { currentUser } = auth;
-        const user = currentUser;
-        if (user !== null) {
-          const actualUser = user;
-          await updateEmail(actualUser, newData.email)
-          await updatePassword(actualUser, newData.password)
-          handleLogout();
-        }
-        dispatch(removeLoading());
-      } catch (error) {
-        dispatch(removeLoading());
-        console.log(error);
-      }
-    }
-    tryUpdateUser();
   }
 }
 
@@ -185,33 +86,6 @@ export const loginWithFacebook = (navigateSuccess) => {
   }
 }
 
-export const RestorePasswordWithEmail = (email) => {
-  return (dispatch) => {
-    const tryRestorePasswordWithEmail = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        await sendPasswordResetEmail(auth, email);
-        dispatch(removeLoading());
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Se ha enviado el correo de recuperación.👍🏻",
-        });
-      } catch (error) {
-        dispatch(removeLoading());
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No ha sido posible enviar el correo de recuperación 😔",
-        });
-        console.log(error);
-      }
-    }
-    tryRestorePasswordWithEmail();
-  }
-}
-
 export const logout = () => {
   return (dispatch) => {
     const tryLogout = async () => {
@@ -219,7 +93,7 @@ export const logout = () => {
         dispatch(setLoading());
         const auth = getAuth();
         await signOut(auth);
-        dispatch (logOutStart());
+        dispatch(logOutStart());
         dispatch(removeLoading());
       } catch (error) {
         dispatch(removeLoading());
@@ -227,38 +101,5 @@ export const logout = () => {
       }
     }
     tryLogout();
-  }
-}
-
-
-export const deleteAccount = (navigateLoginAndLogout) => {
-  return (dispatch) => {
-    const tryDeleteAccount = async () => {
-      try {
-        dispatch(setLoading());
-        const auth = getAuth();
-        const user = auth.currentUser;
-        await deleteUser(user);
-        dispatch(logOutStart());
-        dispatch(removeLoading());
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Tu cuenta ha sido actualizada correctamente",
-          didClose: () => {
-            navigateLoginAndLogout();
-          }
-        })
-      } catch (error) {
-        dispatch(removeLoading());
-        console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No ha sido posible eliminar la cuenta",
-        });
-      }
-    }
-    tryDeleteAccount();
   }
 }

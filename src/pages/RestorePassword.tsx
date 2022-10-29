@@ -2,8 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
-import { RestorePasswordWithEmail } from '../redux/actions/auth';
-
+import { RestorePasswordWithEmail } from '../redux/actions/verifyRestoreUser';
 
 export const RestorePassword = () => {
 

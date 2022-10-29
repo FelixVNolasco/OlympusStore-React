@@ -3,11 +3,13 @@ import { RootStateOrAny, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
-import { VerifyUser, logout, deleteAccount, uploadProfilePicture, updateUsername } from '../redux/actions/auth';
+import { logout } from '../redux/actions/auth';
 import { useState } from "react";
 import { Form, Field, ErrorMessage, Formik } from 'formik';
 import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
 import { updateDisplayName } from "../components/Schema/FomSchema";
+import { VerifyUser } from '../redux/actions/verifyRestoreUser';
+import { deleteAccount, uploadProfilePicture, updateUsername } from '../redux/actions/updateUser';
 
 const Profile = () => {
 
@@ -17,7 +19,7 @@ const Profile = () => {
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { displayName, photoURL, email, createdAt, lastLoginAt, emailVerified } = user;
     const [photo, setPhoto] = useState(null);
-    const [photoUrl, setPhotoUrl] = useState("https://avatars.githubusercontent.com/u/49852681?v=4");
+    // const [photoUrl, setPhotoUrl] = useState("https://avatars.githubusercontent.com/u/49852681?v=4");
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
     const createdAtParsed = parseInt(createdAt)
@@ -34,6 +36,7 @@ const Profile = () => {
     }
 
     const handleDelete = async () => {
+        dispatch(deleteAccount(navigateLoginAndLogout));
         Swal.fire({
             title: '¿Estas seguro que quieres eliminar tu cuenta?',
             text: "Esta acción no es reversible",
@@ -63,7 +66,7 @@ const Profile = () => {
     }
 
     const handleUploadProfilePicture = () => {
-        dispatch(uploadProfilePicture(photo));
+        dispatch(uploadProfilePicture(photo, navigateLoginAndLogout));
     }
 
     return (
@@ -85,10 +88,10 @@ const Profile = () => {
                                                 <Formik
                                                     initialValues={{ displayName: "" }}
                                                     validationSchema={updateDisplayName}
-                                                    onSubmit={async (values, { setSubmitting }) => {
+                                                    onSubmit={(values, { setSubmitting }) => {
                                                         try {
                                                             setSubmitting(true);
-                                                            await dispatch(updateUsername(values));
+                                                            dispatch(updateUsername(values, navigateLoginAndLogout));
                                                             setSubmitting(false);
                                                         } catch (error) {
                                                             console.log(error)
@@ -96,29 +99,32 @@ const Profile = () => {
                                                         }
                                                     }}
                                                 >
-                                                    <Form className="w-full text-sm">
-                                                        <div className="flex flex-col">
-                                                            <label className="text-sm font-semibold" htmlFor="displayName">Nombre</label>
-                                                            <Field
-                                                                className="text-gray-800 p-1 text-base w-full border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
-                                                                type="text"
-                                                                name="displayName"
-                                                            />
-                                                            <ErrorMessage
-                                                                className="font-semibold"
-                                                                name="displayName"
-                                                                component="" />
-                                                        </div>
-                                                        <div className="ml-1 mt-1 flex gap-1">
-                                                            <button
-                                                                type="submit"
-                                                                className="cursor-pointer"
-                                                            >
-                                                                <FaRegCheckCircle />
-                                                            </button>
-                                                            <FaRegTimesCircle className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
-                                                        </div>
-                                                    </Form>
+                                                    {({ isSubmitting }) => (
+                                                        <Form className="w-full text-sm">
+                                                            <div className="flex flex-col">
+                                                                <label className="text-sm font-semibold" htmlFor="displayName">Nombre</label>
+                                                                <Field
+                                                                    className="text-gray-800 p-1 text-base w-full border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
+                                                                    type="text"
+                                                                    name="displayName"
+                                                                />
+                                                                <ErrorMessage
+                                                                    className="font-semibold"
+                                                                    name="displayName"
+                                                                    component="" />
+                                                            </div>
+                                                            <div className="ml-1 mt-1 flex gap-1">
+                                                                <button
+                                                                    type="submit"
+                                                                    className="cursor-pointer"
+                                                                    disabled={isSubmitting}
+                                                                >
+                                                                    <FaRegCheckCircle />
+                                                                </button>
+                                                                <FaRegTimesCircle className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
+                                                            </div>
+                                                        </Form>
+                                                    )}
                                                 </Formik>
                                             </div>
                                         )

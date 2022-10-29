@@ -2,10 +2,11 @@ import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { updateSchema } from '../components/Schema/FomSchema';
-import { logout, updateUserFirebase } from '../redux/actions/auth';
+import { logout } from '../redux/actions/auth';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { updateUserFirebase } from '../redux/actions/updateUser';
 
 export const UpdateProfile = () => {
 
@@ -16,7 +17,7 @@ export const UpdateProfile = () => {
         setshowPassword(!showPassword);
     };
 
-    const handleLogout = () => {
+    const navigateLoginAndLogout = () => {
         dispatch(logout());
         navigate("/auth/login");
     }
@@ -31,7 +32,7 @@ export const UpdateProfile = () => {
                         onSubmit={(values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                dispatch(updateUserFirebase(values, handleLogout));
+                                dispatch(updateUserFirebase(values, navigateLoginAndLogout))
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error)

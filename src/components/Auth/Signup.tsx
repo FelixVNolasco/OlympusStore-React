@@ -33,7 +33,7 @@ const Signup = () => {
                         validationSchema={signupSchema}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
-                                setSubmitting(true);                                
+                                setSubmitting(true);
                                 dispatch(signupWithEmailAndPassword(values.email, values.password));
                                 navigate("/auth/login");
                                 setSubmitting(false);
@@ -135,17 +135,14 @@ const Signup = () => {
                         )}
                     </Formik>
                     <hr />
-                    <div className='newAccount-container'>
-                        <div className="account_title">¿Ya tienes una cuenta?</div>
-                        <Link className="text-gray-800 font-bold" to="/auth/login">Inicia Sesión.</Link>
-                    </div>
+                    <Link className="text-gray-800 font-bold" to="/auth/login">Inicia Sesión.</Link>
                     <hr />
                     <Link className="text-gray-800 font-semibold" to={"/"}>
                         Ir al inicio
                     </Link>
                 </div>
                 <div className="flex justify-center">
-                    <img src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1666655263/Olympus/undraw_sign_in_re_o58h_udkhrb.svg" alt="" />                    
+                    <img src="https://res.cloudinary.com/dhyxqmnua/image/upload/v1666655263/Olympus/undraw_sign_in_re_o58h_udkhrb.svg" alt="" />
                 </div>
             </div>
         </motion.div>
