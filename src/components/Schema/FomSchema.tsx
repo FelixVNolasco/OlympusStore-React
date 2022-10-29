@@ -24,9 +24,6 @@ export const loginSchema = Yup.object().shape({
 });
 
 export const updateSchema = Yup.object().shape({
-    displayName: Yup.string()
-        .min(2, 'Nombre demasiado corto')
-        .max(30, 'Nombre demasiado largo'),
     email: Yup.string()
         .email("Correo no válido")
         .required("El correo electrónico es requerido"),

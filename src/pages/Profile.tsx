@@ -85,12 +85,10 @@ const Profile = () => {
                                                 <Formik
                                                     initialValues={{ displayName: "" }}
                                                     validationSchema={updateDisplayName}
-                                                    onSubmit={(values, { setSubmitting }) => {
+                                                    onSubmit={async (values, { setSubmitting }) => {
                                                         try {
                                                             setSubmitting(true);
-                                                            const { displayName } = values;
-                                                            dispatch(updateUsername(displayName));
-                                                            navigateLoginAndLogout();
+                                                            await dispatch(updateUsername(values));
                                                             setSubmitting(false);
                                                         } catch (error) {
                                                             console.log(error)

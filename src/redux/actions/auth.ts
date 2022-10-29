@@ -84,7 +84,7 @@ export const updateUsername = (displayName) => {
         dispatch(setLoading());
         const auth = getAuth();
         const { currentUser } = auth;
-        await updateProfile(currentUser, displayName)
+        await updateProfile(currentUser, displayName);
         dispatch(removeLoading());
         Swal.fire({
           icon: "success",
@@ -109,7 +109,6 @@ export const updateUserFirebase = (newData, handleLogout) => {
         const user = currentUser;
         if (user !== null) {
           const actualUser = user;
-          await updateProfile(actualUser, newData.displayName)
           await updateEmail(actualUser, newData.email)
           await updatePassword(actualUser, newData.password)
           handleLogout();

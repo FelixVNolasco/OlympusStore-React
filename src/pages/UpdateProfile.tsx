@@ -2,17 +2,12 @@ import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { updateSchema } from '../components/Schema/FomSchema';
-import { logout, updateUserFirebase} from '../redux/actions/auth';
+import { logout, updateUserFirebase } from '../redux/actions/auth';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-
 export const UpdateProfile = () => {
-
-    // const [profileSelected, setProfileSelected] = useState<any>("");
-    // const [profileResponse, setProfileResponse] = useState<any>("");
-    // const { photoURL } = user;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,19 +15,6 @@ export const UpdateProfile = () => {
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     };
-
-    // const uploadProfileImage = () => {
-    //     const formData = new FormData();
-    //     formData.append("file", profileSelected);
-    //     formData.append("upload_preset", "olympus_store");
-    //     if (profileSelected !== "") {
-    //         try {
-    //             axios.post("https://api.cloudinary.com/v1_1/dhyxqmnua/image/upload", formData).then(({ data }) => setProfileResponse(data.url));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-    // }
 
     const handleLogout = () => {
         dispatch(logout());
@@ -44,12 +26,12 @@ export const UpdateProfile = () => {
             <motion.div className="flex justify-center mt-4 mb-4 w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-indigo-300/75 rounded-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <div className="flex flex-col-reverse xl:flex-row w-2/3 m-12 items-center justify-around">
                     <Formik
-                        initialValues={{ displayName: "", email: "", password: "",  }}
+                        initialValues={{ email: "", password: "", }}
                         validationSchema={updateSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                updateUserFirebase(values, handleLogout);
+                                dispatch(updateUserFirebase(values, handleLogout));
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error)
@@ -59,23 +41,6 @@ export const UpdateProfile = () => {
                     >
                         {({ isSubmitting }) => (
                             <Form className="w-full xl:w-3/5">
-                                <div className="flex flex-col mb-4">
-                                    <label className="font-semibold" htmlFor="displayName">
-                                        Nombre
-                                    </label>
-                                    <div className="input-container">
-                                        <Field
-                                            className="p-1 rounded-md w-full border-2 focus:outline-none focus:border-2 focus:border-green-400/90"
-                                            type="text"
-                                            name="displayName"
-                                        />
-                                    </div>
-                                    <ErrorMessage
-                                        className="text-red-900 text-sm font-bold mt-1"
-                                        name="displayName"
-                                        component="div"
-                                    />
-                                </div>
                                 <div className="flex flex-col mb-4">
                                     <label className="font-semibold" htmlFor="email">
                                         Correo Electrónico
