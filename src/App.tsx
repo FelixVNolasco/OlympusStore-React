@@ -15,7 +15,7 @@ const App = () => {
     authenticationPath: '/auth/login',
   };
 
-  const defaultNoAuthRouteProps: Omit<NoAuthProps, "outlet"> = {
+  const defaultNoAuthRouteProps: Omit<NoAuthProps, 'outlet'> = {
     isAuthenticated: isAuthenticated,
     redirectPath: "/"
   }

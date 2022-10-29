@@ -30,7 +30,7 @@ const Login = () => {
                     <Formik
                         initialValues={{ email: "", password: "" }}
                         validationSchema={loginSchema}
-                        onSubmit={async (values, { setSubmitting }) => {
+                        onSubmit={(values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
                                 dispatch(loginWithEmailAndPassword(values.email, values.password))

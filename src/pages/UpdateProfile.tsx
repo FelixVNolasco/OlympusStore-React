@@ -3,8 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { updateSchema } from '../components/Schema/FomSchema';
 import { logout, updateUserFirebase} from '../redux/actions/auth';
-// import { useState } from "react";
-// import axios from "axios";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -48,7 +46,7 @@ export const UpdateProfile = () => {
                     <Formik
                         initialValues={{ displayName: "", email: "", password: "",  }}
                         validationSchema={updateSchema}
-                        onSubmit={async (values, { setSubmitting }) => {
+                        onSubmit={(values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
                                 updateUserFirebase(values, handleLogout);

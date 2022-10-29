@@ -3,30 +3,21 @@ import { RootStateOrAny, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
-import { VerifyUser, logout, deleteAccount } from '../redux/actions/auth';
-
-// import { Form, Field, ErrorMessage, Formik } from 'formik';
-// import { useState } from "react";
-// import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
-// import { updateDisplayName } from "../components/Schema/FomSchema";
+import { VerifyUser, logout, deleteAccount, uploadProfilePicture, updateUsername } from '../redux/actions/auth';
+import { useState } from "react";
+import { Form, Field, ErrorMessage, Formik } from 'formik';
+import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
+import { updateDisplayName } from "../components/Schema/FomSchema";
 
 const Profile = () => {
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const { displayName, photoURL, email, createdAt, lastLoginAt, emailVerified } = user;
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-
-    const navigateLoginAndLogout = () => {
-        dispatch(logout());
-        navigate("/auth/login");
-    }
-
-
-    // const LastLoginFormatted = (new Date(lastLoginAt - dateNow)).toLocaleDateString("es-Mx", options);
-    // const createdAtFormatted = (new Date(dateNow - createdAt)).toLocaleDateString("es-Mx", options);
+    const [photo, setPhoto] = useState(null);
+    const [photoUrl, setPhotoUrl] = useState("https://avatars.githubusercontent.com/u/49852681?v=4");
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
     const createdAtParsed = parseInt(createdAt)
@@ -37,7 +28,10 @@ const Profile = () => {
     const lastLoginAtDate = new Date(lastLoginAtParsed);
     const lastLoginAtDateFormatted = lastLoginAtDate.toLocaleDateString("es-Mx", options);
 
-
+    const navigateLoginAndLogout = () => {
+        dispatch(logout());
+        navigate("/auth/login");
+    }
 
     const handleDelete = async () => {
         Swal.fire({
@@ -56,8 +50,20 @@ const Profile = () => {
         })
     }
 
+    const [isEditing, setIsEditing] = useState(false);
+
     const handleVerification = () => {
         dispatch(VerifyUser());
+    }
+
+    const handleProfileChange = (e) => {
+        if (e.target.files[0]) {
+            setPhoto(e.target.files[0])
+        }
+    }
+
+    const handleUploadProfilePicture = () => {
+        dispatch(uploadProfilePicture(photo));
     }
 
     return (
@@ -65,54 +71,57 @@ const Profile = () => {
             <div className="flex flex-col mt-4 mb-4">
                 <div className="flex justify-center w-5/6 md:w-2/3 xl:w-1/2 mx-auto bg-gray-700 text-amber-50 drop-shadow-md shadow-sm shadow-slate-500 rounded-md">
                     <div className="flex flex-col md:text-md  lg:text-lg w-3/4 m-20 items-center justify-around">
-                        <div className="flex mb-6 xl:mb-0 justify-center">
+                        <div className="flex flex-col mb-6 xl:mb-0 items-center">
                             <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
+                            <input className="mt-4" type="file" onChange={handleProfileChange} />
+                            <button className="w-full px-2 py-1 rounded-md bg-gray-800/90 text-slate-50 mt-1 cursor-pointer" onClick={handleUploadProfilePicture}>Cargar</button>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4 items-center">
                             <div className="mb-1">
-                                {/* {
+                                {
                                     isEditing ?
                                         (
                                             <div className="flex items-center justify-between">
                                                 <Formik
                                                     initialValues={{ displayName: "" }}
                                                     validationSchema={updateDisplayName}
-                                                    onSubmit={async (values, { setSubmitting }) => {
+                                                    onSubmit={(values, { setSubmitting }) => {
                                                         try {
                                                             setSubmitting(true);
-                                                            dispatch(updateUsername(values.displayName, handleLogout));
-                                                            navigate("/");
+                                                            const { displayName } = values;
+                                                            dispatch(updateUsername(displayName));
+                                                            navigateLoginAndLogout();
                                                             setSubmitting(false);
                                                         } catch (error) {
                                                             console.log(error)
                                                             setSubmitting(false);
                                                         }
                                                     }}
-                                                >                                                                                                            
-                                                        <Form className="w-full text-sm">
-                                                            <div className="flex flex-col">
-                                                                <label className="text-sm font-semibold" htmlFor="displayName">Nombre</label>
-                                                                <Field
-                                                                    className="text-gray-800 p-1 text-base w-full border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
-                                                                    type="text"
-                                                                    name="displayName"
-                                                                />
-                                                                <ErrorMessage
-                                                                    className="font-semibold"
-                                                                    name="displayName"
-                                                                    component="" />
-                                                            </div>
-                                                        </Form>                                                    
+                                                >
+                                                    <Form className="w-full text-sm">
+                                                        <div className="flex flex-col">
+                                                            <label className="text-sm font-semibold" htmlFor="displayName">Nombre</label>
+                                                            <Field
+                                                                className="text-gray-800 p-1 text-base w-full border-2 rounded-md focus:outline-none focus:border-2 focus:border-blue-600/90"
+                                                                type="text"
+                                                                name="displayName"
+                                                            />
+                                                            <ErrorMessage
+                                                                className="font-semibold"
+                                                                name="displayName"
+                                                                component="" />
+                                                        </div>
+                                                        <div className="ml-1 mt-1 flex gap-1">
+                                                            <button
+                                                                type="submit"
+                                                                className="cursor-pointer"
+                                                            >
+                                                                <FaRegCheckCircle />
+                                                            </button>
+                                                            <FaRegTimesCircle className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
+                                                        </div>
+                                                    </Form>
                                                 </Formik>
-
-                                                <div className="ml-1 flex gap-1">
-                                                    <button
-                                                        type="submit"
-                                                    >
-                                                        <FaRegCheckCircle className="cursor-pointer"/>
-                                                    </button>                                                    
-                                                    <FaRegTimesCircle className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
-                                                </div>
                                             </div>
                                         )
                                         :
@@ -123,12 +132,12 @@ const Profile = () => {
                                                 <FaEdit className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
                                             </div>
                                         )
-                                } */}
-
+                                }
+                                {/* 
                                 <div className="flex items-center justify-between">
                                     <p className="font-semibold">Nombre:</p>
                                     <span className="md:ml-2">{displayName}</span>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center">
                                 <p className="font-semibold">Correo Electrónico:</p>

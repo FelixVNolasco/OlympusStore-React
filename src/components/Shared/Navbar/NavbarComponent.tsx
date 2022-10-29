@@ -17,8 +17,6 @@ export const NavbarComponent = () => {
     const { photoURL } = currentUser;
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("id");
         dispatch(logout());
         navigate("/");
     }

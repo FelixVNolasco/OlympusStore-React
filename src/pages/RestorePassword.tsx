@@ -27,10 +27,10 @@ export const RestorePassword = () => {
                             }
                             return errors;
                         }}
-                        onSubmit={async (values, { setSubmitting }) => {
+                        onSubmit={(values, { setSubmitting }) => {
                             try {
                                 setSubmitting(true);
-                                await dispatch(RestorePasswordWithEmail(values.email));
+                                dispatch(RestorePasswordWithEmail(values.email));
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error);
