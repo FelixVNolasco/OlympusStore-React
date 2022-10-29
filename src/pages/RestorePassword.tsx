@@ -14,7 +14,7 @@ export const RestorePassword = () => {
                 <div className="auth__box-container animate__animated animate__fadeIn animate__faster">
                     <p className="auth__title">Recuperar Contraseña</p>
                     <Formik
-                        initialValues={{ email: "" }}
+                        initialValues={{ email: "" }} 
                         validate={(values: any) => {
                             const errors: any = {};
                             if (!values.email) {
