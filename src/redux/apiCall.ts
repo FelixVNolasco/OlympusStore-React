@@ -64,7 +64,7 @@ export const successPurchaseRequest = async (dispatch, stripeData, userId: strin
 export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
     dispatch(setLoading());
     try {
-        const response = await axios.delete(`https://localhost:5000/api/orders/${id}`);
+        const response = await axios.delete(`${BASE_URL}/orders/${id}`);
         const { data } = response;
         dispatch(removeLoading());
         if (data === "Order has been deleted...") {

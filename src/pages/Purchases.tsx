@@ -12,7 +12,7 @@ export const Purchases = () => {
     const [purchases, setPurchases] = useState<any[]>(null);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
-    const { username, uid } = currentUser;
+    const { displayName, uid } = currentUser;
     const dispatch = useDispatch();    
 
     const refreshPage = () => {
@@ -39,7 +39,7 @@ export const Purchases = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                cancelPurchase(dispatch, uid, refreshPage);
+                cancelPurchase(dispatch, id, refreshPage);
             }
         })
     }
@@ -81,7 +81,7 @@ export const Purchases = () => {
                                                                     </div>
                                                                     <div className="flex flex-col m-2 md:m-4">
                                                                         <span className="text-xs">ENVIAR A</span>
-                                                                        <span>{username}</span>
+                                                                        <span>{displayName}</span>
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex flex-col text-sm md:mr-4">
