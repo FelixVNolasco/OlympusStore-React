@@ -16,7 +16,7 @@ export const loginWithEmailAndPassword = (email, password) => {
         dispatch(loginSuccess(user));
         dispatch(removeLoading());
       } catch (error) {
-        Swal.fire('Error', "No ha sido posible registrarse", "error");
+        Swal.fire('Error', "Usuario o contraseña incorrecto", "error");
         console.log(error);
         dispatch(removeLoading());
       }
