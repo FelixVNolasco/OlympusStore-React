@@ -14,8 +14,6 @@ export const NavbarComponent = () => {
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
     const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
 
-    const { photoURL } = currentUser;
-
     const handleLogout = () => {
         dispatch(logout());
         navigate("/");
@@ -168,7 +166,7 @@ export const NavbarComponent = () => {
                                             as="button"
                                             color="primary"
                                             size="md"
-                                            src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} 
+                                            src={(currentUser?.photoURL) ? currentUser?.photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} 
                                         />
                                     </Dropdown.Trigger>
                                 </Navbar.Item>

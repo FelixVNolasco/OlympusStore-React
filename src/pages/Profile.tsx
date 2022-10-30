@@ -10,16 +10,20 @@ import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
 import { updateDisplayName } from "../components/Schema/FomSchema";
 import { VerifyUser } from '../redux/actions/verifyRestoreUser';
 import { deleteAccount, uploadProfilePicture, updateUsername } from '../redux/actions/updateUser';
+import { useEffect } from 'react';
+import { useAuth } from '../firebase/useAuth';
 
 const Profile = () => {
 
+    const actualUser = useAuth();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const { displayName, photoURL, email, createdAt, lastLoginAt, emailVerified } = user;
+    const { email, createdAt, lastLoginAt, emailVerified } = user;
     const [photo, setPhoto] = useState(null);
-    // const [photoUrl, setPhotoUrl] = useState("https://avatars.githubusercontent.com/u/49852681?v=4");
+    const [photoURL, setPhotoURL] = useState(null);
+    const [displayName, setDisplayName] = useState(null);
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
     const createdAtParsed = parseInt(createdAt)
@@ -33,6 +37,10 @@ const Profile = () => {
     const navigateLoginAndLogout = () => {
         dispatch(logout());
         navigate("/auth/login");
+    }
+
+    const refreshPage = () => {
+        navigate(0);
     }
 
     const handleDelete = async () => {
@@ -66,8 +74,18 @@ const Profile = () => {
     }
 
     const handleUploadProfilePicture = () => {
-        dispatch(uploadProfilePicture(photo, navigateLoginAndLogout));
+        dispatch(uploadProfilePicture(photo, refreshPage));
     }
+
+    useEffect(() => {
+        if (actualUser?.photoURL) {
+            setPhotoURL(actualUser.photoURL);
+        }
+        if (actualUser?.displayName) {
+            setDisplayName(actualUser.displayName);
+        }
+    }, [actualUser])
+
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -77,7 +95,7 @@ const Profile = () => {
                         <div className="flex flex-col mb-6 xl:mb-0 items-center">
                             <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
                             <input className="mt-4" type="file" onChange={handleProfileChange} />
-                            <button className="w-full px-2 py-1 rounded-md bg-gray-800/90 text-slate-50 mt-1 cursor-pointer" onClick={handleUploadProfilePicture}>Cargar</button>
+                            <button disabled={!photo} className="w-full px-2 py-1 rounded-md bg-gray-800/90 text-slate-50 mt-1 cursor-pointer disabled:bg-gray-400 disabled:text-gray-600 disabled:cursor-not-allowed" onClick={handleUploadProfilePicture}>Cargar</button>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4 items-center">
                             <div className="mb-1">
@@ -91,7 +109,7 @@ const Profile = () => {
                                                     onSubmit={(values, { setSubmitting }) => {
                                                         try {
                                                             setSubmitting(true);
-                                                            dispatch(updateUsername(values, navigateLoginAndLogout));
+                                                            dispatch(updateUsername(values, refreshPage));
                                                             setSubmitting(false);
                                                         } catch (error) {
                                                             console.log(error)
