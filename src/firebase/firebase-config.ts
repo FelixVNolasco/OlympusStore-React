@@ -23,4 +23,4 @@ export {
     googleAuthProvider,
     facebookAuthProvider,
     // twitterAuthProvider
-};
+};  

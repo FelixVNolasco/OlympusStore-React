@@ -97,7 +97,7 @@ const SingleProduct = () => {
                                     <FaPlus className='cursor-pointer' onClick={() => handleQuantity("inc")} />
                                 </div>
                                 <div className="flex justify-center items-center gap-4 transition ease-in-out duration-150">
-                                    <button onClick={handleClick} disabled={!isAuthenticated} className='text-stone-50 bg-gray-800 w-full p-2 rounded-md font-semibold cursor-pointer'>Añadir al Carrito</button>
+                                    <button onClick={handleClick} disabled={!isAuthenticated} className='text-stone-50 bg-gray-800 w-full p-2 rounded-md font-semibold cursor-pointer disabled:bg-gray-400 disabled:text-gray-600 disabled:cursor-not-allowed'>Añadir al Carrito</button>
                                     {
                                         !isAuthenticated &&
                                         <>

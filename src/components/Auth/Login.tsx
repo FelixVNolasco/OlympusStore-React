@@ -102,7 +102,7 @@ const Login = () => {
                                     </button>
                                 </div>
                                 <div className="flex justify-end mt-1">
-                                    <Link className="text-blue-800 font-semibold text-right" to="/restore-password">¿Olvidaste tu contraseña?</Link>
+                                    <Link className="text-blue-800 font-semibold text-right" to="/recover-password">¿Olvidaste tu contraseña?</Link>
                                 </div>
                             </Form>
                         )}

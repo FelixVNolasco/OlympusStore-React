@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged, getAuth, confirmPasswordReset } from 'firebase/auth';
 import { useState } from 'react';
 
 // Use Auth Hook
@@ -14,4 +14,9 @@ export function useAuth() {
     }, [auth])
 
     return currentUser;
+}
+
+export function resetPassword(oobCode, newPassword) {
+    const auth = getAuth();
+    return confirmPasswordReset(auth, oobCode, newPassword)
 }

@@ -8,8 +8,9 @@ import { Cancel } from '../pages/Cancel';
 import { UpdateProfile } from '../pages/UpdateProfile';
 import { Home } from '../pages/Home';
 import { Purchases } from '../pages/Purchases';
-import { RestorePassword } from '../pages/RestorePassword';
+import { RecoverPassword } from '../pages/RecoverPassword';
 import { NoAuthRoute } from './NoAuthRoute';
+import RestorePassword from '../pages/RestorePassword';
 
 //Pages
 const ProductList = React.lazy(() => import('../pages/ProductList'));
@@ -28,6 +29,11 @@ export const AnimatedRoutes = ({ routeProtection, noAuthProtection }) => {
             } />
             <Route path="/auth/signup" element={
                 <NoAuthRoute {...noAuthProtection} outlet={<Signup />} />
+            } />
+            <Route path="/recover-password" element={
+                <React.Suspense fallback={<></>}>
+                    <RecoverPassword />
+                </React.Suspense>
             } />
             <Route path="/restore-password" element={
                 <React.Suspense fallback={<></>}>
