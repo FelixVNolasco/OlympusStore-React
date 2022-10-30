@@ -11,6 +11,6 @@ export const Home = () => {
             <Products />
             <Footer />
         </div>
-    )
+    ) 
 }
 
