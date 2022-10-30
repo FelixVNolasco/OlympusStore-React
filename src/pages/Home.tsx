@@ -10,6 +10,6 @@ export const Home = () => {
             <Categories />
             <Products />
         </motion.div>
-    )
+    ) 
 }
 
