@@ -5,6 +5,7 @@ import { icons } from "./icons";
 import { ShoppingCart } from "../ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../../redux/actions/auth';
+import { useAuth } from '../../../firebase/useAuth';
 
 export const NavbarComponent = () => {
 
@@ -12,7 +13,7 @@ export const NavbarComponent = () => {
     const navigate = useNavigate();
     const { quantity } = useSelector((state: RootStateOrAny) => state.cart);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
-    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
+    const currentUser = useAuth();
 
     const handleLogout = () => {
         dispatch(logout());
