@@ -29,7 +29,7 @@ export const updateSchema = Yup.object().shape({
         .required("El correo electrónico es requerido"),
     // urlImage: Yup.string()
     password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-\.])(?=.{8,})/,
             "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
         .required("La contraseña es requerida")
 });
@@ -43,7 +43,7 @@ export const updateDisplayName = Yup.object().shape({
 
 export const restorePassword = Yup.object().shape({
     password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-\.])(?=.{8,})/,
             "Debe de contener al menos 8 carácteres, una Mayúscula, una minúscula, un número y un carácter especial")
         .required("La contraseña es requerida")
 })
