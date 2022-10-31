@@ -5,7 +5,6 @@ const Category = ({ item }: any) => {
         <Link className='drop-shadow-lg hover:drop-shadow-2xl hover:-translate-y-2 transition ease-in-out duration-300' to={`/products/${item.category}`}>
             <div className=''>
                 <img className='w-11/12 rounded-lg' src={item.img} alt="" />
-                {/* <p className=''>{item.title}</p> */}
             </div>
         </Link>
     )

@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { Products } from '../components/Products';
 import { useState } from 'react';
 import { Search } from '../components/Shared/Search';
+import { CategoryProducts } from '../components/CategoryProducts';
 
 const ProductList = () => {
 
@@ -58,7 +59,7 @@ const ProductList = () => {
                 <div className='col-span-1 w-full xl:col-span-10 '>
                     <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
                     <Search category={category} />
-                    <Products category={category} filters={filters} sort={sort} />
+                    <CategoryProducts category={category} filters={filters} sort={sort} />
                 </div>
             </div>
         </main>

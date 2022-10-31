@@ -12,8 +12,8 @@ export const Products = ({ category, filters, sort }: any) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
-    const dispatch = useDispatch();
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getProducts = async () => {
