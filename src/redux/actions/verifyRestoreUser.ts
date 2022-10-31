@@ -14,7 +14,8 @@ export const VerifyUser = () => {
                         Swal.fire({
                             icon: "success",
                             title: "Exito",
-                            text: "Se ha enviado un correo de verificación",
+                            html: "<span>Se ha enviado el correo de verificaciónn</span> <br>" +
+                            "<span>Por favor revisa tu bandeja de SPAM</span>"
                         });
                         dispatch(removeLoading());
                     }
