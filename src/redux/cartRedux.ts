@@ -27,7 +27,7 @@ const cartSlice = createSlice({
                     title: "Advertencia",
                     text: "Debes escoger un número",
                 });
-            }
+            } 
         },
         removeProduct: (state, action) => { 
 
