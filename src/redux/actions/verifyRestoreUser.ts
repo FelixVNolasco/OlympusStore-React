@@ -40,7 +40,8 @@ export const RestorePasswordWithEmail = (email) => {
                 Swal.fire({
                     icon: "success",
                     title: "Exito",
-                    text: "Se ha enviado el correo de recuperación.👍🏻",
+                    html: "<span>Se ha enviado el correo de recuperación</span> <br>" +
+                    "<span>Por favor revisa tu bandeja de SPAM</span>"
                 });
             } catch (error) {
                 dispatch(removeLoading());
