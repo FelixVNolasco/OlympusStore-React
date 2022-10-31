@@ -56,6 +56,9 @@ export const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex w-full bg-gray-900 justify-end">
+                <a className='text-xs text-slate-50 p-2'target={"_blank"} rel="noreferrer" href="https://pages.flycricket.io/olympus-store/privacy.html">Politicas de Privacidad</a>
+            </div>
         </footer>
     )
 }
