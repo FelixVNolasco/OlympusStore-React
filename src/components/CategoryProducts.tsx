@@ -51,9 +51,9 @@ export const CategoryProducts = ({ category, filters, sort }) => {
     return (
         <>
             {
-                loading ?
+                loading  ?
                     (
-                        <div className='grid justify-items-center'>
+                        <div className='grid justify-items-center mt-36 mb-36'>
                             <BallTriangle
                                 height="162"
                                 width="162"
