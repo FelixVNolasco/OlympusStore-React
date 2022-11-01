@@ -1,23 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// type AuthProvider = {
-// }
-
-// type USER = {
-//   uid: string,
-//   email: string,
-//   emailVerified: boolean,
-//   displayName: string,
-//   isAnonymous: boolean,
-//   photoURL: string,
-//   providerData: any,
-//   stsTokenManger: any,
-//   createdAt: any,
-//   lastLoginAt: any,
-//   apiKey: string,
-//   appName: any
-// }
-
 const userSlice = createSlice({
   name: "user",
   initialState: {
