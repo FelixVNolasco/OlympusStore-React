@@ -27,7 +27,7 @@ export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
         setItemOffset(newOffset);
     };
     return (
-        <motion.div className='flex flex-col w-full items-center h-full justify-between' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <div className='flex flex-col w-full items-center h-full justify-between'>
             <ProductsMap currentProducts={currentItems} />
             <ReactPaginate
                 className='w-5/6 md:w-3/4 lg:w-1/3  mx-auto items-center p-6 mb-32 flex gap-4 bg-slate-700 text-slate-50 justify-center rounded-md drop-shadow-xl shadow-sm shadow-slate-500'
@@ -42,7 +42,7 @@ export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
                 previousLabel={<FaArrowAltCircleLeft />}
                 renderOnZeroPageCount={null}
             />
-        </motion.div>
+        </div>
     )
 }
 
