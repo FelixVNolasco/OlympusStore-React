@@ -29,6 +29,7 @@ const SingleProduct = () => {
                 setCategories(product.categories);
                 setSizes(product.size);
                 dispatch(doneFetching());
+                window.scrollTo(0, 0);
             } catch (error) {
                 console.log(error);
             }

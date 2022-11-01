@@ -57,8 +57,12 @@ const ProductList = () => {
                     </div>
                 </div>
                 <div className='col-span-1 w-full xl:col-span-10 '>
-                    <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
-                    <Search category={category} />
+                    <div className='flex justify-center'>
+                        <div className='w-full lg:w-3/4 2xl:w-1/2'>
+                            <h4 className="text-lg text-center font-semibold">Buscar Productos</h4>
+                            <Search category={category} />
+                        </div>
+                    </div>
                     <CategoryProducts category={category} filters={filters} sort={sort} />
                 </div>
             </div>
