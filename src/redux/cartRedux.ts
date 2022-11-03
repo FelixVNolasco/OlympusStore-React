@@ -35,7 +35,7 @@ const cartSlice = createSlice({
             (state.quantity === 0) ? state.quantity = 0 : state.quantity--;
             const nextProducts = state.products.filter(product => product._id !== action.payload._id);
             state.products = nextProducts;
-            state.total -= action.payload.price * action.payload.quantity;
+            state.total -= action.payload.price * action.payload.quantity; 
         },
         plusProduct: (state, action) => {
             const productIndex = state.products.findIndex(product => product._id === action.payload._id);
