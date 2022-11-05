@@ -24,7 +24,6 @@ const Cart = () => {
         setStripeToken(token)
     }
 
-
     useEffect(() => {
         const makeRequest = async () => {
             try {
@@ -53,8 +52,8 @@ const Cart = () => {
 
     const handleCleanCart = async () => {
         Swal.fire({
-            title: '¿Estas seguro de limpiar el carrito?',
-            text: "Esto borrará todos los productos",
+            title: 'Limpiar Carrito',
+            text: "¿Deseas quitar todos los productos?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -74,8 +73,8 @@ const Cart = () => {
 
     const handleRemoveProduct = async (product) => {
         Swal.fire({
-            title: '¿Estas seguro de remover este producto?',
-            text: "Se removerán todos los productos iguales",
+            title: 'Remover Producto',
+            text: "¿Deseas remover este producto?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -90,7 +89,7 @@ const Cart = () => {
     }
 
     return (
-        <motion.main className='flex flex-col items-center mt-4 mb-auto' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.main className='flex flex-col items-center mt-6 mb-auto' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {
                 products.length !== 0 ?
                     <>
