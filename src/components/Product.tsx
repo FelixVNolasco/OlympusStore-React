@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ImageSlider } from './Shared/ImageSlider';
 
 export const Product = ({ item }: any) => {
 

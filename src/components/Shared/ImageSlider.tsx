@@ -1,9 +1,8 @@
-import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 export const ImageSlider = ({ images }) => {
     return (
-        <Slide>
+        <>
             {
                 images?.map((image, index) => {
                     return (
@@ -14,6 +13,6 @@ export const ImageSlider = ({ images }) => {
                     )
                 })
             }
-        </Slide>
+        </>
     )
 }

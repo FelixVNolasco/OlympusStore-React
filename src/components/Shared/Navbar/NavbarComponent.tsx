@@ -2,7 +2,6 @@ import { Navbar, Dropdown, Button, Link, Text, Avatar, useTheme } from "@nextui-
 import { Link as LinkRouter } from 'react-router-dom';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { icons } from "./icons";
-import { FcLibrary } from "react-icons/fc";
 import { ShoppingCart } from "../ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../../redux/actions/auth';
