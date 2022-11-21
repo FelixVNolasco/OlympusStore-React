@@ -1,9 +1,4 @@
-export interface category {
-  id: number,
-  img: string,
-  title: string,
-  category: string
-}
+import { category } from "./interfaces/Category";
 
 export const categories: category[] = [
   {

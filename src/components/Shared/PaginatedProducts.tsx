@@ -3,7 +3,6 @@ import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { ProductsMap } from './ProductsMap';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 
 export const PaginatedProducts = ({ currentProducts, itemsPerPage }) => {
 

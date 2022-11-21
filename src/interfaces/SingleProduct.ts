@@ -1,6 +1,5 @@
 
-
-export type Product = {
+export interface Product {
     _id: string,
     __v: number,
     categories: string[],
@@ -14,7 +13,6 @@ export type Product = {
     title: string,
     updatedAt: Date
 }
-
-export type SingleProductResponse = {
+export interface SingleProductResponse {
     data: Product
 }

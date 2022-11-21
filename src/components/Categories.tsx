@@ -1,9 +1,10 @@
 
-import { categories, category } from '../data';
+import { categories } from '../data';
+import { category } from '../interfaces/Category';
 import Category from './Category';
 
 const Categories = () => {
-    return ( 
+    return (
         <section className="grid justify-items-center mb-64">
             <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12 w-10/12 items-center justify-items-center'>
                 {

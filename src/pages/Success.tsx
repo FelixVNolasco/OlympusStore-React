@@ -10,38 +10,37 @@ import { motion } from 'framer-motion';
 const Success = () => {
 
     const location: any = useLocation();
-    const data = location.state.stripeData;
-    const cart = location.state.cart;
-    const { uid, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const [order, setOrder] = useState(undefined);
-    const [orderId, setOrderId] = useState(null);
+    const orderId = location.state.id;
+    // const { uid, accessToken } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    // const [order, setOrder] = useState(undefined);
+    // const [orderId, setOrderId] = useState(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const createOrder = async () => {
-            try {
-                const stripeData = {
-                    userId: uid,
-                    products: cart.products.map((item) => ({
-                        productId: item._id,
-                        quantity: item.quantity,
-                        title: item.title,
-                        size: item.size,
-                        img: item.img,
-                        price: item.price
-                    })),
-                    amount: cart.total,
-                    address: data.billing_details.address,
-                };
-                const purchaseData = await successPurchaseRequest(dispatch, stripeData, uid, accessToken);
-                setOrder(purchaseData);
-                setOrderId(purchaseData._id);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        data && createOrder();
-    }, [cart, data, uid, accessToken, dispatch]);
+    // useEffect(() => {
+    //     const createOrder = async () => {
+    //         try {
+    //             const stripeData = {
+    //                 userId: uid,
+    //                 products: cart.products.map((item) => ({
+    //                     productId: item._id,
+    //                     quantity: item.quantity,
+    //                     title: item.title,
+    //                     size: item.size,
+    //                     img: item.img,
+    //                     price: item.price
+    //                 })),
+    //                 amount: cart.total,
+    //                 address: data.billing_details.address,
+    //             };
+    //             const purchaseData = await successPurchaseRequest(dispatch, stripeData, uid, accessToken);
+    //             setOrder(purchaseData);
+    //             setOrderId(purchaseData._id);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     data && createOrder();
+    // }, [cart, data, uid, accessToken, dispatch]);
 
     return (
         <motion.div
@@ -57,20 +56,13 @@ const Success = () => {
         >
             {
                 orderId
-                    ? <SuccessOrderCard order={order} />
+                    ? <SuccessOrderCard order={orderId} />
                     : <BallTriangle
                         height="162"
                         width="162"
                         color='#406882'
                         ariaLabel='loading'
                     />}
-            <Link to={"/purchases"}>
-                <button className='inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ripple-surface-light400' style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(cleanCart({
-                    products: [],
-                    quantity: 0,
-                    total: 0
-                }))}>Ir al mis compras</button>
-            </Link>
         </motion.div>
     )
 }

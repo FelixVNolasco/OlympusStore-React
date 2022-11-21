@@ -7,7 +7,7 @@ import { EmptyCart } from '../components/Shared/EmptyCart';
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { removeLoading, setLoading } from '../redux/uiRedux';
-import { makePurchaseRequest } from '../redux/apiCall';
+import { makePurchaseRequest, successPurchaseRequest } from '../redux/apiCall';
 import { motion } from 'framer-motion';
 
 const Cart = () => {
@@ -32,15 +32,40 @@ const Cart = () => {
                     tokenId: stripeToken.id,
                     amount: cart.total * 100
                 }
-
                 const data = await makePurchaseRequest(dispatch, stripeData, uid, accessToken);
+                const createOrder = async () => {
+                    try {
+                        const stripeData = {
+                            userId: uid,
+                            products: cart.products.map((item) => ({
+                                productId: item._id,
+                                quantity: item.quantity,
+                                title: item.title,
+                                size: item.size,
+                                img: item.img,
+                                price: item.price
+                            })),
+                            amount: cart.total,
+                            address: data.billing_details.address,
+                        };
+                        const purchaseData = await successPurchaseRequest(dispatch, stripeData, uid, accessToken);
+                        navigate("/success", {
+                            state: {
+                                id: purchaseData._id
+                            },
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                };
+                createOrder();                
                 dispatch(removeLoading());
-                navigate("/success", {
-                    state: {
-                        stripeData: data,
-                        cart: cart
-                    },
-                });
+                // navigate("/success", {
+                //     state: {
+                //         stripeData: data,
+                //         cart: cart
+                //     },
+                // });
             } catch (error) {
                 dispatch(removeLoading());
                 console.log(error);
@@ -103,7 +128,7 @@ const Cart = () => {
                             <button className="px-2 py-1 bg-red-400 rounded-md" onClick={handleCleanCart}>Limpiar Carrito</button>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 w-10/12 2xl:w-9/12 items-center justify-items-center">
-                            <div     className="w-full">
+                            <div className="w-full">
                                 {
                                     products.map((product) => (
                                         <div className="product" key={product._id.$oid}>
