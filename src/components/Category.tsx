@@ -7,7 +7,7 @@ const Category = ({ item }: any) => {
                 <img className='categoryBackground' src={item.img} alt="" />
                 <p className='title'>{item.title}</p>
             </div>
-        </Link>
+        </Link> 
     )
 }
 
