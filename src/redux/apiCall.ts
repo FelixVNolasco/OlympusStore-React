@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { SingleProductResponse } from '../interfaces/SingleProduct';
 import { publicRequest } from '../requestMethods';
 import { removeLoading, setLoading } from "./uiRedux";
-import { startFetching } from './userRedux';
+import { doneFetching, startFetching } from './userRedux';
 import axios from 'axios';
 
 const BASE_URL = "https://olympus-backend.vercel.app/api";
@@ -16,6 +16,17 @@ export const getAllProducts = async (dispatch, category: any) => {
         return data;
     } catch (error) {
         dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+export const getProduct = async (dispatch, productId): Promise<unknown> => {
+    try {
+        const product = await getSingleProduct(dispatch, productId);        
+        dispatch(doneFetching());
+        window.scrollTo(0, 0);
+        return product;        
+    } catch (error) {
         console.log(error);
     }
 }

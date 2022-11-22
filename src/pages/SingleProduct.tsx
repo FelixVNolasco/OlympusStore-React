@@ -1,43 +1,34 @@
 import { FaPlus, FaMinus, FaExclamationCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { addProduct } from '../redux/cartRedux';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { BallTriangle } from 'react-loader-spinner';
-import { getSingleProduct } from '../redux/apiCall';
+import { getProduct } from '../redux/apiCall';
 import ReactTooltip from 'react-tooltip';
 import { Product } from '../interfaces/SingleProduct';
-import { doneFetching } from '../redux/userRedux';
 import { motion } from 'framer-motion';
+import { addCartProduct, isSingleProduct } from '../helpers/singleProductHelpers';
 
 const SingleProduct = () => {
 
     const location = useLocation();
-    const productId = location.pathname.split("/")[2];
     const dispatch = useDispatch()
+    const productId = location.pathname.split("/")[2];
     const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
     const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
-    const [product, setProduct] = useState<Product>();
-    const [categories, setCategories] = useState<string[]>([]);
-    const [sizes, setSizes] = useState<string[]>([]);
+    const [product, setProduct] = useState<Product | undefined>();
+    const [quantity, setQuantity] = useState<number>(1);
+    const [size, setSize] = useState<string>("");
 
     useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const product = await getSingleProduct(dispatch, productId);
-                setProduct(product);
-                setCategories(product.categories);
-                setSizes(product.size);
-                dispatch(doneFetching());
-                window.scrollTo(0, 0);
-            } catch (error) {
-                console.log(error);
+        async function getSingleProduct() {
+            const singleProduct = await getProduct(dispatch, productId);
+            if (singleProduct && isSingleProduct(singleProduct)) {
+                setProduct(singleProduct);
             }
         }
-        getProduct();
+        getSingleProduct();
     }, [productId, dispatch])
-
-    const [quantity, setQuantity] = useState(1);
 
     const handleQuantity = (type: string) => {
         if (type === "inc") {
@@ -47,21 +38,7 @@ const SingleProduct = () => {
                 setQuantity(quantity - 1)
         }
     }
-
-    const [size, setSize] = useState("");
-
-    const handleClick = () => {
-        dispatch(
-            addProduct(
-                {
-                    ...product,
-                    quantity,
-                    size
-                }
-            )
-        )
-    }
-
+    
     return (
         <>
             {
@@ -74,7 +51,7 @@ const SingleProduct = () => {
                             <div className="flex flex-col">
                                 <h2 className='text-4xl text-center lg:text-left text-gray-800 font-semibold'>{product?.title}</h2>
                                 <div className='flex gap-4 mt-1 mb-4'>
-                                    {categories.map((category: string) => {
+                                    {product?.categories.map((category: string) => {
                                         return <span key={category} className="px-1 rounded-md bg-gray-300">{category}</span>
                                     })}
                                 </div>
@@ -86,7 +63,7 @@ const SingleProduct = () => {
                                     <p className='optionText'>Selecciona tu talla:</p>
                                     <select className='border-slate-400 border-2 rounded-md w-3/4' name="" onChange={(e) => setSize(e.target.value)}>
                                         {
-                                            sizes.map((size) => {
+                                            product?.size.map((size) => {
                                                 return <option value={size} key={size}>{size}</option>
                                             })
                                         }
@@ -98,7 +75,7 @@ const SingleProduct = () => {
                                     <FaPlus className='cursor-pointer' onClick={() => handleQuantity("inc")} />
                                 </div>
                                 <div className="flex justify-center items-center gap-4 transition ease-in-out duration-150">
-                                    <button onClick={handleClick} disabled={!isAuthenticated} className='text-stone-50 bg-gray-800 w-full p-2 rounded-md font-semibold cursor-pointer disabled:bg-gray-400 disabled:text-gray-600 disabled:cursor-not-allowed'>Añadir al Carrito</button>
+                                    <button onClick={() => addCartProduct(dispatch, product, quantity, size)} disabled={!isAuthenticated} className='text-stone-50 bg-gray-800 w-full p-2 rounded-md font-semibold cursor-pointer disabled:bg-gray-400 disabled:text-gray-600 disabled:cursor-not-allowed'>Añadir al Carrito</button>
                                     {
                                         !isAuthenticated &&
                                         <>
