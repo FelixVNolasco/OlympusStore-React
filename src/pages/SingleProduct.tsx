@@ -88,7 +88,7 @@ const SingleProduct = () => {
                                             return <option  value={size} key={size}>{size}</option>
                                         })
                                     }
-                                </select>
+                                </select> 
                             </div>
                             <div className="productAmountContainer">
                                 <FaMinus className='icons' onClick={() => handleQuantity("dec")} />
