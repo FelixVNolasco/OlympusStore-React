@@ -3,6 +3,7 @@ import { setLoading, removeLoading } from "../uiRedux";
 import { loginSuccess, logOutStart } from '../userRedux';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { googleAuthProvider, facebookAuthProvider } from "../../firebase/firebase-config";
+import { createUserMessageSuccess, loginWithEmailAndPasswordErrorMessage, signupWithEmailAndPasswordErrorMessage, loginWithFacebookErrorMessage } from '../../helpers/sweetActions';
 
 export const loginWithEmailAndPassword = (email, password) => {
   return (dispatch) => {
@@ -15,7 +16,7 @@ export const loginWithEmailAndPassword = (email, password) => {
         dispatch(loginSuccess(user));
         dispatch(removeLoading());
       } catch (error) {
-        Swal.fire('Error', "Usuario o contraseña incorrecto", "error");
+        loginWithEmailAndPasswordErrorMessage();
         console.log(error);
         dispatch(removeLoading());
       }
@@ -30,18 +31,14 @@ export const signupWithEmailAndPassword = (email, password) => {
       try {
         const auth = getAuth();
         dispatch(setLoading());
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
         dispatch(removeLoading());
-        const user = userCredential.user;
-        console.log(user);
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Tu cuenta ha sido creada correctamente",
-        });
+        // const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        // const user = userCredential.user;        
+        createUserMessageSuccess();
       } catch (error) {
         dispatch(removeLoading());
-        Swal.fire('Error', "No ha sido posible registrarse", "error");
+        signupWithEmailAndPasswordErrorMessage();
         console.log(error);
       }
     }
@@ -74,11 +71,7 @@ export const loginWithFacebook = (navigateSuccess) => {
         dispatch(loginSuccess(user));
         navigateSuccess();
       } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Ya existe una cuenta con este correo 📫",
-        });
+        loginWithFacebookErrorMessage();
         console.log(error);
       }
     }

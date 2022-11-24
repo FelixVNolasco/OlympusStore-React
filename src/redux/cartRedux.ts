@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import Swal from 'sweetalert2';
+import { addProductMessage, warningChooseSize, warningExistingProductCart } from '../helpers/sweetActions';
 
 const cartSlice = createSlice({
     name: "cart",
@@ -26,24 +27,12 @@ const cartSlice = createSlice({
                     state.quantity += 1;
                     state.products.push(action.payload)
                     state.total += action.payload.price * action.payload.quantity
-                    Swal.fire({
-                        icon: "success",
-                        title: "Exito",
-                        text: "Se ha agregado correctamente el/los producto(s)",
-                    });
+                    addProductMessage();
                 } else {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Advertencia",
-                        text: "Debes escoger un número",
-                    });
+                    warningChooseSize();
                 }
             } else {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Advertencia",
-                    text: "Este producto ya existe en tu carrito de compras",
-                });
+                warningExistingProductCart();
             }
         },
         removeProduct: (state, action) => {

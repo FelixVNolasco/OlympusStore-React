@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import { logout } from '../redux/actions/auth';
 import { useState } from "react";
@@ -9,9 +8,10 @@ import { Form, Field, ErrorMessage, Formik } from 'formik';
 import { FaEdit, FaRegTimesCircle, FaRegCheckCircle } from "react-icons/fa";
 import { updateDisplayName } from "../components/Schema/FomSchema";
 import { VerifyUser } from '../redux/actions/verifyRestoreUser';
-import { deleteAccount, uploadProfilePicture, updateUsername } from '../redux/actions/updateUser';
+import { uploadProfilePicture, updateUsername } from '../redux/actions/updateUser';
 import { useEffect } from 'react';
 import { useAuth } from '../firebase/useAuth';
+import { handleDelete } from "../helpers/sweetActions";
 
 const Profile = () => {
 
@@ -43,23 +43,6 @@ const Profile = () => {
         navigate(0);
     }
 
-    const handleDelete = async () => {
-        dispatch(deleteAccount(navigateLoginAndLogout));
-        Swal.fire({
-            title: '¿Estas seguro que quieres eliminar tu cuenta?',
-            text: "Esta acción no es reversible",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar',
-            cancelButtonText: "No"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(deleteAccount(navigateLoginAndLogout));
-            }
-        })
-    }
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -196,7 +179,7 @@ const Profile = () => {
                     <Link to={`/profile/updateProfile/${_id}`} className="">
                         <button disabled={false} className="p-2 m-2 bg-blue-200 hover:bg-blue-200/90 text-black cursor-pointer rounded-md disabled:bg-gray-400 disabled:text-gray-300 disabled:cursor-not-allowed">Actualizar</button>
                     </Link>
-                    <button className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={handleDelete}>Eliminar</button>
+                    <button className="p-2 m-2 bg-red-200 hover:bg-red-200/90 text-black cursor-pointer rounded-md" onClick={() => handleDelete(dispatch, navigateLoginAndLogout)}>Eliminar</button>
                 </div>
             </div>
         </motion.div>

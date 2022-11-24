@@ -2,6 +2,7 @@ import { removeLoading, setLoading } from "../uiRedux";
 import { getAuth, deleteUser, updateEmail, updatePassword, updateProfile, onAuthStateChanged } from 'firebase/auth';
 import Swal from 'sweetalert2';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { deleteAccountSuccessMessage, deleteAccountErrorMessage, updateUserFirebaseSuccessMessage, updateUserFirebaseErrorMessage, updateUsernameSuccessMessage, uploadProfilePictureSuccessMessage, uploadProfilePictureErrorMessage } from '../../helpers/sweetActions';
 
 export const deleteAccount = (navigateLoginAndLogout) => {
   return (dispatch) => {
@@ -12,20 +13,11 @@ export const deleteAccount = (navigateLoginAndLogout) => {
         const user = auth.currentUser;
         await deleteUser(user);
         dispatch(removeLoading());
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          text: "Tu cuenta ha sido actualizada correctamente",
-          didClose: () => navigateLoginAndLogout()
-        })
+        deleteAccountSuccessMessage(navigateLoginAndLogout);
       } catch (error) {
         dispatch(removeLoading());
         console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No ha sido posible eliminar la cuenta",
-        });
+        deleteAccountErrorMessage()
       }
     }
     tryDeleteAccount();
@@ -47,19 +39,11 @@ export const updateUserFirebase = (newData, navigateLoginAndLogout) => {
             })
             dispatch(removeLoading());
             navigateLoginAndLogout();
-            Swal.fire({
-              icon: "success",
-              title: "Exito",
-              text: "Se ha actualizado tu cuenta correctamente",
-            });
+            updateUserFirebaseSuccessMessage();
           }
         })
       } catch (error) {
-        Swal.fire({
-          icon: "success",
-          title: "Error",
-          text: "No ha sido posible actualizar tu cuenta",
-        });
+        updateUserFirebaseErrorMessage();
         dispatch(removeLoading());
       }
     }
@@ -78,12 +62,7 @@ export const updateUsername = (displayName, refreshPage) => {
           if (user) {
             updateProfile(user, displayName).then(() => {
               dispatch(removeLoading());
-              Swal.fire({
-                icon: "success",
-                title: "Exito",
-                text: "Se ha actualizado su nombre correctamente",
-                didClose: () => refreshPage()
-              });
+              updateUsernameSuccessMessage(refreshPage);
             })
           }
         });
@@ -110,23 +89,14 @@ export const uploadProfilePicture = (file, refreshPage) => {
               getDownloadURL(fileRef).then((photoURL) => {
                 updateProfile(user, { photoURL }).then(() => {
                   dispatch(removeLoading());
-                  Swal.fire({
-                    icon: "success",
-                    title: "Exito",
-                    text: "Se ha actualizado la foto de perfil",
-                    didClose: () => refreshPage()
-                  })
+                  uploadProfilePictureSuccessMessage(refreshPage);
                 })
               })
             })
           }
         })
       } catch (error) {
-        Swal.fire({
-          icon: "success",
-          title: "Error",
-          text: "No ha sido posible actualizar tu cuenta",
-        });
+        uploadProfilePictureErrorMessage();
         dispatch(removeLoading());
       }
     }

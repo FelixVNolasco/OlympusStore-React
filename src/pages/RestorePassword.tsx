@@ -6,6 +6,7 @@ import { resetPassword } from '../firebase/useAuth';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { successRestorePwdMessage } from '../helpers/sweetActions';
 
 
 const RestorePassword = () => {
@@ -36,14 +37,7 @@ const RestorePassword = () => {
                             try {
                                 setSubmitting(true);
                                 await resetPassword(query.get('oobCode'), values.password);
-                                Swal.fire({
-                                    icon: "success",
-                                    title: "Exito",
-                                    text: "Se ha restaurado correctamente tu contraseña",
-                                    confirmButtonColor: "3085d6",
-                                    confirmButtonText: "Ok",
-                                    didClose: () => navigate("/auth/login")
-                                });
+                                successRestorePwdMessage(navigate);
                                 setSubmitting(false);
                             } catch (error) {
                                 console.log(error);

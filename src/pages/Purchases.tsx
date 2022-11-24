@@ -5,6 +5,7 @@ import { cancelPurchase, getUserPurchases } from "../redux/apiCall";
 import { BallTriangle } from "react-loader-spinner";
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
+import { handleCancelPurchase } from '../helpers/sweetActions';
 
 export const Purchases = () => {
 
@@ -27,22 +28,7 @@ export const Purchases = () => {
         getPurchases();
     }, [dispatch, uid]);
 
-    const handleCancelPurchase = (id: string) => {
-        Swal.fire({
-            title: '¿Estas seguro que quieres eliminar esta compra?',
-            text: "Esta acción no es reversible",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, cancelar compra',
-            cancelButtonText: "No"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                cancelPurchase(dispatch, id, refreshPage);
-            }
-        })
-    }
+
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -86,7 +72,7 @@ export const Purchases = () => {
                                                                 </div>
                                                                 <div className="flex flex-col text-sm md:mr-4">
                                                                     <span>Orden Nº {_id}</span>
-                                                                    <span className='text-red-600 cursor-pointer' onClick={() => handleCancelPurchase(_id)}>Cancelar Compra</span>
+                                                                    <span className='text-red-600 cursor-pointer' onClick={() => handleCancelPurchase(_id, dispatch, refreshPage)}>Cancelar Compra</span>
                                                                 </div>
                                                             </div>
                                                             <span className="ml-4">Productos Comprados</span>

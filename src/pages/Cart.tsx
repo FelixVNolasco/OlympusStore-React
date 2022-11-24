@@ -2,13 +2,13 @@ import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
-import { cleanCart, plusProduct, removeProduct, restProduct } from '../redux/cartRedux';
+import { plusProduct, restProduct } from '../redux/cartRedux';
 import { EmptyCart } from '../components/Shared/EmptyCart';
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
-import Swal from "sweetalert2";
 import { removeLoading, setLoading } from '../redux/uiRedux';
 import { makePurchaseRequest, successPurchaseRequest } from '../redux/apiCall';
 import { motion } from 'framer-motion';
+import { handleCleanCart, handleRemoveProduct } from '../helpers/sweetActions';
 
 const Cart = () => {
 
@@ -58,7 +58,7 @@ const Cart = () => {
                         console.log(error);
                     }
                 };
-                createOrder();                
+                createOrder();
                 dispatch(removeLoading());
                 // navigate("/success", {
                 //     state: {
@@ -75,43 +75,7 @@ const Cart = () => {
         stripeToken && makeRequest();
     }, [stripeToken, cart.total, navigate, cart, uid, accessToken, dispatch])
 
-    const handleCleanCart = async () => {
-        Swal.fire({
-            title: 'Limpiar Carrito',
-            text: "¿Deseas quitar todos los productos?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: "No"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(cleanCart({
-                    products: [],
-                    quantity: 0,
-                    total: 0
-                }));
-            }
-        })
-    }
 
-    const handleRemoveProduct = async (product) => {
-        Swal.fire({
-            title: 'Remover Producto',
-            text: "¿Deseas remover este producto?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: "No"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(removeProduct(product));
-            }
-        })
-    }
 
     return (
         <motion.main className='flex flex-col items-center mt-6 mb-auto' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -152,7 +116,7 @@ const Cart = () => {
                                                                     onClick={() => dispatch(plusProduct(product))} />
                                                             </div>
                                                         </div>
-                                                        <FaTrash className='mt-2 hover:text-red-400 cursor-pointer' onClick={() => handleRemoveProduct(product)} />
+                                                        <FaTrash className='mt-2 hover:text-red-400 cursor-pointer' onClick={() => handleRemoveProduct(product, dispatch)} />
                                                     </div>
                                                 </div>
                                                 <div

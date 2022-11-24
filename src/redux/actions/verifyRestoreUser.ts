@@ -1,6 +1,6 @@
 import { removeLoading, setLoading } from "../uiRedux";
 import { getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth';
-import Swal from 'sweetalert2';
+import { VerifyUserSuccessMessage, VerifyUserErrorMessage, RestorePasswordWithEmailSuccessMessage, RestorePasswordWithEmailErrorMessage } from '../../helpers/sweetActions';
 
 export const VerifyUser = () => {
     return (dispatch) => {
@@ -11,17 +11,13 @@ export const VerifyUser = () => {
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         sendEmailVerification(user)
-                        Swal.fire({
-                            icon: "success",
-                            title: "Exito",
-                            html: "<span>Se ha enviado el correo de verificaciónn</span> <br>" +
-                            "<span>Por favor revisa tu bandeja de SPAM</span>"
-                        });
+                        VerifyUserSuccessMessage();
                         dispatch(removeLoading());
                     }
                 })
             } catch (error) {
                 dispatch(removeLoading());
+                VerifyUserErrorMessage();
                 console.log(error)
             }
         }
@@ -38,19 +34,10 @@ export const RestorePasswordWithEmail = (email) => {
                 const auth = getAuth();
                 await sendPasswordResetEmail(auth, email);
                 dispatch(removeLoading());
-                Swal.fire({
-                    icon: "success",
-                    title: "Exito",
-                    html: "<span>Se ha enviado el correo de recuperación</span> <br>" +
-                    "<span>Por favor revisa tu bandeja de SPAM</span>"
-                });
+                RestorePasswordWithEmailSuccessMessage();
             } catch (error) {
                 dispatch(removeLoading());
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "No ha sido posible enviar el correo de recuperación 😔",
-                });
+                RestorePasswordWithEmailErrorMessage();
                 console.log(error);
             }
         }

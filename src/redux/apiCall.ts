@@ -4,6 +4,7 @@ import { publicRequest } from '../requestMethods';
 import { removeLoading, setLoading } from "./uiRedux";
 import { doneFetching, startFetching } from './userRedux';
 import axios from 'axios';
+import { successCancelPurchaseMessage } from '../helpers/sweetActions';
 
 const BASE_URL = "https://olympus-backend.vercel.app/api";
 
@@ -22,10 +23,10 @@ export const getAllProducts = async (dispatch, category: any) => {
 
 export const getProduct = async (dispatch, productId): Promise<unknown> => {
     try {
-        const product = await getSingleProduct(dispatch, productId);        
+        const product = await getSingleProduct(dispatch, productId);
         dispatch(doneFetching());
         window.scrollTo(0, 0);
-        return product;        
+        return product;
     } catch (error) {
         console.log(error);
     }
@@ -79,14 +80,7 @@ export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
         const { data } = response;
         dispatch(removeLoading());
         if (data === "Order has been deleted...") {
-            Swal.fire({
-                icon: "success",
-                title: "Exito",
-                text: "Tu compra ha sido cancelada correctamente",
-                confirmButtonColor: "3085d6",
-                confirmButtonText: "Ok",
-                didClose: () => refreshPage()
-            });
+            successCancelPurchaseMessage(refreshPage);
         }
     } catch (error) {
         dispatch(removeLoading());
