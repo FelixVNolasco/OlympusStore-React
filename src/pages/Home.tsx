@@ -6,7 +6,7 @@ import { Footer } from '../components/Shared/Footer';
 export const Home = () => {
     return (
         <div className="home">    
-            <Slider />
+            <Slider /> 
             <Categories />
             <Products />
             <Footer />
