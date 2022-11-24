@@ -4,7 +4,6 @@ import Signup from "../components/Auth/Signup";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import { NotFound } from '../pages/NotFound';
-import { Cancel } from '../pages/Cancel';
 import { UpdateProfile } from '../pages/UpdateProfile';
 import { Home } from '../pages/Home';
 import { Purchases } from '../pages/Purchases';
@@ -73,11 +72,6 @@ export const AnimatedRoutes = ({ routeProtection, noAuthProtection }) => {
             <Route path="/success" element={
                 <React.Suspense fallback={<></>}>
                     <ProtectedRoute {...routeProtection} outlet={<Success />} />
-                </React.Suspense>
-            } />
-            <Route path="/cancel" element={
-                <React.Suspense fallback={<></>}>
-                    <ProtectedRoute {...routeProtection} outlet={<Cancel />} />
                 </React.Suspense>
             } />
             <Route path="*" element={
