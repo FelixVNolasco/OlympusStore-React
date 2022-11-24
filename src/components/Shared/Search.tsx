@@ -5,7 +5,7 @@ import { SearchResults } from './SearchResults';
 
 export const Search = ({category = ""}) => {
 
-    const [queryText, setqueryText] = useState("");
+    const [queryText, setqueryText] = useState<string>("");
     const [searchResults, setSearchResults] = useState([]);
 
     const handlequeryChange = (e) => {

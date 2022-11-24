@@ -6,6 +6,9 @@ export const SuccessOrderCard = (orderId) => {
 
   const { order } = orderId;
 
+
+  //TODO: Add Address Info and Amount in the Card 
+
   // const { _id, address, amount } = order.order;
   // const { line1, city, postal_code, country } = address;
 

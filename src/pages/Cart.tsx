@@ -60,12 +60,6 @@ const Cart = () => {
                 };
                 createOrder();
                 dispatch(removeLoading());
-                // navigate("/success", {
-                //     state: {
-                //         stripeData: data,
-                //         cart: cart
-                //     },
-                // });
             } catch (error) {
                 dispatch(removeLoading());
                 console.log(error);
@@ -74,8 +68,6 @@ const Cart = () => {
 
         stripeToken && makeRequest();
     }, [stripeToken, cart.total, navigate, cart, uid, accessToken, dispatch])
-
-
 
     return (
         <motion.main className='flex flex-col items-center mt-6 mb-auto' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

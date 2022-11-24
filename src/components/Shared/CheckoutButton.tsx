@@ -1,9 +1,5 @@
-// import { useSelector, RootStateOrAny } from 'react-redux';
-// import axios from 'axios';
 
-export const CheckoutButton = ({ items }) => {
-
-    // const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+export const CheckoutButton = () => {
 
     const handleCheckout = async () => {
         const res = await fetch(`https://olympus-backend.vercel.app/api/stripe/create-checkout-session`, {

@@ -4,10 +4,8 @@ import { getAllProducts } from '../redux/apiCall';
 import { BallTriangle } from 'react-loader-spinner';
 import { PaginatedProducts } from './Shared/PaginatedProducts';
 
-
 export const CategoryProducts = ({ category, filters, sort }) => {
 
-    const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
     const dispatch = useDispatch();
@@ -16,7 +14,6 @@ export const CategoryProducts = ({ category, filters, sort }) => {
         const getProducts = async () => {
             try {
                 const products = await getAllProducts(dispatch, category);
-                setProducts(products);
                 category &&
                     setfilteredProducts(
                         products.filter((item) =>
@@ -51,7 +48,7 @@ export const CategoryProducts = ({ category, filters, sort }) => {
     return (
         <>
             {
-                loading  ?
+                loading ?
                     (
                         <div className='grid justify-items-center mt-36 mb-36'>
                             <BallTriangle

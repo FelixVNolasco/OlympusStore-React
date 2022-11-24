@@ -13,7 +13,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [showPassword, setshowPassword] = useState(false);
+    const [showPassword, setshowPassword] = useState<boolean>(false);
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     };

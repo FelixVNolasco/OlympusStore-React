@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { cancelPurchase, getUserPurchases } from "../redux/apiCall";
+import { getUserPurchases } from "../redux/apiCall";
 import { BallTriangle } from "react-loader-spinner";
-import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import { handleCancelPurchase } from '../helpers/sweetActions';
 
 export const Purchases = () => {
 
     const navigate = useNavigate();
-    const [purchases, setPurchases] = useState<any[]>(null);
-    const { currentUser } = useSelector((state: RootStateOrAny) => state.user);
-    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
-    const { displayName, uid } = currentUser;
     const dispatch = useDispatch();    
-
+    const [purchases, setPurchases] = useState<any[]>(null);
+    const { displayName, uid } = useSelector((state: RootStateOrAny) => state.user.currentUser);
+    const { loading } = useSelector((state: RootStateOrAny) => state.ui);
+    
     const refreshPage = () => {
         navigate(0);
     }
@@ -27,8 +25,6 @@ export const Purchases = () => {
         }
         getPurchases();
     }, [dispatch, uid]);
-
-
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

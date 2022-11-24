@@ -1,7 +1,7 @@
 import { Product } from "../interfaces/SingleProduct";
 import { addProduct } from "../redux/cartRedux";
 
-export function isSingleProduct(singleProduct: any): singleProduct is Product {
+export function isSingleProduct(singleProduct): singleProduct is Product {
     return singleProduct;
 }
 

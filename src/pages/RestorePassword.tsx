@@ -11,15 +11,14 @@ import { successRestorePwdMessage } from '../helpers/sweetActions';
 
 const RestorePassword = () => {
 
-    function useQuery() {
-        return new URLSearchParams(useLocation().search)
-    }
-
     const query = useQuery();
     const navigate = useNavigate();
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
+    function useQuery() {
+        return new URLSearchParams(useLocation().search)
+    }
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);

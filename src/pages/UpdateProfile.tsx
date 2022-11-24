@@ -12,7 +12,9 @@ export const UpdateProfile = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [showPassword, setshowPassword] = useState(false);
+    
+    const [showPassword, setshowPassword] = useState<boolean>(false);
+
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
     };
@@ -59,10 +61,6 @@ export const UpdateProfile = () => {
                                         component="div"
                                     />
                                 </div>
-
-                                {/* <input type="file" onChange={(e) => {
-                                    setProfileSelected(e.target.files[0]);
-                                }} /> */}
                                 <div className="flex flex-col mb-4">
                                     <label className="font-semibold" htmlFor="password">
                                         Contraseña
@@ -103,11 +101,7 @@ export const UpdateProfile = () => {
                             </Form>
                         )}
                     </Formik>
-                    {/* <div className="w-1/2 flex mb-6 xl:mb-0 justify-center transition ease-in duration-300 hover:-translate-y-2 cursor-pointer">
-                        <img className="w-32 rounded-md" src={(photoURL) ? photoURL : "https://res.cloudinary.com/dhyxqmnua/image/upload/v1642722284/Olympus/blank-profile-picture-973460_qb0gmg.svg"} alt="" />
-                    </div> */}
                 </div>
-
             </motion.div>
         </>
     )

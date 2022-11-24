@@ -15,15 +15,14 @@ import { handleDelete } from "../helpers/sweetActions";
 
 const Profile = () => {
 
+    const { _id, email, createdAt, lastLoginAt, emailVerified} = useSelector((state: RootStateOrAny) => state.user.currentUser);
     const actualUser = useAuth();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { _id } = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const user = useSelector((state: RootStateOrAny) => state.user.currentUser);
-    const { email, createdAt, lastLoginAt, emailVerified } = user;
-    const [photo, setPhoto] = useState(null);
-    const [photoURL, setPhotoURL] = useState(null);
-    const [displayName, setDisplayName] = useState(null);
+
+    const [photo, setPhoto] = useState<string | null>(null);
+    const [photoURL, setPhotoURL] = useState<string | null>(null);
+    const [displayName, setDisplayName] = useState<string | null>(null);
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
     const createdAtParsed = parseInt(createdAt)
@@ -43,8 +42,7 @@ const Profile = () => {
         navigate(0);
     }
 
-
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
 
     const handleVerification = () => {
         dispatch(VerifyUser());
@@ -137,12 +135,7 @@ const Profile = () => {
                                                 <FaEdit className="cursor-pointer" onClick={() => setIsEditing(!isEditing)} />
                                             </div>
                                         )
-                                }
-                                {/* 
-                                <div className="flex items-center justify-between">
-                                    <p className="font-semibold">Nombre:</p>
-                                    <span className="md:ml-2">{displayName}</span>
-                                </div> */}
+                                }       
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center">
                                 <p className="font-semibold">Correo Electrónico:</p>

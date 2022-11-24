@@ -12,10 +12,11 @@ import { addCartProduct, isSingleProduct } from '../helpers/singleProductHelpers
 const SingleProduct = () => {
 
     const location = useLocation();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     const productId = location.pathname.split("/")[2];
-    const { isFetching } = useSelector((state: RootStateOrAny) => state.user);
-    const { isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+    const { isFetching, isAuthenticated } = useSelector((state: RootStateOrAny) => state.user);
+
     const [product, setProduct] = useState<Product | undefined>();
     const [quantity, setQuantity] = useState<number>(1);
     const [size, setSize] = useState<string>("");

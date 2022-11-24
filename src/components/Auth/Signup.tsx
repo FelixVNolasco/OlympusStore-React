@@ -12,8 +12,8 @@ const Signup = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [showPassword, setshowPassword] = useState(false);
-    const [showConfirmPassword, setshowConfirmPassword] = useState(false);
+    const [showPassword, setshowPassword] = useState<boolean>(false);
+    const [showConfirmPassword, setshowConfirmPassword] = useState<boolean>(false);
 
     const handleShowPassword = () => {
         setshowPassword(!showPassword);
