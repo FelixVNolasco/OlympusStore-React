@@ -6,7 +6,7 @@ export const ImageSlider = ({ images }) => {
             {
                 images?.map((image, index) => {
                     return (
-                        <div className="each-slide-effect">
+                        <div className="each-slide-effect"> 
                             <div style={{ 'backgroundImage': `url(${image[index]})` }}>
                             </div>
                         </div>
