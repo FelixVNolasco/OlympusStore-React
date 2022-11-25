@@ -14,10 +14,8 @@ const cartSlice = createSlice({
         addProduct: (state, action) => {
             const alreadyExistsProduct = () => {            
                if (state.products.find((product) => product._id === action.payload._id )) {
-                console.log("El producto ya existe en el carrito de compras");
                 return true;            
                } else {
-                console.log("El producto todavía no existe");
                 return false;
                }
             }

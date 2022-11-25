@@ -16,3 +16,7 @@ export interface Product {
 export interface SingleProductResponse {
     data: Product
 }
+
+export interface ProductsResponse {
+    data: Product[]
+}

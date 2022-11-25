@@ -1,17 +1,16 @@
-import Swal from 'sweetalert2';
-import { SingleProductResponse } from '../interfaces/SingleProduct';
+import { SingleProductResponse, Product, ProductsResponse } from '../interfaces/SingleProduct';
 import { publicRequest } from '../requestMethods';
 import { removeLoading, setLoading } from "./uiRedux";
 import { doneFetching, startFetching } from './userRedux';
-import axios from 'axios';
 import { successCancelPurchaseMessage } from '../helpers/sweetActions';
+import { Purchase, UserPurchaseReponse } from '../interfaces/purchase';
+import { Order, OrderResponse } from '../interfaces/order';
+import { Payment, PaymentResponse } from '../interfaces/payment';
 
-const BASE_URL = "https://olympus-backend.vercel.app/api";
-
-export const getAllProducts = async (dispatch, category: any) => {
+export const getAllProducts = async (dispatch, category: any): Promise<Product[]> => {
     dispatch(setLoading());
     try {
-        const products: any = await publicRequest.get(category ? `/products?category=${category}` : '/products');
+        const products = await publicRequest.get(category ? `/products?category=${category}` : '/products') as ProductsResponse;
         const { data } = products;
         dispatch(removeLoading());
         return data;
@@ -21,7 +20,7 @@ export const getAllProducts = async (dispatch, category: any) => {
     }
 }
 
-export const getProduct = async (dispatch, productId): Promise<unknown> => {
+export const getProduct = async (dispatch, productId): Promise<Product> => {
     try {
         const product = await getSingleProduct(dispatch, productId);
         dispatch(doneFetching());
@@ -32,10 +31,24 @@ export const getProduct = async (dispatch, productId): Promise<unknown> => {
     }
 }
 
-export const getUserPurchases = async (dispatch, id: string) => {
+
+export const getSingleProduct = async (dispatch, productId: string): Promise<Product> => {
+    try {
+        dispatch(startFetching());
+        const product = await publicRequest.get(`/products/find/${productId}`) as SingleProductResponse;
+        const { data } = product;
+        return data;
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+
+export const getUserPurchases = async (dispatch, id: string): Promise<Purchase[]> => {
     dispatch(setLoading());
     try {
-        const purchasesData = await axios.get(`https://olympus-backend.vercel.app/api/orders/find/${id}`);
+        const purchasesData = await publicRequest.get(`/orders/find/${id}`) as UserPurchaseReponse;
         const { data } = purchasesData;
         dispatch(removeLoading());
         return data;
@@ -45,11 +58,10 @@ export const getUserPurchases = async (dispatch, id: string) => {
     }
 }
 
-
-export const makePurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string) => {
+export const makePurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string): Promise<Payment> => {
     dispatch(setLoading());
     try {
-        const purchaseRequest = await axios.post(`${BASE_URL}/checkout/payment`, stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } })
+        const purchaseRequest = await publicRequest.post('/checkout/payment', stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } }) as PaymentResponse;
         const { data } = purchaseRequest;
         dispatch(removeLoading());
         return data;
@@ -59,11 +71,10 @@ export const makePurchaseRequest = async (dispatch, stripeData, userId: string, 
     }
 }
 
-
-export const successPurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string) => {
+export const successPurchaseRequest = async (dispatch, stripeData, userId: string, accessToken: string): Promise<Order> => {
     dispatch(setLoading());
     try {
-        const purchaseRequest = await axios.post(`${BASE_URL}/orders`, stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } })
+        const purchaseRequest = await publicRequest.post('/orders', stripeData, { params: { id: userId }, headers: { token: `Bearer ${accessToken}` } }) as OrderResponse;
         const { data } = purchaseRequest;
         dispatch(removeLoading());
         return data;
@@ -76,24 +87,12 @@ export const successPurchaseRequest = async (dispatch, stripeData, userId: strin
 export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
     dispatch(setLoading());
     try {
-        const response = await axios.delete(`${BASE_URL}/orders/${id}`);
+        const response = await publicRequest.delete(`/orders/${id}`);
         const { data } = response;
         dispatch(removeLoading());
         if (data === "Order has been deleted...") {
             successCancelPurchaseMessage(refreshPage);
         }
-    } catch (error) {
-        dispatch(removeLoading());
-        console.log(error);
-    }
-}
-
-export const getSingleProduct = async (dispatch, productId: string) => {
-    try {
-        dispatch(startFetching());
-        const product = await publicRequest.get(`/products/find/${productId}`) as SingleProductResponse;
-        const { data } = product;
-        return data;
     } catch (error) {
         dispatch(removeLoading());
         console.log(error);
