@@ -9,6 +9,9 @@ export const SuccessOrderCard = (orderId) => {
 
   //TODO: Add Address Info and Amount in the Card 
 
+  //TODO: ADD REACT_APP_BASE_URL as an enviroment variable of production
+
+
   // const { _id, address, amount } = order.order;
   // const { line1, city, postal_code, country } = address;
 
