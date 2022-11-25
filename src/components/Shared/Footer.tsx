@@ -9,7 +9,7 @@ export const Footer = () => {
             <div className='flex flex-col w-full'>
                 <div className='flex justify-center items-center'>
                     <h2 className="text-lg">Olympus</h2>
-                    <FaGripfire className='w-14 h-6'/>
+                    <FaGripfire className='w-14 h-6'/> 
                 </div>
                 <p className='text-center'>Los mejores productos para los mejores atletas.</p>
             </div>
