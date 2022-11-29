@@ -6,6 +6,8 @@ import { successCancelPurchaseMessage } from '../helpers/sweetActions';
 import { Purchase, UserPurchaseReponse } from '../interfaces/purchase';
 import { Order, OrderResponse } from '../interfaces/order';
 import { Payment, PaymentResponse } from '../interfaces/payment';
+import { CategoryResponse } from '../interfaces/Category';
+import { Category } from '../interfaces/Category';
 
 export const getAllProducts = async (dispatch, category: any): Promise<Product[]> => {
     dispatch(setLoading());
@@ -93,6 +95,19 @@ export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
         if (data === "Order has been deleted...") {
             successCancelPurchaseMessage(refreshPage);
         }
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
+export const getCategories = async (dispatch): Promise<Category[]> => {
+    dispatch(setLoading());
+    try {
+        const categoryResponse = await publicRequest.get("/categories") as CategoryResponse;
+        const { data } = categoryResponse;
+        dispatch(removeLoading());
+        return data
     } catch (error) {
         dispatch(removeLoading());
         console.log(error);

@@ -1,5 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
-import Swal from 'sweetalert2';
+import { createSlice } from '@reduxjs/toolkit'
 import { addProductMessage, warningChooseSize, warningExistingProductCart } from '../helpers/sweetActions';
 
 const cartSlice = createSlice({
@@ -12,15 +11,15 @@ const cartSlice = createSlice({
     },
     reducers: {
         addProduct: (state, action) => {
-            const alreadyExistsProduct = () => {            
-               if (state.products.find((product) => product._id === action.payload._id )) {
-                return true;            
-               } else {
-                return false;
-               }
+            const alreadyExistsProduct = () => {
+                if (state.products.find((product) => product._id === action.payload._id)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
             const productExistence = alreadyExistsProduct();
-            if(!productExistence) {
+            if (!productExistence) {
                 if (action.payload.size !== "") {
                     state.quantity += 1;
                     state.products.push(action.payload)
@@ -67,5 +66,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addProduct, removeProduct, plusProduct, restProduct, cleanCart} = cartSlice.actions;
+export const { addProduct, removeProduct, plusProduct, restProduct, cleanCart } = cartSlice.actions;
 export default cartSlice.reducer;
