@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { ProductsMap } from './ProductsMap';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';

@@ -1,6 +1,6 @@
 
-export const CheckoutButton = () => {
 
+export const CheckoutButton = ({ items }) => {
     const handleCheckout = async () => {
         const res = await fetch(`https://olympus-backend.vercel.app/api/stripe/create-checkout-session`, {
             method: 'POST',
