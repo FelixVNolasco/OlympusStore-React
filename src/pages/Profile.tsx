@@ -21,7 +21,7 @@ const Profile = () => {
     const navigate = useNavigate();
 
 
-    const navigateToHome = () => {        
+    const navigateToHome = () => {
         navigate("/");
     }
 
@@ -33,11 +33,11 @@ const Profile = () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar',
-            cancelButtonText: "No"
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteUser(dispatch, _id,accessToken, navigateToHome));
+                dispatch(deleteUser(dispatch, _id, accessToken, navigateToHome));
             }
         })
     }
