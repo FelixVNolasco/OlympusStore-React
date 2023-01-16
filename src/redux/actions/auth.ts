@@ -36,7 +36,7 @@ export const signupWithEmailAndPassword = (email, password) => {
         console.log(user);
         Swal.fire({
           icon: "success",
-          title: "Exito",
+          title: "Éxito",
           text: "Tu cuenta ha sido creada correctamente",
         });
       } catch (error) {

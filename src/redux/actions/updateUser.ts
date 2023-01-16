@@ -14,7 +14,7 @@ export const deleteAccount = (navigateLoginAndLogout) => {
         dispatch(removeLoading());
         Swal.fire({
           icon: "success",
-          title: "Exito",
+          title: "Éxito",
           text: "Tu cuenta ha sido actualizada correctamente",
           didClose: () => navigateLoginAndLogout()
         })
@@ -49,7 +49,7 @@ export const updateUserFirebase = (newData, navigateLoginAndLogout) => {
             navigateLoginAndLogout();
             Swal.fire({
               icon: "success",
-              title: "Exito",
+              title: "Éxito",
               text: "Se ha actualizado tu cuenta correctamente",
             });
           }
@@ -80,7 +80,7 @@ export const updateUsername = (displayName, refreshPage) => {
               dispatch(removeLoading());
               Swal.fire({
                 icon: "success",
-                title: "Exito",
+                title: "Éxito",
                 text: "Se ha actualizado su nombre correctamente",
                 didClose: () => refreshPage()
               });
@@ -112,7 +112,7 @@ export const uploadProfilePicture = (file, refreshPage) => {
                   dispatch(removeLoading());
                   Swal.fire({
                     icon: "success",
-                    title: "Exito",
+                    title: "Éxito",
                     text: "Se ha actualizado la foto de perfil",
                     didClose: () => refreshPage()
                   })

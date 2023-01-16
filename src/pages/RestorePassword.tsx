@@ -38,7 +38,7 @@ const RestorePassword = () => {
                                 await resetPassword(query.get('oobCode'), values.password);
                                 Swal.fire({
                                     icon: "success",
-                                    title: "Exito",
+                                    title: "Éxito",
                                     text: "Se ha restaurado correctamente tu contraseña",
                                     confirmButtonColor: "3085d6",
                                     confirmButtonText: "Ok",

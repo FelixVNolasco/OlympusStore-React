@@ -13,7 +13,7 @@ export const VerifyUser = () => {
                         sendEmailVerification(user)
                         Swal.fire({
                             icon: "success",
-                            title: "Exito",
+                            title: "Éxito",
                             html: "<span>Se ha enviado el correo de verificaciónn</span> <br>" +
                             "<span>Por favor revisa tu bandeja de SPAM</span>"
                         });
@@ -40,7 +40,7 @@ export const RestorePasswordWithEmail = (email) => {
                 dispatch(removeLoading());
                 Swal.fire({
                     icon: "success",
-                    title: "Exito",
+                    title: "Éxito",
                     html: "<span>Se ha enviado el correo de recuperación</span> <br>" +
                     "<span>Por favor revisa tu bandeja de SPAM</span>"
                 });

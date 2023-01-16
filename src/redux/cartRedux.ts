@@ -22,13 +22,13 @@ const cartSlice = createSlice({
             }
             const productExistence = alreadyExistsProduct();
             if(!productExistence) {
-                if (action.payload.size !== "") {
+                if (action.payload.size !== "Escoge un número") {
                     state.quantity += 1;
                     state.products.push(action.payload)
                     state.total += action.payload.price * action.payload.quantity
                     Swal.fire({
                         icon: "success",
-                        title: "Exito",
+                        title: "Éxito",
                         text: "Se ha agregado correctamente el/los producto(s)",
                     });
                 } else {

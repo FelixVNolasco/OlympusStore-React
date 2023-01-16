@@ -14,7 +14,7 @@ const favoriteSlice = createSlice({
                 state.products.push(action.payload)
                 Swal.fire({
                     icon: "success",
-                    title: "Exito",
+                    title: "Éxito",
                     text: "Se ha favoriteado exitosamente",
                 });
             } else {

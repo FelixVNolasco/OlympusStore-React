@@ -9,6 +9,7 @@ import ReactTooltip from 'react-tooltip';
 import { Product } from '../interfaces/SingleProduct';
 import { doneFetching } from '../redux/userRedux';
 import { motion } from 'framer-motion';
+import { exceededProductsAlert } from '../helpers/singleProductAlert';
 
 const SingleProduct = () => {
 
@@ -27,7 +28,7 @@ const SingleProduct = () => {
                 const product = await getSingleProduct(dispatch, productId);
                 setProduct(product);
                 setCategories(product.categories);
-                setSizes(product.size);
+                setSizes(product.size);                
                 dispatch(doneFetching());
                 window.scrollTo(0, 0);
             } catch (error) {
@@ -35,20 +36,24 @@ const SingleProduct = () => {
             }
         }
         getProduct();
-    }, [productId, dispatch])
+    }, [productId, dispatch])    
 
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantity = (type: string) => {
         if (type === "inc") {
-            setQuantity(quantity + 1)
+            if(quantity >=5) {
+                exceededProductsAlert();
+            } else {
+                setQuantity(quantity + 1)
+            }
         } else {
             quantity > 1 &&
                 setQuantity(quantity - 1)
         }
     }
 
-    const [size, setSize] = useState("");
+    const [size, setSize] = useState("Escoge un número");
 
     const handleClick = () => {
         dispatch(

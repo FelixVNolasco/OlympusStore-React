@@ -70,7 +70,7 @@ export const cancelPurchase = async (dispatch, id: string, refreshPage) => {
         if (data === "Order has been deleted...") {
             Swal.fire({
                 icon: "success",
-                title: "Exito",
+                title: "Éxito",
                 text: "Tu compra ha sido cancelada correctamente",
                 confirmButtonColor: "3085d6",
                 confirmButtonText: "Ok",
