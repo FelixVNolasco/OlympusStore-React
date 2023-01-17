@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { Products } from '../components/Products';
 import { useState } from 'react';
 import { Search } from '../components/Shared/Search';
 import { CategoryProducts } from '../components/CategoryProducts';
@@ -21,7 +20,7 @@ const ProductList = () => {
     }
 
     const handleSort = (e: any) => {
-        setSort(e.target.value)
+        setSort(e.target.value);
     }
 
     return (
@@ -35,8 +34,8 @@ const ProductList = () => {
                         <div className="flex flex-col gap-1">
                             <p className="font-semibold">Buscar por número: </p>
                             <select className='border-2 border-gray-500 p-1 rounded-md' name="size" onChange={handleFilters}>
-                                <option value="" disabled>Tamaño</option>
-                                <option value="24">24</option>
+                                <option value="" disabled>Escoge un numero</option>
+                                <option value="24">24</option>                                
                                 <option value="24.5">24.5</option>
                                 <option value="25">25</option>
                                 <option value="25.5">25.5</option>
@@ -50,6 +49,7 @@ const ProductList = () => {
                         <div className="flex flex-col gap-1">
                             <p className="font-semibold">Ordenar por: </p>
                             <select className='border-2 border-gray-500 p-1 rounded-md' onChange={handleSort} >
+                                <option value="newest">Más Reciente</option>
                                 <option value="asc">Más Barato</option>
                                 <option value="desc">Más Caro</option>
                             </select>

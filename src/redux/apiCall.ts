@@ -20,6 +20,33 @@ export const getAllProducts = async (dispatch, category: any) => {
     }
 }
 
+
+export const getAllProductsCategorySort = async (dispatch, category: string, sort: string) => {
+    dispatch(setLoading());
+    try {        
+        if (sort === "newest") {
+            const products: any = await publicRequest.get(`/products?category=${category}&new=${true}`);
+            console.log(products);
+            const { data } = products;
+            dispatch(removeLoading());
+            return data;
+        } else if (sort === "asc") {
+            const products: any = await publicRequest.get(`/products?category=${category}&asc=true`);            
+            const { data } = products;
+            dispatch(removeLoading());
+            return data;
+        } else {
+            const products: any = await publicRequest.get(`/products?category=${category}&dsc=true`);
+            const { data } = products;
+            dispatch(removeLoading());
+            return data;
+        }
+    } catch (error) {
+        dispatch(removeLoading());
+        console.log(error);
+    }
+}
+
 export const getUserPurchases = async (dispatch, id: string) => {
     dispatch(setLoading());
     try {
