@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { publicRequest } from '../../requestMethods';
 import { SearchResults } from './SearchResults';
 
-export const Search = ({category = ""}) => {
+export const Search = ({ category = "" }) => {
 
     const [queryText, setqueryText] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([] || "No se ha encontrado ningun producto con este criterio");
 
     const handlequeryChange = (e) => {
         setqueryText(e.target.value);
@@ -17,7 +17,7 @@ export const Search = ({category = ""}) => {
             setSearchResults([])
             return;
         }
-        if(category !== "") {
+        if (category !== "") {
             ; (async () => {
                 const response: any = await publicRequest.get("/products/search/category", { params: { title: queryText, category: category } });
                 const { data } = response;
@@ -39,7 +39,6 @@ export const Search = ({category = ""}) => {
                 <input value={queryText} onChange={handlequeryChange} placeholder='Buscar..' className='focus:outline-none w-full' type="text" autoComplete='off' autoCorrect='off' spellCheck="false" maxLength={64} />
                 <FaSearch className='text-gray-600' />
             </div>
-
             <div className="mt-1 flex flex-col relative">
                 <SearchResults searchResults={searchResults} />
             </div>
