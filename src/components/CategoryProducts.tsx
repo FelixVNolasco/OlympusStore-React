@@ -6,7 +6,6 @@ import { PaginatedProducts } from './Shared/PaginatedProducts';
 
 export const CategoryProducts = ({ category, filters, sort }) => {
 
-    // const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
     const { loading } = useSelector((state: RootStateOrAny) => state.ui);
     const dispatch = useDispatch();
