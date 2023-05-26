@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cucumber/cucumber": "^9.1.2",
     "@nextui-org/react": "^1.0.0-beta.10",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.1",
@@ -28,6 +29,7 @@
     "react-tooltip": "^4.2.21",
     "redux-persist": "^6.0.0",
     "sass": "^1.46.0",
+    "selenium-webdriver": "^4.9.2",
     "stripe": "^8.197.0",
     "sweetalert2": "^11.3.10",
     "typescript": "^4.5.4",
@@ -38,7 +40,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cucumber-js -f @cucumber/pretty-formatter test/e2e/lib/features/basketIndex.feature",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -60,8 +62,10 @@
     ]
   },
   "devDependencies": {
+    "@cucumber/pretty-formatter": "^1.0.0",
     "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.8",
+    "chai": "^4.3.7",
     "postcss": "^8.4.16",
     "react-loader-spinner": "^5.1.0",
     "tailwindcss": "^3.1.8"
